@@ -1,6 +1,6 @@
 {
-  "name": "would_you_rather",
-  "version": "0.0.0",
+  "name": "group-habits",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
