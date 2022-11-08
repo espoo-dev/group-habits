@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "jest",
-    "test:watch": "yarn run test -- --watch"
+    "test:watch": "yarn run test -- --watch",
+    "test:coverage": "yarn run test --coverage"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -26,6 +27,12 @@
       "js",
       "ts",
       "svelte"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html",
+      "lcov"
     ]
   },
   "devDependencies": {

@@ -1,11 +1,5 @@
 <script lang="ts">
-  const item = {
-    label: "Item",
-    icone: "a",
-    selected: true
-  }
-
-  console.log('item -> ', item);
+  const habitName = "Eat 2 fruits"
 </script>
 
 <div class="container-item">
@@ -13,7 +7,7 @@
     <div class="icon-box">
       <i class="fa-regular fa-heart" style="color: purple;"></i>
     </div>
-    <span class="habit-name">Eat 2 fruits</span>
+    <span class="habit-name">{habitName}</span>
   </div>
 
   <input type="checkbox" name="item" id="item">
