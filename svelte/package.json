@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "jest",
-    "test:watch": "yarn run test -- --watch",
+    "test:watch": "yarn run test -i --watch",
     "test:coverage": "yarn run test --coverage"
   },
   "jest": {
