@@ -7,12 +7,16 @@
 <div class="container-item">
   <div class="icon-habit">
     <div class="icon-box">
-      <i class="fa-regular fa-{icon}" data-testid="icon-habit" style="color: purple;"></i>
+      <i
+        class="fa-regular fa-{icon}"
+        data-testid="icon-habit"
+        style="color: purple;"
+      />
     </div>
     <span class="habit-name">{name}</span>
   </div>
 
-  <input type="checkbox" name="{name}" id="{name}" checked="{selected}">
+  <input type="checkbox" {name} id={name} checked={selected} />
 </div>
 
 <style>

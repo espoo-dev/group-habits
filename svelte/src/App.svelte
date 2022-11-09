@@ -1,14 +1,11 @@
 <script lang="ts">
-  import Habit from "./lib/components/Habit.svelte";
+  import Habit from './lib/components/Habit.svelte';
 </script>
 
 <main class="text-center page-container">
+  <nav>Today</nav>
 
-  <nav>
-    Today
-  </nav>
-
-  <Habit icon="heart" name="eat 2 fruits" selected="{false}" />
+  <Habit icon="heart" name="eat 2 fruits" selected={false} />
 </main>
 
 <style>
@@ -25,6 +22,6 @@
     text-align: left;
 
     font-size: 22px;
-    font-weight: bold
+    font-weight: bold;
   }
 </style>
