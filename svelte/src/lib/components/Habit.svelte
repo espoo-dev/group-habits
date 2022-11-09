@@ -1,16 +1,18 @@
 <script lang="ts">
-  const habitName = "Eat 2 fruits"
+  export let name: string;
+  export let icon: string;
+  export let selected = false;
 </script>
 
 <div class="container-item">
   <div class="icon-habit">
     <div class="icon-box">
-      <i class="fa-regular fa-heart" style="color: purple;"></i>
+      <i class="fa-regular fa-{icon}" data-testid="icon-habit" style="color: purple;"></i>
     </div>
-    <span class="habit-name">{habitName}</span>
+    <span class="habit-name">{name}</span>
   </div>
 
-  <input type="checkbox" name="item" id="item">
+  <input type="checkbox" name="{name}" id="{name}" checked="{selected}">
 </div>
 
 <style>
