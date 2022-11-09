@@ -1,16 +1,16 @@
 <script lang="ts">
-  const habitName = "Eat 2 fruits"
+  const habitName = 'Eat 2 fruits';
 </script>
 
 <div class="container-item">
   <div class="icon-habit">
     <div class="icon-box">
-      <i class="fa-regular fa-heart" style="color: purple;"></i>
+      <i class="fa-regular fa-heart" style="color: purple;" />
     </div>
     <span class="habit-name">{habitName}</span>
   </div>
 
-  <input type="checkbox" name="item" id="item">
+  <input type="checkbox" name="item" id="item" />
 </div>
 
 <style>

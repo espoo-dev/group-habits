@@ -9,7 +9,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "jest",
     "test:watch": "yarn run test -i --watch",
-    "test:coverage": "yarn run test --coverage"
+    "test:coverage": "yarn run test --coverage",
+    "format": "npx prettier --write \"{,!(node_modules|public)/**/}*.{js,svelte}\""
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -47,6 +48,8 @@
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.8.0",
     "svelte": "^3.48.0",
     "svelte-check": "^2.7.2",
     "svelte-jester": "^2.3.2",
