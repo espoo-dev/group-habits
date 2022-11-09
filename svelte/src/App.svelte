@@ -5,7 +5,7 @@
 <main class="text-center page-container">
   <nav>Today</nav>
 
-  <Habit />
+  <Habit icon="heart" name="eat 2 fruits" selected={false} />
 </main>
 
 <style>
