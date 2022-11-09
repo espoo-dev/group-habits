@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
+    "types": ["jest", "@testing-library/jest-dom"],
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
