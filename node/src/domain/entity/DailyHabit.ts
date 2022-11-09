@@ -1,8 +1,12 @@
 export class DailyHabit{
-  public day!: number
+  public date!: Date
   public checked: boolean = false
-constructor(day:number, checked:boolean){
-  this.day = day;
-  this.checked = checked
-}
+
+  constructor(date: Date) {
+    this.date = date
+  }
+
+  toggleCheck() {
+    this.checked = !this.checked
+  }
 }
