@@ -6,7 +6,7 @@ module.exports = {
     '@/test/(.+)': '<rootDir>/test/$1',
     '@/(.+)': '<rootDir>/src/$1'
   },
-  testMatch: ['**/*.test.ts'],
+  testMatch: ['**/*.spec.ts'],
   roots: [
     '<rootDir>/src',
     '<rootDir>/test'
