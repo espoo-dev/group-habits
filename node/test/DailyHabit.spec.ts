@@ -1,11 +1,14 @@
 import { DailyHabit } from "../src/domain/entity/DailyHabit"
+import { Habit } from "../src/domain/entity/Habit"
 
 describe('daily Habit', () => {
   let newDailyHabit!: DailyHabit
   let date = new Date()
+  const habitName = 'drink water'
+  let habit = new Habit(habitName)
 
   beforeEach(() => {
-    newDailyHabit = new DailyHabit(date)
+    newDailyHabit = new DailyHabit(date, habit)
   })
 
   it('should have a date', () => {
@@ -27,4 +30,12 @@ describe('daily Habit', () => {
     newDailyHabit.toggleCheck()
     expect(newDailyHabit.checked).toBe(false)
   })
+
+  it('should have a habit parent', () => {
+    expect(newDailyHabit.habit).toBe(habit)
+  });
+
+  it('should have the name of habit parent', () => {
+    expect(newDailyHabit.habit.name).toBe(habitName)
+  });
 })
