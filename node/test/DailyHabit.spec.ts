@@ -16,7 +16,7 @@ describe('daily Habit', () => {
     expect(newDailyHabit.checked).toBe(false)
   })
 
-  it('should check the habit', () => {
+  it('should have checked equals to true when toggle once', () => {
     newDailyHabit.toggleCheck()
     expect(newDailyHabit.checked).toBe(true)
   } )
