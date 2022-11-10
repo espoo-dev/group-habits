@@ -1,3 +1,13 @@
+#Setup
+
+1. `docker-compose build`
+1. `docker-compose run --rm --entrypoint="" web rake secret`
+1. `docker-compose run --rm --entrypoint="" web rails db:create db:migrate`
+1. `docker-compose run --rm --entrypoint="" web rails db:seed` The credentials for this user are: email: `admin@example.com` ; password: `password`.
+1. `docker-compose run --rm --entrypoint="" web rspec .`
+1. `docker-compose run --rm --entrypoint="" web reek .`
+1. `docker-compose up`
+
 # Rails API Template
 
 [![Github Actions CI](https://github.com/rootstrap/rails_api_base/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/rootstrap/rails_api_base/actions)
@@ -11,6 +21,7 @@ Finally, it contains a plug an play Administration console (thanks to [ActiveAdm
 ## Features
 
 This template comes with:
+
 - Schema
   - Users table
   - Admin users table
@@ -41,16 +52,18 @@ This template comes with:
 
 1. Have `docker` and `docker-compose` installed (You can check this by doing `docker -v` and `docker-compose -v`)
 1. Modify the following lines in the `database.yml` file:
-  ``` yaml
-  default: &default
-    adapter: postgresql
-    encoding: unicode
-    pool: 5
-    username: postgres
-    password: postgres
-    host: db
-    port: 5432
-  ```
+
+```yaml
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: postgres
+  host: db
+  port: 5432
+```
+
 1. Generate a secret key for the app by running `docker-compose run --rm --entrypoint="" web rake secret`, copy it and add it in your environment variables.
 1. Update the default database configuration in the `config/database.yml` file to point to the `docker-compose` database:
    1. Set `username: postgres`
@@ -117,7 +130,6 @@ Just run:
 
 An `apiary.apib` file will be generated at the root directory of the project.
 
-
 ## Code quality
 
 With `bundle exec rails code:analysis` you can run the code analysis tool, you can omit rules with:
@@ -129,6 +141,7 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Bullet](https://github.com/flyerhzm/bullet#whitelist) You can add exceptions to a bullet initializer or in the controller
 
 ## Configuring Code Climate
+
 1. After adding the project to CC, go to `Repo Settings`
 1. On the `Test Coverage` tab, copy the `Test Reporter ID`
 1. Set the current value of `CC_TEST_REPORTER_ID` in the [circle-ci project env variables](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)

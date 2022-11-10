@@ -9,11 +9,11 @@ default: &default
 
 development:
  <<: *default
- database: sample_project_development
+ database: group_habits_db
 
 test:
  <<: *default
- database: sample_project_test
+ database: group_habits_db_test
 
 production:
  <<: *default
