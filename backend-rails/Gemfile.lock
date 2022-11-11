@@ -95,6 +95,9 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
+    apitome (0.3.1)
+      kramdown
+      railties
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
@@ -230,6 +233,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    kramdown (2.4.0)
+      rexml
     kwalify (0.7.2)
     launchy (2.5.0)
       addressable (~> 2.7)
@@ -452,6 +457,7 @@ DEPENDENCIES
   active_storage_base64 (~> 2.0.0)
   activeadmin (~> 2.9)
   annotate (~> 3.2, >= 3.0.3)
+  apitome
   arctic_admin (~> 3.3.0)
   aws-sdk-s3 (~> 1.75)
   better_errors (~> 2.5, >= 2.5.1)

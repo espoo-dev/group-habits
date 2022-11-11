@@ -1,0 +1,146 @@
+{
+  "resources": [
+    {
+      "name": "Passwords",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Bad",
+          "link": "passwords/bad.json",
+          "groups": "all",
+          "route": "api/v1/users/password",
+          "method": "post"
+        },
+        {
+          "description": "Bad",
+          "link": "passwords/bad.json",
+          "groups": "all",
+          "route": "api/v1/users/password",
+          "method": "put"
+        },
+        {
+          "description": "Ok",
+          "link": "passwords/ok.json",
+          "groups": "all",
+          "route": "api/v1/users/password",
+          "method": "post"
+        },
+        {
+          "description": "Ok",
+          "link": "passwords/ok.json",
+          "groups": "all",
+          "route": "api/v1/users/password",
+          "method": "put"
+        },
+        {
+          "description": "Ok",
+          "link": "passwords/ok.json",
+          "groups": "all",
+          "route": "api/v1/users/password/edit",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "name": "Sessions",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Bad",
+          "link": "sessions/bad.json",
+          "groups": "all",
+          "route": "api/v1/users/sign_out",
+          "method": "delete"
+        },
+        {
+          "description": "Bad",
+          "link": "sessions/bad.json",
+          "groups": "all",
+          "route": "api/v1/users/sign_in",
+          "method": "post"
+        },
+        {
+          "description": "Ok",
+          "link": "sessions/ok.json",
+          "groups": "all",
+          "route": "api/v1/users/sign_out",
+          "method": "delete"
+        },
+        {
+          "description": "Ok",
+          "link": "sessions/ok.json",
+          "groups": "all",
+          "route": "api/v1/users/sign_in",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Bad",
+          "link": "settings/bad.json",
+          "groups": "all",
+          "route": "api/v1/settings/must_update",
+          "method": "get"
+        },
+        {
+          "description": "Ok",
+          "link": "settings/ok.json",
+          "groups": "all",
+          "route": "api/v1/settings/must_update",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "name": "Status",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Ok",
+          "link": "status/ok.json",
+          "groups": "all",
+          "route": "api/v1/status",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Bad",
+          "link": "users/bad.json",
+          "groups": "all",
+          "route": "api/v1/users",
+          "method": "post"
+        },
+        {
+          "description": "Ok",
+          "link": "users/ok.json",
+          "groups": "all",
+          "route": "api/v1/users",
+          "method": "post"
+        },
+        {
+          "description": "Ok",
+          "link": "users/ok.json",
+          "groups": "all",
+          "route": "api/v1/user",
+          "method": "get"
+        },
+        {
+          "description": "Ok",
+          "link": "users/ok.json",
+          "groups": "all",
+          "route": "api/v1/user",
+          "method": "put"
+        }
+      ]
+    }
+  ]
+}

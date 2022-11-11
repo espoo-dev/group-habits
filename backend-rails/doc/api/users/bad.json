@@ -1,0 +1,36 @@
+{
+  "resource": "Users",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "api/v1/users",
+  "description": "Bad",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "api/v1/users",
+      "request_body": "{\"user\":{\"email\":\"not-valid\",\"password\":\"EuIsWz4DlVaMn\",\"username\":\"tori_durgan\",\"first_name\":\"Fredricka Mueller\",\"last_name\":\"Murray\",\"uid\":\"e08ea28f-2b74-4e50-b1ee-30d4543da845\"},\"format\":\"json\"}",
+      "request_headers": {
+        "Access-Token": "1234567890123456789012",
+        "Client": "abcdefghijklmnopqrstuv",
+        "Uid": "jarvis@okeefe-wintheiser.name"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 422,
+      "response_status_text": "Unprocessable Entity",
+      "response_body": "{\n  \"status\": \"error\",\n  \"data\": {\n    \"id\": null,\n    \"email\": \"not-valid\",\n    \"allow_password_change\": false,\n    \"first_name\": \"Fredricka Mueller\",\n    \"last_name\": \"Murray\",\n    \"username\": \"tori_durgan\",\n    \"created_at\": null,\n    \"updated_at\": null,\n    \"provider\": \"email\",\n    \"uid\": \"not-valid\"\n  },\n  \"errors\": {\n    \"email\": [\n      \"is not an email\"\n    ],\n    \"full_messages\": [\n      \"Email is not an email\"\n    ]\n  }\n}",
+      "response_headers": {
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}
