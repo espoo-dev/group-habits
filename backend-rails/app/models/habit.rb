@@ -8,5 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Habit < ApplicationRecord
-
+  validates :name, presence: true
 end
