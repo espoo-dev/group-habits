@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  date       :date
-#  check      :boolean
+#  check      :boolean          default(FALSE)
 #  habit_id   :bigint           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -23,5 +23,11 @@ RSpec.describe DailyHabit, type: :model do
   context 'when attributes are needed' do
     it { should validate_presence_of(:check) }
     it { should validate_presence_of(:date) }
+  end
+
+  context 'when create a daily habit' do
+    let(:daily_habit) { described_class.new }
+
+    it { expect(daily_habit.check).to be false }
   end
 end
