@@ -9,4 +9,6 @@
 #
 class Habit < ApplicationRecord
   validates :name, presence: true
+
+  has_many :daily_habits
 end

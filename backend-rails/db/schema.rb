@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_12_184641) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_160408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -60,6 +60,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_12_184641) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "daily_habits", force: :cascade do |t|
+    t.date "date"
+    t.boolean "check", default: false
+    t.bigint "habit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["habit_id"], name: "index_daily_habits_on_habit_id"
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
@@ -141,5 +150,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_12_184641) do
   end
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "daily_habits", "habits"
   add_foreign_key "exception_hunter_errors", "exception_hunter_error_groups", column: "error_group_id"
 end
