@@ -7,7 +7,9 @@ export class Habit {
   constructor(name: string) {
     this.name = name
   }
+
   addDailyHabit(dailyHabit: DailyHabit) {
     this.dailiesHabits.push(dailyHabit)
+    dailyHabit.habit = this
   }
 }

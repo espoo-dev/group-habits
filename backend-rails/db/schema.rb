@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_200553) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_160408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -62,6 +62,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_200553) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "daily_habits", force: :cascade do |t|
+    t.date "date"
+    t.boolean "check", default: false
+    t.bigint "habit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["habit_id"], name: "index_daily_habits_on_habit_id"
+  end
+
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -102,6 +111,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_200553) do
     t.index ["error_group_id"], name: "index_exception_hunter_errors_on_error_group_id"
   end
 
+  create_table "habits", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string "key", null: false
     t.string "value"
@@ -135,5 +150,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_200553) do
   end
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "daily_habits", "habits"
   add_foreign_key "exception_hunter_errors", "exception_hunter_error_groups", column: "error_group_id"
 end

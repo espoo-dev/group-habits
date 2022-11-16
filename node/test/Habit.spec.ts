@@ -9,15 +9,20 @@ describe('Habit', () => {
 
   beforeEach(() => {
     newHabit = new Habit(nameHabit)
-    dailyHabit = new DailyHabit(date, newHabit)
+    dailyHabit = new DailyHabit(date)
   })
 
   it('should have a name', () => {
     expect(newHabit.name).toBe(nameHabit)
-  });
+  })
 
-  it('should have daily habit', () => {
+  it('should contain the new daily habit added in habit', () => {
     newHabit.addDailyHabit(dailyHabit)
     expect(newHabit.dailiesHabits).toContain(dailyHabit)
   })
-});
+
+  it('should daily habit has a habit', () => {
+    newHabit.addDailyHabit(dailyHabit)
+    expect(dailyHabit.habit).toBe(newHabit)
+  })
+})
