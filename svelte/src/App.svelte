@@ -1,11 +1,24 @@
 <script lang="ts">
-  import Habit from './lib/components/Habit.svelte';
+  import HabitList from './lib/components/HabitList.svelte';
+
+  const habits = [
+    {
+      name: 'Drink water',
+      icon: 'heart',
+      selected: false,
+    },
+    {
+      name: 'Go to the gym',
+      icon: 'heart',
+      selected: true,
+    }
+  ];
 </script>
 
 <main class="text-center page-container">
   <nav>Today</nav>
 
-  <Habit icon="heart" name="eat 2 fruits" selected={false} />
+  <HabitList habits={habits} />
 </main>
 
 <style>
