@@ -8,7 +8,7 @@ describe('daily Habit', () => {
   let habit = new Habit(habitName)
 
   beforeEach(() => {
-    newDailyHabit = new DailyHabit(date, habit)
+    newDailyHabit = new DailyHabit(date)
   })
 
   it('should have a date', () => {
@@ -32,10 +32,12 @@ describe('daily Habit', () => {
   })
 
   it('should have a habit parent', () => {
+    habit.addDailyHabit(newDailyHabit)
     expect(newDailyHabit.habit).toBe(habit)
   });
 
   it('should have the name of habit parent', () => {
+    habit.addDailyHabit(newDailyHabit)
     expect(newDailyHabit.habit.name).toBe(habitName)
   });
 })
