@@ -1,11 +1,19 @@
 <script lang="ts">
-  import Habit from "./Habit.svelte";
+  import Habit from './Habit/Habit.svelte';
 
-  export let habits = []
+  export let habits = [];
 </script>
 
-<div>
+<div class="habit-list-container">
   {#each habits as { icon, name, selected }}
-    <Habit icon={icon} name={name} selected={selected} />
+    <Habit {icon} {name} {selected} />
   {/each}
 </div>
+
+<style>
+  .habit-list-container {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

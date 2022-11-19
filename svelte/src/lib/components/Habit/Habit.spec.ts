@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/svelte';
-import Habit from './Habit.svelte';
 import '@testing-library/jest-dom';
+import Habit from './Habit.svelte';
 
 const props = {
   name: 'Drink water',
   icon: 'heart',
   selected: true,
-}
+};
 
 const sut = () => {
   render(Habit, {
-    props
+    props,
   });
-}
+};
 
 describe('Habit component', () => {
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('Habit component', () => {
 
   it('should render icon with correct class', () => {
     const icon = screen.getByTestId('icon-habit');
-    expect(icon).toHaveClass(`fa-${props.icon}`)
+    expect(icon).toHaveClass(`fa-${props.icon}`);
     expect(icon).toBeInTheDocument();
   });
 

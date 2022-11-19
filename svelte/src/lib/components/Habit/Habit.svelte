@@ -1,7 +1,14 @@
 <script lang="ts">
+  import type { DispatchOptions } from 'svelte/internal';
+  import Checkbox from '../Checkbox/Checkbox.svelte';
+
   export let name: string;
   export let icon: string;
-  export let selected = false;
+  export let selected: boolean;
+
+  const handleSelected = (event) => {
+    // call api to toggle daily habit
+  };
 </script>
 
 <div class="container-item">
@@ -16,7 +23,7 @@
     <span class="habit-name">{name}</span>
   </div>
 
-  <input type="checkbox" {name} id={name} checked={selected} />
+  <Checkbox {name} {selected} on:change_selected={handleSelected} />
 </div>
 
 <style>
