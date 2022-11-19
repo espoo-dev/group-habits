@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Day from './lib/components/Day/Day.svelte';
   import HabitList from './lib/components/HabitList.svelte';
 
   const habits = [
@@ -11,17 +12,28 @@
       name: 'Go to the gym',
       icon: 'heart',
       selected: true,
-    }
+    },
   ];
 </script>
 
 <main class="text-center page-container">
   <nav>Today</nav>
 
-  <HabitList habits={habits} />
+  <div class="list-container">
+    <Day dayName="Seg" dayNumber={9} selected={false} />
+    <Day dayName="Ter" dayNumber={10} selected={false} />
+  </div>
+
+  <HabitList {habits} />
 </main>
 
 <style>
+  .list-container {
+    display: flex;
+    gap: 8px;
+  }
+
+  /*  */
   :global(body) {
     background-color: #151515;
     color: #fff;
