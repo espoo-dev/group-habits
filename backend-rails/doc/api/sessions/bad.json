@@ -1,0 +1,36 @@
+{
+  "resource": "Sessions",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "api/v1/users/sign_in",
+  "description": "Bad",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "api/v1/users/sign_in",
+      "request_body": "{\"user\":{\"email\":\"nidia@ankunding-green.biz\",\"password\":\"wrong-password\"},\"format\":\"json\"}",
+      "request_headers": {
+        "Access-Token": "1234567890123456789012",
+        "Client": "abcdefghijklmnopqrstuv",
+        "Uid": "nidia@ankunding-green.biz"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 401,
+      "response_status_text": "Unauthorized",
+      "response_body": "{\n  \"error\": \"Invalid login credentials. Please try again.\"\n}",
+      "response_headers": {
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

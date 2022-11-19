@@ -1,0 +1,41 @@
+{
+  "resource": "Passwords",
+  "resource_explanation": null,
+  "http_method": "PUT",
+  "route": "api/v1/users/password",
+  "description": "Bad",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "PUT",
+      "request_path": "api/v1/users/password",
+      "request_body": "{\"password\":\"123456789\",\"password_confirmation\":\"\"}",
+      "request_headers": {
+        "Access-Token": "1234567890123456789012",
+        "Client": "abcdefghijklmnopqrstuv",
+        "Uid": "ardith_moen@mosciski.io"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 422,
+      "response_status_text": "Unprocessable Entity",
+      "response_body": "{\n  \"success\": false,\n  \"errors\": {\n    \"password_confirmation\": [\n      \"doesn't match Password\"\n    ],\n    \"full_messages\": [\n      \"Password confirmation doesn't match Password\"\n    ]\n  }\n}",
+      "response_headers": {
+        "access-token": "1234567890123456789012",
+        "token-type": "Bearer",
+        "client": "abcdefghijklmnopqrstuv",
+        "expiry": "1731362380",
+        "uid": "ardith_moen@mosciski.io"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

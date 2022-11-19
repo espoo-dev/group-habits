@@ -1,0 +1,41 @@
+{
+  "resource": "Sessions",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "api/v1/users/sign_in",
+  "description": "Ok",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "api/v1/users/sign_in",
+      "request_body": "{\"user\":{\"email\":\"maya@bins-wunsch.info\",\"password\":\"UqJsKj1Ye9\"},\"format\":\"json\"}",
+      "request_headers": {
+        "Access-Token": "1234567890123456789012",
+        "Client": "abcdefghijklmnopqrstuv",
+        "Uid": "maya@bins-wunsch.info"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"user\": {\n    \"id\": 91,\n    \"email\": \"maya@bins-wunsch.info\",\n    \"name\": \"Juli Crist Witting\",\n    \"username\": \"mitch.hirthe\",\n    \"first_name\": \"Juli Crist\",\n    \"last_name\": \"Witting\",\n    \"uid\": \"maya@bins-wunsch.info\",\n    \"provider\": \"email\",\n    \"created_at\": \"2022-11-11T21:59:41.183Z\",\n    \"updated_at\": \"2022-11-11T21:59:41.293Z\"\n  }\n}",
+      "response_headers": {
+        "access-token": "1234567890123456789012",
+        "token-type": "Bearer",
+        "client": "abcdefghijklmnopqrstuv",
+        "expiry": "1731362381",
+        "uid": "maya@bins-wunsch.info"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

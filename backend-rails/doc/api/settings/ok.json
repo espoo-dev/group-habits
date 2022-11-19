@@ -1,0 +1,37 @@
+{
+  "resource": "Settings",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "api/v1/settings/must_update",
+  "description": "Ok",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "api/v1/settings/must_update?device_version=1.0",
+      "request_body": null,
+      "request_headers": {
+        "Access-Token": "1234567890123456789012",
+        "Client": "abcdefghijklmnopqrstuv",
+        "Uid": "jae_carter@macejkovic.info"
+      },
+      "request_query_parameters": {
+        "device_version": "1.0"
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"must_update\": false\n}",
+      "response_headers": {
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

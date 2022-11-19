@@ -1,0 +1,38 @@
+{
+  "resource": "Passwords",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "api/v1/users/password/edit",
+  "description": "Ok",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "api/v1/users/password/edit?reset_password_token=dGfeU6pHQ_NdzA9E8Eqx&redirect_url=%2F",
+      "request_body": null,
+      "request_headers": {
+        "Access-Token": "1234567890123456789012",
+        "Client": "abcdefghijklmnopqrstuv",
+        "Uid": "chanelle_pacocha@doyle-oberbrunner.info"
+      },
+      "request_query_parameters": {
+        "reset_password_token": "dGfeU6pHQ_NdzA9E8Eqx",
+        "redirect_url": "/"
+      },
+      "request_content_type": "application/json",
+      "response_status": 302,
+      "response_status_text": "Found",
+      "response_body": "<html><body>You are being <a href=\"http://example.org:///?access-token=1234567890123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1731362380&amp;reset_password=true&amp;token=1234567890123456789012&amp;uid=chanelle_pacocha%40doyle-oberbrunner.info\">redirected</a>.</body></html>",
+      "response_headers": {
+      },
+      "response_content_type": "text/html; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

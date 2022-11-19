@@ -1,0 +1,41 @@
+{
+  "resource": "Users",
+  "resource_explanation": null,
+  "http_method": "PUT",
+  "route": "api/v1/user",
+  "description": "Ok",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "PUT",
+      "request_path": "api/v1/user",
+      "request_body": "{\"user\":{\"username\":\"new username\"}}",
+      "request_headers": {
+        "Access-Token": "1234567890123456789012",
+        "Client": "abcdefghijklmnopqrstuv",
+        "Uid": "rex.jacobs@gerlach.io"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"user\": {\n    \"id\": 97,\n    \"email\": \"rex.jacobs@gerlach.io\",\n    \"name\": \"Elton Kris Paucek\",\n    \"username\": \"new username\",\n    \"first_name\": \"Elton Kris\",\n    \"last_name\": \"Paucek\",\n    \"uid\": \"rex.jacobs@gerlach.io\",\n    \"provider\": \"email\",\n    \"created_at\": \"2022-11-11T21:59:41.693Z\",\n    \"updated_at\": \"2022-11-11T21:59:41.799Z\"\n  }\n}",
+      "response_headers": {
+        "access-token": "1234567890123456789012",
+        "token-type": "Bearer",
+        "client": "abcdefghijklmnopqrstuv",
+        "expiry": "1731362381",
+        "uid": "rex.jacobs@gerlach.io"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}
