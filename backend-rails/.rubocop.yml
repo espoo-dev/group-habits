@@ -9,9 +9,11 @@ inherit_mode:
 AllCops:
   Exclude:
     - db/schema.rb
+    - config/initializers/apitome.rb
     - config/initializers/pagy.rb
     - bin/bundle
     - bin/yarn
+    - db/migrate/20221115160408_add_default_value_to_daily_habit.rb
 
 Lint/UnusedMethodArgument:
   Exclude:

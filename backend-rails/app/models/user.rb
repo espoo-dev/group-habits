@@ -36,7 +36,7 @@ class User < ApplicationRecord
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :daily_habits
+  has_many :daily_habits, dependent: :destroy
   validates :uid, uniqueness: { scope: :provider }
 
   before_validation :init_uid
