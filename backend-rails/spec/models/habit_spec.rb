@@ -11,6 +11,10 @@
 require 'rails_helper'
 
 RSpec.describe Habit, type: :model do
+  describe 'relationships' do
+    it { should have_many(:daily_habits).dependent(:destroy) }
+  end
+
   describe 'validates' do
     it { should validate_presence_of(:name) }
   end

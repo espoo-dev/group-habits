@@ -31,7 +31,7 @@
 
 describe User do
   describe 'relationships' do
-    it { should have_many(:daily_habits) }
+    it { should have_many(:daily_habits).dependent(:destroy) }
   end
 
   describe 'validations' do

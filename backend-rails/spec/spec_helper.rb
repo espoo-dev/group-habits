@@ -33,7 +33,8 @@ RSpec.configure do |config|
   config.before :each do
     ActionMailer::Base.deliveries.clear
   end
-  RspecApiDocumentation.configure do |config|
-    config.format = :json
+
+  RspecApiDocumentation.configure do |api_config|
+    api_config.format = :json
   end
 end
