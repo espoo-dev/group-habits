@@ -8,13 +8,16 @@
 #  habit_id   :bigint           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 # Indexes
 #
 #  index_daily_habits_on_habit_id  (habit_id)
+#  index_daily_habits_on_user_id   (user_id)
 #
 class DailyHabit < ApplicationRecord
   validates :date, :check, presence: true
 
   belongs_to :habit
+  belongs_to :user
 end

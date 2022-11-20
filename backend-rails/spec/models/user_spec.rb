@@ -30,6 +30,10 @@
 #
 
 describe User do
+  describe 'relationships' do
+    it { should have_many(:daily_habits) }
+  end
+
   describe 'validations' do
     subject { build :user }
     it { is_expected.to validate_uniqueness_of(:uid).scoped_to(:provider) }
