@@ -9,9 +9,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
+#  group_id   :integer
 #
 # Indexes
 #
+#  index_daily_habits_on_group_id  (group_id)
 #  index_daily_habits_on_habit_id  (habit_id)
 #  index_daily_habits_on_user_id   (user_id)
 #

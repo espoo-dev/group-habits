@@ -9,4 +9,6 @@
 #
 class Group < ApplicationRecord
   validates :name, presence: true
+
+  has_many :daily_habits, dependent: :destroy
 end

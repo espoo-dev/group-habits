@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_20_204745) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_21_160228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -69,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_204745) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "group_id"
+    t.index ["group_id"], name: "index_daily_habits_on_group_id"
     t.index ["habit_id"], name: "index_daily_habits_on_habit_id"
     t.index ["user_id"], name: "index_daily_habits_on_user_id"
   end
