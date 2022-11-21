@@ -10,6 +10,7 @@
 class Group < ApplicationRecord
   validates :name, presence: true
 
-  has_many :daily_habits, dependent: :destroy
   has_many :users, dependent: :nullify
+  has_many :habits, dependent: :nullify
+  has_many :daily_habits, dependent: :destroy
 end
