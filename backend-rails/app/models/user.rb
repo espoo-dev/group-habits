@@ -21,10 +21,12 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  group_id               :integer
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_group_id              (group_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
@@ -37,6 +39,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   has_many :daily_habits, dependent: :destroy
+  belongs_to :group, optional: true
   validates :uid, uniqueness: { scope: :provider }
 
   before_validation :init_uid
