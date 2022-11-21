@@ -11,4 +11,5 @@ class Group < ApplicationRecord
   validates :name, presence: true
 
   has_many :daily_habits, dependent: :destroy
+  has_many :users, dependent: :nullify
 end
