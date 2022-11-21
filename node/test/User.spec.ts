@@ -20,6 +20,7 @@ describe('User', () => {
     it('should have a password', () => {
       expect(newUser.password).toBe(password)
       })
+      
     it('should contain the new daily habit added in User', () => {
       newUser.addDailyHabit(dailyHabit1)
       expect(newUser.dailiesHabits).toContain(dailyHabit1)
