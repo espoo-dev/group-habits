@@ -11,7 +11,7 @@ describe('User', () => {
     beforeEach(() => {
       newUser = new User(email, password)
       dailyHabit1 = new DailyHabit(date)
-      })
+     })
 
     it('should have a e-mail', () => {
       expect(newUser.email).toBe(email)
