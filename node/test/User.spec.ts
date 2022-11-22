@@ -17,7 +17,7 @@ describe('User', () => {
       expect(newUser.email).toBe(email)
       })
 
-    it('should have a password', () => {
+    it('should have a user with correct password', () => {
       expect(newUser.password).toBe(password)
       })
       
