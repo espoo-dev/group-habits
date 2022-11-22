@@ -13,7 +13,7 @@ describe('User', () => {
       dailyHabit1 = new DailyHabit(date)
      })
 
-    it('should have a e-mail', () => {
+    it('should have a user with correct e-mail', () => {
       expect(newUser.email).toBe(email)
       })
 
