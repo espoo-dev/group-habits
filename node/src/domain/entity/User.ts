@@ -11,5 +11,6 @@ export class User {
 
     addDailyHabit(dailyHabit: DailyHabit){
         this.dailiesHabits.push(dailyHabit)
+        dailyHabit.user = this
     }
 }
