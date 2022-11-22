@@ -5,7 +5,7 @@ describe('User', () => {
     let newUser: User
     let email = "chris@gmail.com"
     let password = "123456"
-    let dailyHabit1!: DailyHabit
+    let dailyHabit!: DailyHabit
     let date = new Date()
 
     beforeEach(() => {
