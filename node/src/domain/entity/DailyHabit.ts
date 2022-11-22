@@ -5,9 +5,8 @@ export class DailyHabit{
   public checked: boolean = false
   public habit!: Habit
 
-  constructor(date: Date, habit: Habit) {
+  constructor(date: Date) {
     this.date = date
-    this.habit = habit
   }
 
   toggleCheck() {
