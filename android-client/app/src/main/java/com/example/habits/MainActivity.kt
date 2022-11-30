@@ -1,3 +1,4 @@
+@file:Suppress("FunctionNaming")
 package com.example.habits
 
 import android.os.Bundle
