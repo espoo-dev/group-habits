@@ -1,3 +1,4 @@
+@file:Suppress("FunctionNaming")
 package com.example.habits.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
