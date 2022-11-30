@@ -52,7 +52,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14.16.0
-          cache: 'yarn'
+          # cache: 'yarn'
           cache-dependency-path: backend-rails/yarn.json'
       - name: Find yarn cache location
         id: yarn-cache
