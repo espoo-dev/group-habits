@@ -16,5 +16,6 @@
 FactoryBot.define do
   factory :habit do
     name { Faker::Esport.game }
+    association :group
   end
 end
