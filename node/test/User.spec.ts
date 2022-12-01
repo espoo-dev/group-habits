@@ -13,25 +13,6 @@ describe('User', () => {
       dailyHabit = new DailyHabit(date)
     })
 
-    it('should have a e-mail', () => {
-      expect(newUser.email).toBe(email)
-    })
-
-    it('should have a password', () => {
-      expect(newUser.password).toBe(password)
-    })
-
-    it('should contain the new daily habit added in User', () => {
-      newUser.addDailyHabit(dailyHabit)
-      expect(newUser.dailiesHabits).toContain(dailyHabit)
-    })
-
-    it('should daily habit has a user', () => {
-      newUser.addDailyHabit(dailyHabit)
-      expect(dailyHabit.user).toBe(newUser)
-      dailyHabit = new DailyHabit(date)
-    })
-
     it('should have a user with correct e-mail', () => {
       expect(newUser.email).toBe(email)
     })
@@ -43,5 +24,10 @@ describe('User', () => {
     it('should contain the new daily habit added in User', () => {
       newUser.addDailyHabit(dailyHabit)
       expect(newUser.dailiesHabits).toContain(dailyHabit)
+    })
+    
+    it('should daily habit has a user', () => {
+      newUser.addDailyHabit(dailyHabit)
+      expect(dailyHabit.user).toBe(newUser)
     })
 })
