@@ -21,6 +21,8 @@ FactoryBot.define do
   factory :daily_habit do
     date { Time.zone.now }
     check { true }
-    habit
+    association :group
+    association :user
+    association :habit
   end
 end

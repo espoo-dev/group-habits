@@ -23,4 +23,11 @@ class DailyHabit < ApplicationRecord
   belongs_to :habit
   belongs_to :user
   belongs_to :group
+
+  scope :by_today, lambda {
+    now = Time.zone.now
+    where('extract(year from date) = ?', now.year)
+      .where('extract(month from date) = ?', now.month)
+      .where('extract(day from date) = ?', now.day)
+  }
 end
