@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 apply from: '../config/detekt/detekt.gradle'
@@ -64,4 +65,48 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+    //Koin
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-android-ext:$koin_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_kotlin"
+
+    //MockWebServer
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mock_webserver"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide"
+
+    //Retrofit & OkHttp
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor"
+
+
+    //Moshi (JSON mapping)
+    implementation("com.squareup.moshi:moshi-kotlin:$moshi")
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter"
+
+
+
+    // Room
+    //Obs: Using kapt or ksp or annotationProcessor
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt("androidx.room:room-compiler:$room_version")
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
+
+
+    testImplementation "io.mockk:mockk:$mockk_version"
+    androidTestImplementation "io.mockk:mockk-android:$mockk_android_version"
+
 }
