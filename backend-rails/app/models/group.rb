@@ -13,4 +13,12 @@ class Group < ApplicationRecord
   has_many :users, dependent: :nullify
   has_many :habits, dependent: :nullify
   has_many :daily_habits, dependent: :destroy
+
+  def missing_daily_habits(user:, existing_daily_habits:)
+    existing_habits = existing_daily_habits.map(&:habit)
+    missing_habits = habits - existing_habits
+    missing_habits.map do |habit|
+      DailyHabit.new(user:, habit:, group: self)
+    end
+  end
 end
