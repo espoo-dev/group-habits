@@ -14,7 +14,7 @@ class DailyHabitPolicy < ApplicationPolicy
     def resolve
       DailyHabit
         .by_today
-        .where(user: user)
+        .where(user:)
         .includes([:habit])
     end
   end

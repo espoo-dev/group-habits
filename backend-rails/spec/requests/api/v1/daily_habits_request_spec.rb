@@ -12,7 +12,7 @@ describe 'api/v1/daily_habits', type: :request do
     end
 
     it "returns user's daily_habits" do
-      expect(json_response.pluck("id")).to match_array(daily_habits.pluck(:id))
+      expect(json_response.pluck('id')).to match_array(daily_habits.pluck(:id))
     end
   end
 end
