@@ -17,7 +17,7 @@ class LoginRepositoryImpl(
             val resultLogin = service.login(login)
             emit(Resource.Success(data = resultLogin.toModel()))
         } catch (ex: HttpException) {
-            val error = RemoteException("Unable to retrieve posts")
+            val error = RemoteException("An error has occurred")
             emit(Resource.Error(data = null, error = error))
         }
     }

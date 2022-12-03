@@ -44,8 +44,8 @@ class UserServiceTest {
     @Test
     fun `should return correct endpoint`() {
         runBlocking {
-
-            mockWebServer.enqueue(MockResponse().setBody(convertToJson(userDto)))
+            val response = mockResponse()
+            mockWebServer.enqueue(response)
             service.login("")
             val request = mockWebServer.takeRequest()
             assertEquals(request.path, "/users/sign_in")
@@ -54,11 +54,12 @@ class UserServiceTest {
 
     @Test
     fun `should return an error when the endpoint is wrong`() {
+
         runBlocking {
+            val response = mockResponse()
 
             mockWebServer.enqueue(
-                MockResponse().addHeader("tets", "teste")
-                    .setBody(convertToJson(userDto))
+                response
             )
             service.login("")
             val request: RecordedRequest = mockWebServer.takeRequest()
@@ -70,24 +71,33 @@ class UserServiceTest {
     @Test
     fun `should return the token in the header after login`() {
 
-        val response = MockResponse()
-            .addHeader("Authorization", "TOKENXXXXX")
-            .addHeader("Content-Type", "application/json; charset=utf-8")
-            .addHeader("Cache-Control", "no-cache")
-            .setResponseCode(HttpURLConnection.HTTP_OK)
-            .setBody(convertToJson(userDto))
+        val response = mockResponse()
 
         runBlocking {
 
             mockWebServer.enqueue(
                 response
             )
+            mockWebServer.enqueue(
+                response
+            )
             service.login("")
             val request: RecordedRequest = mockWebServer.takeRequest()
-            println(request)
+
+            println(request.headers)
             assertEquals(
                 response.headers.get("Authorization"), "TOKENXXXXX"
             )
         }
+    }
+
+    private fun mockResponse(): MockResponse {
+        val response = MockResponse()
+            .addHeader("Authorization", "TOKENXXXXX")
+            .addHeader("Content-Type", "application/json; charset=utf-8")
+            .addHeader("Cache-Control", "no-cache")
+            .setResponseCode(HttpURLConnection.HTTP_OK)
+            .setBody(convertToJson(userDto))
+        return response
     }
 }

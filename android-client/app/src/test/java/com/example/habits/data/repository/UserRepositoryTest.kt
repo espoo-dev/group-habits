@@ -28,6 +28,7 @@ class UserRepositoryTest {
         val result = loginRepository.login("").first()
 
         // THEN
+        assertEquals(result.data, null)
     }
 
     @Test

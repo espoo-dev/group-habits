@@ -12,6 +12,7 @@ import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import kotlin.test.assertEquals
 
 @RunWith(JUnit4::class)
 class LoginUseCaseTest {
@@ -46,5 +47,6 @@ class LoginUseCaseTest {
         val result = login.execute().first()
 
         // THEN
+        assertEquals(result.data, null)
     }
 }
