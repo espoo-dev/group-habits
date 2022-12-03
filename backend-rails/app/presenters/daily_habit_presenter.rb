@@ -8,12 +8,13 @@ class DailyHabitPresenter
   end
 
   def payload
+    habit = daily_habit.habit
     {
       id: daily_habit.id,
       date: daily_habit.date,
       check: daily_habit.check,
-      habit_name: daily_habit.habit.name,
-      habit_icon: daily_habit.habit.icon
+      habit_icon: habit.icon,
+      habit_name: habit.name
     }
   end
 end
