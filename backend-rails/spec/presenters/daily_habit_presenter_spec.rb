@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe DailyHabitPresenter do
   describe '#payload' do
     let!(:daily_habit) { create(:daily_habit) }
-    subject { described_class.new(daily_habit:).payload }
+    subject { described_class.new(daily_habit).payload }
 
     it 'matches expected attributes' do
       expected_payload = {

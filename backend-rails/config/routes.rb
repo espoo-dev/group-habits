@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
+      resources :daily_habits, only: %i[index]
+
       get :status, to: 'api#status'
 
       devise_scope :user do
