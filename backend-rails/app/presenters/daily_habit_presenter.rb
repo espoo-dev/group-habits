@@ -1,7 +1,7 @@
 class DailyHabitPresenter
   attr_accessor :daily_habit
 
-  def initialize(daily_habit:)
+  def initialize(daily_habit)
     @daily_habit = daily_habit
 
     super()
