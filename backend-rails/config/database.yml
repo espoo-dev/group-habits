@@ -9,11 +9,11 @@ default: &default
 
 development:
  <<: *default
- database: group_habits_db
+ url: <%= ENV['DATABASE_URL'] %>
 
 test:
  <<: *default
- database: group_habits_db_test
+ url: <%= ENV['TEST_DATABASE_URL'] %>
 
 production:
  <<: *default

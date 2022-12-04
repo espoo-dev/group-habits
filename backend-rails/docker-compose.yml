@@ -15,6 +15,10 @@ services:
       - db
     links:
       - "db:db"
+    environment:
+      DATABASE_URL: 'postgres://postgres:postgres@db:5432/group_habits_db'
+      TEST_DATABASE_URL: 'postgres://postgres:postgres@db:5432/group_habits_db_test'
+
   db:
     image: postgres:11
     environment:
