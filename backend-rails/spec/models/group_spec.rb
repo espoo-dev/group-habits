@@ -23,6 +23,22 @@ RSpec.describe Group, type: :model do
     let!(:habits) { create_list(:habit, 3, group:) }
     let(:subject) { group.missing_daily_habits(user:, existing_daily_habits:) }
 
+    describe 'when happy path' do
+      let(:existing_daily_habits) do
+        [
+          create(:daily_habit, user:, group:, habit: habits[0]),
+          create(:daily_habit, user:, group:, habit: habits[1])
+        ]
+      end
+
+      it 'returns daily_habit with proper data', :aggregate_failures do
+        expect(subject[0].habit).to eq(habits[2])
+        expect(subject[0].user).to eq(user)
+        expect(subject[0].group).to eq(group)
+        expect(subject[0].date).to eq(Time.zone.now.beginning_of_day)
+      end
+    end
+
     describe 'when all daily_habits are missing' do
       let(:existing_daily_habits) { [] }
 

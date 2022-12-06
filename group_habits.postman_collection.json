@@ -1,0 +1,122 @@
+{
+	"id": "a559a8d4-af7a-336a-2b5d-79192711d515",
+	"name": "group_habits",
+	"description": "",
+	"order": [
+		"cb53eda1-0289-58bc-27d8-c781fec723b1",
+		"7092b642-bc47-bf0b-a434-0cd3ee144204",
+		"4f2c61bc-c672-dd15-4b10-464a096151bf"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1669037756501,
+	"owner": "1505369",
+	"public": false,
+	"requests": [
+		{
+			"id": "4f2c61bc-c672-dd15-4b10-464a096151bf",
+			"headers": "authorization: Bearer eyJhY2Nlc3MtdG9rZW4iOiJnNUFTeVFybC1XVnJfQ193cGdiclhnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklRNlR6RWVlWWQzQU13Q3N1VFBjTnciLCJleHBpcnkiOiIxNzMyMTk2NDYzIiwidWlkIjoidXNlckBleGFtcGxlLmNvbSJ9\n//uid: user@example.com\n",
+			"headerData": [
+				{
+					"key": "authorization",
+					"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJnNUFTeVFybC1XVnJfQ193cGdiclhnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklRNlR6RWVlWWQzQU13Q3N1VFBjTnciLCJleHBpcnkiOiIxNzMyMTk2NDYzIiwidWlkIjoidXNlckBleGFtcGxlLmNvbSJ9",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "user@example.com",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "localhost:3000/api/v1/user",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
+			"data": null,
+			"dataMode": "params",
+			"name": "get daily_habits",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1669039841786,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"isFromCollection": true,
+			"collectionRequestId": "7092b642-bc47-bf0b-a434-0cd3ee144204"
+		},
+		{
+			"id": "7092b642-bc47-bf0b-a434-0cd3ee144204",
+			"headers": "authorization: Bearer eyJhY2Nlc3MtdG9rZW4iOiJnNUFTeVFybC1XVnJfQ193cGdiclhnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklRNlR6RWVlWWQzQU13Q3N1VFBjTnciLCJleHBpcnkiOiIxNzMyMTk2NDYzIiwidWlkIjoidXNlckBleGFtcGxlLmNvbSJ9\n//uid: user@example.com\n",
+			"headerData": [
+				{
+					"key": "authorization",
+					"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJnNUFTeVFybC1XVnJfQ193cGdiclhnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklRNlR6RWVlWWQzQU13Q3N1VFBjTnciLCJleHBpcnkiOiIxNzMyMTk2NDYzIiwidWlkIjoidXNlckBleGFtcGxlLmNvbSJ9",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "user@example.com",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "localhost:3000/api/v1/user",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
+			"data": null,
+			"dataMode": "params",
+			"name": "get user",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1669039841786,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "cb53eda1-0289-58bc-27d8-c781fec723b1",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:3000/api/v1/users/sign_in",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
+			"data": [],
+			"dataMode": "raw",
+			"name": "sign_in",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1669039329357,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"user\":\t{\n\t\t\"email\": \"user@example.com\",\n\t\t\"password\": \"password\"\n\t}\n}"
+		}
+	]
+}
