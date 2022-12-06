@@ -3,7 +3,7 @@ import { Habit } from "../src/domain/entity/Habit";
 
 describe('Habit', () => {
   let newHabit!: Habit
-  let nameHabit!: string
+  let nameHabit: string = 'drink water'
   let dailyHabit!: DailyHabit
   let date = new Date()	
 
