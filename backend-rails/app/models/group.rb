@@ -18,7 +18,7 @@ class Group < ApplicationRecord
     existing_habits = existing_daily_habits.map(&:habit)
     missing_habits = habits - existing_habits
     missing_habits.map do |habit|
-      DailyHabit.new(user:, habit:, group: self)
+      DailyHabit.new(user:, habit:, group: self, date: Time.zone.now.beginning_of_day)
     end
   end
 end
