@@ -27,7 +27,7 @@ RSpec.describe Group, type: :model do
       let(:existing_daily_habits) do
         [
           create(:daily_habit, user:, group:, habit: habits[0]),
-          create(:daily_habit, user:, group:,  habit: habits[1])
+          create(:daily_habit, user:, group:, habit: habits[1])
         ]
       end
 
