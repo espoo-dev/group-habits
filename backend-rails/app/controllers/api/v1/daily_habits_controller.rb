@@ -1,12 +1,10 @@
 module Api
   module V1
     class DailyHabitsController < Api::V1::ApiController
+      after_action :verify_policy_scoped, only: []
+
       def index
-        existing_daily_habits = policy_scope(DailyHabit)
-        authorize existing_daily_habits
-        daily_habits = existing_daily_habits + current_user.group.missing_daily_habits(
-          user: current_user, existing_daily_habits:
-        )
+        daily_habits = DailyHabitsFinderService.new(user: current_user).call
         render json: formatted_daily_habits(daily_habits)
       end
 
