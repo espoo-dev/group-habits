@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      resources :daily_habits, only: %i[index]
+      resources :daily_habits, only: %i[index create]
 
       get :status, to: 'api#status'
 
