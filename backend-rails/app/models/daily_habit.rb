@@ -30,4 +30,8 @@ class DailyHabit < ApplicationRecord
       .where('extract(month from date) = ?', now.month)
       .where('extract(day from date) = ?', now.day)
   }
+
+  def self.build_daily_habit_from_habit(habit:, user:, check: nil)
+    DailyHabit.new(user:, habit:, check:, group: habit.group, date: Time.zone.now.beginning_of_day)
+  end
 end

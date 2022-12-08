@@ -3,6 +3,10 @@ class DailyHabitPolicy < ApplicationPolicy
     true
   end
 
+  def create?
+    record.user == user
+  end
+
   class Scope
     attr_reader :user, :scope
 
