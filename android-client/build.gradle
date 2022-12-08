@@ -3,6 +3,7 @@ buildscript {
         compose_ui_version = '1.1.1'
 
         ktlintPluginVersion = "10.2.0"
+        room_version = "2.4.3"
         koin_version = "3.0.1"
         nav_version = "2.3.5"
         coroutines_kotlin = "1.6.1"
@@ -14,6 +15,8 @@ buildscript {
         moshi_converter = "2.9.0"
         ext.jacocoAndroidVersion = "0.2"
         ext.coverallsVersion = "2.12.0"
+        mockk_version = '1.12.0'
+        mockk_android_version = '1.12.0'
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
