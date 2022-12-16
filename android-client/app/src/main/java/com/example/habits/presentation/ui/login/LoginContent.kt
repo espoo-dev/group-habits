@@ -2,7 +2,15 @@ package com.example.habits.presentation.ui.login
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -25,10 +33,10 @@ import com.example.habits.R
 import com.example.habits.domain.Credentials
 import com.example.habits.domain.Email
 import com.example.habits.domain.Password
-import com.example.habits.presentation.MyTextField
-import com.example.habits.presentation.PrimaryButton
-import com.example.habits.presentation.SecondaryButton
 import com.example.habits.presentation.components.Material3CircularProgressIndicator
+import com.example.habits.presentation.components.MyTextField
+import com.example.habits.presentation.components.PrimaryButton
+import com.example.habits.presentation.components.SecondaryButton
 import com.example.habits.presentation.components.UIText
 import com.example.habits.presentation.components.VerticalSpacer
 import com.example.habits.presentation.components.getString
@@ -254,8 +262,8 @@ class LoginViewStateProvider : PreviewParameterProvider<LoginViewState> {
     override val values: Sequence<LoginViewState>
         get() {
             val activeCredentials = Credentials(
-                Email("testy@mctestface.com"),
-                Password("Hunter2"),
+                Email("testy@teste.com"),
+                Password("teste"),
             )
 
             return sequenceOf(

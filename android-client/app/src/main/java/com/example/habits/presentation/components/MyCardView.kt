@@ -1,4 +1,4 @@
-package com.example.habits.presentation
+package com.example.habits.presentation.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.CornerBasedShape

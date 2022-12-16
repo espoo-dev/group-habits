@@ -1,4 +1,4 @@
-package com.example.habits.presentation
+package com.example.habits.presentation.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
@@ -6,8 +6,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExposedDropdownMenuDefaults.outlinedTextFieldColors
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier

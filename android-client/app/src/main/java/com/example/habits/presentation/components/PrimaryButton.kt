@@ -1,4 +1,4 @@
-package com.example.habits.presentation
+package com.example.habits.presentation.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth

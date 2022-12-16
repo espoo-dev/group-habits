@@ -10,4 +10,4 @@ val Teal200 = Color(0xFF03DAC5)
 
 val error = Color(0xFFba1b1b)
 
-private val light_onBackground = Color(0xFF1a1c1e)
+val light_onBackground = Color(0xFF1a1c1e)
