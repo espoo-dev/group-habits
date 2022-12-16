@@ -15,11 +15,11 @@
 	"requests": [
 		{
 			"id": "4f2c61bc-c672-dd15-4b10-464a096151bf",
-			"headers": "authorization: Bearer eyJhY2Nlc3MtdG9rZW4iOiJnNUFTeVFybC1XVnJfQ193cGdiclhnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklRNlR6RWVlWWQzQU13Q3N1VFBjTnciLCJleHBpcnkiOiIxNzMyMTk2NDYzIiwidWlkIjoidXNlckBleGFtcGxlLmNvbSJ9\n//uid: user@example.com\n",
+			"headers": "authorization: Bearer eyJhY2Nlc3MtdG9rZW4iOiJpZlNtQkhleXA5b2JIMTQ2c3cyVFV3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6ImJ1Nk1IMFF6QzdqWV9kRThOQUlLc3ciLCJleHBpcnkiOiIxNzMzNTE0ODAwIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==\n//uid: user@example.com\n",
 			"headerData": [
 				{
 					"key": "authorization",
-					"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJnNUFTeVFybC1XVnJfQ193cGdiclhnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklRNlR6RWVlWWQzQU13Q3N1VFBjTnciLCJleHBpcnkiOiIxNzMyMTk2NDYzIiwidWlkIjoidXNlckBleGFtcGxlLmNvbSJ9",
+					"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJpZlNtQkhleXA5b2JIMTQ2c3cyVFV3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6ImJ1Nk1IMFF6QzdqWV9kRThOQUlLc3ciLCJleHBpcnkiOiIxNzMzNTE0ODAwIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
 					"description": "",
 					"enabled": true
 				},
@@ -30,34 +30,31 @@
 					"enabled": false
 				}
 			],
-			"url": "localhost:3000/api/v1/user",
+			"url": "https://group-habits.herokuapp.com/api/v1/daily_habits",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
 			"data": null,
 			"dataMode": "params",
-			"name": "get daily_habits",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1669039841786,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"isFromCollection": true,
-			"collectionRequestId": "7092b642-bc47-bf0b-a434-0cd3ee144204"
+			"time": 1671233696878,
+			"name": "get daily_habits",
+			"description": "",
+			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
+			"responses": []
 		},
 		{
 			"id": "7092b642-bc47-bf0b-a434-0cd3ee144204",
-			"headers": "authorization: Bearer eyJhY2Nlc3MtdG9rZW4iOiJnNUFTeVFybC1XVnJfQ193cGdiclhnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklRNlR6RWVlWWQzQU13Q3N1VFBjTnciLCJleHBpcnkiOiIxNzMyMTk2NDYzIiwidWlkIjoidXNlckBleGFtcGxlLmNvbSJ9\n//uid: user@example.com\n",
+			"headers": "authorization: Bearer eyJhY2Nlc3MtdG9rZW4iOiJpZlNtQkhleXA5b2JIMTQ2c3cyVFV3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6ImJ1Nk1IMFF6QzdqWV9kRThOQUlLc3ciLCJleHBpcnkiOiIxNzMzNTE0ODAwIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==\n//uid: user@example.com\n",
 			"headerData": [
 				{
 					"key": "authorization",
-					"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJnNUFTeVFybC1XVnJfQ193cGdiclhnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklRNlR6RWVlWWQzQU13Q3N1VFBjTnciLCJleHBpcnkiOiIxNzMyMTk2NDYzIiwidWlkIjoidXNlckBleGFtcGxlLmNvbSJ9",
+					"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJpZlNtQkhleXA5b2JIMTQ2c3cyVFV3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6ImJ1Nk1IMFF6QzdqWV9kRThOQUlLc3ciLCJleHBpcnkiOiIxNzMzNTE0ODAwIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
 					"description": "",
 					"enabled": true
 				},
@@ -68,24 +65,22 @@
 					"enabled": false
 				}
 			],
-			"url": "localhost:3000/api/v1/user",
+			"url": "https://group-habits.herokuapp.com/api/v1/user",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
 			"data": null,
 			"dataMode": "params",
-			"name": "get user",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1669039841786,
-			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"time": 1671233687837,
+			"name": "get user (do not use)",
+			"description": "",
+			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
+			"responses": []
 		},
 		{
 			"id": "cb53eda1-0289-58bc-27d8-c781fec723b1",
@@ -98,25 +93,23 @@
 					"enabled": true
 				}
 			],
-			"url": "localhost:3000/api/v1/users/sign_in",
+			"url": "https://group-habits.herokuapp.com/api/v1/users/sign_in",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "POST",
-			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
 			"data": [],
 			"dataMode": "raw",
-			"name": "sign_in",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1669039329357,
-			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"rawModeData": "{\n\t\"user\":\t{\n\t\t\"email\": \"user@example.com\",\n\t\t\"password\": \"password\"\n\t}\n}"
+			"time": 1671233685517,
+			"name": "sign_in",
+			"description": "",
+			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
+			"responses": [],
+			"rawModeData": "{\n\t\"user\":\t{\n\t\t\"email\": \"user@email.com\",\n\t\t\"password\": \"123456789\"\n\t}\n}"
 		}
 	]
 }
