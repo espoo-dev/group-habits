@@ -9,10 +9,6 @@ module Api
       def resource_params
         params.require(:user).permit(:email, :password)
       end
-
-      def render_create_success
-        render :create
-      end
     end
   end
 end
