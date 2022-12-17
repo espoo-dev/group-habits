@@ -9,6 +9,12 @@ module Api
       def resource_params
         params.require(:user).permit(:email, :password)
       end
+
+      def render_create_success
+        render json: {
+          user: resource_data(resource_json: @resource.token_validation_response)
+        }
+      end
     end
   end
 end
