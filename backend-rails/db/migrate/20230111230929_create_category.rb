@@ -6,6 +6,6 @@ class CreateCategory < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index 'categories', ['user_id', 'name'], unique: true
+    add_index 'categories', %w[user_id name], unique: true
   end
 end
