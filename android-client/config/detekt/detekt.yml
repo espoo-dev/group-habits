@@ -129,7 +129,7 @@ complexity:
     active: true
     threshold: 60
   LongParameterList:
-    active: false
+    active: true
     functionThreshold: 6
     constructorThreshold: 7
     ignoreDefaultParameters: false
@@ -328,7 +328,7 @@ naming:
     active: false
     minimumFunctionNameLength: 3
   FunctionNaming:
-    active: false
+    active: true
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     functionPattern: '[a-z][a-zA-Z0-9]*'
     excludeClassPattern: '$^'

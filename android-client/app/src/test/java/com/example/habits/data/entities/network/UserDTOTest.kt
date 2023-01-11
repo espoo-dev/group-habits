@@ -11,16 +11,19 @@ import org.junit.runners.JUnit4
 class UserDTOTest {
 
     private val userDto = UserDTO(
-        created_at = "",
-        email = "roandersonteste@gmail.com",
-        first_name = "roanderson",
-        id = 1,
-        last_name = "",
-        name = "roanderson",
-        provider = "",
-        uid = "",
-        updated_at = "",
-        username = ""
+
+        UserDTOContent(
+            email = "roandersonteste@gmail.com",
+            first_name = "roanderson",
+            id = 1,
+            last_name = "",
+            provider = "",
+            uid = "",
+            allow_password_change = false,
+            username = "",
+            group_id = 1
+        )
+
     )
 
     @Test
@@ -29,7 +32,7 @@ class UserDTOTest {
         // test whether the converted object is of the right type
         assertTrue(user is User)
         // ... if the title attribute of the DTO object is right...
-        assertTrue(user.email == userDto.email)
+        assertTrue(user.email == userDto.user.email)
         // ... and that the launches attribute is not empty.
         assertNotNull(user)
     }

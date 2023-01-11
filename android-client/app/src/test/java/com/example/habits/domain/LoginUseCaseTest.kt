@@ -4,6 +4,7 @@ import com.example.habits.core.RemoteException
 import com.example.habits.core.Resource
 import com.example.habits.data.repository.LoginRepository
 import com.example.habits.mock.UserMock
+import com.example.habits.mock.UserMock.mockAuthDataRequest
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
@@ -23,10 +24,10 @@ class LoginUseCaseTest {
     fun `should return user model with success`() = runBlocking {
 
         // GIVEN
-        coEvery { repository.login("") } returns UserMock.mockUserEntityNetwork()
+        coEvery { repository.login(mockAuthDataRequest) } returns UserMock.mockUserEntityNetwork()
 
         // WHEN
-        val result = login.execute().first()
+        val result = login.execute(mockAuthDataRequest).first()
 
         // THEN
         Assert.assertEquals(
@@ -41,10 +42,10 @@ class LoginUseCaseTest {
     fun `should return exception with error`() = runBlocking {
 
         // GIVEN
-        coEvery { repository.login("") } throws RemoteException("")
+        coEvery { repository.login(mockAuthDataRequest) } throws RemoteException("")
 
         // WHEN
-        val result = login.execute().first()
+        val result = login.execute(mockAuthDataRequest).first()
 
         // THEN
         assertEquals(result.data, null)

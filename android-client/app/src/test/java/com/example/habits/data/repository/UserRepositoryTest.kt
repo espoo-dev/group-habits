@@ -22,10 +22,10 @@ class UserRepositoryTest {
     fun `should return exception with error`() = runBlocking {
 
         // GIVEN
-        coEvery { loginRepository.login("") } throws RemoteException("")
+        coEvery { loginRepository.login(UserMock.mockAuthDataRequest) } throws RemoteException("")
 
         // WHEN
-        val result = loginRepository.login("").first()
+        val result = loginRepository.login(UserMock.mockAuthDataRequest).first()
 
         // THEN
         assertEquals(result.data, null)
@@ -35,10 +35,10 @@ class UserRepositoryTest {
     fun `should return user model with success`() = runBlocking {
 
         // GIVEN
-        coEvery { loginRepository.login("") } returns UserMock.mockUserEntityNetwork()
+        coEvery { loginRepository.login(UserMock.mockAuthDataRequest) } returns UserMock.mockUserEntityNetwork()
 
         // WHEN
-        val result = loginRepository.login("").first()
+        val result = loginRepository.login(UserMock.mockAuthDataRequest).first()
 
         // THEN
         assertEquals(result.data?.first_name, UserMock.mockUserResourceSuccess().data?.first_name)

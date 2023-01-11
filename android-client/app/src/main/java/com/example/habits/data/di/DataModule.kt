@@ -1,6 +1,7 @@
 package com.example.habits.data.di
 
 import android.util.Log
+import com.example.habits.data.di.interceptor.HeaderInterceptor
 import com.example.habits.data.repository.LoginRepository
 import com.example.habits.data.repository.LoginRepositoryImpl
 import com.example.habits.data.services.UserService
@@ -16,7 +17,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object DataModule {
 
-    private const val BASE_URL = "localhost:3000/api/v1/"
+    private const val BASE_URL =
+        "https://group-habits.herokuapp.com/api/v1/"
     private const val OK_HTTP = "Ok Http"
 
     fun load() {
@@ -47,12 +49,14 @@ object DataModule {
     }
 
     private fun createOkHttpClient(): OkHttpClient {
+
         val interceptor = HttpLoggingInterceptor {
             Log.e(OK_HTTP, it)
         }
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
         return OkHttpClient.Builder()
+            .addInterceptor(HeaderInterceptor())
             .addInterceptor(interceptor)
             .build()
     }

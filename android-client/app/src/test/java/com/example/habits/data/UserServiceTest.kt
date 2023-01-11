@@ -1,3 +1,5 @@
+import com.example.habits.data.entities.request.AuthContent
+import com.example.habits.data.entities.request.AuthDataRequest
 import com.example.habits.data.services.UserService
 import com.example.habits.mock.UserMock.convertToJson
 import com.example.habits.mock.UserMock.userDto
@@ -46,7 +48,7 @@ class UserServiceTest {
         runBlocking {
             val response = mockResponse()
             mockWebServer.enqueue(response)
-            service.login("")
+            service.login(AuthDataRequest(user = AuthContent("", "")))
             val request = mockWebServer.takeRequest()
             assertEquals(request.path, "/users/sign_in")
         }
@@ -61,7 +63,7 @@ class UserServiceTest {
             mockWebServer.enqueue(
                 response
             )
-            service.login("")
+            service.login(AuthDataRequest(user = AuthContent("", "")))
             val request: RecordedRequest = mockWebServer.takeRequest()
             print(request.path)
             assertNotSame(request.path, "sign_in")
@@ -81,7 +83,7 @@ class UserServiceTest {
             mockWebServer.enqueue(
                 response
             )
-            service.login("")
+            service.login(AuthDataRequest(user = AuthContent("", "")))
             val request: RecordedRequest = mockWebServer.takeRequest()
 
             println(request.headers)
