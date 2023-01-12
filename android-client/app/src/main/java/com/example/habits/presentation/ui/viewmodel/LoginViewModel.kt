@@ -1,6 +1,5 @@
 package com.example.habits.presentation.ui.viewmodel
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.habits.core.RemoteException
@@ -60,12 +59,10 @@ class LoginViewModel(
                             _currentUser.value = State.Error(this)
                             _snackbar.value = this.message
                         }
-
                     }
                 }
         }
     }
-
 
     fun executeLogin(email: String, password: String) {
         login(AuthDataRequest(user = AuthContent(email, password)))

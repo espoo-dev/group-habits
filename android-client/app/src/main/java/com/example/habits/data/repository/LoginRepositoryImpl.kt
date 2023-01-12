@@ -24,5 +24,4 @@ class LoginRepositoryImpl(
             emit(Resource.Error(data = null, error = error))
         }
     }
-
 }
