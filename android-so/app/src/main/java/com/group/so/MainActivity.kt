@@ -9,8 +9,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.group.so.presentation.ui.ScreenMain
-import com.group.so.presentation.ui.viewmodel.LoginViewModel
-import com.group.so.ui.theme.HabitsTheme
+import com.group.so.presentation.ui.login.LoginViewModel
+import com.group.so.ui.theme.SOTheme
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            HabitsTheme {
+            SOTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background

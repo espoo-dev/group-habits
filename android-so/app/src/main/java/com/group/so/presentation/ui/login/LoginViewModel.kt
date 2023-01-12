@@ -1,4 +1,4 @@
-package com.group.so.presentation.ui.viewmodel
+package com.group.so.presentation.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,18 +17,7 @@ import kotlinx.coroutines.launch
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
 ) : ViewModel() {
-
     private val _progressBarVisible = MutableStateFlow<Boolean>(false)
-    val progressBarVisible = _progressBarVisible.asStateFlow()
-
-    fun showProgressBar() {
-        _progressBarVisible.value = true
-    }
-
-    fun hideProgressBar() {
-        _progressBarVisible.value = false
-    }
-
     private val _snackbar = MutableStateFlow<String?>(null)
     val snackbar = _snackbar.asStateFlow()
 
@@ -45,7 +34,7 @@ class LoginViewModel(
                 .onStart {
                     _currentUser.value = (State.Loading)
                 }.catch {
-                    with(RemoteException("Could not connect to Habbits API")) {
+                    with(RemoteException("Could not connect to Service Orders API")) {
                         _currentUser.value = State.Error(this)
                         _snackbar.value = this.message
                     }

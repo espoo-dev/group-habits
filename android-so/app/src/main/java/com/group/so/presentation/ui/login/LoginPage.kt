@@ -1,5 +1,5 @@
 @file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming")
-package com.group.so.presentation.ui
+package com.group.so.presentation.ui.login
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,13 +36,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.group.so.core.State
 import com.group.so.data.entities.model.User
-import com.group.so.presentation.ui.viewmodel.LoginViewModel
+import com.group.so.presentation.ui.Routes
 import com.group.so.ui.theme.Purple700
 
 @Composable
 @ExperimentalComposeApi
 fun LoginPage(
-     navController: NavHostController,
+    navController: NavHostController,
     _loginViewModel: LoginViewModel,
 ) {
     val viewState = _loginViewModel.currentUser.collectAsState()

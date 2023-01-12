@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Services Order</string>
+    <string name="title_header_login">Welcome to My Service Order</string>
+    <string name="title_body_login">Log In with Email</string>
+    <string name="label_text_email">Email Address</string>
+    <string name="label_password">Password</string>
+    <string name="title_button_login">Login</string>
+    <string name="text_button_forgot_password">Forgot Password</string>
+    <string name="text_button_dont_have_account">Don\'t have an Account ? Sign Up</string>
 </resources>
