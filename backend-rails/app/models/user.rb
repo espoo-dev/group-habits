@@ -39,6 +39,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   has_many :daily_habits, dependent: :destroy
+  has_many :categories, dependent: :destroy
   belongs_to :group, optional: true
   validates :uid, uniqueness: { scope: :provider }
 
