@@ -8,5 +8,4 @@ import kotlinx.coroutines.flow.Flow
 interface LoginRepository {
 
     suspend fun login(authDataRequest: AuthDataRequest): Flow<Resource<User>>
-
 }

@@ -10,5 +10,4 @@ interface UserService {
     suspend fun login(
         @Body authDataRequest: AuthDataRequest?
     ): UserDTO
-
 }
