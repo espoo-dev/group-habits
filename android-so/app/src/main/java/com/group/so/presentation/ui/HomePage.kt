@@ -18,12 +18,12 @@ import com.group.so.ui.theme.Purple700
 
 @Composable
 @ExperimentalComposeApi
-fun HabbitsPage() {
-    Body()
+fun HomePage() {
+    BodyHome()
 }
 
 @Composable
-fun Body() {
+fun BodyHome() {
     Box(modifier = Modifier.fillMaxSize()) {
         ClickableText(
             text = AnnotatedString("Bem vindo"),

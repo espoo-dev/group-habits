@@ -1,7 +1,6 @@
 @file:Suppress("FunctionNaming")
 
 package com.group.so
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,7 +26,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
                     ScreenMain(_loginViewModel)
                 }
             }
