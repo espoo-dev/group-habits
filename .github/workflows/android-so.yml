@@ -41,9 +41,3 @@ jobs:
     - name: Static Analysis
       run: ./gradlew ktlintCheck detekt
     
-    - name: Upload app coverage to Codecov
-      uses: codecov/codecov-action@v2
-      with:
-        files: ./app/coverage/coverage-final.json
-        flags: app
-        token: ${{ secrets.CODECOV_TOKEN }}
