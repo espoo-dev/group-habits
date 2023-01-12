@@ -1,6 +1,6 @@
 package com.group.so.data.repository
 
-import com.example.so.data.services.UserService
+import com.group.so.data.services.UserService
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.data.entities.model.User

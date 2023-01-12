@@ -18,7 +18,7 @@ import com.group.so.ui.theme.Purple700
 
 @Composable
 @ExperimentalComposeApi
-fun HabbitsPage() {
+fun HomePage() {
     Body()
 }
 

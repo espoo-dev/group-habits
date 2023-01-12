@@ -18,12 +18,11 @@ fun ScreenMain(_loginViewModel: LoginViewModel) {
             LoginPage(
                 navController = navController,
                 _loginViewModel,
-
             )
         }
 
         composable(Routes.Habbits.route) {
-            HabbitsPage()
+            HomePage()
         }
     }
 }
