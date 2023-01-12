@@ -21,7 +21,7 @@ fun ScreenMain(_loginViewModel: LoginViewModel) {
             )
         }
 
-        composable(Routes.Habbits.route) {
+        composable(Routes.Home.route) {
             HomePage()
         }
     }

@@ -36,7 +36,7 @@ class LoginViewModel(
         _snackbar.value = null
     }
 
-    private val _currentUser = MutableStateFlow<State<User>>(State.Loading)
+    private val _currentUser = MutableStateFlow<State<User>>(State.Idle)
     val currentUser = _currentUser.asStateFlow()
 
     private fun login(authDataRequest: AuthDataRequest) {

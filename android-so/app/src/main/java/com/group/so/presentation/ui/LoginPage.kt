@@ -13,11 +13,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.ExperimentalComposeApi
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,13 +42,13 @@ import com.group.so.ui.theme.Purple700
 @Composable
 @ExperimentalComposeApi
 fun LoginPage(
-    navController: NavHostController,
+     navController: NavHostController,
     _loginViewModel: LoginViewModel,
 ) {
     val viewState = _loginViewModel.currentUser.collectAsState()
     val context = LocalContext.current
 
-    DisposableEffect(viewState.value) {
+    LaunchedEffect(viewState.value) {
         if (viewState.value is State.Error) {
             Toast.makeText(
                 context,
@@ -62,17 +63,16 @@ fun LoginPage(
                 Toast.LENGTH_LONG
             ).show()
             navController.popBackStack()
-            navController.navigate(Routes.Habbits.route)
+            navController.navigate(Routes.Home.route)
         }
 
-        onDispose { }
     }
 
-    Body(_loginViewModel = _loginViewModel)
+    Body(_loginViewModel = _loginViewModel,viewState)
 }
 
 @Composable
-fun Body(_loginViewModel: LoginViewModel) {
+fun Body(_loginViewModel: LoginViewModel, viewState: androidx.compose.runtime.State<State<User>>) {
     Box(modifier = Modifier.fillMaxSize()) {
         ClickableText(
             text = AnnotatedString("Sign up here"),
@@ -128,6 +128,11 @@ fun Body(_loginViewModel: LoginViewModel) {
                 Text(text = "Login")
             }
         }
+
+        if(viewState.value is State.Loading){
+            CircularProgressIndicator()
+        }
+
 
         ClickableText(
             text = AnnotatedString("Forgot password?"),
