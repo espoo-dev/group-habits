@@ -1,5 +1,7 @@
 @file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming")
+
 package com.group.so.presentation.ui
+
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
