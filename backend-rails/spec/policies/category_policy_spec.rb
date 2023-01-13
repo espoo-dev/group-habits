@@ -9,7 +9,7 @@ describe CategoryPolicy do
     end
   end
 
-  describe "Scope" do
+  describe 'Scope' do
     let(:user) { create(:user, categories: user_categories) }
     let!(:user_categories) { create_list(:category, 1) }
     let!(:categories2) { create_list(:category, 1) }

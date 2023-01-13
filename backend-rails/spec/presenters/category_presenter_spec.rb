@@ -10,7 +10,7 @@ RSpec.describe CategoryPresenter do
     it 'matches expected attributes' do
       expected_payload = {
         id: category.id,
-        name: category.name,
+        name: category.name
       }
 
       is_expected.to eq expected_payload

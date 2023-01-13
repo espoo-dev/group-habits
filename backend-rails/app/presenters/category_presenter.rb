@@ -10,7 +10,7 @@ class CategoryPresenter
   def payload
     {
       id: category.id,
-      name: category.name,
+      name: category.name
     }
   end
 end
