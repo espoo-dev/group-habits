@@ -16,7 +16,7 @@ import org.koin.android.ext.android.inject
 class MainActivity : ComponentActivity() {
 
     // private val viewmodel = koinViewModel<LoginViewModel>()
-    private val _loginViewModel: LoginViewModel by inject()
+    //private val _loginViewModel: LoginViewModel by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,17 +26,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ScreenMain(_loginViewModel)
+                    ScreenMain()
                 }
             }
         }
     }
 }
-
-// @Preview(showBackground = true)
-// @Composable
-// fun DefaultPreview() {
-//    HabitsTheme {
-//        ScreenMain(_loginViewModel = )
-//    }
-// }

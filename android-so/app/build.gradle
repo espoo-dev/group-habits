@@ -77,6 +77,8 @@ dependencies {
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_kotlin"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_kotlin"
+
 
     //MockWebServer
     testImplementation "com.squareup.okhttp3:mockwebserver:$mock_webserver"
@@ -121,6 +123,9 @@ dependencies {
 
     testImplementation "io.mockk:mockk:$mockk_version"
     androidTestImplementation "io.mockk:mockk-android:$mockk_android_version"
+
+    androidTestImplementation "android.arch.core:core-testing:1.0.0"
+    testImplementation "android.arch.core:core-testing:1.0.0"
 
 
 }

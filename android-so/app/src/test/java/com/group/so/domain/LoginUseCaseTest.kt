@@ -6,7 +6,9 @@ import com.group.so.data.repository.LoginRepository
 import com.group.so.mock.UserMock
 import com.group.so.mock.UserMock.mockAuthDataRequest
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -49,5 +51,17 @@ class LoginUseCaseTest {
 
         // THEN
         assertEquals(result.data, null)
+    }
+
+    @Test
+    fun `should perform a login function`() = runBlocking {
+        // GIVEN
+        coEvery { repository.login(mockAuthDataRequest) } returns UserMock.mockUserEntityNetwork()
+
+        // WHEN
+        login.execute(mockAuthDataRequest).first()
+
+        // THEN
+        coVerify { login.execute(mockAuthDataRequest) }
     }
 }

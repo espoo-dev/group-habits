@@ -17,13 +17,6 @@ import kotlinx.coroutines.launch
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
 ) : ViewModel() {
-    private val _progressBarVisible = MutableStateFlow<Boolean>(false)
-    private val _snackbar = MutableStateFlow<String?>(null)
-    val snackbar = _snackbar.asStateFlow()
-
-    fun onSnackBarShown() {
-        _snackbar.value = null
-    }
 
     private val _currentUser = MutableStateFlow<State<User>>(State.Idle)
     val currentUser = _currentUser.asStateFlow()
@@ -36,7 +29,7 @@ class LoginViewModel(
                 }.catch {
                     with(RemoteException("Could not connect to Service Orders API")) {
                         _currentUser.value = State.Error(this)
-                        _snackbar.value = this.message
+
                     }
                 }
                 .collect {
@@ -46,7 +39,6 @@ class LoginViewModel(
                     it.error?.let { throwable ->
                         with(RemoteException(throwable.message.toString())) {
                             _currentUser.value = State.Error(this)
-                            _snackbar.value = this.message
                         }
                     }
                 }
