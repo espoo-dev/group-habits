@@ -5,6 +5,6 @@ if Rails.env.development?
   Habit.create!(name: 'Exercise', group:)
   Habit.create!(name: 'Eat 2 fruits', group:)
   user = User.create!(email: 'user@email.com', password: '123456789', group:)
-  Category.create!(name: 'Home', user: user)
+  Category.create!(name: 'Home', user:)
   Setting.create_or_find_by!(key: 'min_version', value: '0.0')
 end
