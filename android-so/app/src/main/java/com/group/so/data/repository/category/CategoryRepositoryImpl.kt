@@ -21,7 +21,7 @@ class CategoryRepositoryImpl(
         categoryDao.listCategories().map {
             it.sortedBy { category ->
                 category.id
-            }.reversed().toModel()
+            }.reversed()
         }
     }
 
