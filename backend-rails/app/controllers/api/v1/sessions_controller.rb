@@ -11,9 +11,9 @@ module Api
       end
 
       def render_create_success
-        render json: {
-          user: resource_data(resource_json: @resource.token_validation_response)
-        }
+        user_data = resource_data(resource_json: @resource.token_validation_response)
+        user_data['authorization'] = @resource.generate_bearer_token(@token)
+        render json: { user: user_data }
       end
     end
   end
