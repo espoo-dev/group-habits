@@ -1,14 +1,12 @@
 package com.group.so.data.di.interceptor
 
-
 import com.group.so.data.services.SessionManager
-import java.net.HttpURLConnection
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import java.net.HttpURLConnection
 
-
-class AuthInterceptor  constructor(
+class AuthInterceptor constructor(
     private val sessionManager: SessionManager
 ) : Interceptor {
 
@@ -23,7 +21,7 @@ class AuthInterceptor  constructor(
             if (newAccessToken != accessToken) {
                 return chain.proceed(newRequestWithAccessToken(accessToken, request))
             } else {
-                //accessToken = refreshToken()
+                // accessToken = refreshToken()
                 if (accessToken.isNullOrBlank()) {
                     sessionManager.logout()
                     return response
@@ -39,5 +37,4 @@ class AuthInterceptor  constructor(
         request.newBuilder()
             .header("Authorization", "Bearer $accessToken")
             .build()
-
 }

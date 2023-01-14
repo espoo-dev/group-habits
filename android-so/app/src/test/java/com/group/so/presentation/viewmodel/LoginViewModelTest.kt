@@ -28,7 +28,6 @@ class LoginViewModelTest {
 
     private val loginViewModel = LoginViewModel(loginUseCase)
 
-
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -50,7 +49,7 @@ class LoginViewModelTest {
 
         loginViewModel.executeLogin("teste", "teste")
 
-        coVerify(exactly =1) { loginUseCase.execute(UserMock.mockAuthDataRequest) }
+        coVerify(exactly = 1) { loginUseCase.execute(UserMock.mockAuthDataRequest) }
     }
 
     @Test
@@ -63,5 +62,4 @@ class LoginViewModelTest {
 
         coVerify(exactly = 1) { loginRepository.login(UserMock.mockAuthDataRequest) }
     }
-
 }

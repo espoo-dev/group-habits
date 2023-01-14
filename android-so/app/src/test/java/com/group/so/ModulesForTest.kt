@@ -29,7 +29,6 @@ fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
 }
 
-
 private inline fun <reified T> createServiceForTest(
     factory: Moshi,
     baseUrl: String

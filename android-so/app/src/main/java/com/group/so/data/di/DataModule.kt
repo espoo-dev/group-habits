@@ -60,11 +60,10 @@ object DataModule {
             single {
                 createService<UserService>(get(), get())
             }
-            single {
-                createService<CategoryService>(get(), get())
-            }
         }
     }
+
+
 
 
     private fun createOkHttpClient(sessionManager: SessionManager): OkHttpClient {

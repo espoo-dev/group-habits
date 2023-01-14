@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.core.ui.components
 
 import android.content.res.Configuration
@@ -47,7 +49,6 @@ fun PrimaryButton(
         contentPadding = contentPadding
     ) {
         if (isLoading) CircularProgressIndicator(color = Color.White) else Text(text = text, fontFamily = Poppins)
-
     }
 }
 

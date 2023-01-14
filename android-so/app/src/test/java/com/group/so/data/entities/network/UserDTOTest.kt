@@ -1,10 +1,10 @@
 package com.group.so.data.entities.network
 
 import com.group.so.data.entities.model.User
-import kotlin.test.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import kotlin.test.assertEquals
 
 @RunWith(JUnit4::class)
 class UserDTOTest {
@@ -34,6 +34,6 @@ class UserDTOTest {
         // ... if the title attribute of the DTO object is right...
         assert(user.email == userDto.user.email)
         // ... and that the launches attribute is not empty.
-        assertEquals(user,userDto.toModel())
+        assertEquals(user, userDto.toModel())
     }
 }

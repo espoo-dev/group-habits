@@ -23,11 +23,11 @@ fun ScreenMain() {
 
     NavHost(navController = navController, startDestination = Routes.Login.route) {
         composable(Routes.Login.route) {
-            val _loginViewModel = koinViewModel<LoginViewModel>()
+            val loginViewModel = koinViewModel<LoginViewModel>()
             Surface(color = BackgroundColor, modifier = Modifier.fillMaxSize()) {
                 LoginScreen(
                     navController = navController,
-                    _loginViewModel,
+                    loginViewModel,
                 )
             }
         }

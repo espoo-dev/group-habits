@@ -1,8 +1,9 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming")
+
 package com.group.so.core.ui.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.ButtonDefaults.textButtonColors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
