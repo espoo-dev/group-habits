@@ -38,7 +38,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -54,9 +53,7 @@ import com.group.so.presentation.ui.login.components.EmailState
 import com.group.so.presentation.ui.login.components.PasswordState
 import com.group.so.ui.theme.Poppins
 import com.group.so.ui.theme.Purple500
-import com.group.so.ui.theme.ReemKufi
 import com.group.so.ui.theme.Shapes
-
 
 @Composable
 fun LoginScreen(
@@ -83,10 +80,9 @@ fun LoginScreen(
             navController.popBackStack()
             navController.navigate(Routes.Home.route)
         }
-
     }
     HeaderLogin()
-    BodyLogin(_loginViewModel,viewState)
+    BodyLogin(_loginViewModel, viewState)
 }
 
 @Composable
@@ -100,10 +96,9 @@ fun HeaderLogin() {
     }
 }
 
-
 @Composable
 fun Email(text: String, error: String?, onEmailChanged: (String) -> Unit) {
-   
+
     Column {
         TextField(
             label = {
@@ -128,10 +123,9 @@ fun Email(text: String, error: String?, onEmailChanged: (String) -> Unit) {
         )
 
         error?.let {
-          ErrorField(error = it)
+            ErrorField(error = it)
         }
     }
-
 }
 
 @Composable
@@ -196,10 +190,7 @@ fun Password(text: String, error: String?, onPasswordChanged: (String) -> Unit) 
             ErrorField(it)
         }
     }
-
 }
-
-
 
 @Composable
 fun BodyLogin(
@@ -227,7 +218,6 @@ fun BodyLogin(
                 fontFamily = Poppins
             )
 
-
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -246,93 +236,6 @@ fun BodyLogin(
                         passwordState.text = it
                         passwordState.validate()
                     }
-//                    Text(
-//                        text = stringResource(R.string.title_body_login),
-//                        color = LightTextColor,
-//                        fontFamily = Poppins,
-//                        fontSize = 12.sp,
-//                        modifier = Modifier.padding(top = 16.dp)
-//                    )
-//
-//                    OutlinedTextField(
-//                        value = email, onValueChange = {
-//                            email = it
-//                        },
-//                        label = {
-//                            Text(
-//                                text = stringResource(R.string.label_text_email),
-//                                color = Purple500
-//                            )
-//                        },
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(horizontal = 20.dp)
-//                            .padding(top = 10.dp),
-//                        colors = TextFieldDefaults.outlinedTextFieldColors(
-//                            unfocusedBorderColor = Purple500,
-//                            textColor = Purple500
-//
-//                        ),
-//                        keyboardOptions = KeyboardOptions(
-//                            keyboardType =
-//                            KeyboardType.Email
-//                        ),
-//                        singleLine = true,
-//                        leadingIcon = {
-//                            Icon(
-//                                painter = painterResource(id = R.drawable.ic_email),
-//                                contentDescription = "",
-//                                tint = Purple500,
-//                                modifier = Modifier.size(24.dp)
-//                            )
-//                        }
-//                    )
-//                    OutlinedTextField(
-//                        value = password, onValueChange = {
-//                            password = it
-//                        },
-//                        label = {
-//                            Text(text = stringResource(R.string.label_password), color = Purple500)
-//                        },
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(horizontal = 20.dp)
-//                            .padding(top = 10.dp),
-//                        colors = TextFieldDefaults.outlinedTextFieldColors(
-//                            unfocusedBorderColor = Purple500,
-//                            textColor = Purple500
-//                        ),
-//                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-//                        singleLine = true,
-//                        visualTransformation = if (!isPasswordOpen) PasswordVisualTransformation() else VisualTransformation.None,
-//                        leadingIcon = {
-//                            Icon(
-//                                painter = painterResource(id = R.drawable.ic_password),
-//                                contentDescription = "",
-//                                tint = Purple500,
-//                                modifier = Modifier.size(24.dp)
-//                            )
-//                        },
-//                        trailingIcon = {
-//                            IconButton(onClick = { isPasswordOpen = !isPasswordOpen }) {
-//                                if (!isPasswordOpen) {
-//                                    Icon(
-//                                        painter = painterResource(id = R.drawable.ic_eye_open),
-//                                        contentDescription = "",
-//                                        tint = Purple500,
-//                                        modifier = Modifier.size(24.dp)
-//                                    )
-//                                } else {
-//                                    Icon(
-//                                        painter = painterResource(id = R.drawable.ic_eye_close),
-//                                        contentDescription = "",
-//                                        tint = Purple500,
-//                                        modifier = Modifier.size(24.dp)
-//                                    )
-//                                }
-//                            }
-//                        }
-//                    )
 
                     PrimaryButton(
                         text = stringResource(R.string.title_button_login),

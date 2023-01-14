@@ -8,7 +8,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.group.so.R
 
-
 val ReemKufi = FontFamily(Font(R.font.reemkufi))
 val Poppins = FontFamily(Font(R.font.poppins))
 // Set of Material typography styles to start with

@@ -35,22 +35,20 @@ fun HomePage() {
         TopAppBar(title = {
             Text(text = stringResource(R.string.app_name))
         }, actions = {
-
-        })
+            })
     }, floatingActionButton = {
-        FloatingActionButton(onClick = {  }) {
-            Icon(
-                Icons.Filled.Add,
-                tint = Color.White,
-                contentDescription = stringResource(
-                    id = R.string.app_name
+            FloatingActionButton(onClick = { }) {
+                Icon(
+                    Icons.Filled.Add,
+                    tint = Color.White,
+                    contentDescription = stringResource(
+                        id = R.string.app_name
+                    )
                 )
-            )
-        }
-    }){
+            }
+        }) {
         BodyHome()
     }
-
 }
 
 @Composable

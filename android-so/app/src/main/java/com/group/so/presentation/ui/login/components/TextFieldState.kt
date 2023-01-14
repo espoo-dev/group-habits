@@ -1,7 +1,7 @@
 package com.group.so.presentation.ui.login.components
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
 open class TextFieldState(
@@ -19,5 +19,4 @@ open class TextFieldState(
         }
     }
     fun isValid() = validator(text)
-
 }

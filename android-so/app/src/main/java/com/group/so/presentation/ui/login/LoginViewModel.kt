@@ -29,7 +29,6 @@ class LoginViewModel(
                 }.catch {
                     with(RemoteException("Could not connect to Service Orders API")) {
                         _loginState.value = State.Error(this)
-
                     }
                 }
                 .collect {

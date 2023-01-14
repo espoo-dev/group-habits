@@ -1,6 +1,5 @@
 package com.group.so.data.di
 
-import android.content.Context
 import android.util.Log
 import com.group.so.data.di.interceptor.AuthInterceptor
 import com.group.so.data.repository.LoginRepository
@@ -54,9 +53,6 @@ object DataModule {
             }
         }
     }
-
-
-
 
     private fun createOkHttpClient(sessionManager: SessionManager): OkHttpClient {
 

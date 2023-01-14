@@ -11,7 +11,6 @@ interface UserService {
 //        @Body authDataRequest: AuthDataRequest?
 //    ): UserDTO
 
-
     @POST("users/sign_in")
     suspend fun login(
         @Body authDataRequest: AuthDataRequest?

@@ -10,14 +10,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.group.so.presentation.ui.ScreenMain
-import com.group.so.presentation.ui.login.LoginViewModel
 import com.group.so.ui.theme.SOTheme
-import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
     // private val viewmodel = koinViewModel<LoginViewModel>()
-    //private val _loginViewModel: LoginViewModel by inject()
+    // private val _loginViewModel: LoginViewModel by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
