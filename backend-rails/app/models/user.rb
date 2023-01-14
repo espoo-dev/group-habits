@@ -60,7 +60,7 @@ class User < ApplicationRecord
 
   def generate_bearer_token(token)
     tokens[token.client] = {
-      token:  token.token_hash,
+      token: token.token_hash,
       expiry: token.expiry
     }
     bearer_token(token.token, token.client)
@@ -72,19 +72,20 @@ class User < ApplicationRecord
     self.uid = email if uid.blank? && provider == 'email'
   end
 
+  # rubocop:disable Metrics/AbcSize
   # https://github.com/lynndylanhurley/devise_token_auth/blob/30b6d30037ea646646e58ba2ec5ff4682b654f2c/app/models/devise_token_auth/concerns/user.rb
-  def bearer_token(token, client = 'default')
+  def bearer_token(token, client)
     # client may use expiry to prevent validation request if expired
     # must be cast as string or headers will break
     expiry = tokens[client]['expiry'] || tokens[client][:expiry]
     headers = {
-      DeviseTokenAuth.headers_names[:"access-token"] => token,
-      DeviseTokenAuth.headers_names[:"token-type"]   => 'Bearer',
-      DeviseTokenAuth.headers_names[:"client"]       => client,
-      DeviseTokenAuth.headers_names[:"expiry"]       => expiry.to_s,
-      DeviseTokenAuth.headers_names[:"uid"]          => uid
+      DeviseTokenAuth.headers_names[:'access-token'] => token,
+      DeviseTokenAuth.headers_names[:'token-type'] => 'Bearer',
+      DeviseTokenAuth.headers_names[:client] => client,
+      DeviseTokenAuth.headers_names[:expiry] => expiry.to_s,
+      DeviseTokenAuth.headers_names[:uid] => uid
     }
-    encoded_token = Base64.strict_encode64(headers.to_json)
-    "Bearer #{encoded_token}"
-   end
+    "Bearer #{Base64.strict_encode64(headers.to_json)}"
+  end
+  # rubocop:enable Metrics/AbcSize
 end
