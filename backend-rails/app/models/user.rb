@@ -58,6 +58,7 @@ class User < ApplicationRecord
     end
   end
 
+  # :reek:DuplicateMethodCall :reek:FeatureEnvy
   def generate_bearer_token(token)
     tokens[token.client] = {
       token: token.token_hash,
@@ -74,16 +75,18 @@ class User < ApplicationRecord
 
   # rubocop:disable Metrics/AbcSize
   # https://github.com/lynndylanhurley/devise_token_auth/blob/30b6d30037ea646646e58ba2ec5ff4682b654f2c/app/models/devise_token_auth/concerns/user.rb
+  # :reek:DuplicateMethodCall :reek:FeatureEnvy
   def bearer_token(token, client)
     # client may use expiry to prevent validation request if expired
     # must be cast as string or headers will break
     expiry = tokens[client]['expiry'] || tokens[client][:expiry]
+    headers_names = DeviseTokenAuth.headers_names
     headers = {
-      DeviseTokenAuth.headers_names[:'access-token'] => token,
-      DeviseTokenAuth.headers_names[:'token-type'] => 'Bearer',
-      DeviseTokenAuth.headers_names[:client] => client,
-      DeviseTokenAuth.headers_names[:expiry] => expiry.to_s,
-      DeviseTokenAuth.headers_names[:uid] => uid
+      headers_names[:'access-token'] => token,
+      headers_names[:'token-type'] => 'Bearer',
+      headers_names[:client] => client,
+      headers_names[:expiry] => expiry.to_s,
+      headers_names[:uid] => uid
     }
     "Bearer #{Base64.strict_encode64(headers.to_json)}"
   end
