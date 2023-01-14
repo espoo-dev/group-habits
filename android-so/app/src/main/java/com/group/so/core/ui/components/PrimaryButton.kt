@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -31,6 +32,7 @@ fun PrimaryButton(
     backgroundColor: Color,
     contentColor: Color,
     enabled: Boolean = true,
+    isLoading: Boolean = false,
     contentPadding: PaddingValues
 ) {
 
@@ -44,7 +46,8 @@ fun PrimaryButton(
         enabled = enabled,
         contentPadding = contentPadding
     ) {
-        Text(text = text, fontFamily = Poppins)
+        if (isLoading) CircularProgressIndicator(color = Color.White) else Text(text = text, fontFamily = Poppins)
+
     }
 }
 

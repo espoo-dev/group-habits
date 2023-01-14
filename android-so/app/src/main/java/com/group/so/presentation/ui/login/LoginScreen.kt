@@ -38,6 +38,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -51,6 +52,7 @@ import com.group.so.data.entities.model.User
 import com.group.so.presentation.ui.Routes
 import com.group.so.presentation.ui.login.components.EmailState
 import com.group.so.presentation.ui.login.components.PasswordState
+import com.group.so.ui.theme.Poppins
 import com.group.so.ui.theme.Purple500
 import com.group.so.ui.theme.ReemKufi
 import com.group.so.ui.theme.Shapes
@@ -61,7 +63,7 @@ fun LoginScreen(
     navController: NavHostController,
     _loginViewModel: LoginViewModel,
 ) {
-    val viewState = _loginViewModel.currentUser.collectAsState()
+    val viewState = _loginViewModel.loginState.collectAsState()
     val context = LocalContext.current
 
     LaunchedEffect(viewState.value) {
@@ -84,7 +86,7 @@ fun LoginScreen(
 
     }
     HeaderLogin()
-    BodyLogin(_loginViewModel)
+    BodyLogin(_loginViewModel,viewState)
 }
 
 @Composable
@@ -98,8 +100,10 @@ fun HeaderLogin() {
     }
 }
 
+
 @Composable
 fun Email(text: String, error: String?, onEmailChanged: (String) -> Unit) {
+   
     Column {
         TextField(
             label = {
@@ -122,8 +126,9 @@ fun Email(text: String, error: String?, onEmailChanged: (String) -> Unit) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             shape = RoundedCornerShape(8.dp),
         )
+
         error?.let {
-            ErrorField(it)
+          ErrorField(error = it)
         }
     }
 
@@ -194,8 +199,13 @@ fun Password(text: String, error: String?, onPasswordChanged: (String) -> Unit) 
 
 }
 
+
+
 @Composable
-fun BodyLogin(_loginViewModel: LoginViewModel) {
+fun BodyLogin(
+    _loginViewModel: LoginViewModel,
+    viewState: androidx.compose.runtime.State<State<User>>
+) {
     val emailState = remember {
         EmailState()
     }
@@ -214,7 +224,7 @@ fun BodyLogin(_loginViewModel: LoginViewModel) {
                     .padding(top = 20.dp),
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
-                fontFamily = ReemKufi
+                fontFamily = Poppins
             )
 
 
@@ -330,6 +340,7 @@ fun BodyLogin(_loginViewModel: LoginViewModel) {
                         onClick = {
                             _loginViewModel.executeLogin(emailState.text, passwordState.text)
                         },
+                        isLoading = viewState.value is State.Loading,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 20.dp)

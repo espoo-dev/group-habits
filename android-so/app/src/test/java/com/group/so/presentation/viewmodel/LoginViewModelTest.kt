@@ -63,4 +63,5 @@ class LoginViewModelTest {
 
         coVerify(exactly = 1) { loginRepository.login(UserMock.mockAuthDataRequest) }
     }
+
 }

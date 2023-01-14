@@ -1,6 +1,7 @@
 @file:Suppress("FunctionNaming")
 
 package com.group.so
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
