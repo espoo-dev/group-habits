@@ -77,7 +77,7 @@ fun LoginScreen(
         if (viewState.value is State.Success) {
             Toast.makeText(
                 context,
-                (viewState.value as State.Success<User>).result.email,
+                (viewState.value as State.Success<User>).result.first_name,
                 Toast.LENGTH_LONG
             ).show()
             navController.popBackStack()

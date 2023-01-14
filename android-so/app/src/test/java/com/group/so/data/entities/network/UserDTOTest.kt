@@ -20,7 +20,8 @@ class UserDTOTest {
             uid = "",
             allow_password_change = false,
             username = "",
-            group_id = 1
+            group_id = 1,
+            authorization = ""
         )
 
     )

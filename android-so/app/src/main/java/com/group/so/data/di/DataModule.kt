@@ -2,9 +2,11 @@ package com.group.so.data.di
 
 import android.content.Context
 import android.util.Log
+import com.group.so.data.database.ServiceOrderDatabase
 import com.group.so.data.di.interceptor.AuthInterceptor
 import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
+import com.group.so.data.services.CategoryService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.squareup.moshi.Moshi
@@ -25,7 +27,13 @@ object DataModule {
     private const val OK_HTTP = "Ok Http"
 
     fun load() {
-        loadKoinModules(postsModule() + networkModule())
+        loadKoinModules(postsModule() + networkModule() + daoModule())
+    }
+
+    private fun daoModule(): Module {
+        return module {
+            single { ServiceOrderDatabase.getInstance(androidContext()).dao }
+        }
     }
 
     private fun postsModule(): Module {
@@ -52,10 +60,11 @@ object DataModule {
             single {
                 createService<UserService>(get(), get())
             }
+            single {
+                createService<CategoryService>(get(), get())
+            }
         }
     }
-
-
 
 
     private fun createOkHttpClient(sessionManager: SessionManager): OkHttpClient {
