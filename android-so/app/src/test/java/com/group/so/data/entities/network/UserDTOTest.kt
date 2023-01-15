@@ -1,11 +1,10 @@
 package com.group.so.data.entities.network
 
 import com.group.so.data.entities.model.User
-import junit.framework.Assert.assertNotNull
-import junit.framework.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import kotlin.test.assertEquals
 
 @RunWith(JUnit4::class)
 class UserDTOTest {
@@ -21,7 +20,8 @@ class UserDTOTest {
             uid = "",
             allow_password_change = false,
             username = "",
-            group_id = 1
+            group_id = 1,
+            authorization = ""
         )
 
     )
@@ -30,10 +30,10 @@ class UserDTOTest {
     fun `should correctly convert to model entity`() {
         val user: User = userDto.toModel()
         // test whether the converted object is of the right type
-        assertTrue(user is User)
+        // assert(user is User)
         // ... if the title attribute of the DTO object is right...
-        assertTrue(user.email == userDto.user.email)
+        assert(user.email == userDto.user.email)
         // ... and that the launches attribute is not empty.
-        assertNotNull(user)
+        assertEquals(user, userDto.toModel())
     }
 }
