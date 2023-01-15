@@ -1,17 +1,16 @@
 package com.group.so.data.repository.category
 
 import com.group.so.core.RemoteException
-import com.group.so.data.entities.db.toModel
-import com.group.so.data.entities.network.toDb
 import com.group.so.core.Resource
 import com.group.so.core.networkBoundResource
 import com.group.so.data.dao.CategoryDao
+import com.group.so.data.entities.db.toModel
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.network.CategoryDTO
+import com.group.so.data.entities.network.toDb
 import com.group.so.data.services.CategoryService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-
 
 class CategoryRepositoryImpl(
     private val categoryService: CategoryService,
@@ -40,7 +39,4 @@ class CategoryRepositoryImpl(
             },
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
-
 }
-
-

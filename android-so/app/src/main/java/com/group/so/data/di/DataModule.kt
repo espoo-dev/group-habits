@@ -1,6 +1,5 @@
 package com.group.so.data.di
 
-import android.content.Context
 import android.util.Log
 import com.group.so.data.database.ServiceOrderDatabase
 import com.group.so.data.di.interceptor.AuthInterceptor
@@ -8,7 +7,6 @@ import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.category.CategoryRepositoryImpl
-import com.group.so.data.services.CategoryService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.squareup.moshi.Moshi
@@ -65,9 +63,6 @@ object DataModule {
             }
         }
     }
-
-
-
 
     private fun createOkHttpClient(sessionManager: SessionManager): OkHttpClient {
 
