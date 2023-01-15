@@ -1,4 +1,4 @@
-class DailyHabitPresenter
+class DailyHabitPresenter < BasePresenter
   attr_accessor :daily_habit
 
   def initialize(daily_habit)

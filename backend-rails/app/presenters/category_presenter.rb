@@ -1,4 +1,4 @@
-class CategoryPresenter
+class CategoryPresenter < BasePresenter
   attr_accessor :category
 
   def initialize(category)

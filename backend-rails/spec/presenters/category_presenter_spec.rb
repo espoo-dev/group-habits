@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe CategoryPresenter do
+  let(:category) { build(:category) }
+
   describe '#payload' do
-    let!(:category) { create(:category) }
     subject { described_class.new(category).payload }
 
     it 'matches expected attributes' do

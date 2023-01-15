@@ -6,17 +6,7 @@ module Api
 
       def index
         categories = CategoriesFinderService.new(user: current_user).call
-        render json: format_categories(categories)
-      end
-
-      private
-
-      def format_categories(categories)
-        categories.map { format_category(_1) }
-      end
-
-      def format_category(daily_habit)
-        CategoryPresenter.new(daily_habit).payload
+        render json: CategoryPresenter.payload_for_list(categories)
       end
     end
   end

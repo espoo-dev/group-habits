@@ -6,27 +6,19 @@ module Api
 
       def index
         daily_habits = DailyHabitsFinderService.new(user: current_user).call
-        render json: format_daily_habits(daily_habits)
+        render json: DailyHabitPresenter.payload_for_list(daily_habits)
       end
 
       def create
         daily_habit = DailyHabitCreatorService.new(user: current_user,
                                                    create_daily_habit_params:).call
-        render json: format_daily_habit(daily_habit), status: :created
+        render json: DailyHabitPresenter.payload_for_item(daily_habit), status: :created
       end
 
       private
 
       def create_daily_habit_params
         params.permit(:habit_id, :check)
-      end
-
-      def format_daily_habits(daily_habits)
-        daily_habits.map { format_daily_habit(_1) }
-      end
-
-      def format_daily_habit(daily_habit)
-        DailyHabitPresenter.new(daily_habit).payload
       end
     end
   end
