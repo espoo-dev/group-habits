@@ -7,4 +7,31 @@
     <string name="title_button_login">Login</string>
     <string name="text_button_forgot_password">Forgot Password</string>
     <string name="text_button_dont_have_account">Don\'t have an Account ? Sign Up</string>
+
+
+    <!-- Generic messages -->
+    <string name="msg_generic_error">Ops! Something went wrong…</string>
+    <string name="msg_loading">Please wait…</string>
+
+    <!-- Button Texts -->
+    <string name="button_save">Save</string>
+    <string name="button_ok">OK</string>
+
+
+
+
+
+
+    <!-- Categories -->
+    <!-- Menu Actions -->
+    <string name="menu_action_edit">Edit</string>
+    <string name="menu_action_logout">Logout</string>
+    <string name="menu_action_settings">Settings</string>
+
+    <string name="msg_empty_categories_list">No categories registered at the moment</string>
+    <string name="msg_category_deleted">Category deleted.</string>
+
+    <string name="cd_new_category">Insert new book</string>
+
+
 </resources>

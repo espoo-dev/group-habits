@@ -8,4 +8,25 @@
     <string name="title_button_login">Entrar</string>
     <string name="text_button_forgot_password">Esqueceu sua senha</string>
     <string name="text_button_dont_have_account">Não tem uma conta? Inscrever-se</string>
+
+    <string name="msg_generic_error">Ops! Algo deu errado…</string>
+    <string name="msg_loading">Por favor, espere…</string>
+
+    <!-- Button Texts -->
+    <string name="button_save">Salvar</string>
+    <string name="button_ok">OK</string>
+
+
+    <!-- Categories-->
+    <!-- Menu Actions -->
+    <string name="menu_action_edit">Editar</string>
+    <string name="menu_action_logout">Sair</string>
+    <string name="menu_action_settings">Configurações</string>
+
+    <string name="msg_empty_categories_list">Nenhuma categoria cadastrada no momento</string>
+    <string name="msg_category_deleted">Categoria deletada.</string>
+
+    <string name="cd_new_category">Inserir nova categoria</string>
+
+
 </resources>

@@ -1,9 +1,9 @@
 package com.group.so.data.services
 
 import com.group.so.data.entities.network.CategoryDTO
-import retrofit2.http.POST
+import retrofit2.http.GET
 
 interface CategoryService {
-    @POST("categories")
+    @GET("categories")
     suspend fun getAllCategories(): List<CategoryDTO>
 }
