@@ -22,12 +22,16 @@ object UserMock {
     }
 
     val userMock1 = User(
+        id = 1,
         email = "roandersonteste@gmail.com",
-        first_name = "roanderson"
+        first_name = "roanderson",
+        token = ""
     )
     val userMock2 = User(
+        id = 2,
         email = "edimo@gmail.com",
-        first_name = "Edimo"
+        first_name = "Edimo",
+        token = ""
     )
 
     val userDto = UserDTO(
@@ -40,7 +44,8 @@ object UserMock {
             uid = "",
             allow_password_change = false,
             username = "",
-            group_id = 1
+            group_id = 1,
+            authorization = ""
         )
     )
 

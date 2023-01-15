@@ -5,7 +5,8 @@
 	"order": [
 		"cb53eda1-0289-58bc-27d8-c781fec723b1",
 		"7092b642-bc47-bf0b-a434-0cd3ee144204",
-		"4f2c61bc-c672-dd15-4b10-464a096151bf"
+		"4f2c61bc-c672-dd15-4b10-464a096151bf",
+		"a1b31619-0078-9f60-f790-13fa6f5896b9"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -83,6 +84,41 @@
 			"responses": []
 		},
 		{
+			"id": "a1b31619-0078-9f60-f790-13fa6f5896b9",
+			"headers": "authorization: Bearer eyJhY2Nlc3MtdG9rZW4iOiJYVzRiWnBZVC1KTlFCdEFpUnRRZFdBIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IlF1ZzU5UDFHdVhSY0dYMUZ4c3Vrc3ciLCJleHBpcnkiOiIxNzM2NzMwMjE5IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==\n//uid: user@example.com\n",
+			"headerData": [
+				{
+					"key": "authorization",
+					"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJYVzRiWnBZVC1KTlFCdEFpUnRRZFdBIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IlF1ZzU5UDFHdVhSY0dYMUZ4c3Vrc3ciLCJleHBpcnkiOiIxNzM2NzMwMjE5IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "user@example.com",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "https://group-habits.herokuapp.com/api/v1/categories",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1673571866607,
+			"name": "get daily_habits copy",
+			"description": "",
+			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",
+			"responses": []
+		},
+		{
 			"id": "cb53eda1-0289-58bc-27d8-c781fec723b1",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -104,7 +140,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1671233685517,
+			"time": 1673571870869,
 			"name": "sign_in",
 			"description": "",
 			"collectionId": "a559a8d4-af7a-336a-2b5d-79192711d515",

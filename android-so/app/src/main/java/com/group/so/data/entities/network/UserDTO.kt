@@ -6,8 +6,10 @@ data class UserDTO(
     val user: UserDTOContent
 ) {
     fun toModel(): User = User(
+        id = user.id,
         email = user.email,
         first_name = user.first_name,
+        token = user.authorization
     )
 }
 
@@ -20,5 +22,6 @@ data class UserDTOContent(
     val last_name: String,
     val provider: String,
     val uid: String,
-    val username: String
+    val username: String,
+    val authorization: String
 )

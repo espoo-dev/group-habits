@@ -35,6 +35,14 @@ describe 'POST api/v1/users/sign_in', type: :request do
       expect(json[:user][:last_name]).to eq(user.last_name)
     end
 
+    it 'returns valid bearer token' do
+      bearer_token = json[:user][:authorization]
+      encoded_token = bearer_token.split.last # Removes the 'Bearer' from the string
+      user_email = JSON.parse(Base64.strict_decode64(encoded_token))['uid']
+
+      expect(user.email).to eq(user_email)
+    end
+
     it 'returns a valid client and access token' do
       token = response.header['access-token']
       client = response.header['client']

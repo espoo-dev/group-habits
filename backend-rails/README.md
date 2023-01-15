@@ -7,6 +7,8 @@
 1. `docker-compose run --rm --entrypoint="" web rspec .`
 1. `docker-compose run --rm --entrypoint="" web reek .`
 1. `docker-compose up`
+1. `docker-compose exec web sh`
+1. `bundle exec rails s -b 0`
 
 # Rails API Template
 

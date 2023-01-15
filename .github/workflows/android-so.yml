@@ -40,3 +40,4 @@ jobs:
       
     - name: Static Analysis
       run: ./gradlew ktlintCheck detekt
+    

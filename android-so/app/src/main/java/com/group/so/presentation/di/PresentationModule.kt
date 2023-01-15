@@ -1,6 +1,6 @@
 package com.group.so.presentation.di
 
-import com.group.so.presentation.ui.viewmodel.LoginViewModel
+import com.group.so.presentation.ui.login.LoginViewModel
 import org.koin.core.context.GlobalContext.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module

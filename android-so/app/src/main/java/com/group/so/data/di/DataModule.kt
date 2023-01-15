@@ -1,14 +1,19 @@
 package com.group.so.data.di
 
 import android.util.Log
-import com.group.so.data.di.interceptor.HeaderInterceptor
+import com.group.so.data.database.ServiceOrderDatabase
+import com.group.so.data.di.interceptor.AuthInterceptor
 import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
+import com.group.so.data.repository.category.CategoryRepository
+import com.group.so.data.repository.category.CategoryRepositoryImpl
+import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -22,12 +27,19 @@ object DataModule {
     private const val OK_HTTP = "Ok Http"
 
     fun load() {
-        loadKoinModules(postsModule() + networkModule())
+        loadKoinModules(postsModule() + networkModule() + daoModule())
+    }
+
+    private fun daoModule(): Module {
+        return module {
+            single { ServiceOrderDatabase.getInstance(androidContext()).dao }
+        }
     }
 
     private fun postsModule(): Module {
         return module {
             single<LoginRepository> { LoginRepositoryImpl(service = get()) }
+            single<CategoryRepository> { CategoryRepositoryImpl(categoryService = get(), categoryDao = get()) }
         }
     }
 
@@ -35,7 +47,11 @@ object DataModule {
         return module {
 
             single {
-                createOkHttpClient()
+                SessionManager(androidContext())
+            }
+
+            single {
+                createOkHttpClient(get())
             }
 
             single {
@@ -48,7 +64,7 @@ object DataModule {
         }
     }
 
-    private fun createOkHttpClient(): OkHttpClient {
+    private fun createOkHttpClient(sessionManager: SessionManager): OkHttpClient {
 
         val interceptor = HttpLoggingInterceptor {
             Log.e(OK_HTTP, it)
@@ -56,7 +72,7 @@ object DataModule {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
         return OkHttpClient.Builder()
-            .addInterceptor(HeaderInterceptor())
+            .addInterceptor(AuthInterceptor(sessionManager))
             .addInterceptor(interceptor)
             .build()
     }

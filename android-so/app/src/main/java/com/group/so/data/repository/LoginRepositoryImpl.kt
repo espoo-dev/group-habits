@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 
 class LoginRepositoryImpl(
-    private val service: UserService
+    private val service: UserService,
 ) : LoginRepository {
 
     override suspend fun login(authDataRequest: AuthDataRequest): Flow<Resource<User>> = flow {

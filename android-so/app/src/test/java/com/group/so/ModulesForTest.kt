@@ -4,6 +4,7 @@ import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
 import com.group.so.data.services.UserService
 import com.group.so.domain.LoginUseCase
+import com.group.so.presentation.ui.login.LoginViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.koin.dsl.module
@@ -22,6 +23,10 @@ fun configureDataModuleForTest(baseUrl: String) = module {
 
 fun configureDomainModuleForTest() = module {
     factory<LoginUseCase> { LoginUseCase(get()) }
+}
+
+fun configurePresentationModuleForTest() = module {
+    factory { LoginViewModel(get()) }
 }
 
 private inline fun <reified T> createServiceForTest(
