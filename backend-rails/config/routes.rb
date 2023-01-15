@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       resources :daily_habits, only: %i[index create]
-      resources :categories, only: %i[index]
+      resources :categories, only: %i[index create]
 
       get :status, to: 'api#status'
 
