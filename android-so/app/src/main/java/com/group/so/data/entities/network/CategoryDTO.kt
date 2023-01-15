@@ -19,13 +19,13 @@ data class CategoryDTO(
 
 }
 
-fun Array<CategoryDTO>.toModel(): Array<Category> =
+fun List<CategoryDTO>.toModel(): List<Category> =
     this.map {
         it.toModel()
-    }.toTypedArray()
+    }
 
-fun Array<CategoryDTO>.toDb(): Array<CategoryDb> =
+ fun List<CategoryDTO>.toDb(): List<CategoryDb> =
     this.map {
         it.toDb()
-    }.toTypedArray()
+    }
 

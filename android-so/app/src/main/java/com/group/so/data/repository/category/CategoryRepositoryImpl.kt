@@ -1,9 +1,10 @@
 package com.group.so.data.repository.category
 
+import com.group.so.core.RemoteException
 import com.group.so.data.entities.db.toModel
-import com.group.so.data.entities.network.toModel
 import com.group.so.data.entities.network.toDb
 import com.group.so.core.Resource
+import com.group.so.core.networkBoundResource
 import com.group.so.data.dao.CategoryDao
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.network.CategoryDTO
@@ -21,7 +22,7 @@ class CategoryRepositoryImpl(
         categoryDao.listCategories().map {
             it.sortedBy { category ->
                 category.id
-            }.reversed()
+            }.reversed().toModel()
         }
     }
 
@@ -30,20 +31,16 @@ class CategoryRepositoryImpl(
         categoryDao.saveAll(list.toDb())
     }
 
+    override suspend fun listCategories(): Flow<Resource<List<Category>>> =
+        networkBoundResource(
+            query = readFromDatabase,
+            fetch = { categoryService.getAllCategories() },
+            saveFetchResult = { listCategoryDto ->
+                clearDbAndSave(listCategoryDto)
+            },
+            onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
+        )
 
-//    override suspend fun listCategories(): Flow<Resource<List<Category>>> =
-//        networkBoundResource(
-//            query = readFromDatabase,
-//            fetch = { categoryService.getAllCategories()},
-//            saveFetchResult = { listPostDto ->
-//                clearDbAndSave(listPostDto)
-//            },
-//            onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
-//        )
-
-    override suspend fun listCategories(category: String): Flow<Resource<List<Category>>> {
-        TODO("Not yet implemented")
-    }
 }
 
 

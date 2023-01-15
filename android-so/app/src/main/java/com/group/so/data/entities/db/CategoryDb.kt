@@ -16,8 +16,7 @@ data class CategoryDb(
         name = name
     )
 }
-
-fun Array<CategoryDb>.toModel(): Array<Category> =
+fun List<CategoryDb>.toModel(): List<Category> =
     this.map {
         it.toModel()
-    }.toTypedArray()
+    }

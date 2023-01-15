@@ -6,6 +6,8 @@ import com.group.so.data.database.ServiceOrderDatabase
 import com.group.so.data.di.interceptor.AuthInterceptor
 import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
+import com.group.so.data.repository.category.CategoryRepository
+import com.group.so.data.repository.category.CategoryRepositoryImpl
 import com.group.so.data.services.CategoryService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
@@ -39,6 +41,7 @@ object DataModule {
     private fun postsModule(): Module {
         return module {
             single<LoginRepository> { LoginRepositoryImpl(service = get()) }
+            single<CategoryRepository> { CategoryRepositoryImpl(categoryService = get(), categoryDao = get()) }
         }
     }
 

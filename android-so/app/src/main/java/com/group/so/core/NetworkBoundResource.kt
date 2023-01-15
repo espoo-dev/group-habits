@@ -1,3 +1,4 @@
+@file:Suppress("TooGenericExceptionCaught")
 package com.group.so.core
 
 import kotlinx.coroutines.flow.Flow

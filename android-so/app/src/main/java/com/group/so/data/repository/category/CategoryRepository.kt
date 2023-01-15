@@ -5,5 +5,5 @@ import com.group.so.data.entities.model.Category
 import kotlinx.coroutines.flow.Flow
 
 interface CategoryRepository {
-    suspend fun listCategories(category: String): Flow<Resource<List<Category>>>
+    suspend fun listCategories(): Flow<Resource<List<Category>>>
 }
