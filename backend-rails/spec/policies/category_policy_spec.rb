@@ -13,7 +13,7 @@ describe CategoryPolicy do
     let(:user) { create(:user) }
 
     describe 'when user is owner' do
-      let(:category) { build(:category, user: ) }
+      let(:category) { build(:category, user:) }
 
       it 'permits' do
         expect(subject).to permit(user, category)

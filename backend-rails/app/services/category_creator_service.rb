@@ -1,9 +1,9 @@
 class CategoryCreatorService
   attr_reader :user, :name
 
-  def initialize(user:, category_params:)
+  def initialize(user:, create_category_params:)
     @user = user
-    @name = category_params[:name]
+    @name = create_category_params[:name]
   end
 
   def call
