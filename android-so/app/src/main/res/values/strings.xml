@@ -32,6 +32,11 @@
     <string name="msg_category_deleted">Category deleted.</string>
 
     <string name="cd_new_category">Insert new book</string>
+    <string name="btn_register_dialog_new_category">Register New Category</string>
+    <string name="title_dialog_new_category">New Category</string>
+    <string name="txt_register_success_category">Category registered successfully</string>
+    <string name="btn_save_category">Save</string>
+    <string name="btn_cancel_category">Cancel</string>
 
 
 </resources>

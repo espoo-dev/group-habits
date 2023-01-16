@@ -45,15 +45,17 @@ import com.group.so.ui.theme.Poppins
 @ExperimentalMaterialApi
 @Composable
 fun CategoryListScreen(
+    categoryViewModel: CategoryViewModel,
     categoryListState: State<List<Category>>,
-    onNewcategoryClick: () -> Unit,
-    onLogoutClick: () -> Unit,
+    onNewCategoryClick: () -> Unit,
     onCategoryClick: (Category) -> Unit,
     onDeleteCategory: (Category) -> Unit,
     reloadCategories: () -> Unit,
 ) {
     val scaffoldState = rememberScaffoldState()
     var menuExpanded by remember { mutableStateOf(false) }
+
+    var openDialog = remember { mutableStateOf(false) }
 
 
     Scaffold(scaffoldState = scaffoldState, topBar = {
@@ -65,22 +67,24 @@ fun CategoryListScreen(
                 DropdownMenu(expanded = menuExpanded, onDismissRequest = {
                     menuExpanded = false
                 }, content = {
-                    DropdownMenuItem(onClick = {
-                        menuExpanded = false
-                    }, content = {
-                        Text(stringResource(R.string.menu_action_settings))
-                    })
-                    DropdownMenuItem(onClick = {
-                        menuExpanded = false
-                        onLogoutClick()
-                    }, content = {
-                        Text(stringResource(R.string.menu_action_logout))
-                    })
+//                    DropdownMenuItem(onClick = {
+//                        menuExpanded = false
+//                    }, content = {
+//                        Text(stringResource(R.string.menu_action_settings))
+//                    })
+//                    DropdownMenuItem(onClick = {
+//                        menuExpanded = false
+//                    }, content = {
+//                        Text(stringResource(R.string.menu_action_logout))
+//                    })
                 })
             }
         })
     }, floatingActionButton = {
-        FloatingActionButton(onClick = onNewcategoryClick) {
+        FloatingActionButton(onClick = {
+            openDialog.value = true
+            onNewCategoryClick
+        }) {
             Icon(
                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
                 contentDescription = stringResource(
@@ -89,6 +93,12 @@ fun CategoryListScreen(
             )
         }
     }) {
+
+        CategoryNewScreen(
+            categoryViewModel,
+            showDialog = openDialog.value
+        ) { openDialog.value = false }
+
         Box(Modifier.padding(it)) {
             AsyncData(resultState = categoryListState, errorContent = {
                 GenericError(
@@ -210,7 +220,8 @@ fun CategoryItemContent(
                 fontFamily = Poppins,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(60.dp).padding(10.dp),
+                    .height(60.dp)
+                    .padding(10.dp),
                 textAlign = TextAlign.Start,
                 color = Color.Black,
             )

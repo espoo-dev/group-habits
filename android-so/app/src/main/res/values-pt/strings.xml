@@ -27,6 +27,11 @@
     <string name="msg_category_deleted">Categoria deletada.</string>
 
     <string name="cd_new_category">Inserir nova categoria</string>
+    <string name="btn_register_dialog_new_category">Cadastrar Nova Categoria</string>
+    <string name="title_dialog_new_category">Nova Categoria</string>
+    <string name="txt_register_success_category">Categoria cadastrada com sucesso</string>
+    <string name="btn_save_category">Salvar</string>
+    <string name="btn_cancel_category">Cancelar</string>
 
 
 </resources>
