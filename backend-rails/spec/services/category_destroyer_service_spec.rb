@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe CategoryDestroyerService do
   describe '#call' do
     let!(:user) { create(:user) }
-    let!(:destroy_category_params) { {id: category.id} }
+    let!(:destroy_category_params) { { id: category.id } }
 
     subject { described_class.new(user:, destroy_category_params:).call }
 
