@@ -5,7 +5,7 @@ buildscript {
         room_version = "2.4.3"
         koin_version = "3.0.1"
         nav_version = "2.3.5"
-        coroutines_kotlin = "1.6.1"
+        coroutines_kotlin = "1.6.4"
         mock_webserver = "4.6.0"
         glide = "4.13.2"
         retrofit2 = "2.9.0"

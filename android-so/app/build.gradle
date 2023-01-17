@@ -13,6 +13,8 @@ android {
     namespace 'com.group.so'
     compileSdk 33
 
+    
+
     defaultConfig {
         applicationId "com.group.so"
         minSdk 21
@@ -81,6 +83,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_kotlin"
 
 
+
     //MockWebServer
     testImplementation "com.squareup.okhttp3:mockwebserver:$mock_webserver"
 
@@ -127,6 +130,13 @@ dependencies {
 
     androidTestImplementation "android.arch.core:core-testing:1.0.0"
     testImplementation "android.arch.core:core-testing:1.0.0"
+
+
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.29.0-alpha"
+    implementation "com.google.accompanist:accompanist-navigation-animation:0.29.0-alpha"
+
+    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation 'de.charlex.compose:revealswipe:1.0.0'
 
 
 }

@@ -1,6 +1,7 @@
+package com.group.so.data.services
+
 import com.group.so.data.entities.request.AuthContent
 import com.group.so.data.entities.request.AuthDataRequest
-import com.group.so.data.services.UserService
 import com.group.so.mock.UserMock.convertToJson
 import com.group.so.mock.UserMock.userDto
 import com.squareup.moshi.Moshi
