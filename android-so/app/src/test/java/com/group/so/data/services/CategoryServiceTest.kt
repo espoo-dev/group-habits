@@ -1,13 +1,9 @@
 package com.group.so.data.services
 
 import com.group.so.data.MockResponseFileReader
-import com.group.so.data.entities.request.AuthContent
-import com.group.so.data.entities.request.AuthDataRequest
 import com.group.so.data.entities.request.CategoryDataRequest
-import com.group.so.mock.UserMock
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import io.mockk.InternalPlatformDsl.toStr
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -21,7 +17,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.net.HttpURLConnection
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 @RunWith(JUnit4::class)
 class CategoryServiceTest {
@@ -52,45 +47,48 @@ class CategoryServiceTest {
     fun `should return correct endpoint register new category`() {
         runBlocking {
             val response = MockResponse()
-            mockWebServer.enqueue(response.setBody("{\n" +
-                    "    \"id\": 22,\n" +
-                    "    \"name\": \"new name 1\"\n" +
-                    "}"))
+            mockWebServer.enqueue(
+                response.setBody(
+                    "{\n" +
+                        "    \"id\": 22,\n" +
+                        "    \"name\": \"new name 1\"\n" +
+                        "}"
+                )
+            )
             service.registerCategory(CategoryDataRequest(name = "teste1"))
             val request = mockWebServer.takeRequest()
             assertEquals(request.path, "/categories")
         }
     }
     @Test
-    fun `should return category list on success`() = runBlocking{
+    fun `should return category list on success`() = runBlocking {
         // Assign
         val response = MockResponse()
             .setResponseCode(HttpURLConnection.HTTP_OK)
             .setBody(MockResponseFileReader("category/category_sucess.json").content)
         mockWebServer.enqueue(response)
         // Act
-        val  actualResponse = service.getAllCategories()
+        val actualResponse = service.getAllCategories()
         // Assert
-        assertEquals(19,actualResponse.size)
+        assertEquals(19, actualResponse.size)
     }
 
     @Test
-    fun `should return an empty list when it has no category`() = runBlocking{
+    fun `should return an empty list when it has no category`() = runBlocking {
         // Assign
         val response = MockResponse()
             .setResponseCode(HttpURLConnection.HTTP_OK)
             .setBody(MockResponseFileReader("category/category_sucess_empty.json").content)
         mockWebServer.enqueue(response)
         // Act
-        val  actualResponse = service.getAllCategories()
+        val actualResponse = service.getAllCategories()
 
         // Assert
-        assertEquals(0,actualResponse.size)
+        assertEquals(0, actualResponse.size)
     }
 
-
     @Test(expected = HttpException::class)
-    fun `It should return an error when it's 401`() = runBlocking{
+    fun `It should return an error when it's 401`() = runBlocking {
         // Assign
         val response = MockResponse()
             .setResponseCode(HttpURLConnection.HTTP_UNAUTHORIZED)
@@ -100,10 +98,7 @@ class CategoryServiceTest {
         service.getAllCategories()
 
         val request = mockWebServer.takeRequest()
-
-
     }
-
 
     @After
     fun stopService() {

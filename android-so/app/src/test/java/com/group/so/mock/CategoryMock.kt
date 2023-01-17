@@ -5,6 +5,8 @@ import com.group.so.core.Resource
 import com.group.so.data.entities.db.CategoryDb
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.network.CategoryDTO
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 
 object CategoryMock {
@@ -12,7 +14,6 @@ object CategoryMock {
         id = 2,
         name = "teste1",
     )
-
 
     fun mockCategoryEntityDb() = flowOf(
         listOf(
@@ -99,6 +100,10 @@ object CategoryMock {
 
     fun mockCategoryResourceSuccess(): Resource<List<Category>> =
         Resource.Success(data = mockCategoryEntity())
+
+    fun mockCategoryResourceSuccessFlow(): Flow<Resource<List<Category>>> = flow {
+        Resource.Success(data = mockCategoryEntity())
+    }
 
     fun mockCategoryResourceSuccessEmpty(): Resource<List<CategoryDTO>> =
         Resource.Success(data = emptyList())

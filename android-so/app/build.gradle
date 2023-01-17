@@ -13,6 +13,8 @@ android {
     namespace 'com.group.so'
     compileSdk 33
 
+    
+
     defaultConfig {
         applicationId "com.group.so"
         minSdk 21
@@ -79,6 +81,7 @@ dependencies {
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_kotlin"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_kotlin"
+
 
 
     //MockWebServer
