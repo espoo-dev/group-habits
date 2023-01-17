@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>MagicNumber:CategoriesListScreen.kt$100</ID>
+    <ID>MagicNumber:CategoriesListScreen.kt$300</ID>
+    <ID>MemberNameEqualsClassName:CategoryDBTest.kt$CategoryDBTest$private val categoryDBTest = CategoryDb( id = 12783, name = "Category test", )</ID>
+    <ID>MemberNameEqualsClassName:CategoryDTOTest.kt$CategoryDTOTest$private val categoryDTOTest = CategoryDTO( id = 12783, name = "Category test", )</ID>
+    <ID>UnusedPrivateMember:CategoriesListScreen.kt$@ExperimentalFoundationApi @ExperimentalMaterialApi @Preview(showBackground = true) @Composable private fun PreviewCategoryListContent()</ID>
+    <ID>UnusedPrivateMember:GenericError.kt$@Preview(showBackground = true) @Composable private fun PreviewGenericError()</ID>
+    <ID>UnusedPrivateMember:GenericLoading.kt$@Preview(showBackground = true) @Composable private fun PreviewGenericLoading()</ID>
+    <ID>WildcardImport:GenericLoading.kt$import androidx.compose.foundation.layout.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

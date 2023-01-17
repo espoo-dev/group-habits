@@ -78,7 +78,7 @@ fun LoginScreen(
                 Toast.LENGTH_LONG
             ).show()
             navController.popBackStack()
-            navController.navigate(Routes.Home.route)
+            navController.navigate(Routes.Category.route)
         }
     }
     HeaderLogin()
@@ -98,9 +98,9 @@ fun HeaderLogin() {
 
 @Composable
 fun Email(text: String, error: String?, onEmailChanged: (String) -> Unit) {
-
     Column {
         TextField(
+
             label = {
                 Text(
                     text = stringResource(R.string.label_text_email),
@@ -118,6 +118,7 @@ fun Email(text: String, error: String?, onEmailChanged: (String) -> Unit) {
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),
+            singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             shape = RoundedCornerShape(8.dp),
         )
@@ -163,6 +164,7 @@ fun Password(text: String, error: String?, onPasswordChanged: (String) -> Unit) 
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),
+            singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = if (!isPasswordOpen) PasswordVisualTransformation() else VisualTransformation.None,
             trailingIcon = {

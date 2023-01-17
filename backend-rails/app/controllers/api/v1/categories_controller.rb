@@ -8,6 +8,26 @@ module Api
         categories = CategoriesFinderService.new(user: current_user).call
         render json: CategoryPresenter.payload_for_list(categories)
       end
+
+      def create
+        category = CategoryCreatorService.new(user: current_user, create_category_params:).call
+        render json: CategoryPresenter.payload_for_item(category), status: :created
+      end
+
+      def destroy
+        CategoryDestroyerService.new(user: current_user, destroy_category_params:).call
+        render json: {}, status: :no_content
+      end
+
+      private
+
+      def create_category_params
+        params.permit(:name)
+      end
+
+      def destroy_category_params
+        params.permit(:id)
+      end
     end
   end
 end

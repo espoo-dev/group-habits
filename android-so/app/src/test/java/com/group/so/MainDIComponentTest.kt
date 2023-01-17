@@ -8,6 +8,6 @@ const val BASE_URL = "localhost:3000/api/v1/"
 fun configureTestAppComponent() = startKoin {
     loadKoinModules(
         configureDataModuleForTest(BASE_URL) + configureDomainModuleForTest() +
-            configurePresentationModuleForTest()
+            configurePresentationModuleForTest() + configureDAOModuleForTest()
     )
 }
