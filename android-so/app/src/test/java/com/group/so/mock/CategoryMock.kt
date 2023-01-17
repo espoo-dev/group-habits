@@ -8,6 +8,11 @@ import com.group.so.data.entities.network.CategoryDTO
 import kotlinx.coroutines.flow.flowOf
 
 object CategoryMock {
+    val categoryDTO = CategoryDTO(
+        id = 2,
+        name = "teste1",
+    )
+
 
     fun mockCategoryEntityDb() = flowOf(
         listOf(

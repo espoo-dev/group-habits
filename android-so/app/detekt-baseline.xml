@@ -9,7 +9,6 @@
     <ID>UnusedPrivateMember:CategoriesListScreen.kt$@ExperimentalFoundationApi @ExperimentalMaterialApi @Preview(showBackground = true) @Composable private fun PreviewCategoryListContent()</ID>
     <ID>UnusedPrivateMember:GenericError.kt$@Preview(showBackground = true) @Composable private fun PreviewGenericError()</ID>
     <ID>UnusedPrivateMember:GenericLoading.kt$@Preview(showBackground = true) @Composable private fun PreviewGenericLoading()</ID>
-    <ID>WildcardImport:GenericError.kt$import androidx.compose.foundation.layout.*</ID>
     <ID>WildcardImport:GenericLoading.kt$import androidx.compose.foundation.layout.*</ID>
   </CurrentIssues>
 </SmellBaseline>
