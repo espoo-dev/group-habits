@@ -34,4 +34,19 @@ describe 'api/v1/categories', type: :request do
       expect(json_response['name']).to eq(create_category_params[:name])
     end
   end
+
+  describe '#destroy' do
+    let(:user) { create(:user) }
+    let!(:category) { create(:category, user:) }
+
+    before { delete api_v1_category_path(category.id), headers: auth_headers, as: :json }
+
+    it 'returns status 204 no_content' do
+      expect(response).to be_no_content
+    end
+
+    it 'returns an empty hash' do
+      expect(response.body).to eq('')
+    end
+  end
 end
