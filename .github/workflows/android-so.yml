@@ -41,3 +41,9 @@ jobs:
     - name: Static Analysis
       run: ./gradlew ktlintCheck detekt
     
+
+    - name: Build Android release APK
+  
+      uses: VladDaniliuk/action-release-releaseapk@1.4.1
+      with:
+   
