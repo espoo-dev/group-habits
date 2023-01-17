@@ -6,7 +6,10 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,8 +27,6 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ScreenMain() {
     val navController = rememberNavController()
-
-
 
     NavHost(navController = navController, startDestination = Routes.Login.route) {
         composable(Routes.Login.route) {
@@ -56,4 +57,3 @@ fun ScreenMain() {
         }
     }
 }
-

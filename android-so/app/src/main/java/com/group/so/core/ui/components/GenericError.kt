@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.core.ui.components
 
 import androidx.compose.foundation.layout.*
@@ -13,9 +15,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.group.so.ui.theme.SOTheme
 import com.group.so.R
-
+import com.group.so.ui.theme.SOTheme
 
 @Composable
 fun GenericError(

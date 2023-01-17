@@ -13,7 +13,6 @@ import com.group.so.data.services.CategoryService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-
 import retrofit2.HttpException
 
 class CategoryRepositoryImpl(
@@ -44,7 +43,7 @@ class CategoryRepositoryImpl(
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
 
-    override suspend fun register(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>> = flow  {
+    override suspend fun register(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>> = flow {
         try {
             val resultRegistercategory = categoryService.registerCategory(
                 categoryDataRequest
@@ -55,6 +54,4 @@ class CategoryRepositoryImpl(
             emit(Resource.Error(data = null, error = error))
         }
     }
-
-
 }

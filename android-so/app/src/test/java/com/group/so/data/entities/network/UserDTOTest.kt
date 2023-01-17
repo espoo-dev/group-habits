@@ -29,11 +29,9 @@ class UserDTOTest {
     @Test
     fun `should correctly convert to model entity`() {
         val user: User = userDto.toModel()
-        // test whether the converted object is of the right type
-        // assert(user is User)
-        // ... if the title attribute of the DTO object is right...
+
         assert(user.email == userDto.user.email)
-        // ... and that the launches attribute is not empty.
+
         assertEquals(user, userDto.toModel())
     }
 }

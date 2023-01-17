@@ -39,7 +39,7 @@ object DataModule {
 
     private fun postsModule(): Module {
         return module {
-            single<LoginRepository> { LoginRepositoryImpl(service = get(),get()) }
+            single<LoginRepository> { LoginRepositoryImpl(service = get(), get()) }
             single<CategoryRepository> { CategoryRepositoryImpl(categoryService = get(), categoryDao = get()) }
         }
     }

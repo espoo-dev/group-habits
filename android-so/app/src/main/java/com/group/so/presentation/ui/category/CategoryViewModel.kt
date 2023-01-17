@@ -25,7 +25,6 @@ class CategoryViewModel(
     private val _registerCategoryState = MutableStateFlow<State<Category>>(State.Idle)
     val registerCategoryState = _registerCategoryState.asStateFlow()
 
-
     init {
         fetchLatestCategories()
     }
@@ -79,8 +78,7 @@ class CategoryViewModel(
         }
     }
 
-     fun register(name: String) {
+    fun register(name: String) {
         registerNewCategory(CategoryDataRequest(name = name))
     }
-
 }
