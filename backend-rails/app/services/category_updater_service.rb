@@ -1,4 +1,4 @@
-class CategoryFinderService
+class CategoryUpdaterService
   attr_reader :user, :id
 
   def initialize(user:, id:)
@@ -10,7 +10,8 @@ class CategoryFinderService
     category = Category.find_by(id: id, user_id: user.id)
     
     authorize!(user: user, category: category)
-
+    
+    category.update!(name: name)
     category
   end
 

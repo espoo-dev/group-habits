@@ -15,14 +15,8 @@ module Api
       end
 
       def update
-        category = CategoryFinderService.new(user: current_user, 
-                                             id: update_category_params[:id])
-                                             .call
-        if !category.update(update_category_params)
-          render json: CategoryPresenter.payload_for_item(category), status: :ok
-        else
-          render json: {errors: category.errors.full_messages}, status: :unprocessable_entity
-        end
+        category = CategoryUpdaterService.new(user: current_user, id: update_category_params[:id]).call
+        render json: CategoryPresenter.payload_for_item(category), status: :ok
       end
 
       def destroy
