@@ -14,6 +14,17 @@ module Api
         render json: CategoryPresenter.payload_for_item(category), status: :created
       end
 
+      def update
+        category = CategoryFinderService.new(user: current_user, 
+                                             id: update_category_params[:id])
+                                             .call
+        if !category.update(update_category_params)
+          render json: CategoryPresenter.payload_for_item(category), status: :ok
+        else
+          render json: {errors: category.errors.full_messages}, status: :unprocessable_entity
+        end
+      end
+
       def destroy
         CategoryDestroyerService.new(user: current_user, destroy_category_params:).call
         render json: {}, status: :no_content
