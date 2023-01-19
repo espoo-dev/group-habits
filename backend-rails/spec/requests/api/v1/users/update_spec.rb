@@ -38,14 +38,14 @@ describe 'PUT api/v1/user/', type: :request do
 
     it 'returns the error' do
       put api_v1_user_path, params: params, headers: auth_headers, as: :json
-      expect(json[:errors][:email]).to include('is not an email')
+      expect(json[:error]).to eq('Validation failed: Email is not an email')
     end
   end
 
   context 'with missing params' do
     it 'returns the missing params error' do
       put api_v1_user_path, params: {}, headers: auth_headers, as: :json
-      expect(json[:error]).to eq 'A required param is missing'
+      expect(json['error']).to eq('param is missing or the value is empty: user')
     end
   end
 end
