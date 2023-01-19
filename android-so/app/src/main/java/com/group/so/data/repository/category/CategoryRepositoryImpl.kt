@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import retrofit2.HttpException
+import java.net.HttpURLConnection
 
 class CategoryRepositoryImpl(
     private val categoryService: CategoryService,
@@ -51,6 +52,23 @@ class CategoryRepositoryImpl(
             emit(Resource.Success(data = resultRegistercategory.toModel()))
         } catch (ex: HttpException) {
             val error = RemoteException("An error occurred when trying to register a new category")
+            emit(Resource.Error(data = null, error = error))
+        }
+    }
+
+    override suspend fun delete(id: Int): Flow<Resource<Int>> = flow {
+        try {
+            val resultDeleteCategory = categoryService.deleteCategory(
+                id = id
+            )
+            if (resultDeleteCategory.code() == HttpURLConnection.HTTP_NO_CONTENT) {
+                emit(Resource.Success(data = resultDeleteCategory.code()))
+            } else {
+                val error = RemoteException("An error occurred when trying to delete a  category")
+                emit(Resource.Error(data = null, error = error))
+            }
+        } catch (ex: HttpException) {
+            val error = RemoteException("An error occurred when trying to delete a  category")
             emit(Resource.Error(data = null, error = error))
         }
     }

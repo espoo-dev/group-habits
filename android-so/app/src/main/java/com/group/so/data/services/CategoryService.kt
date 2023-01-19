@@ -2,9 +2,13 @@ package com.group.so.data.services
 
 import com.group.so.data.entities.network.CategoryDTO
 import com.group.so.data.entities.request.CategoryDataRequest
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface CategoryService {
     @GET("categories")
@@ -12,4 +16,7 @@ interface CategoryService {
 
     @POST("categories")
     suspend fun registerCategory(@Body categoryDataRequest: CategoryDataRequest): CategoryDTO
+
+    @DELETE("categories/{id}")
+    suspend fun deleteCategory(@Path("type") id: Int): Response<ResponseBody>
 }
