@@ -49,6 +49,26 @@ describe CategoryPolicy do
     end
   end
 
+  permissions :update? do
+    let(:user) { create(:user) }
+
+    describe 'when user is owner' do
+      let(:category) { build(:category, user:) }
+
+      it 'permits' do
+        expect(subject).to permit(user, category)
+      end
+    end
+
+    describe 'when user is not owner' do
+      let(:category) { build(:category) }
+
+      it 'does not permit' do
+        expect(subject).to_not permit(user, category)
+      end
+    end
+  end
+
   describe 'Scope' do
     let(:user) { create(:user, categories: user_categories) }
     let!(:user_categories) { create_list(:category, 1) }
