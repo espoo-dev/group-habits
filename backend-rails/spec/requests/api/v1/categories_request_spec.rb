@@ -44,7 +44,7 @@ describe 'api/v1/categories', type: :request do
       end
 
       it 'returns category' do
-        expect(json_response['errors']).to eq({ 'name' => ["can't be blank"] })
+        expect(json_response['error']).to eq("Validation failed: Name can't be blank")
       end
     end
   end
@@ -74,7 +74,7 @@ describe 'api/v1/categories', type: :request do
       end
 
       it 'returns proper error message' do
-        expect(json_response['errors']).to eq(["Couldn't find the record"])
+        expect(json_response['error']).to eq("Couldn't find Category with 'id'=-1")
       end
     end
   end
