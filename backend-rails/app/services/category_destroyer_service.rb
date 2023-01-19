@@ -7,7 +7,7 @@ class CategoryDestroyerService
   end
 
   def call
-    category = Category.find_by(id: category_id)
+    category = Category.find(category_id)
 
     authorize!(user:, category:)
 

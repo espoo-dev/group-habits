@@ -45,7 +45,7 @@ describe 'PUT api/v1/user/', type: :request do
   context 'with missing params' do
     it 'returns the missing params error' do
       put api_v1_user_path, params: {}, headers: auth_headers, as: :json
-      expect(json[:error]).to eq 'A required param is missing'
+      expect(json["errors"]).to eq ['A required param is missing']
     end
   end
 end

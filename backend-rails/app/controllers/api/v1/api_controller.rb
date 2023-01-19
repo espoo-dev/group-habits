@@ -23,7 +23,7 @@ module Api
 
       def render_not_found(exception)
         logger.info { exception } # for logging
-        render json: { error: I18n.t('api.errors.not_found') }, status: :not_found
+        render json: { errors: [I18n.t('api.errors.not_found')] }, status: :not_found
       end
 
       def render_record_invalid(exception)
@@ -33,7 +33,7 @@ module Api
 
       def render_parameter_missing(exception)
         logger.info { exception } # for logging
-        render json: { error: I18n.t('api.errors.missing_param') }, status: :unprocessable_entity
+        render json: { errors: [I18n.t('api.errors.missing_param')] }, status: :unprocessable_entity
       end
     end
   end
