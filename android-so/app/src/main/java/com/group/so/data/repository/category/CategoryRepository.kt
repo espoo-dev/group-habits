@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface CategoryRepository {
     suspend fun listCategories(): Flow<Resource<List<Category>>>
     suspend fun register(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>>
+    suspend fun delete(id: Int): Flow<Resource<Int>>
 }

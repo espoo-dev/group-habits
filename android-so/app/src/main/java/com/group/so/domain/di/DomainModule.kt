@@ -1,6 +1,7 @@
 package com.group.so.domain.di
 
 import com.group.so.domain.LoginUseCase
+import com.group.so.domain.category.DeleteCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
 import org.koin.core.context.loadKoinModules
@@ -16,8 +17,10 @@ object DomainModule {
     private fun useCaseModule(): Module {
         return module {
             factory { LoginUseCase(get()) }
+
             factory { GetCategoriesUseCase(get()) }
             factory { RegisterCategoryUseCase(get()) }
+            factory { DeleteCategoryUseCase(get()) }
         }
     }
 }
