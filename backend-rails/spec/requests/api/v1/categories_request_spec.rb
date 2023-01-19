@@ -131,18 +131,18 @@ describe 'api/v1/categories', type: :request do
     end
   end
 
-  # describe '#update' do
-  #   let(:user) { create(:user) }
-  #   let!(:category) { create(:category, user:) }
+  describe '#update' do
+    let(:user) { create(:user) }
+    let!(:category) { create(:category, user:) }
 
-  #   before { put api_v1_category_path(category.id), headers: auth_headers, as: :json }
+    before { put api_v1_category_path(category.id), headers: auth_headers, as: :json }
 
-  #   it 'returns status 200 ok' do
-  #     expect(response).to be_successful
-  #   end
+    it 'returns status 200 ok' do
+      expect(response).to be_successful
+    end
 
-  #   it 'returns status 422' do
-  #     expect(response).to be_
-  #   end
-  # end
+    it 'returns status 422' do
+      expect(response).to be_unprocessable
+    end
+  end
 end
