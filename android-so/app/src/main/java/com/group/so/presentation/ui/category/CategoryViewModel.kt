@@ -6,7 +6,9 @@ import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.request.CategoryDataRequest
+import com.group.so.data.entities.request.EditCategoryRequest
 import com.group.so.domain.category.DeleteCategoryUseCase
+import com.group.so.domain.category.EditCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
 import kotlinx.coroutines.Dispatchers
@@ -20,10 +22,12 @@ import kotlinx.coroutines.launch
 class CategoryViewModel(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val registerCategoryUseCase: RegisterCategoryUseCase,
-    private val deleteCategoryUseCase: DeleteCategoryUseCase
+    private val deleteCategoryUseCase: DeleteCategoryUseCase,
+    private val editCategoryUseCase: EditCategoryUseCase
 ) : ViewModel() {
 
     private var removeCategoryJob: Job? = null
+    private var editCategoryJob: Job? = null
 
     private val _categoryState = MutableStateFlow<State<List<Category>>>(State.Idle)
     val categoryState = _categoryState.asStateFlow()
@@ -33,6 +37,9 @@ class CategoryViewModel(
 
     private val _deleteCategoryState = MutableStateFlow<State<Int>>(State.Idle)
     val deleteCategoryState = _deleteCategoryState.asStateFlow()
+
+    private val _editCategoryState = MutableStateFlow<State<Category>>(State.Idle)
+    val editCategoryState = _editCategoryState.asStateFlow()
 
     init {
         fetchLatestCategories()
@@ -89,6 +96,37 @@ class CategoryViewModel(
 
     fun register(name: String) {
         registerNewCategory(CategoryDataRequest(name = name))
+    }
+
+    private fun editCategory(editCategoryDataRequest: EditCategoryRequest) {
+        editCategoryJob?.cancel()
+        editCategoryJob = viewModelScope.launch {
+            launch(Dispatchers.Main) {
+                editCategoryUseCase(editCategoryDataRequest)
+                    .onStart {
+                        _editCategoryState.value = (State.Loading)
+                    }.catch {
+                        with(RemoteException("Could not connect to Service Orders API")) {
+                            _editCategoryState.value = State.Error(this)
+                        }
+                    }
+                    .collect {
+                        it.data?.let { category ->
+                            _editCategoryState.value = State.Success(category)
+                            fetchLatestCategories()
+                        }
+                        it.error?.let { throwable ->
+                            with(RemoteException(throwable.message.toString())) {
+                                _editCategoryState.value = State.Error(this)
+                            }
+                        }
+                    }
+            }
+        }
+    }
+
+    fun edit(id: Int, name: String) {
+        editCategory(EditCategoryRequest(id = id, CategoryDataRequest(name = name)))
     }
 
     private fun deleteCategoryById(id: Int) {

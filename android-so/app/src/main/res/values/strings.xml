@@ -34,9 +34,18 @@
     <string name="cd_new_category">Insert new book</string>
     <string name="btn_register_dialog_new_category">Register New Category</string>
     <string name="title_dialog_new_category">New Category</string>
+    <string name="title_dialog_edit_category">Edit Category %s</string>
     <string name="txt_register_success_category">Category registered successfully</string>
+    <string name="txt_register_edit_category">Category edited successfully</string>
+
     <string name="btn_save_category">Save</string>
     <string name="btn_cancel_category">Cancel</string>
+
+    <!-- Delete dialog-->
+    <string name="title_dialog_delete">Delete Item ?</string>
+    <string name="msg_dialog_delete">Are you sure you want to delete this item from the list?</string>
+    <string name="label_btn_dialog_delete">Cancel</string>
+    <string name="label_delete_btn_dialog_delete">Delete</string>
 
 
 </resources>

@@ -205,6 +205,8 @@ fun BodyLogin(
     val passwordState = remember {
         PasswordState()
     }
+    emailState.text = "user@email.com"
+    passwordState.text = "123456789"
     Box(contentAlignment = Alignment.BottomCenter) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(

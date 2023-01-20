@@ -21,6 +21,6 @@ interface CategoryService {
     @DELETE("categories/{id}")
     suspend fun deleteCategory(@Path("id") id: Int): Response<ResponseBody>
 
-    @PUT("categories")
-    suspend fun editCategory(@Body categoryDataRequest: CategoryDataRequest): CategoryDTO
+    @PUT("categories/{id}")
+    suspend fun editCategory(@Path("id") id: Int, @Body categoryDataRequest: CategoryDataRequest): CategoryDTO
 }

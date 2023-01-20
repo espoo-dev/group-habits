@@ -10,6 +10,7 @@ import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.group.so.domain.LoginUseCase
 import com.group.so.domain.category.DeleteCategoryUseCase
+import com.group.so.domain.category.EditCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
@@ -45,6 +46,7 @@ fun configureDomainModuleForTest() = module {
     factory<GetCategoriesUseCase> { GetCategoriesUseCase(get()) }
     factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
     factory<DeleteCategoryUseCase> { DeleteCategoryUseCase(get()) }
+    factory<EditCategoryUseCase> { EditCategoryUseCase(get()) }
 }
 
 fun configureDAOModuleForTest() = module {
@@ -53,7 +55,7 @@ fun configureDAOModuleForTest() = module {
 
 fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
-    factory { CategoryViewModel(get(), get(), get()) }
+    factory { CategoryViewModel(get(), get(), get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(
