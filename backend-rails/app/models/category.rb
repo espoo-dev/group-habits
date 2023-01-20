@@ -19,7 +19,7 @@ class Category < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: { scope: :user_id, case_sensitive: false }
 
-  scope :by_name_like, ->(name_like) {
-    where("name LIKE ?", "%#{name_like}%")
+  scope :by_name_like, lambda { |name_like|
+    where('name LIKE ?', "%#{name_like}%")
   }
 end
