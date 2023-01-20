@@ -8,10 +8,12 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,6 +27,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -32,6 +35,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -54,6 +58,7 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.group.so.R
 import com.group.so.core.State
 import com.group.so.core.ui.components.AsyncData
+import com.group.so.core.ui.components.DialogDelete
 import com.group.so.core.ui.components.GenericError
 import com.group.so.data.entities.model.Category
 import com.group.so.ui.theme.Poppins
@@ -138,6 +143,7 @@ fun CategoryListScreen(
                             LazyColumn {
                                 items(categoriesList, key = { category -> category.id }) { item ->
                                     CategoryItem(
+                                        categoryViewModel = categoryViewModel,
                                         category = item,
                                         onCategoryClick = onCategoryClick,
                                         onDeleteCategory = onDeleteCategory,
@@ -156,6 +162,7 @@ fun CategoryListScreen(
 @ExperimentalMaterialApi
 @Composable
 fun CategoryItem(
+    categoryViewModel: CategoryViewModel,
     category: Category,
     onCategoryClick: (Category) -> Unit,
     onDeleteCategory: (Category) -> Unit,
@@ -187,6 +194,7 @@ fun CategoryItem(
             )
     ) {
         CategoryItemContent(
+            categoryViewModel = categoryViewModel,
             category = category,
             onCategoryClick = onCategoryClick,
             onDeleteCategory = {
@@ -205,53 +213,93 @@ fun CategoryItem(
 @ExperimentalMaterialApi
 @Composable
 fun CategoryItemContent(
+    categoryViewModel: CategoryViewModel,
     category: Category,
     onCategoryClick: (Category) -> Unit,
     onDeleteCategory: (Category) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val revealState = rememberRevealState()
+
+    var openDialogDelete by remember {
+        mutableStateOf(false) // Initially dialog is closed
+    }
+
+    var openDialogEdit by remember {
+        mutableStateOf(false) // Initially dialog is closed
+    }
+
+    DialogDelete(showDialog = openDialogDelete, onDismiss = {
+        openDialogDelete = false
+    }, onDeleteSuccess = {
+            coroutineScope.launch {
+                onDeleteCategory(category)
+                revealState.snapTo(RevealValue.Default)
+            }
+        })
+
+    CategoryEditScreen(
+        category,
+        categoryViewModel = categoryViewModel,
+        showDialog = openDialogEdit
+    ) { openDialogEdit = false }
+
     RevealSwipe(
         backgroundCardModifier = Modifier.padding(8.dp),
         state = revealState,
         directions = setOf(RevealDirection.EndToStart),
+        contentClickHandledExtern = true,
         hiddenContentEnd = {
-            IconButton(
-                onClick = {
-                    coroutineScope.launch {
-                        onDeleteCategory(category)
-                        revealState.snapTo(RevealValue.Default)
+            Row() {
+                IconButton(
+                    onClick = {
+                        openDialogDelete = true
+//                        coroutineScope.launch {
+//                            onDeleteCategory(category)
+//                            revealState.snapTo(RevealValue.Default)
+//                        }
                     }
+                ) {
+                    Icon(
+                        modifier = Modifier.padding(horizontal = 25.dp),
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = null
+                    )
                 }
-            ) {
-                Icon(
-                    modifier = Modifier.padding(horizontal = 25.dp),
-                    imageVector = Icons.Outlined.Delete,
-                    contentDescription = null
-                )
             }
         }
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .clickable {
-                    onCategoryClick(category)
-                },
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-            Text(
-                text = "${category.name}",
-                fontWeight = FontWeight.Bold,
-                fontFamily = Poppins,
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-                    .padding(10.dp),
-                textAlign = TextAlign.Start,
-                color = Color.Black,
-            )
+                    .clickable(
+                        interactionSource = MutableInteractionSource(),
+                        indication = rememberRipple(
+                            bounded = true,
+                            radius = 250.dp,
+                            color = MaterialTheme.colors.primary
+                        ),
+                        onClick = {
+                            openDialogEdit = true
+                            onCategoryClick(category)
+                        }
+                    )
+            ) {
+                Text(
+                    text = "${category.name}",
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = Poppins,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .padding(10.dp),
+                    textAlign = TextAlign.Start,
+                    color = Color.Black,
+                )
+            }
             Divider()
         }
     }

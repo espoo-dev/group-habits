@@ -3,6 +3,7 @@ package com.group.so.presentation.viewmodel
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.domain.category.DeleteCategoryUseCase
+import com.group.so.domain.category.EditCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
 import com.group.so.mock.CategoryMock.mockCategoryResourceSuccessFlow
@@ -50,7 +51,14 @@ class CategoryViewModelTest {
 
             val deleteCategoryUseCase = DeleteCategoryUseCase(categoryRepository)
 
-            val viewModel = CategoryViewModel(getCategoriesUseCase, registerCategoryUseCase, deleteCategoryUseCase)
+            val editCategoryUseCase = EditCategoryUseCase(categoryRepository)
+
+            val viewModel = CategoryViewModel(
+                getCategoriesUseCase,
+                registerCategoryUseCase,
+                deleteCategoryUseCase,
+                editCategoryUseCase
+            )
 
             coEvery { categoryRepository.listCategories() } returns mockCategoryResourceSuccessFlow()
             coEvery { getCategoriesUseCase() } returns mockCategoryResourceSuccessFlow()

@@ -15,7 +15,7 @@ object PresentationModule {
     private fun viewModelModule(): Module {
         return module {
             factory { LoginViewModel(get()) }
-            factory { CategoryViewModel(get(), get(), get()) }
+            factory { CategoryViewModel(get(), get(), get(), get()) }
         }
     }
 }

@@ -2,6 +2,7 @@
 
 package com.group.so.presentation.ui
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
@@ -48,6 +49,7 @@ fun ScreenMain() {
                 onNewCategoryClick = {
                 },
                 onCategoryClick = {
+                    Log.d("TESTE", "TESTE")
                 },
                 onDeleteCategory = { categoryViewModel.deleteCategory(it.id) }
             ) { categoryViewModel.fetchLatestCategories() }
