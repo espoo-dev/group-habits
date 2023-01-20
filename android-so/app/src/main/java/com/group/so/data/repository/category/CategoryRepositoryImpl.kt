@@ -58,6 +58,20 @@ class CategoryRepositoryImpl(
             }
         }
 
+    override suspend fun edit(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>> =
+        flow {
+            try {
+                val resultEditcategory = categoryService.editCategory(
+                    categoryDataRequest
+                )
+                emit(Resource.Success(data = resultEditcategory.toModel()))
+            } catch (ex: HttpException) {
+                val error =
+                    RemoteException("An error occurred when trying to edit a category")
+                emit(Resource.Error(data = null, error = error))
+            }
+        }
+
     override suspend fun delete(id: Int): Flow<Resource<Int>> = flow {
 
         try {

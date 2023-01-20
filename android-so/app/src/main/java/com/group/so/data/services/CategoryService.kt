@@ -8,6 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface CategoryService {
@@ -19,4 +20,7 @@ interface CategoryService {
 
     @DELETE("categories/{id}")
     suspend fun deleteCategory(@Path("id") id: Int): Response<ResponseBody>
+
+    @PUT("categories")
+    suspend fun editCategory(@Body categoryDataRequest: CategoryDataRequest): CategoryDTO
 }
