@@ -50,7 +50,7 @@ class CategoryViewModelTest {
 
             val deleteCategoryUseCase = DeleteCategoryUseCase(categoryRepository)
 
-            val viewModel = CategoryViewModel(getCategoriesUseCase, registerCategoryUseCase,deleteCategoryUseCase)
+            val viewModel = CategoryViewModel(getCategoriesUseCase, registerCategoryUseCase, deleteCategoryUseCase)
 
             coEvery { categoryRepository.listCategories() } returns mockCategoryResourceSuccessFlow()
             coEvery { getCategoriesUseCase() } returns mockCategoryResourceSuccessFlow()

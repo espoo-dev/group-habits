@@ -41,6 +41,7 @@ fun configureDataModuleForTest(baseUrl: String) = module {
 
 fun configureDomainModuleForTest() = module {
     factory<LoginUseCase> { LoginUseCase(get()) }
+
     factory<GetCategoriesUseCase> { GetCategoriesUseCase(get()) }
     factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
     factory<DeleteCategoryUseCase> { DeleteCategoryUseCase(get()) }
@@ -52,7 +53,7 @@ fun configureDAOModuleForTest() = module {
 
 fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
-    factory { CategoryViewModel(get(), get(),get()) }
+    factory { CategoryViewModel(get(), get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(
