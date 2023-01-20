@@ -18,5 +18,5 @@ interface CategoryService {
     suspend fun registerCategory(@Body categoryDataRequest: CategoryDataRequest): CategoryDTO
 
     @DELETE("categories/{id}")
-    suspend fun deleteCategory(@Path("type") id: Int): Response<ResponseBody>
+    suspend fun deleteCategory(@Path("id") id: Int): Response<ResponseBody>
 }

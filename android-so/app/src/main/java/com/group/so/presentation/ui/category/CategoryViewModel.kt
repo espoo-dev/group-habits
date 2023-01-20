@@ -6,24 +6,28 @@ import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.request.CategoryDataRequest
+import com.group.so.domain.category.DeleteCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 
 class CategoryViewModel(
     private val getCategoriesUseCase: GetCategoriesUseCase,
-    private val registerCategoryUseCase: RegisterCategoryUseCase
+    private val registerCategoryUseCase: RegisterCategoryUseCase,
+    private val deleteCategoryUseCase: DeleteCategoryUseCase
 ) : ViewModel() {
+
+    private var removeCategoryJob: Job? = null
 
     private val _categoryState = MutableStateFlow<State<List<Category>>>(State.Idle)
     val categoryState = _categoryState.asStateFlow()
 
     private val _registerCategoryState = MutableStateFlow<State<Category>>(State.Idle)
     val registerCategoryState = _registerCategoryState.asStateFlow()
+
+    private val _deleteCategoryState = MutableStateFlow<State<Int>>(State.Idle)
+    val deleteCategoryState = _deleteCategoryState.asStateFlow()
 
     init {
         fetchLatestCategories()
@@ -80,5 +84,38 @@ class CategoryViewModel(
 
     fun register(name: String) {
         registerNewCategory(CategoryDataRequest(name = name))
+    }
+
+
+    private fun deleteCategoryById(id: Int) {
+        removeCategoryJob?.cancel()
+        removeCategoryJob = viewModelScope.launch {
+            launch(Dispatchers.Main) {
+                deleteCategoryUseCase(id).onStart {
+                    _deleteCategoryState.value = State.Loading
+                }.catch {
+                    with(RemoteException("Could not connect to Service Order API")) {
+                        _deleteCategoryState.value = State.Error(this)
+
+                    }
+                }.collect {
+                    it.data?.let { id ->
+                        _deleteCategoryState.value = State.Success(id)
+                        fetchCategories()
+                    }
+                    it.error?.let { error ->
+                        with(RemoteException(error.message.toString())) {
+                            _deleteCategoryState.value = State.Error(this)
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    fun deleteCategory(id: Int) {
+        deleteCategoryById(id)
     }
 }
