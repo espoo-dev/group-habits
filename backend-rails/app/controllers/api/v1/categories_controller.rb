@@ -15,7 +15,7 @@ module Api
       end
 
       def update
-        category = CategoryUpdaterService.new(user: current_user, id: update_category_params[:id]).call
+        category = CategoryUpdaterService.new(user: current_user, update_category_params:).call
         render json: CategoryPresenter.payload_for_item(category), status: :ok
       end
 
@@ -32,6 +32,10 @@ module Api
 
       def destroy_category_params
         params.permit(:id)
+      end
+
+      def update_category_params
+        params.permit(:id, :name)
       end
     end
   end

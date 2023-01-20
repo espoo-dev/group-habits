@@ -6,7 +6,7 @@ RSpec.describe CategoryUpdaterService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:new_category_name) { create(:user) }
-    let(:update_category_params) { { id: category.id, name: new_category_name  } }
+    let(:update_category_params) { { id: category.id, name: new_category_name } }
 
     subject { described_class.new(user:, update_category_params:).call }
 
