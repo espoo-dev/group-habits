@@ -11,6 +11,10 @@ class CategoryPolicy < ApplicationPolicy
     owner_user?
   end
 
+  def update?
+    owner_user?
+  end
+
   class Scope
     attr_reader :user, :scope
 

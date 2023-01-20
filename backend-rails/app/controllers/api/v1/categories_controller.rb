@@ -14,6 +14,11 @@ module Api
         render json: CategoryPresenter.payload_for_item(category), status: :created
       end
 
+      def update
+        category = CategoryUpdaterService.new(user: current_user, update_category_params:).call
+        render json: CategoryPresenter.payload_for_item(category), status: :ok
+      end
+
       def destroy
         CategoryDestroyerService.new(user: current_user, destroy_category_params:).call
         render json: {}, status: :no_content
@@ -27,6 +32,10 @@ module Api
 
       def destroy_category_params
         params.permit(:id)
+      end
+
+      def update_category_params
+        params.permit(:id, :name)
       end
     end
   end

@@ -78,4 +78,32 @@ describe 'api/v1/categories', type: :request do
       end
     end
   end
+
+  describe '#update' do
+    let(:user) { create(:user) }
+    let!(:category) { create(:category, user:) }
+
+    before do
+      put api_v1_category_path(category.id), params: update_category_params, headers: auth_headers,
+                                             as: :json
+    end
+
+    context 'when data is valid' do
+      let(:update_category_params) { { name: 'new_name' } }
+      it 'returns status 200 ok' do
+        expect(response).to be_successful
+      end
+
+      it 'updates category name' do
+        expect(category.reload.name).to eq('new_name')
+      end
+    end
+
+    context 'when data is not valid' do
+      let(:update_category_params) { { name: nil } }
+      it 'returns status 400 bad_request' do
+        expect(response).to be_bad_request
+      end
+    end
+  end
 end
