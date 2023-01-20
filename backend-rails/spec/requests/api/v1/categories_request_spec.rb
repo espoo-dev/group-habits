@@ -2,18 +2,34 @@ require 'rails_helper'
 
 describe 'api/v1/categories', type: :request do
   describe '#index' do
-    let(:user) { create(:user, categories: user_categories) }
-    let!(:user_categories) { create_list(:category, 1) }
+    let(:user) { create(:user) }
+    let!(:user_categories) { [category, category2] }
+    let!(:category) { create(:category, name: 'abc', user:) }
+    let!(:category2) { create(:category, name: 'def', user:) }
     let!(:categories2) { create_list(:category, 1) }
 
-    before { get api_v1_categories_path, headers: auth_headers, as: :json }
+    context 'when not filtering' do
+      before { get api_v1_categories_path, headers: auth_headers, as: :json }
+      it 'returns status 200 ok' do
+        expect(response).to be_successful
+      end
 
-    it 'returns status 200 ok' do
-      expect(response).to be_successful
+      it "returns user's categories" do
+        expect(json_response.pluck('id')).to match_array(user_categories.pluck(:id))
+      end
     end
 
-    it "returns user's categories" do
-      expect(json_response.pluck('id')).to match_array(user_categories.pluck(:id))
+    context 'when filtering' do
+      before do
+        get api_v1_categories_path, params: { name: 'bc' }, headers: auth_headers, as: :json
+      end
+      it 'returns status 200 ok' do
+        expect(response).to be_successful
+      end
+
+      it "returns user's categories" do
+        expect(json_response.pluck('id')).to match_array([category.id])
+      end
     end
   end
 
