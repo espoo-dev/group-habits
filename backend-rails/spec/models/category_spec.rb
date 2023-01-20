@@ -16,16 +16,39 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  describe 'relationship' do
+  context 'relationship' do
     it { should belong_to(:user).required }
   end
 
-  describe 'validations' do
+  context 'validations' do
     it { should validate_presence_of(:name) }
 
-    describe 'uniqueness' do
+    context 'uniqueness' do
       subject { create(:category) }
       it { should validate_uniqueness_of(:name).scoped_to(:user_id).case_insensitive }
+    end
+  end
+
+  context 'scopes' do
+    context '.by_name_like' do
+      let!(:category1) { create(:category, name: 'abcde') }
+      let!(:category2) { create(:category, name: 'bcd') }
+      let!(:category3) { create(:category, name: 'abc') }
+      let!(:category4) { create(:category, name: 'bcde') }
+      context 'when name_like is present' do
+        subject { described_class.by_name_like('bcd') }
+
+        it 'returns categories with name like' do
+          is_expected.to match_array([category1, category2, category4])
+        end
+      end
+      context 'when name_like is not present' do
+        subject { described_class.by_name_like(nil) }
+
+        it 'returns all categories' do
+          is_expected.to match_array([category1, category2, category3, category4])
+        end
+      end
     end
   end
 end

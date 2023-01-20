@@ -5,7 +5,7 @@ module Api
       after_action :verify_authorized, only: []
 
       def index
-        categories = CategoriesFinderService.new(user: current_user).call
+        categories = CategoriesFinderService.new(user: current_user, find_params:).call
         render json: CategoryPresenter.payload_for_list(categories)
       end
 
@@ -25,6 +25,10 @@ module Api
       end
 
       private
+
+      def find_params
+        params.permit(:name)
+      end
 
       def create_category_params
         params.permit(:name)
