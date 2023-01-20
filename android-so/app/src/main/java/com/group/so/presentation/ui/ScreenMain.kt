@@ -49,7 +49,7 @@ fun ScreenMain() {
                 },
                 onCategoryClick = {
                 },
-                onDeleteCategory = { }
+                onDeleteCategory = { categoryViewModel.deleteCategory(it.id) }
             ) { categoryViewModel.fetchLatestCategories() }
         }
         composable(Routes.Home.route) {

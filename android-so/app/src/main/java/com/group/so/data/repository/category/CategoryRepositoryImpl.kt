@@ -44,19 +44,22 @@ class CategoryRepositoryImpl(
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
 
-    override suspend fun register(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>> = flow {
-        try {
-            val resultRegistercategory = categoryService.registerCategory(
-                categoryDataRequest
-            )
-            emit(Resource.Success(data = resultRegistercategory.toModel()))
-        } catch (ex: HttpException) {
-            val error = RemoteException("An error occurred when trying to register a new category")
-            emit(Resource.Error(data = null, error = error))
+    override suspend fun register(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>> =
+        flow {
+            try {
+                val resultRegistercategory = categoryService.registerCategory(
+                    categoryDataRequest
+                )
+                emit(Resource.Success(data = resultRegistercategory.toModel()))
+            } catch (ex: HttpException) {
+                val error =
+                    RemoteException("An error occurred when trying to register a new category")
+                emit(Resource.Error(data = null, error = error))
+            }
         }
-    }
 
     override suspend fun delete(id: Int): Flow<Resource<Int>> = flow {
+
         try {
             val resultDeleteCategory = categoryService.deleteCategory(
                 id = id
@@ -64,7 +67,8 @@ class CategoryRepositoryImpl(
             if (resultDeleteCategory.code() == HttpURLConnection.HTTP_NO_CONTENT) {
                 emit(Resource.Success(data = resultDeleteCategory.code()))
             } else {
-                val error = RemoteException("An error occurred when trying to delete a  category")
+                val error =
+                    RemoteException("An error occurred when trying to delete a  category")
                 emit(Resource.Error(data = null, error = error))
             }
         } catch (ex: HttpException) {
