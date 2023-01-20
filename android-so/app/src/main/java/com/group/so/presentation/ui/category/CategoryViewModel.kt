@@ -86,7 +86,6 @@ class CategoryViewModel(
         registerNewCategory(CategoryDataRequest(name = name))
     }
 
-
     private fun deleteCategoryById(id: Int) {
         removeCategoryJob?.cancel()
         removeCategoryJob = viewModelScope.launch {
@@ -96,7 +95,6 @@ class CategoryViewModel(
                 }.catch {
                     with(RemoteException("Could not connect to Service Order API")) {
                         _deleteCategoryState.value = State.Error(this)
-
                     }
                 }.collect {
                     it.data?.let { id ->
@@ -110,9 +108,7 @@ class CategoryViewModel(
                     }
                 }
             }
-
         }
-
     }
 
     fun deleteCategory(id: Int) {

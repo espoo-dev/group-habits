@@ -10,12 +10,9 @@ import com.group.so.data.entities.network.CategoryDTO
 import com.group.so.data.entities.network.toDb
 import com.group.so.data.entities.request.CategoryDataRequest
 import com.group.so.data.services.CategoryService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.net.HttpURLConnection
 
@@ -61,25 +58,7 @@ class CategoryRepositoryImpl(
             }
         }
 
-    //    override suspend fun delete(id: Int): Flow<Resource<Int>> = flow {
-//        CoroutineScope(Dispatchers.Main).launch {
-//            try {
-//                val resultDeleteCategory = categoryService.deleteCategory(
-//                    id = id
-//                )
-//                if (resultDeleteCategory.code() == HttpURLConnection.HTTP_NO_CONTENT) {
-//                     emit(Resource.Success(data = resultDeleteCategory.code()))
-//                } else {
-//                    val error =
-//                        RemoteException("An error occurred when trying to delete a  category")
-//                    emit(Resource.Error(data = null, error = error))
-//                }
-//            } catch (ex: HttpException) {
-//                val error = RemoteException("An error occurred when trying to delete a  category")
-//                emit(Resource.Error(data = null, error = error))
-//            }
-//        }
-//    }
+
     override suspend fun delete(id: Int): Flow<Resource<Int>> = flow {
 
         try {
@@ -97,6 +76,5 @@ class CategoryRepositoryImpl(
             val error = RemoteException("An error occurred when trying to delete a  category")
             emit(Resource.Error(data = null, error = error))
         }
-
     }
 }
