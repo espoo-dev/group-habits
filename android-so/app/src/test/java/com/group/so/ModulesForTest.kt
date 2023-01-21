@@ -44,7 +44,7 @@ fun configureDataModuleForTest(baseUrl: String) = module {
 fun configureDomainModuleForTest() = module {
     factory<LoginUseCase> { LoginUseCase(get()) }
 
-    factory<GetCategoriesUseCase> { GetCategoriesUseCase(get()) }
+    factory<GetCategoriesUseCase>{ GetCategoriesUseCase(get()) }
     factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
     factory<DeleteCategoryUseCase> { DeleteCategoryUseCase(get()) }
     factory<EditCategoryUseCase> { EditCategoryUseCase(get()) }

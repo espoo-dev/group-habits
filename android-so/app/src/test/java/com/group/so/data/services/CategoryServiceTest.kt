@@ -35,6 +35,17 @@ class CategoryServiceTest {
             .create(CategoryService::class.java)
     }
     @Test
+    fun `should return correct endpoint get categories when receiving query`() {
+        runBlocking {
+            mockWebServer.enqueue(MockResponse().setBody("[]"))
+            service.listCategoriesByName("teste")
+            val request = mockWebServer.takeRequest()
+            println(request.path)
+            assertEquals(request.path, "/categories?name=teste")
+        }
+
+    }
+    @Test
     fun `should return correct endpoint get categories`() {
         runBlocking {
             mockWebServer.enqueue(MockResponse().setBody(""))
