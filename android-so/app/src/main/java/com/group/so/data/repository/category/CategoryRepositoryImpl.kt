@@ -55,7 +55,6 @@ class CategoryRepositoryImpl(
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
 
-
     override suspend fun register(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>> =
         flow {
             try {
@@ -103,6 +102,4 @@ class CategoryRepositoryImpl(
             emit(Resource.Error(data = null, error = error))
         }
     }
-
-
 }

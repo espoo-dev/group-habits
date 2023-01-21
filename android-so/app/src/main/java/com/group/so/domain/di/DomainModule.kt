@@ -1,7 +1,11 @@
 package com.group.so.domain.di
 
 import com.group.so.domain.LoginUseCase
-import com.group.so.domain.category.*
+import com.group.so.domain.category.DeleteCategoryUseCase
+import com.group.so.domain.category.EditCategoryUseCase
+import com.group.so.domain.category.GetCategoriesUseCase
+import com.group.so.domain.category.RegisterCategoryUseCase
+import com.group.so.domain.category.SearchCategoriesUseCase
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module

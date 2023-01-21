@@ -9,8 +9,6 @@ import kotlinx.coroutines.flow.Flow
 class SearchCategoriesUseCase(private val repository: CategoryRepository) :
     UseCase<String, Resource<List<Category>>>() {
 
-    override suspend fun execute(param: String):Flow<Resource<List<Category>>> =
+    override suspend fun execute(param: String): Flow<Resource<List<Category>>> =
         repository.listCategoriesByName(param)
-
-
 }
