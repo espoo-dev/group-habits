@@ -7,10 +7,14 @@ import com.group.so.core.State
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.request.CategoryDataRequest
 import com.group.so.data.entities.request.EditCategoryRequest
-import com.group.so.domain.category.DeleteCategoryUseCase
-import com.group.so.domain.category.EditCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
+import com.group.so.domain.category.DeleteCategoryUseCase
+
+import com.group.so.domain.category.EditCategoryUseCase
+
+import com.group.so.domain.category.SearchCategoriesUseCase
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +27,8 @@ class CategoryViewModel(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val registerCategoryUseCase: RegisterCategoryUseCase,
     private val deleteCategoryUseCase: DeleteCategoryUseCase,
-    private val editCategoryUseCase: EditCategoryUseCase
+    private val editCategoryUseCase: EditCategoryUseCase,
+    private val searchCategoriesUseCase: SearchCategoriesUseCase
 ) : ViewModel() {
 
     private var removeCategoryJob: Job? = null
@@ -52,6 +57,31 @@ class CategoryViewModel(
     private fun fetchCategories() {
         viewModelScope.launch {
             getCategoriesUseCase().onStart {
+                _categoryState.value = State.Loading
+            }.catch {
+                with(RemoteException("Could not connect to Service Order API")) {
+                    _categoryState.value = State.Error(this)
+                }
+            }.collect {
+                it.data?.let { posts ->
+                    _categoryState.value = State.Success(posts)
+                }
+                it.error?.let { error ->
+                    with(RemoteException(error.message.toString())) {
+                        _categoryState.value = State.Error(this)
+                    }
+                }
+            }
+        }
+    }
+
+    fun getCategoriesByName(name: String) {
+        searchCategoriesByName(name)
+    }
+
+    private fun searchCategoriesByName(name: String) {
+        viewModelScope.launch {
+            searchCategoriesUseCase(name).onStart {
                 _categoryState.value = State.Loading
             }.catch {
                 with(RemoteException("Could not connect to Service Order API")) {
