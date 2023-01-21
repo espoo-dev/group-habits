@@ -9,7 +9,11 @@ import com.group.so.data.services.CategoryService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.group.so.domain.LoginUseCase
-import com.group.so.domain.category.*
+import com.group.so.domain.category.DeleteCategoryUseCase
+import com.group.so.domain.category.EditCategoryUseCase
+import com.group.so.domain.category.GetCategoriesUseCase
+import com.group.so.domain.category.RegisterCategoryUseCase
+import com.group.so.domain.category.SearchCategoriesUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.login.LoginViewModel
 import com.squareup.moshi.Moshi
@@ -53,7 +57,7 @@ fun configureDAOModuleForTest() = module {
 
 fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
-    factory { CategoryViewModel(get(), get(), get(), get(),get()) }
+    factory { CategoryViewModel(get(), get(), get(), get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(

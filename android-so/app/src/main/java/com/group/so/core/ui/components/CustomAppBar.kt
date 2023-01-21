@@ -3,38 +3,34 @@
 package com.group.so.core.ui.components
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.Surface
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.ContentAlpha
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -45,11 +41,11 @@ import com.group.so.R
 
 @Composable
 fun CustomTopAppBar(
-    titleToolbar:String,
+    titleToolbar: String,
     sharedViewModel: SharedViewModel,
     searchAppBarState: SearchAppBarState,
     searchTextState: String,
-    onSubmitSearch:(String) ->Unit
+    onSubmitSearch: (String) -> Unit
 ) {
     when (searchAppBarState) {
         SearchAppBarState.CLOSED -> {
@@ -90,11 +86,11 @@ fun DefaultTopAppBar(
         modifier = Modifier
             .fillMaxWidth()
     ) {
-////        Image(
-////            modifier = Modifier.fillMaxSize(),
-////            painter = painterResource(id = R.drawable.ic_top_app_bar_bg),
-////            contentDescription = "background_image",
-////            contentScale = ContentScale.FillBounds
+// //        Image(
+// //            modifier = Modifier.fillMaxSize(),
+// //            painter = painterResource(id = R.drawable.ic_top_app_bar_bg),
+// //            contentDescription = "background_image",
+// //            contentScale = ContentScale.FillBounds
 //        )
         TopAppBar(
             backgroundColor = MaterialTheme.colors.primary,
@@ -119,15 +115,15 @@ fun AppBarActions(
     onSearchClicked: () -> Unit
 ) {
     SearchAction(onSearchClicked = onSearchClicked)
-    //ShareAction()
-    //MoreAction()
+    // ShareAction()
+    // MoreAction()
 }
 
 @Composable
 fun SearchAction(
     onSearchClicked: () -> Unit
 ) {
-    //val context = LocalContext.current
+    // val context = LocalContext.current
     IconButton(
         onClick = {
             onSearchClicked()
@@ -141,8 +137,8 @@ fun SearchAction(
     }
 }
 
-//@Composable
-//fun ShareAction() {
+// @Composable
+// fun ShareAction() {
 //    val context = LocalContext.current
 //    IconButton(
 //        onClick = {
@@ -155,10 +151,10 @@ fun SearchAction(
 //            tint = Color.White
 //        )
 //    }
-//}
+// }
 
-//@Composable
-//fun MoreAction() {
+// @Composable
+// fun MoreAction() {
 //    var expanded by remember {
 //        mutableStateOf(false)
 //    }
@@ -193,7 +189,7 @@ fun SearchAction(
 //            }
 //        }
 //    }
-//}
+// }
 
 @Composable
 fun SearchTopAppBar(
@@ -203,7 +199,6 @@ fun SearchTopAppBar(
     onSearchClicked: (String) -> Unit
 
 ) {
-
 
     val focusRequester = remember { FocusRequester() }
 
@@ -215,10 +210,9 @@ fun SearchTopAppBar(
         mutableStateOf(TrailingIconState.DELETE)
     }
 
-
     Box(
         modifier = Modifier
-             .height(80.dp)
+            .height(80.dp)
             .fillMaxWidth()
     ) {
 //        Image(
@@ -272,7 +266,7 @@ fun SearchTopAppBar(
                     IconButton(onClick = {
                         when (trailingIconState) {
                             TrailingIconState.DELETE -> {
-                                if(text.isEmpty() || text.isBlank() ){
+                                if (text.isEmpty() || text.isBlank()) {
                                     onCloseClicked()
                                 }
                                 onTextChange("")
@@ -312,7 +306,6 @@ fun SearchTopAppBar(
                 )
             )
         }
-
     }
 }
 
@@ -335,17 +328,3 @@ fun SearchAppBarPreview() {
         onSearchClicked = {}
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

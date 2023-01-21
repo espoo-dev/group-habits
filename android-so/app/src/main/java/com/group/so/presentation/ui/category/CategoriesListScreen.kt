@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
-import androidx.compose.material.DropdownMenu
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -30,9 +29,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material.ripple.rememberRipple
@@ -58,11 +55,11 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.group.so.R
 import com.group.so.core.State
 import com.group.so.core.ui.components.AsyncData
-import com.group.so.core.ui.components.GenericError
-import com.group.so.core.ui.components.DialogDelete
-import com.group.so.core.ui.components.SharedViewModel
-import com.group.so.core.ui.components.SearchAppBarState
 import com.group.so.core.ui.components.CustomTopAppBar
+import com.group.so.core.ui.components.DialogDelete
+import com.group.so.core.ui.components.GenericError
+import com.group.so.core.ui.components.SearchAppBarState
+import com.group.so.core.ui.components.SharedViewModel
 import com.group.so.data.entities.model.Category
 import com.group.so.ui.theme.Poppins
 import com.group.so.ui.theme.SOTheme
@@ -71,7 +68,6 @@ import de.charlex.compose.RevealSwipe
 import de.charlex.compose.RevealValue
 import de.charlex.compose.rememberRevealState
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.inject
 import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalFoundationApi
@@ -87,7 +83,7 @@ fun CategoryListScreen(
 ) {
 
     val scaffoldState = rememberScaffoldState()
-    //var menuExpanded by remember { mutableStateOf(false) }
+    // var menuExpanded by remember { mutableStateOf(false) }
     var openDialog = remember { mutableStateOf(false) }
 
     val sharedViewModel = koinViewModel<SharedViewModel>()

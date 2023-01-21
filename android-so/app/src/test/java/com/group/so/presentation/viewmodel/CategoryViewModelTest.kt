@@ -2,7 +2,11 @@ package com.group.so.presentation.viewmodel
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.group.so.data.repository.category.CategoryRepository
-import com.group.so.domain.category.*
+import com.group.so.domain.category.DeleteCategoryUseCase
+import com.group.so.domain.category.EditCategoryUseCase
+import com.group.so.domain.category.GetCategoriesUseCase
+import com.group.so.domain.category.RegisterCategoryUseCase
+import com.group.so.domain.category.SearchCategoriesUseCase
 import com.group.so.mock.CategoryMock.mockCategoryResourceSuccessFlow
 import com.group.so.presentation.ui.category.CategoryViewModel
 import io.mockk.coEvery
