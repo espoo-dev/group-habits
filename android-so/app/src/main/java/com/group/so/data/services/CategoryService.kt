@@ -10,6 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface CategoryService {
     @GET("categories")
@@ -23,4 +24,9 @@ interface CategoryService {
 
     @PUT("categories/{id}")
     suspend fun editCategory(@Path("id") id: Int, @Body categoryDataRequest: CategoryDataRequest): CategoryDTO
+
+    @GET("categories")
+    suspend fun listCategoriesByName(
+        @Query("name") name: String?
+    ): List<CategoryDTO>
 }

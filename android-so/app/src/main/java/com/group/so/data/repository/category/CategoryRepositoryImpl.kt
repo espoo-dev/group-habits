@@ -45,6 +45,16 @@ class CategoryRepositoryImpl(
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
 
+    override suspend fun listCategoriesByName(name: String): Flow<Resource<List<Category>>> =
+        networkBoundResource(
+            query = readFromDatabase,
+            fetch = { categoryService.listCategoriesByName(name) },
+            saveFetchResult = { listCategoryDto ->
+                clearDbAndSave(listCategoryDto)
+            },
+            onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
+        )
+
     override suspend fun register(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>> =
         flow {
             try {
