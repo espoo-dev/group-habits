@@ -1,4 +1,4 @@
-class CategoryDestroyerService
+class CategoryDestroyerService < BaseService
   attr_reader :user, :category_id
 
   def initialize(user:, destroy_category_params:)
@@ -9,15 +9,9 @@ class CategoryDestroyerService
   def call
     category = Category.find(category_id)
 
-    authorize!(user:, category:)
+    authorize!(CategoryPolicy, :destroy?, category)
 
     category.destroy!
     nil
-  end
-
-  private
-
-  def authorize!(user:, category:)
-    raise Pundit::NotAuthorizedError unless CategoryPolicy.new(user, category).destroy?
   end
 end

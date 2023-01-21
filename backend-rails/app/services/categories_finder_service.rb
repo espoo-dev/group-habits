@@ -1,4 +1,4 @@
-class CategoriesFinderService
+class CategoriesFinderService < BaseService
   attr_reader :user, :name
 
   def initialize(user:, find_params:)
@@ -10,14 +10,8 @@ class CategoriesFinderService
     categories = CategoryPolicy::Scope.new(user, Category).resolve
                                       .by_name_like(name)
 
-    authorize!(user:, categories:)
+    authorize!(CategoryPolicy, :index?, categories)
 
     categories
-  end
-
-  private
-
-  def authorize!(user:, categories:)
-    raise Pundit::NotAuthorizedError unless DailyHabitPolicy.new(user, categories).index?
   end
 end

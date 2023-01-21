@@ -34,3 +34,6 @@ Rails/Delegate:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - app/controllers/api/v1/api_controller.rb
+
+Lint/MissingSuper:
+  Enabled: false
