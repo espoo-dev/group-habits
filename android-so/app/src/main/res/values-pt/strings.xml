@@ -18,6 +18,7 @@
 
 
     <!-- Categories-->
+    <string name="title_toolbar_categories">Categorias</string>
     <!-- Menu Actions -->
     <string name="menu_action_edit">Editar</string>
     <string name="menu_action_logout">Sair</string>
@@ -39,6 +40,12 @@
     <string name="msg_dialog_delete">Tem certeza de que deseja excluir este item da lista?</string>
     <string name="label_btn_dialog_delete">Cancelar</string>
     <string name="label_delete_btn_dialog_delete">Deletar</string>
+
+
+    <!--Search bar-->
+    <string name="search">Pesquisar</string>
+    <string name="search_icon">pequisar icon</string>
+    <string name="close_icon">fechar icon</string>
 
 
 </resources>
