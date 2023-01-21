@@ -1,4 +1,4 @@
-class CategoryUpdaterService
+class CategoryUpdaterService < BaseService
   attr_reader :user, :id, :name
 
   def initialize(user:, update_category_params:)
@@ -10,15 +10,9 @@ class CategoryUpdaterService
   def call
     category = Category.find(id)
 
-    authorize!(user:, category:)
+    authorize!(CategoryPolicy, :update?, category)
 
     category.update!(name:)
     category
-  end
-
-  private
-
-  def authorize!(user:, category:)
-    raise Pundit::NotAuthorizedError unless CategoryPolicy.new(user, category).update?
   end
 end

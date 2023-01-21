@@ -1,4 +1,4 @@
-class CategoryCreatorService
+class CategoryCreatorService < BaseService
   attr_reader :user, :name
 
   def initialize(user:, create_category_params:)
@@ -9,15 +9,9 @@ class CategoryCreatorService
   def call
     category = Category.new(user:, name:)
 
-    authorize!(user:, category:)
+    authorize!(CategoryPolicy, :create?, category)
 
     category.save!
     category
-  end
-
-  private
-
-  def authorize!(user:, category:)
-    raise Pundit::NotAuthorizedError unless CategoryPolicy.new(user, category).create?
   end
 end
