@@ -11,4 +11,5 @@ interface CategoryRepository {
     suspend fun register(categoryDataRequest: CategoryDataRequest): Flow<Resource<Category>>
     suspend fun edit(editCategoryRequest: EditCategoryRequest): Flow<Resource<Category>>
     suspend fun delete(id: Int): Flow<Resource<Int>>
+    suspend fun listCategoriesByName(name: String): Flow<Resource<List<Category>>>
 }
