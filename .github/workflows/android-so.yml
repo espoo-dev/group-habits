@@ -41,11 +41,3 @@ jobs:
     - name: Static Analysis
       run: ./gradlew ktlintCheck detekt
       
-    - name: Build Release APK
-      run: ./gradlew assembleRelease
-    - name: Releasing using Hub
-      uses: kyze8439690/action-release-releaseapk@master
-      env:
-       GITHUB_TOKEN: ${{ secrets.release_apk_so }}
-       APP_FOLDER: app
-      
