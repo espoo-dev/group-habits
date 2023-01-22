@@ -41,15 +41,3 @@ jobs:
     - name: Static Analysis
       run: ./gradlew ktlintCheck detekt
       
-    - name: Make Gradle executable
-      run: chmod +x ./gradlew
-    - name: Build Release APK
-      run: ./gradlew assembleRelease
-    - name: Releasing using Hub
-      uses: kyze8439690/action-release-releaseapk@master
-      env:
-       GITHUB_TOKEN: ${{ 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 }}
-       APP_FOLDER: app
-    
-
-   
