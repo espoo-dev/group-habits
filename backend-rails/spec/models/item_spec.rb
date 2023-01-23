@@ -67,5 +67,35 @@ RSpec.describe Item, type: :model do
         end
       end
     end
+
+    context '.by_item_type' do
+      let!(:item1) { create(:item, item_type: 'product') }
+      let!(:item2) { create(:item, item_type: 'product') }
+      let!(:item3) { create(:item, item_type: 'service') }
+      let!(:item4) { create(:item, item_type: 'service') }
+      subject { described_class.by_item_type(item_type) }
+
+      context 'when item_type is product' do
+        let(:item_type) { 'product' }
+
+        it 'returns items with item_type product' do
+          is_expected.to match_array([item1, item2])
+        end
+      end
+      context 'when item_type is service' do
+        let(:item_type) { 'service' }
+
+        it 'returns items with item_type service' do
+          is_expected.to match_array([item3, item4])
+        end
+      end
+      context 'when item_type is nil' do
+        let(:item_type) { nil }
+
+        it 'returns all items' do
+          is_expected.to match_array([item1, item2, item3, item4])
+        end
+      end
+    end
   end
 end

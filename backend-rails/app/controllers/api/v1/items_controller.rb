@@ -12,7 +12,7 @@ module Api
       private
 
       def index_params
-        params.permit(:name)
+        params.permit(:name, :item_type)
       end
     end
   end
