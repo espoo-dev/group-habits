@@ -8,6 +8,9 @@ export default class AxiosAdapter implements Http {
       url,
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem('user')).user.authorization
+        }`,
       },
     });
     return response.data;

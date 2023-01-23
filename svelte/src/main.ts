@@ -1,9 +1,8 @@
 import App from './App.svelte';
 import './index.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import Login from './routes/pages/Login.svelte';
 
-const app = new Login({
+const app = new App({
   target: document.getElementById('app'),
 });
 
