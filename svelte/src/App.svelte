@@ -1,6 +1,32 @@
 <script lang="ts">
-  import Day from './lib/components/Day/Day.svelte';
-  import HabitList from './lib/components/HabitList.svelte';
+  import AxiosAdapter from './infra/http/AxiosAdapter';
+
+  const api = new AxiosAdapter();
+  let auth = '';
+
+  const menuOptions = [
+    {
+      name: 'Início',
+    },
+    {
+      name: 'Categorias',
+    },
+  ];
+
+  const login = async () => {
+    api
+      .post('https://group-habits.herokuapp.com/api/v1/users/sign_in', {
+        user: {
+          email: 'user@email.com',
+          password: '123456789',
+        },
+      })
+      .then((resp) => {
+        auth = resp.user.authorization;
+      });
+  };
+
+  login();
 
   const habits = [
     {
@@ -16,15 +42,9 @@
   ];
 </script>
 
-<main class="text-center page-container">
-  <nav>Today</nav>
-
-  <div class="list-container">
-    <Day dayName="Seg" dayNumber={9} selected={false} />
-    <Day dayName="Ter" dayNumber={10} selected={false} />
-  </div>
-
-  <HabitList {habits} />
+<main>
+  <!-- <Menu options={menuOptions} /> -->
+  <h1>login</h1>
 </main>
 
 <style>
@@ -35,8 +55,8 @@
 
   /*  */
   :global(body) {
-    background-color: #151515;
-    color: #fff;
+    background-color: #f9f9f9;
+    color: #000;
   }
   .page-container {
     padding: 8px;
