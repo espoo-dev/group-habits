@@ -139,4 +139,7 @@ dependencies {
     implementation 'de.charlex.compose:revealswipe:1.0.0'
 
 
+    testImplementation 'app.cash.turbine:turbine:0.8.0'
+
+
 }
