@@ -34,6 +34,6 @@ class Item < ApplicationRecord
   validates :item_type, inclusion: ITEM_TYPES
 
   scope :by_name_like, lambda { |name_like|
-    where('name LIKE ?', "%#{name_like}%")
+    where('name LIKE ?', "%#{name_like}%").order(:id)
   }
 end
