@@ -6,7 +6,7 @@ RSpec.describe ItemsFinderService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:item) { create(:item, name: 'abc', item_type: 'product', user:) }
-    let!(:item2) { create(:item, name: 'def', item_type: 'service',user:) }
+    let!(:item2) { create(:item, name: 'def', item_type: 'service', user:) }
     let!(:item3) { create(:item) }
 
     context 'when not querying' do
@@ -30,7 +30,6 @@ RSpec.describe ItemsFinderService do
           is_expected.to eq [item2]
         end
       end
-
     end
   end
 end

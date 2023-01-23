@@ -4,8 +4,8 @@ describe 'api/v1/items', type: :request do
   describe '#index' do
     let(:user) { create(:user) }
     let!(:user_items) { [item, item2] }
-    let!(:item) { create(:item, name: 'abc', item_type: "product", user:) }
-    let!(:item2) { create(:item, name: 'def', item_type: "service", user:) }
+    let!(:item) { create(:item, name: 'abc', item_type: 'product', user:) }
+    let!(:item2) { create(:item, name: 'def', item_type: 'service', user:) }
     let!(:items2) { create_list(:item, 1) }
 
     context 'when not filtering' do
@@ -46,7 +46,6 @@ describe 'api/v1/items', type: :request do
           expect(json_response.pluck('id')).to match_array([item2.id])
         end
       end
-
     end
   end
 end
