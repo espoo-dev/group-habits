@@ -1,9 +1,9 @@
 class ItemsFinderService < BaseService
   attr_reader :user, :name
 
-  def initialize(user:, find_params:)
+  def initialize(user:, index_params:)
     @user = user
-    @name = find_params[:name]
+    @name = index_params[:name]
   end
 
   def call
