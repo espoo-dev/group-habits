@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_11_230929) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_23_133317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -107,6 +107,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_230929) do
     t.string "icon"
     t.integer "group_id"
     t.index ["group_id"], name: "index_habits_on_group_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "extra_info"
+    t.decimal "sale_price", precision: 8, scale: 2, null: false
+    t.decimal "purchase_price", precision: 8, scale: 2
+    t.string "sales_unit", null: false
+    t.string "item_type", null: false
+    t.string "category_id", null: false
+    t.string "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["user_id", "name"], name: "index_items_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "settings", force: :cascade do |t|

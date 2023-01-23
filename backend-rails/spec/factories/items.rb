@@ -13,14 +13,16 @@
 #  index_categories_on_user_id           (user_id)
 #  index_categories_on_user_id_and_name  (user_id,name) UNIQUE
 #
-class Category < ApplicationRecord
-  belongs_to :user
-  has_many :items, dependent: :destroy
+FactoryBot.define do
+  factory :item do
+    name { 'laptop' }
+    extra_info { 'nice laptop' }
+    sale_price { 2000.00 }
+    purchase_price { 1500.55 }
+    sales_unit { 'unit' }
+    item_type { 'product' }
 
-  validates :name, presence: true
-  validates :name, uniqueness: { scope: :user_id, case_sensitive: false }
-
-  scope :by_name_like, lambda { |name_like|
-    where('name LIKE ?', "%#{name_like}%").order(:id)
-  }
+    association :user
+    association :category
+  end
 end

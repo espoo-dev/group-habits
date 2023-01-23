@@ -18,6 +18,7 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   context 'relationship' do
     it { should belong_to(:user).required }
+    it { should have_many(:items).dependent(:destroy) }
   end
 
   context 'validations' do
