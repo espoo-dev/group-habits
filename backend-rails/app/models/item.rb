@@ -32,4 +32,8 @@ class Item < ApplicationRecord
   validates :sales_unit, presence: true
   validates :item_type, presence: true
   validates :item_type, inclusion: ITEM_TYPES
+
+  scope :by_name_like, lambda { |name_like|
+    where('name LIKE ?', "%#{name_like}%")
+  }
 end

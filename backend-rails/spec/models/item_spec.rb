@@ -9,14 +9,14 @@
 #  purchase_price :decimal(8, 2)
 #  sales_unit     :string           not null
 #  item_type      :string           not null
-#  category_id    :string           not null
+#  item_id    :string           not null
 #  user_id        :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
 # Indexes
 #
-#  index_items_on_category_id       (category_id)
+#  index_items_on_item_id       (item_id)
 #  index_items_on_user_id           (user_id)
 #  index_items_on_user_id_and_name  (user_id,name) UNIQUE
 #
@@ -41,8 +41,31 @@ RSpec.describe Item, type: :model do
     end
 
     context 'uniqueness' do
-      subject { create(:category) }
+      subject { create(:item) }
       it { should validate_uniqueness_of(:name).scoped_to(:user_id).case_insensitive }
+    end
+  end
+
+  context 'scopes' do
+    context '.by_name_like' do
+      let!(:item1) { create(:item, name: 'abcde') }
+      let!(:item2) { create(:item, name: 'bcd') }
+      let!(:item3) { create(:item, name: 'abc') }
+      let!(:item4) { create(:item, name: 'bcde') }
+      context 'when name_like is present' do
+        subject { described_class.by_name_like('bcd') }
+
+        it 'returns categories with name like' do
+          is_expected.to match_array([item1, item2, item4])
+        end
+      end
+      context 'when name_like is not present' do
+        subject { described_class.by_name_like(nil) }
+
+        it 'returns all categories' do
+          is_expected.to match_array([item1, item2, item3, item4])
+        end
+      end
     end
   end
 end
