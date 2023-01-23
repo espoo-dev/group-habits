@@ -89,6 +89,13 @@ RSpec.describe Item, type: :model do
           is_expected.to match_array([item3, item4])
         end
       end
+      context 'when item_type is nil' do
+        let(:item_type) { nil }
+
+        it 'returns all items' do
+          is_expected.to match_array([item1, item2, item3, item4])
+        end
+      end
     end
   end
 end

@@ -36,5 +36,10 @@ class Item < ApplicationRecord
   scope :by_name_like, lambda { |name_like|
     where('name LIKE ?', "%#{name_like}%").order(:id)
   }
-  scope :by_item_type, lambda { |item_type| where(item_type:)  }
+  scope :by_item_type, lambda { |item_type|
+    if item_type.present?
+      return where(item_type:)
+    end
+    all
+   }
 end
