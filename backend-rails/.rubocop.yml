@@ -15,6 +15,9 @@ AllCops:
     - bin/yarn
     - db/migrate/20221115160408_add_default_value_to_daily_habit.rb
 
+Metrics/AbcSize:
+  Max: 20
+
 Lint/UnusedMethodArgument:
   Exclude:
     - spec/support/devise_token_auth_overrides.rb

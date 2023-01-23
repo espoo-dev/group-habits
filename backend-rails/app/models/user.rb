@@ -74,7 +74,6 @@ class User < ApplicationRecord
     self.uid = email if uid.blank? && provider == 'email'
   end
 
-  # rubocop:disable Metrics/AbcSize
   # https://github.com/lynndylanhurley/devise_token_auth/blob/30b6d30037ea646646e58ba2ec5ff4682b654f2c/app/models/devise_token_auth/concerns/user.rb
   # :reek:DuplicateMethodCall :reek:FeatureEnvy
   def bearer_token(token, client)
@@ -91,5 +90,4 @@ class User < ApplicationRecord
     }
     "Bearer #{Base64.strict_encode64(headers.to_json)}"
   end
-  # rubocop:enable Metrics/AbcSize
 end

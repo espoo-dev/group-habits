@@ -8,7 +8,7 @@ class ItemsFinderService < BaseService
 
   def call
     items = ItemPolicy::Scope.new(user, Item).resolve
-                                      .by_name_like(name)
+                             .by_name_like(name)
 
     authorize!(ItemPolicy, :index?, items)
 

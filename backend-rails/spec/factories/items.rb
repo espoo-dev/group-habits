@@ -19,8 +19,8 @@ FactoryBot.define do
     extra_info { 'nice laptop' }
     sale_price { 2000.00 }
     purchase_price { 1500.55 }
-    sales_unit { "unit" }
-    item_type { "product" }
+    sales_unit { 'unit' }
+    item_type { 'product' }
 
     association :user
     association :category
