@@ -1,16 +1,16 @@
 <script lang="ts">
   import AxiosAdapter from '../../infra/http/AxiosAdapter';
 
+  const user = {
+    email: '',
+    password: '',
+  };
+
   const api = new AxiosAdapter();
 
   const login = async () => {
     api
-      .post('https://group-habits.herokuapp.com/api/v1/users/sign_in', {
-        user: {
-          email: 'user@email.com',
-          password: '123456789',
-        },
-      })
+      .post('https://group-habits.herokuapp.com/api/v1/users/sign_in', { user })
       .then((resp) => {
         localStorage.setItem('user', JSON.stringify(resp));
       });
@@ -23,13 +23,20 @@
       <h1 style="margin-bottom: 20px;">Login</h1>
 
       <div class="form-container">
-        <input type="email" name="username" id="username" placeholder="Email" />
+        <input
+          type="email"
+          bind:value={user.email}
+          name="username"
+          id="username"
+          placeholder="Email"
+        />
 
         <input
           type="password"
           name="password"
           id="password"
           placeholder="Senha"
+          bind:value={user.password}
         />
 
         <button on:click={login}>Entrar</button>
