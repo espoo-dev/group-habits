@@ -1,3 +1,4 @@
+@file:Suppress("FunctionNaming", "FunctionParameterNaming")
 package com.group.so.core.ui.components.animations
 
 import androidx.compose.runtime.Composable

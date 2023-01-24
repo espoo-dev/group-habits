@@ -21,7 +21,6 @@ import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.home.HomePage
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
-import com.group.so.ui.theme.BackgroundColor
 import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalMaterialApi

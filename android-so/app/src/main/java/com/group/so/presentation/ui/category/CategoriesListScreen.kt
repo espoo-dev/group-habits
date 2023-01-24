@@ -14,9 +14,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,7 +24,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExtendedFloatingActionButton
-import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -69,7 +66,6 @@ import com.group.so.ui.theme.SOTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi
 @Composable
@@ -101,21 +97,21 @@ fun CategoryListScreen(
             }
         )
     }, floatingActionButton = {
-        ExtendedFloatingActionButton(
-            text = { Text(text = stringResource(R.string.title_fab_new_category)) },
-            onClick = {
-                openDialog.value = true
-                onNewCategoryClick
-            },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
-                    contentDescription = stringResource(
-                        id = R.string.cd_new_category
+            ExtendedFloatingActionButton(
+                text = { Text(text = stringResource(R.string.title_fab_new_category)) },
+                onClick = {
+                    openDialog.value = true
+                    onNewCategoryClick
+                },
+                icon = {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
+                        contentDescription = stringResource(
+                            id = R.string.cd_new_category
+                        )
                     )
-                )
-            }
-        )
+                }
+            )
 //        FloatingActionButton(onClick = {
 //            openDialog.value = true
 //            onNewCategoryClick
@@ -127,7 +123,7 @@ fun CategoryListScreen(
 //                )
 //            )
 //        }
-    }) {
+        }) {
 
         CategoryNewScreen(
             categoryViewModel,
@@ -227,9 +223,8 @@ fun CategoryItemContent(
     onDeleteCategory: (Category) -> Unit,
 ) {
 
-
     val coroutineScope = rememberCoroutineScope()
-    //val revealState = rememberRevealState()
+    // val revealState = rememberRevealState()
 
     var openDialogDelete by remember {
         mutableStateOf(false) // Initially dialog is closed
@@ -242,11 +237,11 @@ fun CategoryItemContent(
     DialogDelete(showDialog = openDialogDelete, onDismiss = {
         openDialogDelete = false
     }, onDeleteSuccess = {
-        coroutineScope.launch {
-            onDeleteCategory(category)
-            //revealState.snapTo(RevealValue.Default)
-        }
-    })
+            coroutineScope.launch {
+                onDeleteCategory(category)
+                // revealState.snapTo(RevealValue.Default)
+            }
+        })
 
     CategoryEditScreen(
         category,
@@ -254,9 +249,7 @@ fun CategoryItemContent(
         showDialog = openDialogEdit
     ) { openDialogEdit = false }
 
-    Column(
-
-    ) {
+    Column() {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
@@ -301,7 +294,6 @@ fun CategoryItemContent(
         }
         Divider()
     }
-
 }
 
 @Composable

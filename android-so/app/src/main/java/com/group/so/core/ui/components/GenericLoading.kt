@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,7 +34,7 @@ fun GenericLoading(
         Box(modifier = Modifier.size(100.dp)) {
             Loader()
         }
-        //CircularProgressIndicator()
+        // CircularProgressIndicator()
         Spacer(modifier = Modifier.size(16.dp))
         Text(text = message ?: stringResource(id = R.string.msg_loading))
     }
