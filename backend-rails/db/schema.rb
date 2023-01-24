@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_23_133317) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_24_204835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -39,6 +39,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_133317) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "name"], name: "index_categories_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "document_number", null: false
+    t.string "phone", null: false
+    t.string "state_inscription"
+    t.integer "customer_type", null: false
+    t.string "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "document_number"], name: "index_customers_on_user_id_and_document_number", unique: true
+    t.index ["user_id", "name"], name: "index_customers_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "daily_habits", force: :cascade do |t|

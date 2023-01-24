@@ -5,6 +5,13 @@ en:
     dashboard_welcome:
       call_to_action: Actions
       welcome: Welcome to your first admin
+  activerecord:
+    errors:
+      models:
+        customer:
+          attributes:
+            state_inscription:
+              person_with_state_inscription: Person should not have state inscription
   api:
     errors:
       invalid_content_type: Invalid content type header
