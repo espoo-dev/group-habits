@@ -1,9 +1,9 @@
+@file:Suppress("MaxLineLength", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
+
 package com.group.so.presentation.viewmodel
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.group.so.core.Resource
-import com.group.so.core.State
-import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.request.CategoryDataRequest
 import com.group.so.data.entities.request.EditCategoryRequest
 import com.group.so.data.repository.category.CategoryRepository
@@ -15,32 +15,20 @@ import com.group.so.domain.category.SearchCategoriesUseCase
 import com.group.so.mock.CategoryMock.mockCategoryResourceDeleteSuccessFlow
 import com.group.so.mock.CategoryMock.mockCategoryResourceEditSuccessFlow
 import com.group.so.mock.CategoryMock.mockCategoryResourceRegisterSuccessFlow
-import com.group.so.mock.CategoryMock.mockCategoryResourceSuccess
 import com.group.so.mock.CategoryMock.mockCategoryResourceSuccessFlow
 import com.group.so.presentation.ui.category.CategoryViewModel
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlin.test.assertEquals
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito.doReturn
-
 
 @ExperimentalCoroutinesApi
 class CategoryViewModelTest {
@@ -58,7 +46,6 @@ class CategoryViewModelTest {
     val searchCategoriesUseCase = SearchCategoriesUseCase(categoryRepository)
 
     private lateinit var viewModel: CategoryViewModel
-
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
@@ -136,12 +123,32 @@ class CategoryViewModelTest {
     fun `should check if the edit function of the repository is being called `() =
         runBlocking {
 
-            coEvery { categoryRepository.edit(EditCategoryRequest(1,CategoryDataRequest("teste"))) } returns mockCategoryResourceEditSuccessFlow()
-            coEvery { editCategoryUseCase(EditCategoryRequest(1,CategoryDataRequest("teste"))) } returns mockCategoryResourceEditSuccessFlow()
+            coEvery {
+                categoryRepository.edit(
+                    EditCategoryRequest(
+                        1,
+                        CategoryDataRequest("teste")
+                    )
+                )
+            } returns mockCategoryResourceEditSuccessFlow()
+            coEvery {
+                editCategoryUseCase(
+                    EditCategoryRequest(
+                        1,
+                        CategoryDataRequest("teste")
+                    )
+                )
+            } returns mockCategoryResourceEditSuccessFlow()
 
-            viewModel.edit(1,"teste")
+            viewModel.edit(1, "teste")
 
-            coVerify { categoryRepository.edit(EditCategoryRequest(1,CategoryDataRequest("teste"))) }
+            coVerify {
+                categoryRepository.edit(
+                    EditCategoryRequest(
+                        1,
+                        CategoryDataRequest("teste")
+                    )
+                )
+            }
         }
-
 }

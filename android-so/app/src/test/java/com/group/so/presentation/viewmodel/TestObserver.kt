@@ -59,9 +59,9 @@ class TestObserver<T>(
 }
 
 @OptIn(ExperimentalCoroutinesApi::class)
-        /**
-         * Test function for the [TestObserver]
-         */
+/**
+ * Test function for the [TestObserver]
+ */
 fun <T> Flow<T>.test(
     scope: TestScope
 ): TestObserver<T> {

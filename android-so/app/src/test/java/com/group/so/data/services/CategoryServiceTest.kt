@@ -43,7 +43,6 @@ class CategoryServiceTest {
             println(request.path)
             assertEquals(request.path, "/categories?name=teste")
         }
-
     }
     @Test
     fun `should return correct endpoint get categories`() {

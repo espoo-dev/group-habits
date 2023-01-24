@@ -116,7 +116,6 @@ object CategoryMock {
         Resource.Success(data = Category(id = 1, name = "teste"))
     }
 
-
     fun mockCategoryResourceSuccessEmpty(): Resource<List<CategoryDTO>> =
         Resource.Success(data = emptyList())
 
