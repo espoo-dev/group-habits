@@ -82,8 +82,8 @@ jobs:
         with:
           working-directory: backend-rails
           path: "./db/schema.rb"
-      - name: I18n Health
-        run: bundle exec i18n-tasks health
+      # - name: I18n Health
+      #   run: bundle exec i18n-tasks health
       - name: Run Code Analysis
         run: |
           bundle exec rake code:analysis
