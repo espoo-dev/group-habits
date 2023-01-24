@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -25,7 +26,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.group.so.R
-import com.group.so.ui.theme.Purple700
 
 @Composable
 @ExperimentalComposeApi
@@ -63,7 +63,7 @@ fun BodyHome() {
             style = TextStyle(
                 fontSize = 14.sp,
                 textDecoration = TextDecoration.Underline,
-                color = Purple700
+                color = MaterialTheme.colors.secondary
             )
         )
     }

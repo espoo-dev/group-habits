@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
@@ -32,7 +33,7 @@ fun ScreenMain() {
     NavHost(navController = navController, startDestination = Routes.Login.route) {
         composable(Routes.Login.route) {
             val loginViewModel = koinViewModel<LoginViewModel>()
-            Surface(color = BackgroundColor, modifier = Modifier.fillMaxSize()) {
+            Surface(color = MaterialTheme.colors.primary, modifier = Modifier.fillMaxSize()) {
                 LoginScreen(
                     navController = navController,
                     loginViewModel,

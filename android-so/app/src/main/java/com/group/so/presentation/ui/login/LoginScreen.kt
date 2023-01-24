@@ -52,7 +52,6 @@ import com.group.so.presentation.ui.Routes
 import com.group.so.presentation.ui.login.components.EmailState
 import com.group.so.presentation.ui.login.components.PasswordState
 import com.group.so.ui.theme.Poppins
-import com.group.so.ui.theme.Purple500
 import com.group.so.ui.theme.Shapes
 
 @Composable
@@ -104,7 +103,7 @@ fun Email(text: String, error: String?, onEmailChanged: (String) -> Unit) {
             label = {
                 Text(
                     text = stringResource(R.string.label_text_email),
-                    color = Purple500
+                    color = MaterialTheme.colors.primary
                 )
             },
             value = text,
@@ -149,7 +148,7 @@ fun Password(text: String, error: String?, onPasswordChanged: (String) -> Unit) 
             label = {
                 Text(
                     text = stringResource(R.string.label_password),
-                    color = Purple500
+                    color = MaterialTheme.colors.primary
                 )
             },
             value = text,
@@ -173,14 +172,14 @@ fun Password(text: String, error: String?, onPasswordChanged: (String) -> Unit) 
                         Icon(
                             painter = painterResource(id = R.drawable.ic_eye_open),
                             contentDescription = "",
-                            tint = Purple500,
+                            tint = MaterialTheme.colors.primary,
                             modifier = Modifier.size(24.dp)
                         )
                     } else {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_eye_close),
                             contentDescription = "",
-                            tint = Purple500,
+                            tint = MaterialTheme.colors.primary,
                             modifier = Modifier.size(24.dp)
                         )
                     }
@@ -252,7 +251,7 @@ fun BodyLogin(
                             .fillMaxWidth()
                             .padding(horizontal = 20.dp)
                             .padding(top = 20.dp),
-                        backgroundColor = Purple500,
+                        backgroundColor = MaterialTheme.colors.primary,
                         contentColor = Color.White,
                         contentPadding = PaddingValues(vertical = 14.dp),
                     )

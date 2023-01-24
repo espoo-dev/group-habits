@@ -14,15 +14,18 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -63,12 +66,9 @@ import com.group.so.core.ui.components.SharedViewModel
 import com.group.so.data.entities.model.Category
 import com.group.so.ui.theme.Poppins
 import com.group.so.ui.theme.SOTheme
-import de.charlex.compose.RevealDirection
-import de.charlex.compose.RevealSwipe
-import de.charlex.compose.RevealValue
-import de.charlex.compose.rememberRevealState
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
+
 
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi
@@ -101,10 +101,13 @@ fun CategoryListScreen(
             }
         )
     }, floatingActionButton = {
-            FloatingActionButton(onClick = {
+        ExtendedFloatingActionButton(
+            text = { Text(text = stringResource(R.string.title_fab_new_category)) },
+            onClick = {
                 openDialog.value = true
                 onNewCategoryClick
-            }) {
+            },
+            icon = {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
                     contentDescription = stringResource(
@@ -112,7 +115,19 @@ fun CategoryListScreen(
                     )
                 )
             }
-        }) {
+        )
+//        FloatingActionButton(onClick = {
+//            openDialog.value = true
+//            onNewCategoryClick
+//        }) {
+//            Icon(
+//                imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
+//                contentDescription = stringResource(
+//                    id = R.string.cd_new_category
+//                )
+//            )
+//        }
+    }) {
 
         CategoryNewScreen(
             categoryViewModel,
@@ -211,8 +226,10 @@ fun CategoryItemContent(
     onCategoryClick: (Category) -> Unit,
     onDeleteCategory: (Category) -> Unit,
 ) {
+
+
     val coroutineScope = rememberCoroutineScope()
-    val revealState = rememberRevealState()
+    //val revealState = rememberRevealState()
 
     var openDialogDelete by remember {
         mutableStateOf(false) // Initially dialog is closed
@@ -225,11 +242,11 @@ fun CategoryItemContent(
     DialogDelete(showDialog = openDialogDelete, onDismiss = {
         openDialogDelete = false
     }, onDeleteSuccess = {
-            coroutineScope.launch {
-                onDeleteCategory(category)
-                revealState.snapTo(RevealValue.Default)
-            }
-        })
+        coroutineScope.launch {
+            onDeleteCategory(category)
+            //revealState.snapTo(RevealValue.Default)
+        }
+    })
 
     CategoryEditScreen(
         category,
@@ -237,65 +254,54 @@ fun CategoryItemContent(
         showDialog = openDialogEdit
     ) { openDialogEdit = false }
 
-    RevealSwipe(
-        backgroundCardModifier = Modifier.padding(8.dp),
-        state = revealState,
-        directions = setOf(RevealDirection.EndToStart),
-        contentClickHandledExtern = true,
-        hiddenContentEnd = {
-            Row() {
-                IconButton(
-                    onClick = {
-                        openDialogDelete = true
-//                        coroutineScope.launch {
-//                            onDeleteCategory(category)
-//                            revealState.snapTo(RevealValue.Default)
-//                        }
-                    }
-                ) {
-                    Icon(
-                        modifier = Modifier.padding(horizontal = 25.dp),
-                        imageVector = Icons.Outlined.Delete,
-                        contentDescription = null
-                    )
-                }
-            }
-        }
+    Column(
+
     ) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable(
+                    interactionSource = MutableInteractionSource(),
+                    indication = rememberRipple(
+                        bounded = true,
+                        radius = 250.dp,
+                        color = MaterialTheme.colors.primary
+                    ),
+                    onClick = {
+                        openDialogEdit = true
+                        onCategoryClick(category)
+                    }
+                )
         ) {
-            Box(
+            Text(
+                text = "${category.name}",
+                fontWeight = FontWeight.Bold,
+                fontFamily = Poppins,
                 modifier = Modifier
-                    .clickable(
-                        interactionSource = MutableInteractionSource(),
-                        indication = rememberRipple(
-                            bounded = true,
-                            radius = 250.dp,
-                            color = MaterialTheme.colors.primary
-                        ),
-                        onClick = {
-                            openDialogEdit = true
-                            onCategoryClick(category)
-                        }
-                    )
+                    .padding(10.dp),
+                textAlign = TextAlign.Start,
+                softWrap = true,
+                color = Color.Black,
+            )
+            IconButton(
+                onClick = {
+                    openDialogDelete = true
+                }
             ) {
-                Text(
-                    text = "${category.name}",
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = Poppins,
+                Icon(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
-                        .padding(10.dp),
-                    textAlign = TextAlign.Start,
-                    color = Color.Black,
+                        .padding(horizontal = 25.dp)
+                        .size(30.dp),
+                    imageVector = Icons.Outlined.Delete,
+                    tint = MaterialTheme.colors.primary,
+                    contentDescription = null
                 )
             }
-            Divider()
         }
+        Divider()
     }
+
 }
 
 @Composable
