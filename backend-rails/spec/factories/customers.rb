@@ -22,7 +22,6 @@ FactoryBot.define do
   factory :customer do
     name { 'John' }
     document_number { '00321333355' }
-    state_inscription {  }
     customer_type { Customer.customer_types[:person] }
     phone { '85996857985' }
 

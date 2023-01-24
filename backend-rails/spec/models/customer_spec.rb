@@ -30,7 +30,6 @@ RSpec.describe Customer, type: :model do
       it { should define_enum_for(:customer_type) }
     end
 
-
     context 'presence' do
       it { should validate_presence_of(:name) }
       it { should validate_presence_of(:document_number) }
@@ -45,26 +44,22 @@ RSpec.describe Customer, type: :model do
   end
 
   context '#validate_person_state_inscription' do
-
     subject { build(:customer, customer_type:, state_inscription:) }
 
     context 'when customer has customer_type person' do
-      let(:customer_type) {Customer.customer_types[:person]}
+      let(:customer_type) { Customer.customer_types[:person] }
       context 'when has state_inscription nil' do
-        let(:state_inscription) {nil}
+        let(:state_inscription) { nil }
         it { is_expected.to be_valid }
-
-
-
       end
 
       context 'when has state_inscription blank' do
-        let(:state_inscription) {""}
+        let(:state_inscription) { '' }
         it { is_expected.to be_valid }
       end
 
       context 'when has state_inscription present' do
-        let(:state_inscription) {"something"}
+        let(:state_inscription) { 'something' }
         it { is_expected.to_not be_valid }
         it 'has proper error message' do
           subject.valid?
@@ -74,23 +69,21 @@ RSpec.describe Customer, type: :model do
     end
 
     context 'when customer has customer_type business' do
-      let(:customer_type) {Customer.customer_types[:business]}
+      let(:customer_type) { Customer.customer_types[:business] }
       context 'when has state_inscription nil' do
-        let(:state_inscription) {nil}
+        let(:state_inscription) { nil }
         it { is_expected.to be_valid }
       end
 
       context 'when has state_inscription blank' do
-        let(:state_inscription) {""}
+        let(:state_inscription) { '' }
         it { is_expected.to be_valid }
       end
 
       context 'when has state_inscription present' do
-        let(:state_inscription) {"something"}
+        let(:state_inscription) { 'something' }
         it { is_expected.to be_valid }
       end
     end
-
-
   end
 end

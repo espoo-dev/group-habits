@@ -19,8 +19,7 @@
 #  index_customers_on_user_id_and_name             (user_id,name) UNIQUE
 #
 class Customer < ApplicationRecord
-
-  enum :customer_type, [ :person, :business ]
+  enum :customer_type, %i[person business]
 
   belongs_to :user
   validates :name, presence: true
@@ -35,8 +34,8 @@ class Customer < ApplicationRecord
   private
 
   def validate_person_state_inscription
-    if state_inscription.present? && person?
-      errors.add(:state_inscription, :person_with_state_inscription)
-    end
+    return unless state_inscription.present? && person?
+
+    errors.add(:state_inscription, :person_with_state_inscription)
   end
 end
