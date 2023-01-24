@@ -1,21 +1,21 @@
 buildscript {
     ext {
-        compose_ui_version = '1.1.1'
+        compose_ui_version = '1.3.3'
         ktlintPluginVersion = "10.2.0"
-        room_version = "2.4.3"
-        koin_version = "3.0.1"
-        nav_version = "2.3.5"
+        room_version = '2.5.0'
+        koin_version = '3.3.2'
+        nav_version = '2.5.3'
         coroutines_kotlin = "1.6.4"
-        mock_webserver = "4.6.0"
-        glide = "4.13.2"
+        mock_webserver = '5.0.0-alpha.11'
+        glide = '4.14.2'
         retrofit2 = "2.9.0"
-        okhttp3_logging_interceptor = "4.9.3"
-        moshi = "1.12.0"
+        okhttp3_logging_interceptor = '5.0.0-alpha.11'
+        moshi = '1.14.0'
         moshi_converter = "2.9.0"
         ext.jacocoAndroidVersion = "0.2"
         ext.coverallsVersion = "2.12.0"
-        mockk_version = '1.12.0'
-        mockk_android_version = '1.12.0'
+        mockk_version = '1.13.3'
+        mockk_android_version = '1.13.3'
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
