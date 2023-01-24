@@ -46,6 +46,7 @@
     <string name="search">Pesquisar</string>
     <string name="search_icon">pequisar icon</string>
     <string name="close_icon">fechar icon</string>
+    <string name="title_fab_new_category">Nova Categoria</string>
 
 
 </resources>
