@@ -13,7 +13,7 @@ android {
     namespace 'com.group.so'
     compileSdk 33
 
-    
+
 
     defaultConfig {
         applicationId "com.group.so"

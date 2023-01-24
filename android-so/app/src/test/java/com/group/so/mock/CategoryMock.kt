@@ -105,6 +105,17 @@ object CategoryMock {
         Resource.Success(data = mockCategoryEntity())
     }
 
+    fun mockCategoryResourceDeleteSuccessFlow(): Flow<Resource<Int>> = flow {
+        Resource.Success(data = 202)
+    }
+
+    fun mockCategoryResourceRegisterSuccessFlow(): Flow<Resource<Category>> = flow {
+        Resource.Success(data = Category(id = 1, name = "teste"))
+    }
+    fun mockCategoryResourceEditSuccessFlow(): Flow<Resource<Category>> = flow {
+        Resource.Success(data = Category(id = 1, name = "teste"))
+    }
+
     fun mockCategoryResourceSuccessEmpty(): Resource<List<CategoryDTO>> =
         Resource.Success(data = emptyList())
 

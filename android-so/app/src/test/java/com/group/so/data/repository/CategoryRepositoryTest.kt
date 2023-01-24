@@ -2,7 +2,6 @@ package com.group.so.data.repository
 
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
-import com.group.so.data.dao.CategoryDao
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.mock.CategoryMock
 import io.mockk.coEvery
@@ -18,14 +17,12 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class CategoryRepositoryTest {
 
-    private val dao = mockk<CategoryDao>()
     private val categoryRepository = mockk<CategoryRepository>()
 
     @Test(expected = RemoteException::class)
     fun `should return exception with error`() = runBlocking {
 
         // GIVEN
-        coEvery { dao.listCategories() } returns CategoryMock.mockCategoryEntityDb()
         coEvery { categoryRepository.listCategories() } throws RemoteException("")
 
         // WHEN
@@ -38,7 +35,6 @@ class CategoryRepositoryTest {
     fun `should return list with success`() = runBlocking {
 
         // GIVEN
-        coEvery { dao.listCategories() } returns CategoryMock.mockCategoryEntityDb()
         coEvery { categoryRepository.listCategories() } returns CategoryMock.mockCategoryEntityListRepository()
 
         // WHEN
@@ -53,7 +49,6 @@ class CategoryRepositoryTest {
     fun `should return list empty with success`() {
         runBlocking {
             // GIVEN
-            coEvery { dao.listCategories() } returns CategoryMock.mockCategoryEntityDb()
             coEvery { categoryRepository.listCategories() } returns CategoryMock.mockCategoryEntityListRepositoryEmpty()
 
             // WHEN
