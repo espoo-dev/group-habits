@@ -1,6 +1,5 @@
 @file:Suppress("MaxLineLength", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
-
 package com.group.so.presentation.viewmodel
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
