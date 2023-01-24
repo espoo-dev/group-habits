@@ -30,4 +30,13 @@ class Customer < ApplicationRecord
   validates :name, uniqueness: { scope: :user_id, case_sensitive: false }
   validates :document_number, uniqueness: { scope: :user_id, case_sensitive: false }
 
+  validate :validate_person_state_inscription
+
+  private
+
+  def validate_person_state_inscription
+    if state_inscription.present? && person?
+      errors.add(:state_inscription, :person_with_state_inscription)
+    end
+  end
 end

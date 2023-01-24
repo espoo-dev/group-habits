@@ -8,3 +8,10 @@ en:
   api:
     errors:
       invalid_content_type: Invalid content type header
+  activerecord:
+    errors:
+      models:
+        customer:
+          attributes:
+            state_inscription:
+              person_with_state_inscription: Person should not have state inscription
