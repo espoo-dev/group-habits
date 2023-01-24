@@ -1,19 +1,20 @@
 <script lang="ts">
-  import AxiosAdapter from '../../infra/http/AxiosAdapter';
+  import { makeRemoteAuthentication } from '../../main/factories/usecases/remote-authentication-factory';
+  import { navigate } from 'svelte-routing';
 
   const user = {
-    email: '',
-    password: '',
+    email: 'user@email.com',
+    password: '123456789',
   };
 
-  const api = new AxiosAdapter();
+  const http = makeRemoteAuthentication();
 
   const login = async () => {
-    api
-      .post('https://group-habits.herokuapp.com/api/v1/users/sign_in', { user })
-      .then((resp) => {
-        localStorage.setItem('user', JSON.stringify(resp));
-      });
+    const response = await http.auth({ user });
+    if (response.user) {
+      navigate('/categories', { replace: true });
+      console.log('response -> ', response);
+    }
   };
 </script>
 
