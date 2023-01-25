@@ -36,7 +36,7 @@ class Customer < ApplicationRecord
   }
 
   scope :by_customer_type, lambda { |item_type|
-    return where(customer_type:customer_types[item_type]) if item_type.present?
+    return where(customer_type: customer_types[item_type]) if item_type.present?
 
     all
   }

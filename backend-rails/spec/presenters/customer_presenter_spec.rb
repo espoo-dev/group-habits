@@ -15,7 +15,7 @@ RSpec.describe CustomerPresenter do
         document_number: customer.document_number,
         phone: customer.phone,
         state_inscription: customer.state_inscription,
-        customer_type: customer.customer_type,
+        customer_type: customer.customer_type
       }
 
       is_expected.to eq expected_payload

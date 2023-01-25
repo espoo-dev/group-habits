@@ -9,8 +9,8 @@ class CustomersFinderService < BaseService
 
   def call
     customers = CustomerPolicy::Scope.new(user, Item).resolve
-                             .by_name_like(name)
-                             .by_customer_type(customer_type)
+                                     .by_name_like(name)
+                                     .by_customer_type(customer_type)
 
     authorize!(CustomerPolicy, :index?, customers)
 

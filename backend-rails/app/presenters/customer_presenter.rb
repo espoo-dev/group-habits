@@ -14,7 +14,7 @@ class CustomerPresenter < BasePresenter
       document_number: customer.document_number,
       phone: customer.phone,
       state_inscription: customer.state_inscription,
-      customer_type: customer.customer_type,
+      customer_type: customer.customer_type
     }
   end
 end
