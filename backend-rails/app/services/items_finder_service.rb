@@ -13,7 +13,5 @@ class ItemsFinderService < BaseService
                              .by_item_type(item_type)
 
     authorize!(ItemPolicy, :index?, items)
-
-    items
   end
 end
