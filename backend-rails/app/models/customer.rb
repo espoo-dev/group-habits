@@ -31,6 +31,10 @@ class Customer < ApplicationRecord
 
   validate :validate_person_state_inscription
 
+  scope :by_name_like, lambda { |name_like|
+    where('name LIKE ?', "%#{name_like}%").order(:id)
+  }
+
   private
 
   def validate_person_state_inscription

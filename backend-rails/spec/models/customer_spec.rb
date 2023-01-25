@@ -86,4 +86,27 @@ RSpec.describe Customer, type: :model do
       end
     end
   end
+
+  context 'scopes' do
+    context '.by_name_like' do
+      let!(:customer1) { create(:customer, name: 'abcde') }
+      let!(:customer2) { create(:customer, name: 'bcd') }
+      let!(:customer3) { create(:customer, name: 'abc') }
+      let!(:customer4) { create(:customer, name: 'bcde') }
+      context 'when name_like is present' do
+        subject { described_class.by_name_like('bcd') }
+
+        it 'returns categories with name like' do
+          is_expected.to match_array([customer1, customer2, customer4])
+        end
+      end
+      context 'when name_like is not present' do
+        subject { described_class.by_name_like(nil) }
+
+        it 'returns all categories' do
+          is_expected.to match_array([customer1, customer2, customer3, customer4])
+        end
+      end
+    end
+  end
 end
