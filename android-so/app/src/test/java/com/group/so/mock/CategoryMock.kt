@@ -46,12 +46,12 @@ object CategoryMock {
                     id = 1,
                     name = "Categoria 1",
 
-                    ),
+                ),
                 Category(
                     id = 2,
                     name = "Categoria 2",
 
-                    ),
+                ),
                 Category(
                     id = 3,
                     name = "Categoria 3",
@@ -67,12 +67,12 @@ object CategoryMock {
                     id = 1,
                     name = "Categoria 1",
 
-                    ),
+                ),
                 CategoryDTO(
                     id = 2,
                     name = "Categoria 2",
 
-                    ),
+                ),
                 CategoryDTO(
                     id = 3,
                     name = "Categoria 3",
@@ -86,12 +86,12 @@ object CategoryMock {
             id = 1,
             name = "Categoria 1",
 
-            ),
+        ),
         Category(
             id = 2,
             name = "Category 2",
 
-            ),
+        ),
         Category(
             id = 3,
             name = "Categoria 3",
@@ -121,14 +121,14 @@ object CategoryMock {
                 id = 1,
                 name = "Categoria 1",
 
-                ),
+            ),
 
-
-            )
+        )
     )
     fun mockCategorDeleteResourceSucess() = flowOf(
         Resource.Success(
-            data = 202)
+            data = 202
+        )
     )
 
     fun mockCategorRegisterResourceSucess() = flowOf(
@@ -138,10 +138,9 @@ object CategoryMock {
                 id = 1,
                 name = "Categoria 1",
 
-                ),
+            ),
 
-
-            )
+        )
     )
 
     fun mockCategoryResourceEditSuccessFlow(): Flow<Resource<Category>> = flow {

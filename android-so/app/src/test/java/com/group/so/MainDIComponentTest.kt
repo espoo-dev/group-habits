@@ -9,6 +9,6 @@ fun configureTestAppComponent() = startKoin {
 
     loadKoinModules(
         configureDataModuleForTest(BASE_URL) + configureDomainModuleForTest() +
-                configurePresentationModuleForTest() + configureDAOModuleForTest()
+            configurePresentationModuleForTest() + configureDAOModuleForTest()
     )
 }

@@ -14,14 +14,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-
 @RunWith(JUnit4::class)
 class RegisterCategoriesUseCaseTest {
     private val categoryRepository = mockk<CategoryRepository>()
     val registerCategoryUseCase = RegisterCategoryUseCase(categoryRepository)
     val mockRegisterCategoryRequest =
         CategoryDataRequest("category 1")
-
 
     @Test
     fun `should return a category after register`() =
@@ -42,9 +40,7 @@ class RegisterCategoriesUseCaseTest {
                 CategoryMock.mockCategorRegisterResourceSucess().first().data?.name
             )
             Assert.assertTrue(result is Resource.Success)
-
         }
-
 
     @Test(expected = RemoteException::class)
     fun `should throw an exception after trying to register a category`() = runBlocking {
@@ -52,5 +48,4 @@ class RegisterCategoriesUseCaseTest {
         coEvery { categoryRepository.register(mockRegisterCategoryRequest) } throws RemoteException("")
         val result = registerCategoryUseCase(mockRegisterCategoryRequest)
     }
-
 }

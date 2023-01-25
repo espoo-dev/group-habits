@@ -1,3 +1,5 @@
+@file:Suppress("MaxLineLength", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.data.repository
 
 import com.group.so.core.RemoteException
@@ -28,7 +30,6 @@ class CategoryRepositoryTest {
 
     val mockRegisterCategoryRequest =
         CategoryDataRequest("category 1")
-
 
     @Test(expected = RemoteException::class)
     fun ` should return an error after going to the repository to get the categories`() =
@@ -62,7 +63,6 @@ class CategoryRepositoryTest {
                 CategoryMock.mockCategorRegisterResourceSucess().first().data?.name
             )
             Assert.assertTrue(result is Resource.Success)
-
         }
 
     @Test
@@ -84,7 +84,6 @@ class CategoryRepositoryTest {
                 CategoryMock.mockCategorEditResourceSucess().first().data?.name
             )
             Assert.assertTrue(result is Resource.Success)
-
         }
 
     @Test
@@ -120,7 +119,6 @@ class CategoryRepositoryTest {
                 202
             )
             assertTrue(result is Resource.Success)
-
         }
 
     @Test
@@ -136,7 +134,6 @@ class CategoryRepositoryTest {
         assertEquals(result.data?.size, CategoryMock.mockCategoryResourceSuccess().data?.size)
         assertTrue(result is Resource.Success)
     }
-
 
     @Test
     fun `should return list empty with success`() {

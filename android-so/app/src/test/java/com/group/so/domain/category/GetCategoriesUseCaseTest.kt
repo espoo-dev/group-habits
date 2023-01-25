@@ -13,12 +13,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-
 @RunWith(JUnit4::class)
 class GetCategoriesUseCaseTest {
     private val categoryRepository = mockk<CategoryRepository>()
     val getCategoriesUseCase = GetCategoriesUseCase(categoryRepository)
-
 
     @Test
     fun `should return a list of categories if successful`() =
@@ -35,14 +33,12 @@ class GetCategoriesUseCaseTest {
                 CategoryMock.mockCategoryResourceSuccess().data?.size
             )
             Assert.assertTrue(result is Resource.Success)
-
         }
 
     @Test(expected = RemoteException::class)
     fun `should return an exception after calling list categories`() = runBlocking {
 
         coEvery { categoryRepository.listCategories() } throws RemoteException("")
-        val result  = getCategoriesUseCase.execute()
+        val result = getCategoriesUseCase.execute()
     }
-
 }

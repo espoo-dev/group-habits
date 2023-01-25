@@ -1,3 +1,5 @@
+@file:Suppress("MaxLineLength", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.domain.category
 
 import com.group.so.core.RemoteException
@@ -30,9 +32,7 @@ class SearchCategoriesUseCaseTest {
                 CategoryMock.mockCategoryResourceSuccess().data?.size
             )
             Assert.assertTrue(result is Resource.Success)
-
         }
-
 
     @Test(expected = RemoteException::class)
     fun ` should throw an exception after trying to fetch the list of categories by name `() = runBlocking {

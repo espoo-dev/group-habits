@@ -1,6 +1,5 @@
 package com.group.so.domain.category
 
-
 import com.group.so.configureTestAppComponent
 import com.group.so.core.Resource
 import com.group.so.data.repository.category.CategoryRepository
@@ -18,21 +17,18 @@ import org.koin.core.context.GlobalContext.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
-
 @RunWith(JUnit4::class)
-class test : KoinTest {
-
+class Test : KoinTest {
 
     val categoryRepository: CategoryRepository by inject()
     val getCategoriesUseCase: GetCategoriesUseCase by inject()
-
 
     companion object {
 
         @BeforeClass
         @JvmStatic
         fun setup() {
-           configureTestAppComponent()
+            configureTestAppComponent()
         }
 
         /**
@@ -44,19 +40,14 @@ class test : KoinTest {
         }
     }
 
-
-
-
     @Test
     fun `getUsers com repository ok deve retornar sucesso`() = runBlocking {
 
         coEvery { categoryRepository.listCategories() } returns CategoryMock.mockCategoryResourceSuccessFlow()
 
-
         println("LIST" + categoryRepository.listCategories().first())
 
         val result = getCategoriesUseCase.execute().first()
-
 
         // THEN
         Assert.assertEquals(
@@ -64,10 +55,8 @@ class test : KoinTest {
             CategoryMock.mockCategoryResourceSuccessFlow().first().data?.get(0)?.id
         )
         Assert.assertEquals(
-            result.data,
-            CategoryMock.mockCategoryResourceSuccessFlow().first().data
+            result.data, CategoryMock.mockCategoryResourceSuccessFlow().first().data
         )
         Assert.assertTrue(result is Resource.Success)
-
     }
 }

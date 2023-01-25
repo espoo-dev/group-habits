@@ -15,7 +15,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-
 @RunWith(JUnit4::class)
 class EditCategoriesUseCaseTest {
     private val categoryRepository = mockk<CategoryRepository>()
@@ -44,9 +43,7 @@ class EditCategoriesUseCaseTest {
                 CategoryMock.mockCategorEditResourceSucess().first().data?.name
             )
             Assert.assertTrue(result is Resource.Success)
-
         }
-
 
     @Test(expected = RemoteException::class)
     fun `should throw an exception after trying to edit a category`() = runBlocking {
@@ -54,5 +51,4 @@ class EditCategoriesUseCaseTest {
         coEvery { categoryRepository.edit(mockEditCategoryRequest) } throws RemoteException("")
         val result = editCategoryUseCase(mockEditCategoryRequest)
     }
-
 }
