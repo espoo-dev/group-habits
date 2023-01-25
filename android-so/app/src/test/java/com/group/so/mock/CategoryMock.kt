@@ -59,6 +59,7 @@ object CategoryMock {
             )
         )
     )
+
     fun mockCategoryEntityListDTO() = flowOf(
         Resource.Success(
             data = listOf(
@@ -112,6 +113,36 @@ object CategoryMock {
     fun mockCategoryResourceRegisterSuccessFlow(): Flow<Resource<Category>> = flow {
         Resource.Success(data = Category(id = 1, name = "teste"))
     }
+
+    fun mockCategorEditResourceSucess() = flowOf(
+        Resource.Success(
+            data =
+            Category(
+                id = 1,
+                name = "Categoria 1",
+
+            ),
+
+        )
+    )
+    fun mockCategorDeleteResourceSucess() = flowOf(
+        Resource.Success(
+            data = 202
+        )
+    )
+
+    fun mockCategorRegisterResourceSucess() = flowOf(
+        Resource.Success(
+            data =
+            Category(
+                id = 1,
+                name = "Categoria 1",
+
+            ),
+
+        )
+    )
+
     fun mockCategoryResourceEditSuccessFlow(): Flow<Resource<Category>> = flow {
         Resource.Success(data = Category(id = 1, name = "teste"))
     }
