@@ -54,6 +54,7 @@
     <string name="search">Search</string>
     <string name="search_icon">search icon</string>
     <string name="close_icon">close icon</string>
+    <string name="title_fab_new_category">New Category</string>
 
 
 </resources>

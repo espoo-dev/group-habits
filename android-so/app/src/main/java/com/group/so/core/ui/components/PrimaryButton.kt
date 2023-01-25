@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.group.so.ui.theme.Poppins
-import com.group.so.ui.theme.Purple500
 import com.group.so.ui.theme.SOTheme
 
 /**
@@ -68,7 +68,7 @@ private fun PrimaryButtonPreview() {
             text = "Primary button",
             onClick = {},
             enabled = false,
-            backgroundColor = Purple500,
+            backgroundColor = MaterialTheme.colors.primary,
             contentColor = Color.White,
             contentPadding = PaddingValues(vertical = 14.dp)
         )
@@ -91,7 +91,7 @@ private fun DisabledPrimaryButtonPreview() {
             text = "Primary button",
             onClick = {},
             enabled = true,
-            backgroundColor = Purple500,
+            backgroundColor = MaterialTheme.colors.primary,
             contentColor = Color.White,
             contentPadding = PaddingValues(vertical = 14.dp)
         )
