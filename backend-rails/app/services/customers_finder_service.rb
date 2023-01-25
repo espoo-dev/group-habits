@@ -13,7 +13,5 @@ class CustomersFinderService < BaseService
                                      .by_customer_type(customer_type)
 
     authorize!(CustomerPolicy, :index?, customers)
-
-    customers
   end
 end

@@ -11,7 +11,5 @@ class CategoriesFinderService < BaseService
                                       .by_name_like(name)
 
     authorize!(CategoryPolicy, :index?, categories)
-
-    categories
   end
 end
