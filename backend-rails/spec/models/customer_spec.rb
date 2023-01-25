@@ -108,5 +108,35 @@ RSpec.describe Customer, type: :model do
         end
       end
     end
+
+    context '.by_customer_type' do
+      let!(:customer1) { create(:customer, customer_type: Customer.customer_types[:person]) }
+      let!(:customer2) { create(:customer, customer_type: Customer.customer_types[:person]) }
+      let!(:customer3) { create(:customer, customer_type: Customer.customer_types[:business]) }
+      let!(:customer4) { create(:customer, customer_type: Customer.customer_types[:business]) }
+      subject { described_class.by_customer_type(customer_type) }
+
+      context 'when customer_type is person' do
+        let(:customer_type) { 'person' }
+
+        it 'returns customers with customer_type person' do
+          is_expected.to match_array([customer1, customer2])
+        end
+      end
+      context 'when customer_type is business' do
+        let(:customer_type) { 'business' }
+
+        it 'returns customers with customer_type business' do
+          is_expected.to match_array([customer3, customer4])
+        end
+      end
+      context 'when customer_type is nil' do
+        let(:customer_type) { nil }
+
+        it 'returns all customers' do
+          is_expected.to match_array([customer1, customer2, customer3, customer4])
+        end
+      end
+    end
   end
 end

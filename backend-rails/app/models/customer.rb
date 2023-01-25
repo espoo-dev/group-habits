@@ -35,6 +35,12 @@ class Customer < ApplicationRecord
     where('name LIKE ?', "%#{name_like}%").order(:id)
   }
 
+  scope :by_customer_type, lambda { |item_type|
+    return where(customer_type:customer_types[item_type]) if item_type.present?
+
+    all
+  }
+
   private
 
   def validate_person_state_inscription
