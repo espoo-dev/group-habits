@@ -21,7 +21,7 @@
 FactoryBot.define do
   factory :customer do
     name { 'John' }
-    document_number { '00321333355' }
+    sequence(:document_number) { |n| "0032133335#{n}" }
     customer_type { Customer.customer_types[:person] }
     phone { '85996857985' }
 

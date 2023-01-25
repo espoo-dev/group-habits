@@ -35,6 +35,7 @@ describe User do
   describe 'relationships' do
     it { should have_many(:daily_habits).dependent(:destroy) }
     it { should have_many(:categories).dependent(:destroy) }
+    it { should have_many(:customers).dependent(:destroy) }
     it { should have_many(:items).dependent(:destroy) }
     it { should belong_to(:group).optional(true) }
   end
