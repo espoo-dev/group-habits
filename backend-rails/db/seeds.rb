@@ -15,5 +15,9 @@ if Rails.env.development?
   Item.create!(name: 'service 2', extra_info: 'info 2', sale_price: 11, purchase_price: 5,
                sales_unit: 'unit', item_type: 'service', user:, category:)
 
+  Customer.create!(name: 'John', document_number: '00321333355', customer_type: Customer.customer_types[:person],
+                   phone: '85996686868', user:)
+  Customer.create!(name: 'company', document_number: '123456789321654',
+                   customer_type: Customer.customer_types[:business], phone: '25996686868', user:)
   Setting.create_or_find_by!(key: 'min_version', value: '0.0')
 end
