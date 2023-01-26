@@ -19,6 +19,8 @@
 #  index_customers_on_user_id_and_name             (user_id,name) UNIQUE
 #
 class Customer < ApplicationRecord
+  include NameFilterable
+
   enum :customer_type, %i[person business]
 
   belongs_to :user
@@ -30,10 +32,6 @@ class Customer < ApplicationRecord
   validates :document_number, uniqueness: { scope: :user_id, case_sensitive: false }
 
   validate :validate_person_state_inscription
-
-  scope :by_name_like, lambda { |name_like|
-    where('name LIKE ?', "%#{name_like}%").order(:id)
-  }
 
   scope :by_customer_type, lambda { |item_type|
     return where(customer_type: customer_types[item_type]) if item_type.present?
