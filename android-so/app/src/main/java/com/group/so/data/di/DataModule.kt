@@ -34,6 +34,7 @@ object DataModule {
     private fun daoModule(): Module {
         return module {
             single { ServiceOrderDatabase.getInstance(androidContext()).dao }
+            single { ServiceOrderDatabase.getInstance(androidContext()).daoCustomer }
         }
     }
 

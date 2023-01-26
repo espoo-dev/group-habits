@@ -5,15 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.group.so.data.dao.CategoryDao
+import com.group.so.data.dao.CustomerDao
 import com.group.so.data.entities.db.CategoryDb
+import com.group.so.data.entities.db.CustomerDb
 
 @Database(
-    entities = [CategoryDb::class],
-    version = 1,
+    entities = [CategoryDb::class, CustomerDb::class],
+    version = 2,
     exportSchema = false
 )
 abstract class ServiceOrderDatabase : RoomDatabase() {
     abstract val dao: CategoryDao
+    abstract val daoCustomer: CustomerDao
 
     companion object {
 

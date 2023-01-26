@@ -16,6 +16,22 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="351599814">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="0056978255" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="RX8NC05C7VA" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="motorola&#10; Moto Z3 Play" value="120" />
+                  <entry key="samsung&#10; SM-A515F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
