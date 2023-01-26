@@ -81,4 +81,42 @@ describe 'api/v1/customers', type: :request do
       end
     end
   end
+
+  describe '#update' do
+    let(:user) { create(:user) }
+    let!(:customer) { create(:customer, user:) }
+
+    before do
+      put api_v1_customer_path(customer.id), params: update_customer_params, headers: auth_headers,
+                                             as: :json
+    end
+
+    context 'when data is valid' do
+      let(:update_customer_params) do
+        {
+          id: customer.id,
+          name: 'new_customer_name',
+          document_number: '123456789',
+          phone: '85936189085',
+          state_inscription: 'something',
+          customer_type: 'business'
+        }
+      end
+
+      it 'returns status 200 ok' do
+        expect(response).to be_successful
+      end
+
+      it 'updates customer name' do
+        expect(customer.reload.name).to eq('new_customer_name')
+      end
+    end
+
+    context 'when data is not valid' do
+      let(:update_customer_params) { { name: nil } }
+      it 'returns status 400 bad_request' do
+        expect(response).to be_bad_request
+      end
+    end
+  end
 end

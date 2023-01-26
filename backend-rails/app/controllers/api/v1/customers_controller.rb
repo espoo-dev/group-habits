@@ -11,6 +11,11 @@ module Api
         render json: CustomerPresenter.payload_for_item(customer), status: :created
       end
 
+      def update
+        customer = CustomerUpdaterService.new(user: current_user, update_customer_params:).call
+        render json: CustomerPresenter.payload_for_item(customer), status: :ok
+      end
+
       private
 
       def index_params
@@ -19,6 +24,10 @@ module Api
 
       def create_customer_params
         params.permit(:name, :document_number, :phone, :state_inscription, :customer_type)
+      end
+
+      def update_customer_params
+        params.permit(:id, :name, :document_number, :phone, :state_inscription, :customer_type)
       end
     end
   end

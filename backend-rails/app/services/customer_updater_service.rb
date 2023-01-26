@@ -16,7 +16,7 @@ class CustomerUpdaterService < BaseService
 
     authorize!(CustomerPolicy, :update?, customer)
 
-    customer.update!(name:, document_number: , phone:, state_inscription:, customer_type:)
+    customer.update!(name:, document_number:, phone:, state_inscription:, customer_type:)
     customer
   end
 end

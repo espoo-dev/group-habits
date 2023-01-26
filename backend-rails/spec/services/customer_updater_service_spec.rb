@@ -6,16 +6,16 @@ RSpec.describe CustomerUpdaterService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:new_customer_name) { create(:user) }
-    let(:update_customer_params) {
+    let(:update_customer_params) do
       {
         id: customer.id,
-        name: "new_customer_name",
-        document_number: "123456789",
-        phone: "85936189085",
-        state_inscription: "something",
-        customer_type: "business"
+        name: 'new_customer_name',
+        document_number: '123456789',
+        phone: '85936189085',
+        state_inscription: 'something',
+        customer_type: 'business'
       }
-    }
+    end
 
     subject { described_class.new(user:, update_customer_params:).call }
 
