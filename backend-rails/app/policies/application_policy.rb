@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    owner_user?
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    owner_user?
   end
 
   def edit?
@@ -31,7 +31,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    owner_user?
   end
 
   def owner_user?
