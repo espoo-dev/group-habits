@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :daily_habits, only: %i[index create]
       resources :categories, only: %i[index create destroy update]
       resources :items, only: %i[index]
-      resources :customers, only: %i[index]
+      resources :customers, only: %i[index create]
 
       get :status, to: 'api#status'
 
