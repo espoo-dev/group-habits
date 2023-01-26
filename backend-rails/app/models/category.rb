@@ -14,13 +14,11 @@
 #  index_categories_on_user_id_and_name  (user_id,name) UNIQUE
 #
 class Category < ApplicationRecord
+  include NameFilterable
+
   belongs_to :user
   has_many :items, dependent: :destroy
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :user_id, case_sensitive: false }
-
-  scope :by_name_like, lambda { |name_like|
-    where('name LIKE ?', "%#{name_like}%").order(:id)
-  }
 end

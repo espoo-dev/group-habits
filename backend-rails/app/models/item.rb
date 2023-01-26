@@ -21,6 +21,8 @@
 #  index_items_on_user_id_and_name  (user_id,name) UNIQUE
 #
 class Item < ApplicationRecord
+  include NameFilterable
+
   ITEM_TYPES = %w[product service].freeze
 
   belongs_to :user
@@ -33,9 +35,6 @@ class Item < ApplicationRecord
   validates :item_type, presence: true
   validates :item_type, inclusion: ITEM_TYPES
 
-  scope :by_name_like, lambda { |name_like|
-    where('name LIKE ?', "%#{name_like}%").order(:id)
-  }
   scope :by_item_type, lambda { |item_type|
                          return where(item_type:) if item_type.present?
 

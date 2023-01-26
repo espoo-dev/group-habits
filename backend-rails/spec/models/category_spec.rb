@@ -37,10 +37,19 @@ RSpec.describe Category, type: :model do
       let!(:category3) { create(:category, name: 'abc') }
       let!(:category4) { create(:category, name: 'bcde') }
       context 'when name_like is present' do
-        subject { described_class.by_name_like('bcd') }
+        context 'when it matches case' do
+          subject { described_class.by_name_like('bcd') }
 
-        it 'returns categories with name like' do
-          is_expected.to match_array([category1, category2, category4])
+          it 'returns categories with name like' do
+            is_expected.to match_array([category1, category2, category4])
+          end
+        end
+        context 'when it does not match case' do
+          subject { described_class.by_name_like('bCd') }
+
+          it 'returns categories with name like' do
+            is_expected.to match_array([category1, category2, category4])
+          end
         end
       end
       context 'when name_like is not present' do
