@@ -17,7 +17,7 @@ module Api
       end
 
       def destroy
-        CategoryDestroyerService.new(user: current_user, destroy_category_params:).call
+        CategoryDestroyerService.new(user: current_user, destroy_params:).call
         render json: {}, status: :no_content
       end
 
@@ -29,10 +29,6 @@ module Api
 
       def create_category_params
         params.permit(:name)
-      end
-
-      def destroy_category_params
-        params.permit(:id)
       end
 
       def update_category_params

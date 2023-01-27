@@ -15,6 +15,10 @@ module Api
         render json: { online: true }
       end
 
+      def destroy_params
+        params.permit(:id)
+      end
+
       private
 
       def render_not_found(exception)

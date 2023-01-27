@@ -1,9 +1,9 @@
 class CustomerDestroyerService < BaseService
   attr_reader :user, :customer_id
 
-  def initialize(user:, destroy_customer_params:)
+  def initialize(user:, destroy_params:)
     @user = user
-    @customer_id = destroy_customer_params[:id]
+    @customer_id = destroy_params[:id]
   end
 
   def call

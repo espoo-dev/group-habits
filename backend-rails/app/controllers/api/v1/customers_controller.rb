@@ -17,7 +17,7 @@ module Api
       end
 
       def destroy
-        CustomerDestroyerService.new(user: current_user, destroy_customer_params:).call
+        CustomerDestroyerService.new(user: current_user, destroy_params:).call
         render json: {}, status: :no_content
       end
 
@@ -33,10 +33,6 @@ module Api
 
       def update_customer_params
         params.permit(:id, :name, :document_number, :phone, :state_inscription, :customer_type)
-      end
-
-      def destroy_customer_params
-        params.permit(:id)
       end
     end
   end
