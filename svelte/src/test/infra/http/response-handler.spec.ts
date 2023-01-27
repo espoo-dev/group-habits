@@ -1,7 +1,7 @@
 // import { HttpStatusCode } from 'src/data/protocols/http';
 import { HttpStatusCode } from '../../../data/protocols/http';
 import { AccessDeniedError, UnexpectedError } from '../../../domain/errors';
-import { HttpResponseHandler } from '../../../infra/http/response-handler';
+import { HttpResponseHandler } from '../../../infra/http';
 
 describe('HttpResponseHandler', () => {
   describe('handleResponse', () => {
