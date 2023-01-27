@@ -127,7 +127,7 @@ object CategoryMock {
     )
     fun mockCategorDeleteResourceSucess() = flowOf(
         Resource.Success(
-            data = 202
+            data = 204
         )
     )
 
