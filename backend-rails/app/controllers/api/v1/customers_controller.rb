@@ -16,6 +16,11 @@ module Api
         render json: CustomerPresenter.payload_for_item(customer), status: :ok
       end
 
+      def destroy
+        CustomerDestroyerService.new(user: current_user, destroy_customer_params:).call
+        render json: {}, status: :no_content
+      end
+
       private
 
       def index_params
@@ -28,6 +33,10 @@ module Api
 
       def update_customer_params
         params.permit(:id, :name, :document_number, :phone, :state_inscription, :customer_type)
+      end
+
+      def destroy_customer_params
+        params.permit(:id)
       end
     end
   end
