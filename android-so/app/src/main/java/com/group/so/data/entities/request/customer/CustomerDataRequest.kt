@@ -13,7 +13,7 @@ data class CustomerDataRequest(
     @Json(name = "state_inscription") @field:Json(name = "state_inscription")
     val stateInscription: String,
 
-     @Json(name = "customer_type") @field:Json(name = "customer_type")
+    @Json(name = "customer_type") @field:Json(name = "customer_type")
     val customeType: String
 
 )
