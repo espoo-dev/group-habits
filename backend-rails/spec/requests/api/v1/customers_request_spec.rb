@@ -119,4 +119,34 @@ describe 'api/v1/customers', type: :request do
       end
     end
   end
+
+  describe '#destroy' do
+    let(:user) { create(:user) }
+    let!(:customer) { create(:customer, user:) }
+
+    before { delete api_v1_customer_path(customer_id), headers: auth_headers, as: :json }
+
+    describe 'when finds customer' do
+      let(:customer_id) { customer.id }
+      it 'returns status 204 no_content' do
+        expect(response).to be_no_content
+      end
+
+      it 'returns an empty hash' do
+        expect(response.body).to eq('')
+      end
+    end
+
+    describe 'when does not find customer' do
+      let(:customer_id) { -1 }
+
+      it 'returns status 404 not_found' do
+        expect(response).to be_not_found
+      end
+
+      it 'returns proper error message' do
+        expect(json_response['error']).to eq("Couldn't find Customer with 'id'=-1")
+      end
+    end
+  end
 end
