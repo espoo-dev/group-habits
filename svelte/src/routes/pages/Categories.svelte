@@ -1,14 +1,10 @@
 <script lang="ts">
-  import AxiosAdapter from '../../infra/http/AxiosAdapter';
+  import { makeRemoteCategory } from '../../main/factories/usecases/remote-category-factory';
 
-  const api = new AxiosAdapter();
   let categories = [];
-  const loadCategories = () => {
-    api
-      .get('https://group-habits.herokuapp.com/api/v1/categories')
-      .then((response) => {
-        categories = response;
-      });
+  const api = makeRemoteCategory();
+  const loadCategories = async () => {
+    categories = await api.list();
   };
 
   loadCategories();
