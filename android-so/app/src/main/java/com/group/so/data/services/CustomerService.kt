@@ -1,6 +1,5 @@
 package com.group.so.data.services
 
-import com.group.so.data.entities.network.CategoryDTO
 import com.group.so.data.entities.network.CustomerDTO
 import com.group.so.data.entities.request.customer.CustomerDataRequest
 import retrofit2.http.Body
@@ -13,17 +12,22 @@ import retrofit2.http.Query
 interface CustomerService {
 
     @POST("customers")
-    suspend fun registerCustomer(@Body customerDataRequest: CustomerDataRequest): CategoryDTO
+    suspend fun registerCustomer(@Body customerDataRequest: CustomerDataRequest): CustomerDTO
 
     @PUT("customers/{id}")
     suspend fun editCustomer(
         @Path("id") id: Int,
         @Body customerDataRequest: CustomerDataRequest
-    ): CategoryDTO
+    ): CustomerDTO
 
     @GET("customers")
     suspend fun getAllCustomers(): List<CustomerDTO>
 
     @GET("customers")
     suspend fun getCustomersByName(@Query("name") name: String?): List<CustomerDTO>
+
+    @GET("customers")
+    suspend fun getCustomersByCustomerType(
+        @Query("customer_type") customType: String?
+    ): List<CustomerDTO>
 }
