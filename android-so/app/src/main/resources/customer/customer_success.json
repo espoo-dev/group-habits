@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "John",
+    "document_number": "00321333355",
+    "phone": "85996686868",
+    "state_inscription": "",
+    "customer_type": "person"
+  },
+  {
+    "id": 2,
+    "name": "company",
+    "document_number": "123456789321654",
+    "phone": "25996686868",
+    "state_inscription": "",
+    "customer_type": "business"
+  },
+  {
+    "id": 3,
+    "name": "new_customer_name2",
+    "document_number": "1234567892",
+    "phone": "859361890825",
+    "state_inscription": "something2",
+    "customer_type": "business"
+  }
+]
