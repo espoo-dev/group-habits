@@ -8,7 +8,6 @@ import com.group.so.data.repository.LoginRepositoryImpl
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.category.CategoryRepositoryImpl
 import com.group.so.data.services.CategoryService
-import com.group.so.data.services.CustomerService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.squareup.moshi.Moshi
@@ -66,9 +65,6 @@ object DataModule {
             }
             single {
                 createService<CategoryService>(get(), get())
-            }
-            single {
-                createService<CustomerService>(get(), get())
             }
         }
     }
