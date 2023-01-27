@@ -1,0 +1,701 @@
+{
+	"info": {
+		"_postman_id": "9de2290b-6908-4373-8429-f80b873821a1",
+		"name": "espoo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1505369"
+	},
+	"item": [
+		{
+			"name": "list categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJEVlI0bWVhSmVDVkk5cS05VjU5WWNBIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IkNvZUJPSnlldHVUdkE0VDhDRnBZZEEiLCJleHBpcnkiOiIxNzM2ODg3NDYzIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/categories",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiIxM3MteWNMa3VndzRPTU1VZkJTX3dnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IllOYUtRenMzczdsS2ZPWk1BdG9FNGciLCJleHBpcnkiOiIxNzM3NDAxOTUzIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/categories?name=nan",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "nan"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJLWUtrajNReW1sUmJ0NUl4YnhxVDVBIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6Inl1YjJMQjBDWGVCZHM4cnN6NjZWeGciLCJleHBpcnkiOiIxNzM3MTE1NDY0IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/categories/1",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJEVlI0bWVhSmVDVkk5cS05VjU5WWNBIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IkNvZUJPSnlldHVUdkE0VDhDRnBZZEEiLCJleHBpcnkiOiIxNzM2ODg3NDYzIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"new name\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/categories",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit category",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/categories/1",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\":\t{\n\t\t\"email\": \"user@email.com\",\n\t\t\"password\": \"123456789\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/users/sign_in",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJyM1Z2VlVnYW5wVDNrUGIxRlNHY2NRIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6Ilh1bC1fRlRUZ2x1NnE0RU1lR0x1cGciLCJleHBpcnkiOiIxNzM3NjYzNTU0IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/items",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list items - filter by name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJyM1Z2VlVnYW5wVDNrUGIxRlNHY2NRIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6Ilh1bC1fRlRUZ2x1NnE0RU1lR0x1cGciLCJleHBpcnkiOiIxNzM3NjYzNTU0IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/items?name=ser",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"items"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "ser"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list items - filter by item_type",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJyM1Z2VlVnYW5wVDNrUGIxRlNHY2NRIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6Ilh1bC1fRlRUZ2x1NnE0RU1lR0x1cGciLCJleHBpcnkiOiIxNzM3NjYzNTU0IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/items?item_type=product",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"items"
+					],
+					"query": [
+						{
+							"key": "item_type",
+							"value": "product"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiI4VFhQdkRGc3RtbzFOZ3Ftb09NT3BRIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IkpINDFJdEJ5aDZTV1VRNEtIWnhvcnciLCJleHBpcnkiOiIxNzM3OTg5NTQ1IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/customers",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list customers - filter by name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJRNmVEa2VhMFRLOHFGZU9jZXZSZkl3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IjF6djd6cng4RnlBenhVaWlyUHVRa0EiLCJleHBpcnkiOiIxNzM3ODI1MTUzIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/customers?name=Jo",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Jo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list customers - filter by customer type",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJRNmVEa2VhMFRLOHFGZU9jZXZSZkl3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IjF6djd6cng4RnlBenhVaWlyUHVRa0EiLCJleHBpcnkiOiIxNzM3ODI1MTUzIiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/customers?customer_type=business",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "customer_type",
+							"value": "business"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJSRHdjUzh1OTIxV0c5NDJxck5QZlRnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6ImlJa1M3aWhSSF9hNG50RU8zbHl4MnciLCJleHBpcnkiOiIxNzM3OTExMjc0IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "      {\n        \"name\": \"new_customer_name\",\n        \"document_number\": \"123456789\",\n        \"phone\": \"85936189085\",\n        \"state_inscription\": \"something\",\n        \"customer_type\": \"business\"\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/customers",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJSRHdjUzh1OTIxV0c5NDJxck5QZlRnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6ImlJa1M3aWhSSF9hNG50RU8zbHl4MnciLCJleHBpcnkiOiIxNzM3OTExMjc0IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "      {\n        \"name\": \"new_customer_name2\",\n        \"document_number\": \"1234567892\",\n        \"phone\": \"859361890825\",\n        \"state_inscription\": \"something2\",\n        \"customer_type\": \"business2\"\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://group-habits.herokuapp.com/api/v1/customers/3",
+					"protocol": "https",
+					"host": [
+						"group-habits",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
