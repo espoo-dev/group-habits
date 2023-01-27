@@ -101,7 +101,7 @@ class CategoryRepositoryTest {
     }
 
     @Test
-    fun `should return a 202 after editing`() =
+    fun `should return a 204 NO_CONTENT after delete`() =
         runBlocking {
 
             // GIVEN
@@ -116,7 +116,7 @@ class CategoryRepositoryTest {
             // THEN
             assertEquals(
                 result.data,
-                202
+                204
             )
             assertTrue(result is Resource.Success)
         }

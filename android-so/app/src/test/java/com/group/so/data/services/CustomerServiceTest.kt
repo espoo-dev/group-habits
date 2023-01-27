@@ -47,6 +47,17 @@ class CustomerServiceTest {
     }
 
     @Test
+    fun `should return correct endpoint get customer when receiving query customer_type`() {
+        runBlocking {
+            mockWebServer.enqueue(MockResponse().setBody("[]"))
+            service.getCustomersByCustomerType("teste")
+            val request = mockWebServer.takeRequest()
+            println(request.path)
+            assertEquals(request.path, "/customers?customer_type=teste")
+        }
+    }
+
+    @Test
     fun `should return correct endpoint customers`() {
         runBlocking {
             mockWebServer.enqueue(MockResponse().setBody("[]"))
