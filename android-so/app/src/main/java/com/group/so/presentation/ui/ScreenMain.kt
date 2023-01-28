@@ -2,7 +2,6 @@
 
 package com.group.so.presentation.ui
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
@@ -18,7 +17,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.group.so.presentation.ui.category.CategoryListScreen
 import com.group.so.presentation.ui.category.CategoryViewModel
-import com.group.so.presentation.ui.home.HomePage
+import com.group.so.presentation.ui.customer.CustomerScreen
+import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -49,13 +49,16 @@ fun ScreenMain() {
                 onNewCategoryClick = {
                 },
                 onCategoryClick = {
-                    Log.d("TESTE", "TESTE")
                 },
                 onDeleteCategory = { categoryViewModel.deleteCategory(it.id) }
             ) { categoryViewModel.fetchLatestCategories() }
         }
         composable(Routes.Home.route) {
-            HomePage()
+            HomeScreen(navController)
+        }
+
+        composable(Routes.Customer.route) {
+            CustomerScreen()
         }
     }
 }
