@@ -14,6 +14,7 @@ import com.group.so.domain.category.EditCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
 import com.group.so.domain.category.SearchCategoriesUseCase
+import com.group.so.domain.customer.GetCustomersUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.login.LoginViewModel
 import com.squareup.moshi.Moshi
@@ -42,13 +43,19 @@ fun configureDataModuleForTest(baseUrl: String) = module {
 }
 
 fun configureDomainModuleForTest() = module {
+
+    // Login
     factory<LoginUseCase> { LoginUseCase(get()) }
 
+    // Category
     factory<GetCategoriesUseCase> { GetCategoriesUseCase(get()) }
     factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
     factory<DeleteCategoryUseCase> { DeleteCategoryUseCase(get()) }
     factory<EditCategoryUseCase> { EditCategoryUseCase(get()) }
     factory<SearchCategoriesUseCase> { SearchCategoriesUseCase(get()) }
+
+    // Customer
+    factory<GetCustomersUseCase> { GetCustomersUseCase(get()) }
 }
 
 fun configureDAOModuleForTest() = module {
