@@ -16,7 +16,7 @@ export class makeHttpDecorator implements HttpClient {
     data.headers = {
       ...data.headers,
       Authorization:
-        'Bearer eyJhY2Nlc3MtdG9rZW4iOiJJckR0S1hJNUN1YlhnVU1Ldnh0ZG9RIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IllDZzA2NllsRkVsejlvcnhHMzhPTFEiLCJleHBpcnkiOiIxNzM3NzU4MTc2IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==',
+        'Bearer eyJhY2Nlc3MtdG9rZW4iOiJ0Skx3YnNHaXIyRmZQSFdjN29OSVlnIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6Il9DdTVRWDhmczhYbFlweTZCWW03bXciLCJleHBpcnkiOiIxNzM3OTQxNDg2IiwidWlkIjoidXNlckBlbWFpbC5jb20ifQ==',
     };
     return await this.httpClient.request(data);
   }

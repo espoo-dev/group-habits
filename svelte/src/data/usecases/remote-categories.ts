@@ -1,6 +1,7 @@
 import { InvalidCredentialsError, UnexpectedError } from '../../domain/errors';
 import type { Categories } from 'src/domain/usecases';
-import { HttpStatusCode, type HttpClient } from '../protocols/http';
+import { HttpResponseHandler } from '../../infra/http/';
+import type { HttpClient } from '../protocols/http';
 
 export class RemoteCategory implements Categories {
   constructor(
@@ -14,14 +15,7 @@ export class RemoteCategory implements Categories {
       method: 'get',
       body: params,
     });
-    switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok:
-        return httpResponse.body;
-      case HttpStatusCode.unauthorized:
-        throw new InvalidCredentialsError();
-      default:
-        throw new UnexpectedError();
-    }
+    return HttpResponseHandler.handleResponse(httpResponse);
   }
 }
 
