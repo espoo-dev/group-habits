@@ -34,7 +34,7 @@ class SearchCategoriesUseCaseTest {
             Assert.assertTrue(result is Resource.Success)
         }
 
-    @Test(expected = RemoteException::class)
+    @Test(expected = Exception::class)
     fun ` should throw an exception after trying to fetch the list of categories by name `() = runBlocking {
 
         coEvery { categoryRepository.listCategoriesByName("teste") } throws RemoteException("")

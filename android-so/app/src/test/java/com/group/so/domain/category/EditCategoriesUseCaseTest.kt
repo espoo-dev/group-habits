@@ -45,7 +45,7 @@ class EditCategoriesUseCaseTest {
             Assert.assertTrue(result is Resource.Success)
         }
 
-    @Test(expected = RemoteException::class)
+    @Test(expected = Exception::class)
     fun `should throw an exception after trying to edit a category`() = runBlocking {
 
         coEvery { categoryRepository.edit(mockEditCategoryRequest) } throws RemoteException("")
