@@ -89,4 +89,47 @@ describe User do
       end
     end
   end
+
+  describe '.signin_or_create_from_provider' do
+    let(:provider_data) do
+      {
+        provider: 'google',
+        uid: '123456',
+        info: {
+          email: 'user@example.com'
+        }
+      }
+    end
+
+    context 'when user already exists' do
+      let!(:existing_user) do
+        create(:user, provider: 'google', uid: '123456')
+      end
+
+      it 'returns the existing user' do
+        expect(described_class.signin_or_create_from_provider(provider_data)).to eq existing_user
+      end
+    end
+
+    context 'when user does not exist' do
+      it 'creates a new user' do
+        expect { described_class.signin_or_create_from_provider(provider_data) }.to change { User.count }.by(1)
+      end
+
+      it 'sets the correct email' do
+        user = described_class.signin_or_create_from_provider(provider_data)
+        expect(user.email).to eq 'user@example.com'
+      end
+
+      it 'sets a password' do
+        user = described_class.signin_or_create_from_provider(provider_data)
+        expect(user.password).to be_present
+      end
+
+      it 'skips confirmation' do
+        user = described_class.signin_or_create_from_provider(provider_data)
+        expect(user).to be_confirmed
+      end
+    end
+  end
 end

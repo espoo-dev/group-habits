@@ -66,5 +66,15 @@ module App
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use ActionDispatch::Flash
     config.middleware.use Rack::MethodOverride
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 headers: :any,
+                 expose: %w[access-token expired token-type uid client],
+                 methods: %i[get post options delete put]
+      end
+    end
   end
 end

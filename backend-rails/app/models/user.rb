@@ -35,7 +35,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :trackable, :validatable
+         :recoverable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
   include DeviseTokenAuth::Concerns::User
 
   has_many :daily_habits, dependent: :destroy
@@ -67,6 +68,13 @@ class User < ApplicationRecord
       expiry: token.expiry
     }
     bearer_token(token.token, token.client)
+  end
+
+  def self.signin_or_create_from_provider(provider_data)
+    where(provider: provider_data[:provider], uid: provider_data[:uid]).first_or_create! do |user|
+      user.email = provider_data[:info][:email]
+      user.password = Devise.friendly_token[0, 20]
+    end
   end
 
   private
