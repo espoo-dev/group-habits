@@ -77,7 +77,7 @@ fun LoginScreen(
                 Toast.LENGTH_LONG
             ).show()
             navController.popBackStack()
-            navController.navigate(Routes.Category.route)
+            navController.navigate(Routes.Home.route)
         }
     }
     HeaderLogin()

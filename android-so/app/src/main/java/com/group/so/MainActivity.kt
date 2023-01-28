@@ -10,6 +10,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import com.group.so.presentation.ui.ScreenMain
 import com.group.so.ui.theme.SOTheme
 
@@ -21,6 +22,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            window.statusBarColor = MaterialTheme.colors.primaryVariant.toArgb()
+            window.navigationBarColor = MaterialTheme.colors.primaryVariant.toArgb()
+
             SOTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
