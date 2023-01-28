@@ -1,9 +1,9 @@
-package com.group.so.domain.category
+package com.group.so.domain.customer
 
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
-import com.group.so.data.repository.category.CategoryRepository
-import com.group.so.mock.CategoryMock
+import com.group.so.data.repository.customer.CustomerRepository
+import com.group.so.mock.CustomerMock.mockCustomerDeleteResourceSucess
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
@@ -14,9 +14,9 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class DeleteCategoriesUseCaseTest {
-    private val categoryRepository = mockk<CategoryRepository>()
-    val deleteCategoryUseCase = DeleteCategoryUseCase(categoryRepository)
+class DeleteCustomersUseCaseTest {
+    private val customerRepository = mockk<CustomerRepository>()
+    val deleteCustomerUseCase = DeleteCustomerUseCase(customerRepository)
 
     @Test
     fun `should return 204 after delete`() =
@@ -24,12 +24,12 @@ class DeleteCategoriesUseCaseTest {
 
             // GIVEN
             coEvery {
-                categoryRepository.delete(
+                customerRepository.delete(
                     1
                 )
-            } returns CategoryMock.mockCategorDeleteResourceSucess()
+            } returns mockCustomerDeleteResourceSucess()
 
-            val result = deleteCategoryUseCase.execute(1).first()
+            val result = deleteCustomerUseCase.execute(1).first()
 
             // THEN
             Assert.assertEquals(
@@ -40,9 +40,9 @@ class DeleteCategoriesUseCaseTest {
         }
 
     @Test(expected = RemoteException::class)
-    fun `should throw an exception after trying to delete a category`() = runBlocking {
+    fun `should throw an exception after trying to delete a customer`() = runBlocking {
 
-        coEvery { categoryRepository.delete(1) } throws RemoteException("")
-        val result = deleteCategoryUseCase(1)
+        coEvery { customerRepository.delete(1) } throws RemoteException("")
+        val result = deleteCustomerUseCase(1)
     }
 }

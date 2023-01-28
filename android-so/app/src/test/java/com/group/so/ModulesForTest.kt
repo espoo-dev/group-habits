@@ -14,6 +14,10 @@ import com.group.so.domain.category.EditCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
 import com.group.so.domain.category.SearchCategoriesUseCase
+import com.group.so.domain.customer.DeleteCustomerUseCase
+import com.group.so.domain.customer.EditCustomerUseCase
+import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
+import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.login.LoginViewModel
@@ -56,6 +60,11 @@ fun configureDomainModuleForTest() = module {
 
     // Customer
     factory<GetCustomersUseCase> { GetCustomersUseCase(get()) }
+    factory<GetCustomersByNameUseCase> { GetCustomersByNameUseCase(get()) }
+    factory<GetCustomersByCustomTypeUseCase> { GetCustomersByCustomTypeUseCase(get()) }
+    factory<DeleteCustomerUseCase> { DeleteCustomerUseCase(get()) }
+    factory<EditCustomerUseCase> { EditCustomerUseCase(get()) }
+    factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
 }
 
 fun configureDAOModuleForTest() = module {
