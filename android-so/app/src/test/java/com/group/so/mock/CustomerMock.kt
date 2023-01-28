@@ -80,6 +80,36 @@ object CustomerMock {
         )
     )
 
+    fun mockCustomerRegisterResourceSucess() = flowOf(
+        Resource.Success(
+            data =
+            Customer(
+                id = 1,
+                name = "customer test",
+                documentNumber = "123",
+                phone = "123",
+                stateInscription = "123",
+                customerType = "business"
+            ),
+
+        )
+    )
+
+    fun mockCustomerEditResourceSucess() = flowOf(
+        Resource.Success(
+            data =
+            Customer(
+                id = 1,
+                name = "customer test",
+                documentNumber = "123",
+                phone = "123",
+                stateInscription = "123",
+                customerType = "business"
+            ),
+
+        )
+    )
+
     fun mockCustomerResourceSuccess(): Resource<List<Customer>> =
         Resource.Success(data = mockCustomerList())
 
