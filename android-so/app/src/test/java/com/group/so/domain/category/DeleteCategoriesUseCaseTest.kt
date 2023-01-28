@@ -19,7 +19,7 @@ class DeleteCategoriesUseCaseTest {
     val deleteCategoryUseCase = DeleteCategoryUseCase(categoryRepository)
 
     @Test
-    fun `should return 202 after delete`() =
+    fun `should return 204 after delete`() =
         runBlocking {
 
             // GIVEN
@@ -34,7 +34,7 @@ class DeleteCategoriesUseCaseTest {
             // THEN
             Assert.assertEquals(
                 result.data,
-                202
+                204
             )
             Assert.assertTrue(result is Resource.Success)
         }
