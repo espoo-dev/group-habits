@@ -1,6 +1,7 @@
 <script lang="ts">
   import { makeRemoteAuthentication } from '../../main/factories/usecases/remote-authentication-factory';
   import { navigate } from 'svelte-routing';
+  import { setCurrentAccountAdapter } from '../../main/adapters';
 
   const user = {
     email: 'user@email.com',
@@ -13,7 +14,7 @@
     const response = await http.auth({ user });
     if (response.user) {
       navigate('/categories', { replace: true });
-      console.log('response -> ', response);
+      setCurrentAccountAdapter(response);
     }
   };
 </script>
