@@ -36,7 +36,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew assemble
+      run: ./gradlew build jacocoTestReport coveralls
       
     - name: Static Analysis
       run: ./gradlew ktlintCheck detekt
