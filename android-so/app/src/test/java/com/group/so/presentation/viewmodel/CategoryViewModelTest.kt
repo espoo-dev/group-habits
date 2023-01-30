@@ -2,7 +2,6 @@
 
 package com.group.so.presentation.viewmodel
 
-
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
