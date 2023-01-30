@@ -1,4 +1,4 @@
-name: Android CI
+name: Android Coveralls
 
 on:
   push:
@@ -15,29 +15,28 @@ on:
       - .github/workflows/android-so.yml 
 
 jobs:
-  build:
+ android-coverage:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     
     defaults:
       run:
         working-directory: android-so
 
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
-        
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew assemble
-      
-    - name: Static Analysis
-      run: ./gradlew ktlintCheck detekt
+      - name: Set Up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+
+      - name: Run Tests
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew app:coveralls
       
