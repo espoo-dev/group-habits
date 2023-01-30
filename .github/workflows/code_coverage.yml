@@ -39,4 +39,4 @@ jobs:
        with:
         
           api-level: 29
-          script: ./gradlew app:coveralls
+          script: ./gradle app:coveralls
