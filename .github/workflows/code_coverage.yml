@@ -15,14 +15,28 @@ on:
       - .github/workflows/android-so.yml 
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
+ android-coverage:
+
+    runs-on: macos-latest
+    
+    defaults:
+      run:
+        working-directory: android-so
+
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    - name: test and publish coverage
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      run: ./gradlew test jacocoTestReport coveralls
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+
+      - name: Run Tests
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew app:coveralls
       
