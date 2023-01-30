@@ -20,6 +20,12 @@ jobs:
     strategy:
       matrix:
         api-level: [21, 23, 29]
+    
+    defaults:
+      run:
+        working-directory: android-so    
+        
+        
     steps:
       - name: checkout
         uses: actions/checkout@v3
