@@ -38,5 +38,5 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          run: ./gradlew app:coveralls
+          script: ./gradlew app:coveralls
       
