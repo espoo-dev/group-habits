@@ -31,4 +31,4 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - run: ./gradlew build jacocoTestReport coveralls
+      - run: gradle jacocoTestReport coveralls
