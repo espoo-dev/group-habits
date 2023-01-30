@@ -15,7 +15,7 @@ on:
       - .github/workflows/code_coverage.yml 
 
 jobs:
- android-coverage:
+ test:
 
     runs-on: macos-latest
     
@@ -24,19 +24,14 @@ jobs:
         working-directory: android-so
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: checkout
+        uses: actions/checkout@v3
 
-      - name: Set Up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.11
-
-      - name: Run Tests
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: ./gradlew app:coveralls
+          ndk: 21.0.6113669
+          cmake: 3.10.2.4988404
+          script: ./gradlew connectedCheck
       
