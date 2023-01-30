@@ -15,7 +15,7 @@ on:
       - .github/workflows/code_coverage.yml 
 
 jobs:
- android-coverage:
+ android-coverage1:
     runs-on: macos-latest
     defaults:
       run:
