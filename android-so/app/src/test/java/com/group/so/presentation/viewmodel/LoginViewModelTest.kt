@@ -1,6 +1,7 @@
 package com.group.so.presentation.viewmodel
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.group.so.data.repository.LoginRepository
 import com.group.so.domain.LoginUseCase
 import com.group.so.mock.UserMock
