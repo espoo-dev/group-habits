@@ -48,6 +48,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -269,10 +270,13 @@ fun CategoryItemContent(
         ) {
             Text(
                 text = "${category.name}",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
                 fontWeight = FontWeight.Bold,
                 fontFamily = Poppins,
                 modifier = Modifier
                     .padding(10.dp).weight(1f),
+
                 textAlign = TextAlign.Start,
                 softWrap = true,
                 color = Color.Black,
