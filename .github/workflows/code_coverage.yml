@@ -16,7 +16,7 @@ on:
 
 jobs:
  android-coverage:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: android-so
