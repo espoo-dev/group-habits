@@ -31,12 +31,6 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: gradle
-        
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew assemble
-      
-    - name: Static Analysis
-      run: ./gradlew ktlintCheck detekt
+              
+    - name: Coverage
+    - run: ./gradlew build jacocoTestReport coveralls
