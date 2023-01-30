@@ -272,7 +272,7 @@ fun CategoryItemContent(
                 fontWeight = FontWeight.Bold,
                 fontFamily = Poppins,
                 modifier = Modifier
-                    .padding(10.dp),
+                    .padding(10.dp).weight(1f),
                 textAlign = TextAlign.Start,
                 softWrap = true,
                 color = Color.Black,
