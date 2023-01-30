@@ -1,4 +1,4 @@
-name: Android Coveralls
+name: Coveralls
 
 on:
   push:
@@ -6,16 +6,16 @@ on:
     paths:
       - android-so/**
       - '*.json'
-      - .github/workflows/android-so.yml 
+      - .github/workflows/code_coverage.yml 
   pull_request:
     branches: [ "main" ]
     paths:
       - android-so/**
       - '*.json'
-      - .github/workflows/android-so.yml 
+      - .github/workflows/code_coverage.yml 
 
 jobs:
- android-coverage:
+ test:
 
     runs-on: macos-latest
     
@@ -37,6 +37,6 @@ jobs:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         uses: reactivecircus/android-emulator-runner@v2
         with:
+        
           api-level: 29
           script: ./gradlew app:coveralls
-      
