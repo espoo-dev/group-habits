@@ -1,0 +1,36 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - android-so/**
+      - '*.json'
+      - .github/workflows/android-so.yml 
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - android-so/**
+      - '*.json'
+      - .github/workflows/android-so.yml 
+
+jobs:
+  android-coverage:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+
+      - name: Run Tests
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew app:coveralls
+      
