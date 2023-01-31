@@ -5,4 +5,15 @@
     <dimen name="screen_padding">24dp</dimen>
     <dimen name="list_padding">16dp</dimen>
     <dimen name="form_spacing">24dp</dimen>
+
+
+    <!-- Customer-->
+    <dimen name="customer_phone_dimen">16dp</dimen>
+    <dimen name="customer_name_dimen">16dp</dimen>
+    <dimen name="customer_content_item_dimen">16dp</dimen>
+    <dimen name="customer_elevation_card_dimen">4dp</dimen>
+    <dimen name="customer_card_padding_all_dimen">14dp</dimen>
+    <dimen name="customer_elevation_shadow_card_dimen">5dp</dimen>
+
+
 </resources>
