@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ContentAlpha
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -39,13 +40,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.group.so.R
 
+@ExperimentalMaterialApi
 @Composable
 fun CustomTopAppBar(
     titleToolbar: String,
     sharedViewModel: SharedViewModel,
     searchAppBarState: SearchAppBarState,
     searchTextState: String,
-    onSubmitSearch: (String) -> Unit
+    onSubmitSearch: (String) -> Unit,
+    moreAction: @Composable () -> Unit
 ) {
     when (searchAppBarState) {
         SearchAppBarState.CLOSED -> {
@@ -54,7 +57,8 @@ fun CustomTopAppBar(
                 onSearchClicked = {
                     sharedViewModel.searchAppBarState.value =
                         SearchAppBarState.OPENED
-                }
+                },
+                moreAction = { moreAction() }
             )
         }
         else -> {
@@ -80,7 +84,7 @@ fun CustomTopAppBar(
 fun DefaultTopAppBar(
     titleToolbar: String,
     onSearchClicked: () -> Unit,
-
+    moreAction: @Composable () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -103,7 +107,8 @@ fun DefaultTopAppBar(
             },
             actions = {
                 AppBarActions(
-                    onSearchClicked = onSearchClicked
+                    onSearchClicked = onSearchClicked,
+                    moreAction = { moreAction() }
                 )
             }
         )
@@ -112,11 +117,11 @@ fun DefaultTopAppBar(
 
 @Composable
 fun AppBarActions(
-    onSearchClicked: () -> Unit
+    onSearchClicked: () -> Unit,
+    moreAction: @Composable () -> Unit
 ) {
     SearchAction(onSearchClicked = onSearchClicked)
-    // ShareAction()
-    // MoreAction()
+    moreAction()
 }
 
 @Composable
@@ -229,7 +234,9 @@ fun SearchTopAppBar(
             elevation = 0.dp
         ) {
             TextField(
-                modifier = Modifier.fillMaxSize().focusRequester(focusRequester),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .focusRequester(focusRequester),
                 value = text,
                 onValueChange = {
                     onTextChange(it)
@@ -309,14 +316,15 @@ fun SearchTopAppBar(
     }
 }
 
-@Preview
-@Composable
-fun CustomAppBarPreview() {
-    DefaultTopAppBar(
-        onSearchClicked = {},
-        titleToolbar = ""
-    )
-}
+// @Preview
+// @Composable
+// fun CustomAppBarPreview() {
+//    DefaultTopAppBar(
+//        onSearchClicked = {},
+//        titleToolbar = "",
+//        moreAction = (),
+//    )
+// }
 
 @Preview
 @Composable

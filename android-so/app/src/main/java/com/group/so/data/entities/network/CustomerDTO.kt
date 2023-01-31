@@ -6,6 +6,7 @@ import com.group.so.data.entities.model.Customer
 import com.squareup.moshi.Json
 
 data class CustomerDTO(
+    @Json(name = "id") @field:Json(name = "id")
     val id: Int,
 
     @NullToEmptyString
@@ -20,7 +21,7 @@ data class CustomerDTO(
 
     @NullToEmptyString
     @Json(name = "state_inscription") @field:Json(name = "state_inscription")
-    val stateInscription: String,
+    val stateInscription: String?,
 
     @NullToEmptyString
     @Json(name = "customer_type") @field:Json(name = "customer_type")
@@ -28,20 +29,20 @@ data class CustomerDTO(
 
 ) {
     fun toModel(): Customer = Customer(
-        id = 1,
+        id = id,
         name = name,
         documentNumber = documentNumber,
         phone = phone,
-        stateInscription = stateInscription,
+        stateInscription = stateInscription ?: "",
         customerType = customeType
     )
 
     fun toDb(): CustomerDb = CustomerDb(
-        id = 1,
+        id = id,
         name = name,
         documentNumber = documentNumber,
         phone = phone,
-        stateInscription = stateInscription,
+        stateInscription = stateInscription ?: "",
         customerType = customeType
     )
 }

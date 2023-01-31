@@ -95,7 +95,8 @@ fun CategoryListScreen(
             searchTextState = searchTextState,
             onSubmitSearch = {
                 categoryViewModel.getCategoriesByName(it)
-            }
+            },
+            moreAction = {}
         )
     }, floatingActionButton = {
             ExtendedFloatingActionButton(

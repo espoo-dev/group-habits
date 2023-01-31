@@ -5,6 +5,6 @@ class Customer(
     val name: String,
     val documentNumber: String,
     val phone: String,
-    val stateInscription: String,
+    val stateInscription: String?,
     val customerType: String,
 )
