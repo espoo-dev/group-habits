@@ -12,9 +12,20 @@
     <string name="msg_generic_error">Ops! Algo deu errado…</string>
     <string name="msg_loading">Por favor, espere…</string>
 
+    <string name="title_dialog_delete">Deletar Item ?</string>
+    <string name="msg_dialog_delete">Tem certeza de que deseja excluir este item da lista?</string>
+    <string name="label_btn_dialog_delete">Cancelar</string>
+    <string name="label_delete_btn_dialog_delete">Deletar</string>
+
     <!-- Button Texts -->
     <string name="button_save">Salvar</string>
     <string name="button_ok">OK</string>
+
+    <!--Search bar-->
+    <string name="search">Pesquisar</string>
+    <string name="search_icon">pequisar icon</string>
+    <string name="close_icon">fechar icon</string>
+    <string name="title_fab_new_category">Nova Categoria</string>
 
 
     <!-- Categories-->
@@ -23,30 +34,24 @@
     <string name="menu_action_edit">Editar</string>
     <string name="menu_action_logout">Sair</string>
     <string name="menu_action_settings">Configurações</string>
-
     <string name="msg_empty_categories_list">Nenhuma categoria cadastrada no momento</string>
     <string name="msg_category_deleted">Categoria deletada.</string>
-
     <string name="cd_new_category">Inserir nova categoria</string>
     <string name="btn_register_dialog_new_category">Cadastrar Nova Categoria</string>
     <string name="title_dialog_new_category">Nova Categoria</string>
     <string name="title_dialog_edit_category">Editar Categoria %s</string>
     <string name="txt_register_success_category">Categoria cadastrada com sucesso</string>
     <string name="txt_register_edit_category">Categoria editada com sucesso</string>
-
     <string name="btn_save_category">Salvar</string>
     <string name="btn_cancel_category">Cancelar</string>
-    <string name="title_dialog_delete">Deletar Item ?</string>
-    <string name="msg_dialog_delete">Tem certeza de que deseja excluir este item da lista?</string>
-    <string name="label_btn_dialog_delete">Cancelar</string>
-    <string name="label_delete_btn_dialog_delete">Deletar</string>
 
 
-    <!--Search bar-->
-    <string name="search">Pesquisar</string>
-    <string name="search_icon">pequisar icon</string>
-    <string name="close_icon">fechar icon</string>
-    <string name="title_fab_new_category">Nova Categoria</string>
+    <!--Customers-->
+    <string name="title_toolbar_customers">Clientes</string>
+    <string name="title_fab_new_customer">Novo Cliente</string>
+    <string name="cd_new_customer">Inserir novo cliente</string>
+    <string name="msg_empty_customer_list">Nenhum cliente cadastrado no momento</string>
+
 
 
 </resources>
