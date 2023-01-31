@@ -1,12 +1,15 @@
 package com.group.so.data.di
 
 import android.util.Log
+import com.group.so.core.data.NullToEmptyStringAdapter
 import com.group.so.data.database.ServiceOrderDatabase
 import com.group.so.data.di.interceptor.AuthInterceptor
 import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.category.CategoryRepositoryImpl
+import com.group.so.data.repository.customer.CustomerRepository
+import com.group.so.data.repository.customer.CustomerRepositoryImpl
 import com.group.so.data.services.CategoryService
 import com.group.so.data.services.CustomerService
 import com.group.so.data.services.SessionManager
@@ -42,7 +45,18 @@ object DataModule {
     private fun postsModule(): Module {
         return module {
             single<LoginRepository> { LoginRepositoryImpl(service = get(), get()) }
-            single<CategoryRepository> { CategoryRepositoryImpl(categoryService = get(), categoryDao = get()) }
+            single<CategoryRepository> {
+                CategoryRepositoryImpl(
+                    categoryService = get(),
+                    categoryDao = get()
+                )
+            }
+            single<CustomerRepository> {
+                CustomerRepositoryImpl(
+                    customerService = get(),
+                    customerDao = get()
+                )
+            }
         }
     }
 
@@ -58,7 +72,8 @@ object DataModule {
             }
 
             single {
-                Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+                Moshi.Builder().add(NullToEmptyStringAdapter()).add(KotlinJsonAdapterFactory())
+                    .build()
             }
 
             single {
