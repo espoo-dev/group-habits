@@ -24,7 +24,6 @@ class CustomerViewModel(
     private val _customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
     val customerListState = _customerListState.asStateFlow()
 
-
     init {
         fetchLatestCustomers()
     }
