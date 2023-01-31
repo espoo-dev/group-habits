@@ -11,7 +11,7 @@ import com.group.so.data.entities.db.CustomerDb
 
 @Database(
     entities = [CategoryDb::class, CustomerDb::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class ServiceOrderDatabase : RoomDatabase() {
