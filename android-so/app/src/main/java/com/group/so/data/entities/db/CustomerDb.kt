@@ -11,7 +11,7 @@ data class CustomerDb(
     val name: String,
     val documentNumber: String,
     val phone: String,
-    val stateInscription: String,
+    val stateInscription: String?,
     val customerType: String,
 
 ) {
@@ -21,7 +21,7 @@ data class CustomerDb(
         name = name,
         documentNumber = documentNumber,
         phone = phone,
-        stateInscription = stateInscription,
+        stateInscription = stateInscription ?: "",
         customerType = customerType
     )
 }

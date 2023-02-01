@@ -51,7 +51,8 @@
     <string name="title_fab_new_customer">Novo Cliente</string>
     <string name="cd_new_customer">Inserir novo cliente</string>
     <string name="msg_empty_customer_list">Nenhum cliente cadastrado no momento</string>
-
+    <string name="title_menu_person">Pessoa física</string>
+    <string name="title_menu_business">Pessoa jurídica</string>
 
 
 </resources>

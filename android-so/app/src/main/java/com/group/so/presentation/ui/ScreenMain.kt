@@ -60,9 +60,10 @@ fun ScreenMain() {
 
         composable(Routes.Customer.route) {
             val customerViewModel = koinViewModel<CustomerViewModel>()
-            val customersListUiState by customerViewModel.customerState.collectAsState()
+            val customersListUiState by customerViewModel.customerListState.collectAsState()
 
             CustomerScreen(
+                customerViewModel = customerViewModel,
                 customerListState = customersListUiState,
                 onNewCustomerClick = {
                 },

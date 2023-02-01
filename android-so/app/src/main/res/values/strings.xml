@@ -61,7 +61,8 @@
     <string name="title_fab_new_customer">New Customer</string>
     <string name="cd_new_customer">Insert new Customer</string>
     <string name="msg_empty_customer_list">No customers registered at the moment</string>
-
+    <string name="title_menu_person">Person</string>
+    <string name="title_menu_business">Business</string>
 
 
 </resources>

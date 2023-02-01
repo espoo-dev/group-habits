@@ -21,6 +21,8 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.Icon
@@ -29,8 +31,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
@@ -61,6 +65,7 @@ import com.group.so.core.ui.components.CustomTopAppBar
 import com.group.so.core.ui.components.GenericError
 import com.group.so.core.ui.components.SearchAppBarState
 import com.group.so.core.ui.components.SharedViewModel
+import com.group.so.data.CustomerCustomType
 import com.group.so.data.entities.model.Customer
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -72,6 +77,7 @@ const val ANIMATION_TWEEN_100 = 100
 @Composable
 @ExperimentalComposeApi
 fun CustomerScreen(
+    customerViewModel: CustomerViewModel,
     customerListState: State<List<Customer>>,
     onNewCustomerClick: () -> Unit,
     onCustomerClick: (Customer) -> Unit,
@@ -90,6 +96,10 @@ fun CustomerScreen(
             searchAppBarState = searchAppBarState,
             searchTextState = searchTextState,
             onSubmitSearch = {
+                customerViewModel.getCustomersByName(it)
+            },
+            moreAction = {
+                MenuMoreActions(customerViewModel)
             }
         )
     }, floatingActionButton = {
@@ -243,14 +253,14 @@ fun CustomerItemContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalMaterialApi
 @Composable
-private fun CustomerCustomType() {
+private fun CustomerCustomType(customer: Customer) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
 
         AssistChip(
             onClick = { /* Do something! */ },
-            label = { Text("Pessoa Juridica") },
+            label = { Text(customer.customerType) },
             leadingIcon = {
                 Icon(
                     Icons.Filled.Person,
@@ -286,7 +296,7 @@ private fun CustomerBuildInfo(
                 .padding(bottom = dimensionResource(id = R.dimen.customer_phone_dimen))
         )
 
-        CustomerCustomType()
+        CustomerCustomType(customer)
     }
 }
 
@@ -305,5 +315,32 @@ private fun DeleteButton(onDeleteCustomer: (Customer) -> Unit) {
             tint = MaterialTheme.colors.primary,
             contentDescription = null
         )
+    }
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun MenuMoreActions(customerViewModel: CustomerViewModel) {
+    var showMenu by remember { mutableStateOf(false) }
+
+    IconButton(onClick = { showMenu = !showMenu }) {
+        Icon(Icons.Default.MoreVert, "")
+    }
+    DropdownMenu(
+        expanded = showMenu,
+        onDismissRequest = { showMenu = false }
+    ) {
+        DropdownMenuItem(onClick = {
+            showMenu = false
+            customerViewModel.getAllCustomersByCustomType(CustomerCustomType.PERSON)
+        }) {
+            Text(text = stringResource(R.string.title_menu_person))
+        }
+        DropdownMenuItem(onClick = {
+            showMenu = false
+            customerViewModel.getAllCustomersByCustomType(CustomerCustomType.BUSINESS)
+        }) {
+            Text(text = stringResource(R.string.title_menu_business))
+        }
     }
 }
