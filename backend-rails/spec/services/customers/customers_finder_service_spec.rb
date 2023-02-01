@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomersFinderService do
+RSpec.describe Customers::CustomersFinderService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:customer) { create(:customer, name: 'abc', customer_type: Customer.customer_types[:person], user:) }

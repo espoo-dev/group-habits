@@ -1,3 +1,5 @@
+module Customers
+
 class CustomerUpdaterService < BaseService
   attr_reader :user, :id, :name, :document_number, :phone, :state_inscription, :customer_type
 
@@ -19,4 +21,5 @@ class CustomerUpdaterService < BaseService
     customer.update!(name:, document_number:, phone:, state_inscription:, customer_type:)
     customer
   end
+end
 end

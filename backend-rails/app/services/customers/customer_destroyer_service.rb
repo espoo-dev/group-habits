@@ -1,3 +1,5 @@
+module Customers
+
 class CustomerDestroyerService < BaseService
   attr_reader :user, :customer_id
 
@@ -14,4 +16,5 @@ class CustomerDestroyerService < BaseService
     customer.destroy!
     nil
   end
+end
 end

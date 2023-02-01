@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomerDestroyerService do
+RSpec.describe Customers::CustomerDestroyerService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:destroy_params) { { id: customer.id } }

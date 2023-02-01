@@ -1,3 +1,5 @@
+module Customers
+
 class CustomersFinderService < BaseService
   attr_reader :user, :name, :customer_type
 
@@ -14,4 +16,5 @@ class CustomersFinderService < BaseService
 
     authorize!(CustomerPolicy, :index?, customers)
   end
+end
 end

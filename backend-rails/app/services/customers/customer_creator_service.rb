@@ -1,3 +1,4 @@
+module Customers
 class CustomerCreatorService < BaseService
   attr_reader :user, :name, :document_number, :phone, :state_inscription, :customer_type
 
@@ -18,4 +19,5 @@ class CustomerCreatorService < BaseService
     customer.save!
     customer
   end
+end
 end
