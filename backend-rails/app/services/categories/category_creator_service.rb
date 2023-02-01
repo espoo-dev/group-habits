@@ -1,3 +1,5 @@
+module Categories
+
 class CategoryCreatorService < BaseService
   attr_reader :user, :name
 
@@ -14,4 +16,5 @@ class CategoryCreatorService < BaseService
     category.save!
     category
   end
+end
 end

@@ -1,3 +1,5 @@
+module Categories
+
 class CategoryUpdaterService < BaseService
   attr_reader :user, :id, :name
 
@@ -15,4 +17,5 @@ class CategoryUpdaterService < BaseService
     category.update!(name:)
     category
   end
+end
 end

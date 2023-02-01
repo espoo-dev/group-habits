@@ -1,3 +1,5 @@
+module Categories
+
 class CategoryDestroyerService < BaseService
   attr_reader :user, :category_id
 
@@ -14,4 +16,5 @@ class CategoryDestroyerService < BaseService
     category.destroy!
     nil
   end
+end
 end

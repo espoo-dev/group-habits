@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CategoryCreatorService do
+RSpec.describe Categories::CategoryCreatorService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:create_category_params) { attributes_for(:category, user:) }
