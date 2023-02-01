@@ -3,6 +3,7 @@
 package com.group.so.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.core.State
 import com.group.so.data.entities.model.Customer
@@ -80,5 +81,19 @@ class CustomerViewModelTest {
         customerListState.value = viewModel.customerListState.value
 
         assert(customerListState.value is State.Success)
+    }
+
+    @Test
+    fun ` loading customers error `() = runTest {
+
+        val customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
+        coEvery { getCustomersUseCase.execute() } returns flow {
+            emit(Resource.Error(data = null, error = RemoteException("")))
+        }
+        viewModel.fetchLatestCustomers()
+        runCurrent()
+        customerListState.value = viewModel.customerListState.value
+
+        assert(customerListState.value is State.Error)
     }
 }
