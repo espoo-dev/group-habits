@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { UIButton } from "../../components/UI/UIButton";
-import Colors from '../../constants/Colors';
+import Colors from '../../constants/styles/Colors';
 
 
 function Home() {
@@ -29,11 +29,19 @@ function Home() {
         </Text>
 
         <View style={styles.actions}>
-          <UIButton onPress={onPress}>
+          <UIButton
+            onPress={onPress}
+            size="medium"
+            weight="bold"
+          >
             Log in
           </UIButton>
 
-          <UIButton onPress={onPress}>
+          <UIButton
+            onPress={onPress}
+            size="large"
+            weight="bold"
+          >
             Sign up
           </UIButton>
         </View>
