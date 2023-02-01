@@ -70,14 +70,28 @@ describe 'api/v1/customers', type: :request do
     end
 
     context 'when data is not valid' do
-      let(:create_customer_params) { attributes_for(:customer, name: nil, user_id: nil) }
+      context 'when name is not valid' do
+        let(:create_customer_params) { attributes_for(:customer, name: nil, customer_type: 'business', user_id: nil) }
 
-      it 'returns status 400 bad_request' do
-        expect(response).to be_bad_request
+        it 'returns status 400 bad_request' do
+          expect(response).to be_bad_request
+        end
+
+        it 'returns customer' do
+          expect(json_response['error']).to eq("Validation failed: Name can't be blank")
+        end
       end
 
-      it 'returns customer' do
-        expect(json_response['error']).to eq("Validation failed: Name can't be blank")
+      context 'when customer_type is not valid' do
+        let(:create_customer_params) { attributes_for(:customer, customer_type: 'invalid customer type', user_id: nil) }
+
+        it 'returns status 400 bad_request' do
+          expect(response).to be_bad_request
+        end
+
+        it 'returns customer' do
+          expect(json_response['error']).to eq("Validation failed: Customer type can't be blank")
+        end
       end
     end
   end
