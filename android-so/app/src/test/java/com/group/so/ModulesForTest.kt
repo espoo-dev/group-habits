@@ -20,6 +20,7 @@ import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
+import com.group.so.presentation.ui.customer.CustomerViewModel
 import com.group.so.presentation.ui.login.LoginViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -74,6 +75,7 @@ fun configureDAOModuleForTest() = module {
 fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
     factory { CategoryViewModel(get(), get(), get(), get(), get()) }
+    factory { CustomerViewModel(get(), get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(
