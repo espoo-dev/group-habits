@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomerCreatorService do
+RSpec.describe Customers::CustomerCreatorService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:create_customer_params) do

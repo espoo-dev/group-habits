@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ItemsFinderService do
+RSpec.describe Items::ItemsFinderService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:item) { create(:item, name: 'abc', item_type: 'product', user:) }

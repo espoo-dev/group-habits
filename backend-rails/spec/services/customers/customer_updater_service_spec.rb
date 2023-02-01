@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomerUpdaterService do
+RSpec.describe Customers::CustomerUpdaterService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:new_customer_name) { create(:user) }

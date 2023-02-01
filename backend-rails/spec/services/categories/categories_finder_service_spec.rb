@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CategoriesFinderService do
+RSpec.describe Categories::CategoriesFinderService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:category) { create(:category, name: 'abc', user:) }
