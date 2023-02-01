@@ -1,3 +1,4 @@
+module Items
 class ItemsFinderService < BaseService
   attr_reader :user, :name, :item_type
 
@@ -14,4 +15,5 @@ class ItemsFinderService < BaseService
 
     authorize!(ItemPolicy, :index?, items)
   end
+end
 end
