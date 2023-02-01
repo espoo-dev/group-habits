@@ -27,6 +27,7 @@ class Customer < ApplicationRecord
   validates :name, presence: true
   validates :document_number, presence: true
   validates :phone, presence: true
+  validates :customer_type, presence: true
 
   validates :name, uniqueness: { scope: :user_id, case_sensitive: false }
   validates :document_number, uniqueness: { scope: :user_id, case_sensitive: false }

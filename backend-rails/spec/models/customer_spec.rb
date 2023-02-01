@@ -34,6 +34,7 @@ RSpec.describe Customer, type: :model do
       it { should validate_presence_of(:name) }
       it { should validate_presence_of(:document_number) }
       it { should validate_presence_of(:phone) }
+      it { should validate_presence_of(:customer_type) }
     end
 
     context 'uniqueness' do
