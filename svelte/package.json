@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "engines": {
-    "node": "16.10.x"
+    "node": "16.10.0"
   },
   "scripts": {
     "dev": "vite",
