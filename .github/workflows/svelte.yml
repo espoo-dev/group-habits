@@ -12,6 +12,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: svelte
+
     strategy:
       matrix:
         node-version: [16.19.0]
