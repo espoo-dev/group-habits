@@ -1,24 +1,53 @@
 <script lang="ts">
+  import Modal from '../../lib/components/Modal/Modal.svelte';
   import { makeRemoteCategory } from '../../main/factories/usecases/remote-category-factory';
 
   let categories = [];
+  let modalIsOpen = false;
+  let newCategory = {
+    name: ''
+  }
+
   const api = makeRemoteCategory();
   const loadCategories = async () => {
     categories = await api.list();
-  };
+  }
+
+  const closeModal = () => {
+    newCategory = {
+      name: ''
+    }
+    modalIsOpen = false
+  }
+
+  const createCategory = async () => {
+    try {
+      await api.create(newCategory)
+      closeModal()
+      loadCategories()
+    } catch (error) {
+      console.log('error -> ', error);
+    }
+  }
 
   loadCategories();
 </script>
 
 <div class="page-container">
-  <h1
-    class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
-  >
-    <span
-      class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"
-      >Categorias</span
+  <div class="header-page">
+    <h1
+      class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
     >
-  </h1>
+      <span
+        class="text-blue-600 dark:text-blue-500"
+        >Categorias</span
+      >
+    </h1>
+
+    <button on:click={() => modalIsOpen = true} data-modal-target="staticModal" data-modal-toggle="staticModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+      Novo
+    </button>
+  </div>
 
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -52,14 +81,42 @@
       </tbody>
     </table>
   </div>
+
+  {#if modalIsOpen}
+    <Modal
+      title={'Nova Categoria'}
+      on:close="{() => closeModal()}"
+      on:confirm="{() => createCategory()}"
+      >
+      <form>
+        <div class="grid gap-6 mb-6 md:grid-cols-1">
+          <div>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
+            <input
+              bind:value={newCategory.name}
+              type="text"
+              id="name"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Carros"
+              required>
+          </div>
+        </div>
+      </form>
+    </Modal>
+  {/if}
+
 </div>
 
 <style>
-  h1 {
-    margin-bottom: 46px;
-  }
-
   .page-container {
     padding: 24px;
+  }
+
+  .header-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    margin-bottom: 46px;
   }
 </style>
