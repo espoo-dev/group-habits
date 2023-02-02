@@ -3,6 +3,8 @@ name: Frontend - Format, lint, test and build
 on:
   pull_request:
     branches: ['main']
+    paths:
+      - svelte/**
 
 env:
   NODE_ENV: test
