@@ -6,6 +6,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.core.State
+import com.group.so.data.CustomerCustomType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.repository.customer.CustomerRepository
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
@@ -95,5 +96,47 @@ class CustomerViewModelTest {
         customerListState.value = viewModel.customerListState.value
 
         assert(customerListState.value is State.Error)
+    }
+
+    @Test
+    fun ` loading customers by name successfully `() = runTest {
+
+        val customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
+        coEvery { getCustomersByNameUseCase.execute("teste") } returns flow {
+            emit(Resource.Success(data = CustomerMock.mockCustomerList()))
+        }
+        viewModel.getCustomersByName("teste")
+        runCurrent()
+        customerListState.value = viewModel.customerListState.value
+
+        assert(customerListState.value is State.Success)
+    }
+
+    @Test
+    fun ` loading customers by custom type person successfully `() = runTest {
+
+        val customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
+        coEvery { getCustomersByCustomTypeUseCase.execute("person") } returns flow {
+            emit(Resource.Success(data = CustomerMock.mockCustomerList()))
+        }
+        viewModel.getAllCustomersByCustomType(CustomerCustomType.PERSON)
+        runCurrent()
+        customerListState.value = viewModel.customerListState.value
+
+        assert(customerListState.value is State.Success)
+    }
+
+    @Test
+    fun ` loading customers by custom type business successfully `() = runTest {
+
+        val customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
+        coEvery { getCustomersByCustomTypeUseCase.execute("business") } returns flow {
+            emit(Resource.Success(data = CustomerMock.mockCustomerList()))
+        }
+        viewModel.getAllCustomersByCustomType(CustomerCustomType.BUSINESS)
+        runCurrent()
+        customerListState.value = viewModel.customerListState.value
+
+        assert(customerListState.value is State.Success)
     }
 }
