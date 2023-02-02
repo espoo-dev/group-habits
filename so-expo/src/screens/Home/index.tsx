@@ -1,46 +1,40 @@
-import { useMemo } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { UIButton } from "../../components/UI/UIButton";
-import Colors from '../../constants/styles/Colors';
-
 
 function Home() {
-  const { colors } = Colors
-
-  const styles = useMemo(() => stylesFactory({ colors }), [Colors])
-
   const onPress = () => {
     console.log("Pressed");
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
+    <View className="flex justify-between bg-blue-RYB px-4 py-8 h-full">
+      <Text className="text-lotion font-bold text-2xl mt-4">
         S.O.
       </Text>
 
       <View>
-        <Text style={styles.title}>
+        <Text className="text-lotion font-bold text-2xl">
           Ordem de Serviço
         </Text>
 
-        <Text style={styles.subtitle}>
+        <Text className="text-lotion mt-1">
           Gerencie e organize seu negócio de um só lugar.
         </Text>
 
-        <View style={styles.actions}>
+        <View className="flex justify-between bg-blue-RYB mt-12 h-[104px]">
           <UIButton
+            icon="mug-saucer"
             onPress={onPress}
-            size="medium"
-            weight="bold"
+            size="extra-large"
+            variant="white"
           >
             Log in
           </UIButton>
 
           <UIButton
             onPress={onPress}
-            size="large"
-            weight="bold"
+            size="extra-large"
+            variant="secondary"
           >
             Sign up
           </UIButton>
@@ -49,32 +43,5 @@ function Home() {
     </View>
   )
 }
-
-const stylesFactory = ({ colors }: any) => StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    backgroundColor: '#1A54F8',
-    paddingHorizontal: 16,
-    paddingVertical: 32,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: "#FBFBFC",
-  },
-  subtitle: {
-    fontSize: 12,
-    color: "#FBFBFC",
-    marginTop: 8,
-  },
-  actions: {
-    flex: 1,
-    backgroundColor: '#1A54F8',
-    justifyContent: 'space-between',
-    gap: 8,
-    marginTop: 64,
-  },
-})
 
 export { Home };
