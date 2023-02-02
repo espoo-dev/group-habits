@@ -1,4 +1,3 @@
-import { InvalidCredentialsError, UnexpectedError } from '../../domain/errors';
 import type { Categories } from 'src/domain/usecases';
 import { HttpResponseHandler } from '../../infra/http/';
 import type { HttpClient } from '../protocols/http';
