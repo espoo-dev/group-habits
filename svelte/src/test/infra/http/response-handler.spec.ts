@@ -14,6 +14,15 @@ describe('HttpResponseHandler', () => {
       expect(HttpResponseHandler.handleResponse(httpResponse)).toEqual(body);
     });
 
+    it('should return the response body when the status code is created', () => {
+      const body = [{ name: 'new category', id: 4 }];
+      const httpResponse = {
+        statusCode: HttpStatusCode.created,
+        body,
+      };
+      expect(HttpResponseHandler.handleResponse(httpResponse)).toEqual(body);
+    });
+
     it('should return an empty array when the status code is No Content', () => {
       const httpResponse = { statusCode: HttpStatusCode.noContent };
       expect(HttpResponseHandler.handleResponse(httpResponse)).toEqual([]);

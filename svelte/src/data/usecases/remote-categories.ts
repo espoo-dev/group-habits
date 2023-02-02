@@ -1,3 +1,4 @@
+import type { CategoryModel } from 'src/domain/models/category-model';
 import type { Categories } from 'src/domain/usecases';
 import { HttpResponseHandler } from '../../infra/http/';
 import type { HttpClient } from '../protocols/http';
@@ -14,6 +15,15 @@ export class RemoteCategory implements Categories {
       method: 'get',
       body: params,
     });
+    return HttpResponseHandler.handleResponse(httpResponse);
+  }
+
+  async create(payload: Categories.New): Promise<CategoryModel> {
+    const httpResponse = await this.httpClient.request({
+      url: this.url,
+      method: 'post',
+      body: payload
+    })
     return HttpResponseHandler.handleResponse(httpResponse);
   }
 }

@@ -8,6 +8,8 @@ export class HttpResponseHandler {
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
         return httpResponse.body || defaultResponse;
+      case HttpStatusCode.created:
+        return httpResponse.body || defaultResponse;
       case HttpStatusCode.forbidden:
         throw new AccessDeniedError();
       case HttpStatusCode.noContent:
