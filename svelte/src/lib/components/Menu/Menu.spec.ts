@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import '@testing-library/jest-dom';
 import Menu from './Menu.svelte';
 

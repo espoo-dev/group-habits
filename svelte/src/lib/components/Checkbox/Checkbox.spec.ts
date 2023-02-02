@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/svelte';
+import { act, fireEvent, render } from '@testing-library/svelte';
 import '@testing-library/jest-dom';
 import Checkbox from './Checkbox.svelte';
 
@@ -44,7 +44,7 @@ describe('Checkbox component', () => {
   });
 
   it('should call event when select checkbox', async () => {
-    let mockEvent = jest.fn();
+    const mockEvent = jest.fn();
 
     checkboxComponent.$on('change_selected', function (event) {
       mockEvent(event.detail);
