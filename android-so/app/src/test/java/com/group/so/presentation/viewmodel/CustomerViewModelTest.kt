@@ -7,17 +7,14 @@ import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.core.State
 import com.group.so.data.CustomerCustomType
-import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Customer
-import com.group.so.data.entities.request.CategoryDataRequest
-import com.group.so.data.entities.request.customer.CustomerDataRequest
 import com.group.so.data.repository.customer.CustomerRepository
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
 import com.group.so.domain.customer.RegisterCustomerUseCase
 import com.group.so.mock.CustomerMock
-import com.group.so.mock.CustomerMock.customerMock
+import com.group.so.mock.CustomerMock.customerMocked
 import com.group.so.mock.CustomerMock.customerRequestMock
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import io.mockk.coEvery
@@ -157,7 +154,7 @@ class CustomerViewModelTest {
                 customerRequestMock
             )
         } returns flow {
-            emit(Resource.Success(data = customerMock))
+            emit(Resource.Success(data = customerMocked))
         }
         viewModel.register(
             name = "teste",
@@ -170,5 +167,4 @@ class CustomerViewModelTest {
 
         assert(registerCustomerState.value is State.Success)
     }
-
 }

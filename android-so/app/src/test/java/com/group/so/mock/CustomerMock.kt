@@ -93,7 +93,7 @@ object CustomerMock {
                 customerType = "business"
             ),
 
-            )
+        )
     )
 
     fun mockCustomerEditResourceSucess() = flowOf(
@@ -108,7 +108,7 @@ object CustomerMock {
                 customerType = "business"
             ),
 
-            )
+        )
     )
 
     val customerRequestMock = CustomerDataRequest(
@@ -119,15 +119,14 @@ object CustomerMock {
         customeType = "business"
     )
 
-   val customerMock =  Customer(
-    id = 1,
-    name = "teste",
-    documentNumber = "123",
-    phone = "123",
-    stateInscription = "123",
-    customerType = "business"
+    val customerMocked = Customer(
+        id = 1,
+        name = "teste",
+        documentNumber = "123",
+        phone = "123",
+        stateInscription = "123",
+        customerType = "business"
     )
-
 
     fun mockCustomerResourceSuccess(): Resource<List<Customer>> =
         Resource.Success(data = mockCustomerList())
