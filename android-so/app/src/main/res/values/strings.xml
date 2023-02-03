@@ -64,5 +64,14 @@
     <string name="title_menu_person">Person</string>
     <string name="title_menu_business">Business</string>
 
+    <!--Customers Add New Customer-->
+    <string name="title_button_register">Add new customer</string>
+    <string name="title_toolbar_add_new_customer">Add new Customer</string>
+    <string name="lbl_field_state_inscription">Registration number</string>
+    <string name="lbl_field_phone">Phone</string>
+    <string name="lbl_field_document">Document</string>
+    <string name="lbl_field_name">Name</string>
+    <string name="txt_register_success_customer">Customer registered successfully</string>
+
 
 </resources>
