@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: unit_types
+# Table name: sales_units
 #
 #  id         :bigint           not null, primary key
 #  name       :string           not null
@@ -9,10 +9,11 @@
 #
 # Indexes
 #
-#  index_unit_types_on_name  (name) UNIQUE
+#  index_sales_units_on_name  (name) UNIQUE
 #
-FactoryBot.define do
-  factory :unit_type do
-    name { 'kilogram' }
-  end
+class SalesUnit < ApplicationRecord
+  include NameFilterable
+
+  validates :name, presence: true
+  validates :name, uniqueness: true
 end

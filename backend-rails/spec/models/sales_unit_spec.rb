@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: unit_types
+# Table name: sales_units
 #
 #  id         :bigint           not null, primary key
 #  name       :string           not null
@@ -9,13 +9,13 @@
 #
 # Indexes
 #
-#  index_unit_types_on_name  (name) UNIQUE
+#  index_sales_units_on_name  (name) UNIQUE
 #
 require 'rails_helper'
 
-RSpec.describe UnitType, type: :model do
+RSpec.describe SalesUnit, type: :model do
   context 'validations' do
-    subject { create(:unit_type) }
+    subject { create(:sales_unit) }
 
     it { should validate_presence_of(:name) }
 
