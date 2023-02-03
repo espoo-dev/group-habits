@@ -26,13 +26,14 @@ class Item < ApplicationRecord
   ITEM_TYPES = %w[product service].freeze
 
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, optional: true
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :user_id, case_sensitive: false }
   validates :sale_price, presence: true
   validates :sales_unit, presence: true
   validates :item_type, presence: true
+  validates :category, presence: true, if: -> { item_type == 'product' }
   validates :item_type, inclusion: ITEM_TYPES
 
   scope :by_item_type, lambda { |item_type|

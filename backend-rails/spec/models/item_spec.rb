@@ -25,7 +25,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   context 'relationship' do
     it { should belong_to(:user).required }
-    it { should belong_to(:category).required }
+    it { should belong_to(:category).optional }
   end
 
   context 'validations' do
@@ -34,6 +34,51 @@ RSpec.describe Item, type: :model do
       it { should validate_presence_of(:sale_price) }
       it { should validate_presence_of(:sales_unit) }
       it { should validate_presence_of(:item_type) }
+
+      context 'category' do
+        before { subject.valid? }
+        subject { build(:item, item_type:, category:) }
+
+        context 'when item_type is product' do
+          let(:item_type) { 'product' }
+
+          context 'when has category' do
+            let(:category) { build(:category) }
+
+            it 'must be valid' do
+              expect(subject).to be_valid
+            end
+          end
+
+          context 'when has no category' do
+            let(:category) { nil }
+
+            it 'must be invalid' do
+              expect(subject).to_not be_valid
+            end
+          end
+        end
+
+        context 'when item_type is service' do
+          let(:item_type) { 'service' }
+
+          context 'when has category' do
+            let(:category) { build(:category) }
+
+            it 'must be valid' do
+              expect(subject).to be_valid
+            end
+          end
+
+          context 'when has no category' do
+            let(:category) { nil }
+
+            it 'must be valid' do
+              expect(subject).to be_valid
+            end
+          end
+        end
+      end
     end
 
     context 'inclusion' do
