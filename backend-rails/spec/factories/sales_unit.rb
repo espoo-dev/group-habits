@@ -11,9 +11,8 @@
 #
 #  index_unit_types_on_name  (name) UNIQUE
 #
-class UnitType < ApplicationRecord
-  include NameFilterable
-
-  validates :name, presence: true
-  validates :name, uniqueness: true
+FactoryBot.define do
+  factory :sales_unit do
+    name { 'kilogram' }
+  end
 end
