@@ -9,14 +9,14 @@
 #  purchase_price :decimal(8, 2)
 #  sales_unit     :string           not null
 #  item_type      :string           not null
-#  item_id    :string           not null
+#  category_id    :string           not null
 #  user_id        :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
 # Indexes
 #
-#  index_items_on_item_id       (item_id)
+#  index_items_on_category_id       (category_id)
 #  index_items_on_user_id           (user_id)
 #  index_items_on_user_id_and_name  (user_id,name) UNIQUE
 #

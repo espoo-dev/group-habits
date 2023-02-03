@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_24_204835) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_173032) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -145,6 +145,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_204835) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["key"], name: "index_settings_on_key", unique: true
+  end
+
+  create_table "unit_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_unit_types_on_name", unique: true
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
