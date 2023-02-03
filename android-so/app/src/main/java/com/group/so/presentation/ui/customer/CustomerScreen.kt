@@ -58,7 +58,7 @@ fun CustomerScreen(
             ExtendedFloatingActionButton(
                 text = { Text(text = stringResource(R.string.title_fab_new_customer)) },
                 onClick = {
-                    onNewCustomerClick
+                    onNewCustomerClick()
                 },
                 icon = {
                     Icon(

@@ -18,7 +18,7 @@ object PresentationModule {
         return module {
             factory { LoginViewModel(get()) }
             factory { CategoryViewModel(get(), get(), get(), get(), get()) }
-            factory { CustomerViewModel(get(), get(), get()) }
+            factory { CustomerViewModel(get(), get(), get(), get()) }
             factory { SharedViewModel() }
         }
     }

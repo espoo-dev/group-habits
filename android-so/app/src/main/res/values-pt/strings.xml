@@ -54,5 +54,15 @@
     <string name="title_menu_person">Pessoa física</string>
     <string name="title_menu_business">Pessoa jurídica</string>
 
+    <!--Customers Add New Customer-->
+    <string name="title_button_register">Adicionar novo cliente</string>
+    <string name="lbl_field_state_inscription">Número de inscrição</string>
+    <string name="title_toolbar_add_new_customer">Adicionar novo cliente</string>
+    <string name="lbl_field_phone">Telefone</string>
+    <string name="lbl_field_document">Documento</string>
+    <string name="lbl_field_name">Nome</string>
+    <string name="txt_register_success_customer">Cliente cadastrado com sucesso.</string>
+
+
 
 </resources>

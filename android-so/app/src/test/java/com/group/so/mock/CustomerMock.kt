@@ -2,6 +2,7 @@ package com.group.so.mock
 
 import com.group.so.core.Resource
 import com.group.so.data.entities.model.Customer
+import com.group.so.data.entities.request.customer.CustomerDataRequest
 import kotlinx.coroutines.flow.flowOf
 
 object CustomerMock {
@@ -108,6 +109,23 @@ object CustomerMock {
             ),
 
         )
+    )
+
+    val customerRequestMock = CustomerDataRequest(
+        name = "teste",
+        documentNumber = "123",
+        stateInscription = "123",
+        phone = "123",
+        customeType = "business"
+    )
+
+    val customerMocked = Customer(
+        id = 1,
+        name = "teste",
+        documentNumber = "123",
+        phone = "123",
+        stateInscription = "123",
+        customerType = "business"
     )
 
     fun mockCustomerResourceSuccess(): Resource<List<Customer>> =

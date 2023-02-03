@@ -12,7 +12,10 @@ import com.group.so.data.repository.customer.CustomerRepository
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
+import com.group.so.domain.customer.RegisterCustomerUseCase
 import com.group.so.mock.CustomerMock
+import com.group.so.mock.CustomerMock.customerMocked
+import com.group.so.mock.CustomerMock.customerRequestMock
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -41,6 +44,8 @@ class CustomerViewModelTest {
 
     val getCustomersByNameUseCase = GetCustomersByNameUseCase(customerRepository)
 
+    val registerCustomerUseCase = RegisterCustomerUseCase(customerRepository)
+
     private lateinit var viewModel: CustomerViewModel
 
     @get:Rule
@@ -58,7 +63,7 @@ class CustomerViewModelTest {
             getCustomersUseCase,
             getCustomersByCustomTypeUseCase,
             getCustomersByNameUseCase,
-
+            registerCustomerUseCase
         )
         coEvery { getCustomersUseCase.execute() } returns flow {
             emit(Resource.Success(data = CustomerMock.mockCustomerList()))
@@ -138,5 +143,28 @@ class CustomerViewModelTest {
         customerListState.value = viewModel.customerListState.value
 
         assert(customerListState.value is State.Success)
+    }
+
+    @Test
+    fun ` register new customer  successfully `() = runTest {
+
+        val registerCustomerState = MutableStateFlow<State<Customer>>(State.Idle)
+        coEvery {
+            registerCustomerUseCase.execute(
+                customerRequestMock
+            )
+        } returns flow {
+            emit(Resource.Success(data = customerMocked))
+        }
+        viewModel.register(
+            name = "teste",
+            document = "123",
+            stateInscription = "123",
+            phone = "123",
+        )
+        runCurrent()
+        registerCustomerState.value = viewModel.registerCustomerState.value
+
+        assert(registerCustomerState.value is State.Success)
     }
 }

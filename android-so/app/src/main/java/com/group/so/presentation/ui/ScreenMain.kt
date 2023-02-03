@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.group.so.presentation.ui.category.CategoryListScreen
 import com.group.so.presentation.ui.category.CategoryViewModel
+import com.group.so.presentation.ui.customer.AddScreenCustomer
 import com.group.so.presentation.ui.customer.CustomerScreen
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import com.group.so.presentation.ui.home.HomeScreen
@@ -66,11 +67,19 @@ fun ScreenMain() {
                 customerViewModel = customerViewModel,
                 customerListState = customersListUiState,
                 onNewCustomerClick = {
+                    navController.navigate(Routes.NewCostumer.route)
                 },
                 onCustomerClick = {
                 },
                 onDeleteCustomer = { }
             ) { customerViewModel.fetchLatestCustomers() }
+        }
+        composable(Routes.NewCostumer.route) {
+            val customerViewModel = koinViewModel<CustomerViewModel>()
+            AddScreenCustomer(
+                navController,
+                customerViewModel,
+            )
         }
     }
 }

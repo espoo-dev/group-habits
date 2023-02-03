@@ -1,9 +1,10 @@
-@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress("MaxLineLength", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
 package com.group.so.core.ui.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.CircularProgressIndicator
@@ -48,7 +49,7 @@ fun PrimaryButton(
         enabled = enabled,
         contentPadding = contentPadding
     ) {
-        if (isLoading) CircularProgressIndicator(color = Color.White) else Text(text = text, fontFamily = Poppins)
+        if (isLoading) CircularProgressIndicator(modifier = Modifier.then(Modifier.size(32.dp)), color = Color.White) else Text(text = text, fontFamily = Poppins)
     }
 }
 
