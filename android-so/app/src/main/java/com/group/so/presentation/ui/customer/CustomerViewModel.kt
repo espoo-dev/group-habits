@@ -6,9 +6,11 @@ import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.data.CustomerCustomType
 import com.group.so.data.entities.model.Customer
+import com.group.so.data.entities.request.customer.CustomerDataRequest
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
+import com.group.so.domain.customer.RegisterCustomerUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
@@ -18,11 +20,15 @@ import kotlinx.coroutines.launch
 class CustomerViewModel(
     private val getCustomersUseCase: GetCustomersUseCase,
     private val getCustomersByCustomTypeUseCase: GetCustomersByCustomTypeUseCase,
-    private val getCustomersByNameUseCase: GetCustomersByNameUseCase
+    private val getCustomersByNameUseCase: GetCustomersByNameUseCase,
+    private val registerCustomerUseCase: RegisterCustomerUseCase
 ) : ViewModel() {
 
     private val _customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
     val customerListState = _customerListState.asStateFlow()
+
+    private val _registerCustomerState = MutableStateFlow<State<Customer>>(State.Idle)
+    val registerCustomerState = _registerCustomerState.asStateFlow()
 
     init {
         fetchLatestCustomers()
@@ -101,6 +107,42 @@ class CustomerViewModel(
                     }
                 }
             }
+        }
+    }
+
+    fun register(name: String, document: String, stateInscription: String, phone: String) {
+        registerNewCustomer(
+            CustomerDataRequest(
+                name = name,
+                documentNumber = document,
+                stateInscription = stateInscription,
+                phone = phone,
+                customeType = "business"
+            )
+        )
+    }
+
+    private fun registerNewCustomer(customerDataRequest: CustomerDataRequest) {
+        viewModelScope.launch {
+            registerCustomerUseCase(customerDataRequest)
+                .onStart {
+                    _registerCustomerState.value = (State.Loading)
+                }.catch {
+                    with(RemoteException("Could not connect to Service Orders API")) {
+                        _registerCustomerState.value = State.Error(this)
+                    }
+                }
+                .collect {
+                    it.data?.let { customer ->
+                        _registerCustomerState.value = State.Success(customer)
+                        fetchCustomers()
+                    }
+                    it.error?.let { throwable ->
+                        with(RemoteException(throwable.message.toString())) {
+                            _registerCustomerState.value = State.Error(this)
+                        }
+                    }
+                }
         }
     }
 }
