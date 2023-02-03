@@ -67,14 +67,14 @@ fun ScreenMain() {
                 customerViewModel = customerViewModel,
                 customerListState = customersListUiState,
                 onNewCustomerClick = {
-                    navController.navigate("add")
+                    navController.navigate(Routes.NewCostumer.route)
                 },
                 onCustomerClick = {
                 },
                 onDeleteCustomer = { }
             ) { customerViewModel.fetchLatestCustomers() }
         }
-        composable("add") {
+        composable(Routes.NewCostumer.route) {
             val customerViewModel = koinViewModel<CustomerViewModel>()
             AddScreenCustomer(
                 navController,
