@@ -139,6 +139,23 @@ class CustomerServiceTest {
     }
 
     @Test
+    fun `should return correct endpoint delete customer`() {
+        runBlocking {
+            val response = MockResponse()
+            mockWebServer.enqueue(
+                response.setBody(
+                    "[]"
+                )
+            )
+            service.deleteCustomer(
+                1
+            )
+            val request = mockWebServer.takeRequest()
+            assertEquals(request.path, "/customers/1")
+        }
+    }
+
+    @Test
     fun `should return correct endpoint edit new customer`() {
         runBlocking {
             val response = MockResponse()

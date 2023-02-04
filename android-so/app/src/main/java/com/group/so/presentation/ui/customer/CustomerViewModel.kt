@@ -7,10 +7,13 @@ import com.group.so.core.State
 import com.group.so.data.CustomerCustomType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.request.customer.CustomerDataRequest
+import com.group.so.domain.customer.DeleteCustomerUseCase
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
 import com.group.so.domain.customer.RegisterCustomerUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
@@ -21,7 +24,8 @@ class CustomerViewModel(
     private val getCustomersUseCase: GetCustomersUseCase,
     private val getCustomersByCustomTypeUseCase: GetCustomersByCustomTypeUseCase,
     private val getCustomersByNameUseCase: GetCustomersByNameUseCase,
-    private val registerCustomerUseCase: RegisterCustomerUseCase
+    private val registerCustomerUseCase: RegisterCustomerUseCase,
+    private val deleteCustomerUseCase: DeleteCustomerUseCase
 ) : ViewModel() {
 
     private val _customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
@@ -29,6 +33,11 @@ class CustomerViewModel(
 
     private val _registerCustomerState = MutableStateFlow<State<Customer>>(State.Idle)
     val registerCustomerState = _registerCustomerState.asStateFlow()
+
+    private val _customerDeleteState = MutableStateFlow<State<Int>>(State.Idle)
+    val customerDeleteState = _customerDeleteState.asStateFlow()
+
+    private var removeCustomerJob: Job? = null
 
     init {
         fetchLatestCustomers()
@@ -144,5 +153,34 @@ class CustomerViewModel(
                     }
                 }
         }
+    }
+
+    private fun deleteCustomerById(id: Int) {
+        removeCustomerJob?.cancel()
+        removeCustomerJob = viewModelScope.launch {
+            launch(Dispatchers.Main) {
+                deleteCustomerUseCase(id).onStart {
+                    _customerDeleteState.value = State.Loading
+                }.catch {
+                    with(RemoteException("Could not connect to Service Order API")) {
+                        _customerDeleteState.value = State.Error(this)
+                    }
+                }.collect {
+                    it.data?.let { id ->
+                        _customerDeleteState.value = State.Success(id)
+                        fetchLatestCustomers()
+                    }
+                    it.error?.let { error ->
+                        with(RemoteException(error.message.toString())) {
+                            _customerDeleteState.value = State.Error(this)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun deleteCustomer(id: Int) {
+        deleteCustomerById(id)
     }
 }

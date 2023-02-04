@@ -9,6 +9,7 @@ import com.group.so.core.State
 import com.group.so.data.CustomerCustomType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.repository.customer.CustomerRepository
+import com.group.so.domain.customer.DeleteCustomerUseCase
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
@@ -46,6 +47,8 @@ class CustomerViewModelTest {
 
     val registerCustomerUseCase = RegisterCustomerUseCase(customerRepository)
 
+    val deleteCustomerUseCase = DeleteCustomerUseCase(customerRepository)
+
     private lateinit var viewModel: CustomerViewModel
 
     @get:Rule
@@ -63,7 +66,8 @@ class CustomerViewModelTest {
             getCustomersUseCase,
             getCustomersByCustomTypeUseCase,
             getCustomersByNameUseCase,
-            registerCustomerUseCase
+            registerCustomerUseCase,
+            deleteCustomerUseCase
         )
         coEvery { getCustomersUseCase.execute() } returns flow {
             emit(Resource.Success(data = CustomerMock.mockCustomerList()))
