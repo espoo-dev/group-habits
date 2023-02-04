@@ -2,7 +2,10 @@ package com.group.so.data.services
 
 import com.group.so.data.entities.network.CustomerDTO
 import com.group.so.data.entities.request.customer.CustomerDataRequest
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -13,6 +16,9 @@ interface CustomerService {
 
     @POST("customers")
     suspend fun registerCustomer(@Body customerDataRequest: CustomerDataRequest): CustomerDTO
+
+    @DELETE("customers/{id}")
+    suspend fun deleteCustomer(@Path("id") id: Int): Response<ResponseBody>
 
     @PUT("customers/{id}")
     suspend fun editCustomer(
