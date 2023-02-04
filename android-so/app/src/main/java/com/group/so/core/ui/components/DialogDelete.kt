@@ -149,7 +149,7 @@ fun DialogDelete(
                                     indication = null,
                                     interactionSource = interactionSource
                                 ) {
-                                    onDismiss
+                                    onDismiss()
                                     onDeleteSuccess()
                                 }
                                 .background(

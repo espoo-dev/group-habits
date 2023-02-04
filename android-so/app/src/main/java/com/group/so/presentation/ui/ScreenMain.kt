@@ -71,7 +71,7 @@ fun ScreenMain() {
                 },
                 onCustomerClick = {
                 },
-                onDeleteCustomer = { }
+                onDeleteCustomer = { customerViewModel.deleteCustomer(it.id) }
             ) { customerViewModel.fetchLatestCustomers() }
         }
         composable(Routes.NewCostumer.route) {

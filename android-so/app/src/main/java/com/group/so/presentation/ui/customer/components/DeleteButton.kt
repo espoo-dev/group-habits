@@ -10,15 +10,36 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.group.so.core.ui.components.DialogDelete
 import com.group.so.data.entities.model.Customer
+import kotlinx.coroutines.launch
 
 @Composable
-fun DeleteButton(onDeleteCustomer: (Customer) -> Unit) {
+fun DeleteButton(customer: Customer, onDeleteCustomer: (Customer) -> Unit) {
+    val coroutineScope = rememberCoroutineScope()
+    var openDialogDelete by remember {
+        mutableStateOf(false) // Initially dialog is closed
+    }
+
+    DialogDelete(showDialog = openDialogDelete, onDismiss = {
+        openDialogDelete = false
+    }, onDeleteSuccess = {
+            coroutineScope.launch {
+                onDeleteCustomer(customer)
+                openDialogDelete = false
+            }
+        })
+
     IconButton(
         onClick = {
-            onDeleteCustomer
+            openDialogDelete = true
         }
     ) {
         Icon(

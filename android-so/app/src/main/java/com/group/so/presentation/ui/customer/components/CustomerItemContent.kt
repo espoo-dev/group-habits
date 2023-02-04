@@ -48,9 +48,9 @@ fun CustomerItemContent(
                 customer = customer,
                 modifier = Modifier.weight(1f)
             )
-            DeleteButton {
-                onDeleteCustomer
-            }
+            DeleteButton(customer = customer, onDeleteCustomer = {
+                onDeleteCustomer(customer)
+            })
         }
     }
 }
