@@ -28,12 +28,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.ui.components.ErrorField
 import com.group.so.core.ui.components.GenericLoading
 import com.group.so.core.ui.components.PrimaryButton
 import com.group.so.core.ui.components.validations.TextState
 import com.group.so.presentation.ui.Routes
 import com.group.so.presentation.ui.customer.components.SaveAction
-import com.group.so.presentation.ui.login.ErrorField
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
