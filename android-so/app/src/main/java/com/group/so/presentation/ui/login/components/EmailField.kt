@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming")
+
 package com.group.so.presentation.ui.login.components
 
 import androidx.compose.foundation.layout.Column

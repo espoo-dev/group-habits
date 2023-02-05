@@ -18,7 +18,7 @@ import com.group.so.R
 import com.group.so.core.State
 import com.group.so.data.entities.model.User
 import com.group.so.presentation.ui.Routes
-import com.group.so.presentation.ui.login.components.*
+import com.group.so.presentation.ui.login.components.LoginContent
 
 @Composable
 fun LoginScreen(
@@ -60,8 +60,3 @@ fun HeaderLogin() {
         )
     }
 }
-
-
-
-
-
