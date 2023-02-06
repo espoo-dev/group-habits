@@ -7,7 +7,7 @@ export const mockRemoteCategoryModel = (): RemoteCategory.Model => ({
   name: faker.name.jobArea()
 })
 
-export const mockRemoteSurveyListModel = (): RemoteCategory.Model[] => ([
+export const mockRemoteCategoryListModel = (): RemoteCategory.Model[] => ([
   mockRemoteCategoryModel(),
   mockRemoteCategoryModel(),
   mockRemoteCategoryModel()
