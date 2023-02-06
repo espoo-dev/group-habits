@@ -1,5 +1,9 @@
 import { RemoteCategory } from '../../../../src/data/usecases/remote-categories'
+<<<<<<< HEAD
 import { HttpClientSpy, mockRemoteCategoryListModel } from '../../data/mocks';
+=======
+import { HttpClientSpy, mockRemoteSurveyListModel } from '../../data/mocks';
+>>>>>>> e31287bb2b3389269151a443148e74839a4aa95c
 
 
 import { faker } from '@faker-js/faker';
@@ -66,7 +70,11 @@ describe('RemoteCategory', () => {
 
   test('Should return a list of SurveyModels if HttpClient returns 200', async () => {
     const { sut, httpClientSpy } = makeSut()
+<<<<<<< HEAD
     const httpResult = mockRemoteCategoryListModel()
+=======
+    const httpResult = mockRemoteSurveyListModel()
+>>>>>>> e31287bb2b3389269151a443148e74839a4aa95c
     httpClientSpy.response = {
       statusCode: HttpStatusCode.ok,
       body: httpResult
