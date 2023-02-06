@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_03_175331) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_06_184651) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -128,7 +128,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_175331) do
     t.string "extra_info"
     t.decimal "sale_price", precision: 8, scale: 2, null: false
     t.decimal "purchase_price", precision: 8, scale: 2
-    t.string "sales_unit", null: false
     t.string "item_type", null: false
     t.string "category_id", null: false
     t.string "user_id", null: false

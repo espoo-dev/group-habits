@@ -15,7 +15,6 @@ RSpec.describe ItemPresenter do
         extra_info: item.extra_info,
         sale_price: item.sale_price,
         purchase_price: item.purchase_price,
-        sales_unit: item.sales_unit,
         item_type: item.item_type,
         category_id: item.category_id
       }

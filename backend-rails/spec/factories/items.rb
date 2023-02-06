@@ -7,7 +7,6 @@
 #  extra_info     :string
 #  sale_price     :decimal(8, 2)    not null
 #  purchase_price :decimal(8, 2)
-#  sales_unit     :string           not null
 #  item_type      :string           not null
 #  category_id    :string           not null
 #  user_id        :string           not null
@@ -26,7 +25,6 @@ FactoryBot.define do
     extra_info { 'nice laptop' }
     sale_price { 2000.00 }
     purchase_price { 1500.55 }
-    sales_unit { 'unit' }
     item_type { 'product' }
 
     association :user

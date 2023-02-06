@@ -7,7 +7,6 @@
 #  extra_info     :string
 #  sale_price     :decimal(8, 2)    not null
 #  purchase_price :decimal(8, 2)
-#  sales_unit     :string           not null
 #  item_type      :string           not null
 #  category_id    :string           not null
 #  user_id        :string           not null
@@ -32,7 +31,6 @@ RSpec.describe Item, type: :model do
     context 'presence' do
       it { should validate_presence_of(:name) }
       it { should validate_presence_of(:sale_price) }
-      it { should validate_presence_of(:sales_unit) }
       it { should validate_presence_of(:item_type) }
 
       context 'category' do
