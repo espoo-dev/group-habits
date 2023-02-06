@@ -13,6 +13,6 @@
 #
 FactoryBot.define do
   factory :sales_unit do
-    name { 'kilogram' }
+    sequence(:name) { |n| "kilogram#{n}" }
   end
 end

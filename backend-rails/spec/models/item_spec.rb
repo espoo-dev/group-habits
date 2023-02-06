@@ -12,10 +12,12 @@
 #  user_id        :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  sales_unit_id  :integer
 #
 # Indexes
 #
 #  index_items_on_category_id       (category_id)
+#  index_items_on_sales_unit_id     (sales_unit_id)
 #  index_items_on_user_id           (user_id)
 #  index_items_on_user_id_and_name  (user_id,name) UNIQUE
 #
@@ -25,6 +27,7 @@ RSpec.describe Item, type: :model do
   context 'relationship' do
     it { should belong_to(:user).required }
     it { should belong_to(:category).optional }
+    it { should belong_to(:sales_unit).required }
   end
 
   context 'validations' do
