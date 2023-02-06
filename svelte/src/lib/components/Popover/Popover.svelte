@@ -4,7 +4,7 @@
   // Props
   export let message: string;
   export let cancelText: string = 'Não, cancelar';
-  export let confirmText: string = 'Sim, prosseguir.';
+  export let confirmText: string = 'Sim, prosseguir';
 
   const dispatch = createEventDispatcher();
   const close = () => dispatch('close');
