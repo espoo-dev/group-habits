@@ -3,6 +3,7 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
+import { NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 declare global {
@@ -12,9 +13,15 @@ declare global {
 }
 
 export type RootStackParamList = {
-  Root: undefined;
+  Root: NavigatorScreenParams<RootParamList> | undefined;
+  SignIn: undefined;
+  SignUp: undefined;
   Modal: undefined;
   NotFound: undefined;
+};
+
+export type RootParamList = {
+  Home: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

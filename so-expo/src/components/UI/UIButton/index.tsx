@@ -1,4 +1,3 @@
-import { FontAwesome } from '@expo/vector-icons/';
 import { ReactNode } from 'react';
 import { GestureResponderEvent, Pressable, Text } from "react-native";
 import { classNames } from '../../../utils/strings';
@@ -16,23 +15,6 @@ const VARIANTS = {
     pressable: 'border-gray-300 bg-white hover:bg-gray-50 focus:ring-indigo-500',
     text: 'text-gray-700',
   },
-  // TODO:
-  // 'leading-icon': {
-  //   pressable: '',
-  //   text: '',
-  // },
-  // 'trailing-icon': {
-  //   pressable: '',
-  //   text: '',
-  // },
-  // round: {
-  //   pressable: '',
-  //   text: '',
-  // },
-  // circular: {
-  //   pressable: '',
-  //   text: '',
-  // },
 }
 
 const SIZES = {
@@ -54,7 +36,7 @@ interface IUIButton {
 
 
 function UIButton({
-  children, icon, onPress, size = 'medium', variant = 'primary'
+  children, onPress, size = 'medium', variant = 'primary'
 }: IUIButton) {
   return <Pressable
     className={classNames(
@@ -65,10 +47,9 @@ function UIButton({
     onPress={onPress}
   >
     <>
-      {icon && <FontAwesome name="laptop" size={32} color="blue" />}
       <Text
         className={classNames(
-          "flex items-center justify-center text-center w-full font-bold",
+          "flex text-center w-full font-bold",
           VARIANTS[variant].text
         )}
       >

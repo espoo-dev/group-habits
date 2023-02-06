@@ -6,6 +6,8 @@ import { Home } from '../screens/Home';
 import { RootStackParamList } from '../../types';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import { SignIn } from '../screens/SignIn';
+import { SignUp } from '../screens/SignUp';
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -24,6 +26,29 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={Home} options={{ headerShown: false }} />
+      <Stack.Group
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#1A54F8',
+          },
+          headerTintColor: '#fff',
+        }}
+      >
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{
+            title: 'Cadastro',
+          }}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{
+            title: 'Login',
+          }}
+        />
+      </Stack.Group>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />

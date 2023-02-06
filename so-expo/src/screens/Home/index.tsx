@@ -1,13 +1,22 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Text, View } from "react-native";
+import { RootStackParamList } from "../../../types";
 import { UIButton } from "../../components/UI/UIButton";
+import { UIContainer } from "../../components/UI/UIContainer";
 
-function Home() {
-  const onPress = () => {
-    console.log("Pressed");
+type Props = NativeStackScreenProps<RootStackParamList, 'Root'>;
+
+function Home({ navigation }: Props) {
+  const handleSignIn = () => {
+    navigation.navigate('SignIn')
+  }
+
+  const handleSignUp = () => {
+    navigation.navigate('SignUp')
   }
 
   return (
-    <View className="flex justify-between bg-blue-RYB px-4 py-8 h-full">
+    <UIContainer className="flex justify-between bg-blue-RYB px-4 py-8 h-full">
       <Text className="text-lotion font-bold text-2xl mt-4">
         S.O.
       </Text>
@@ -23,16 +32,15 @@ function Home() {
 
         <View className="flex justify-between bg-blue-RYB mt-12 h-[104px]">
           <UIButton
-            icon="mug-saucer"
-            onPress={onPress}
+            onPress={handleSignIn}
             size="extra-large"
-            variant="white"
+            variant="secondary"
           >
             Log in
           </UIButton>
 
           <UIButton
-            onPress={onPress}
+            onPress={handleSignUp}
             size="extra-large"
             variant="secondary"
           >
@@ -40,7 +48,7 @@ function Home() {
           </UIButton>
         </View>
       </View>
-    </View>
+    </UIContainer>
   )
 }
 
