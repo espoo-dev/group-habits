@@ -21,4 +21,8 @@ RSpec.describe SalesUnit, type: :model do
 
     it { should validate_uniqueness_of(:name) }
   end
+
+  context 'relationships' do
+    it { should have_many(:items).dependent(:destroy) }
+  end
 end

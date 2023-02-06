@@ -6,14 +6,16 @@ if Rails.env.development?
   Habit.create!(name: 'Eat 2 fruits', group:)
   user = User.create!(email: 'user@email.com', password: '123456789', group:)
   category = Category.create!(name: 'Home', user:)
+  sales_unit = SalesUnit.create!(name: 'unit')
+  sales_unit2 = SalesUnit.create!(name: 'meter')
   Item.create!(name: 'product 1', extra_info: 'info 1', sale_price: 11, purchase_price: 5,
-               sales_unit: 'unit', item_type: 'product', user:, category:)
+               item_type: 'product', user:, category:, sales_unit:)
   Item.create!(name: 'product 2', extra_info: 'info 2', sale_price: 11, purchase_price: 5,
-               sales_unit: 'unit', item_type: 'product', user:, category:)
+               item_type: 'product', user:, category:, sales_unit:)
   Item.create!(name: 'service 1', extra_info: 'info 2', sale_price: 11, purchase_price: 5,
-               sales_unit: 'unit', item_type: 'service', user:, category:)
+               item_type: 'service', user:, category:, sales_unit: sales_unit2)
   Item.create!(name: 'service 2', extra_info: 'info 2', sale_price: 11, purchase_price: 5,
-               sales_unit: 'unit', item_type: 'service', user:, category:)
+               item_type: 'service', user:, category:, sales_unit: sales_unit2)
 
   Customer.create!(name: 'John', document_number: '00321333355', customer_type: Customer.customer_types[:person],
                    phone: '85996686868', user:)
