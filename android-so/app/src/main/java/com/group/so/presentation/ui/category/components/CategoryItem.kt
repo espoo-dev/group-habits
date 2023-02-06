@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList", "MagicNumber")
+
 package com.group.so.presentation.ui.category.components
 
 import androidx.compose.animation.animateContentSize
@@ -19,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import com.group.so.data.entities.model.Category
-import com.group.so.presentation.ui.category.CategoryItemContent
 import com.group.so.presentation.ui.category.CategoryViewModel
 import kotlinx.coroutines.launch
 

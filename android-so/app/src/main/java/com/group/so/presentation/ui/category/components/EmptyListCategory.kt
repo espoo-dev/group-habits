@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.presentation.ui.category.components
 
 import androidx.compose.foundation.layout.Arrangement

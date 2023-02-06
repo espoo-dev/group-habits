@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.presentation.ui.category.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -20,7 +22,7 @@ import com.group.so.presentation.ui.category.CategoryViewModel
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi
 @Composable
- fun CategoryContent(
+fun CategoryContent(
     it: PaddingValues,
     categoryListState: State<List<Category>>,
     reloadCategories: () -> Unit,

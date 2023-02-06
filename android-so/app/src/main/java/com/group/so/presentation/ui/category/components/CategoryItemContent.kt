@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.presentation.ui.category.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -61,11 +63,11 @@ fun CategoryItemContent(
     DialogDelete(showDialog = openDialogDelete, onDismiss = {
         openDialogDelete = false
     }, onDeleteSuccess = {
-        coroutineScope.launch {
-            onDeleteCategory(category)
-            // revealState.snapTo(RevealValue.Default)
-        }
-    })
+            coroutineScope.launch {
+                onDeleteCategory(category)
+                // revealState.snapTo(RevealValue.Default)
+            }
+        })
 
     CategoryEditScreen(
         category,
