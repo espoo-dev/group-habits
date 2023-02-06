@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Popover from '../../lib/components/Popover/Popover.svelte';
   import Modal from '../../lib/components/Modal/Modal.svelte';
   import { makeRemoteCategory } from '../../main/factories/usecases/remote-category-factory';
 
@@ -8,9 +9,15 @@
     name: ''
   }
 
-  const api = makeRemoteCategory();
+  const apiCategory = makeRemoteCategory();
   const loadCategories = async () => {
-    categories = await api.list();
+    categories = await apiCategory.list();
+    categories = categories.map((category) => {
+      return {
+        ...category,
+        popRemove: false
+      }
+    })
   }
 
   const closeModal = () => {
@@ -22,8 +29,18 @@
 
   const createCategory = async () => {
     try {
-      await api.create(newCategory)
+      await apiCategory.create(newCategory)
       closeModal()
+      loadCategories()
+    } catch (error) {
+      console.log('error -> ', error);
+    }
+  }
+
+  const removeCategory = async (category) => {
+    try {
+      await apiCategory.delete(category.id)
+      category.popRemove = false
       loadCategories()
     } catch (error) {
       console.log('error -> ', error);
@@ -70,11 +87,21 @@
             </th>
             <td class="px-6 py-4"> {category.name} </td>
             <td class="px-6 py-4">
-              <a
-                href="#"
-                class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                >Remover</a
-              >
+              <button
+                on:click={() => category.popRemove = true}
+                type="button"
+                class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                Remover
+              </button>
+
+              {#if category.popRemove}
+                <Popover
+                  message={`Tem certeza que deseja excluir a categoria ${category.name}`}
+                  on:close={() => category.popRemove = false}
+                  on:confirm={() => removeCategory(category)}
+                  >
+                </Popover>
+              {/if}
             </td>
           </tr>
         {/each}

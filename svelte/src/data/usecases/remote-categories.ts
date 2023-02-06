@@ -26,6 +26,14 @@ export class RemoteCategory implements Categories {
     })
     return HttpResponseHandler.handleResponse(httpResponse);
   }
+
+  async delete(category_id: number): Promise<void> {
+    const httpResponse = await this.httpClient.request({
+      url: `${this.url}/${category_id}`,
+      method: 'delete'
+    })
+    return HttpResponseHandler.handleResponse(httpResponse);
+  }
 }
 
 export namespace RemoteCategory {
