@@ -11,7 +11,7 @@ RSpec.describe SalesUnitPresenter do
     it 'matches expected attributes' do
       expected_payload = {
         id: sales_unit.id,
-        name: sales_unit.name,
+        name: sales_unit.name
       }
 
       is_expected.to eq expected_payload
