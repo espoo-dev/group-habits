@@ -2,6 +2,7 @@
   import { makeRemoteAuthentication } from '../../main/factories/usecases/remote-authentication-factory';
   import { navigate } from 'svelte-routing';
   import { setCurrentAccountAdapter } from '../../main/adapters';
+  import { notifications } from '../../../src/infra/notification/notification';
 
   const user = {
     email: 'user@email.com',
@@ -15,6 +16,7 @@
     if (response.user) {
       navigate('/categories', { replace: true });
       setCurrentAccountAdapter(response);
+      notifications.success('Bem vindo!', 3000)
     }
   };
 </script>
