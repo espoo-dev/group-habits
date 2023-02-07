@@ -1,24 +1,26 @@
-import { act, fireEvent, render, screen } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import Popover from './Popover.svelte';
 
 interface PopoverProps {
-  message: string,
-  cancelText?: string
-  confirmText?: string
-};
+  message: string;
+  cancelText?: string;
+  confirmText?: string;
+}
 
 const defaultProps = {
-  message: 'New Popover'
-}
+  message: 'New Popover',
+};
 const cancelText = 'Não, cancelar';
 const confirmText = 'Sim, prosseguir';
 
 let popoverComponent: Popover;
+const user = userEvent.setup();
 
 const sut = (props?: PopoverProps) => {
   const { component } = render(Popover, {
-    props: props || defaultProps
+    props: props || defaultProps,
   });
   popoverComponent = component;
 };
@@ -27,58 +29,54 @@ describe('Modal Component', () => {
   describe('Default', () => {
     beforeEach(() => {
       sut();
-    })
-  
+    });
+
     it('should render message', () => {
-      expect(screen.getByText(defaultProps.message)).toBeInTheDocument()
+      expect(screen.getByText(defaultProps.message)).toBeInTheDocument();
     });
-  
+
     it('should render cancel text button', () => {
-      expect(screen.getByText(cancelText)).toBeInTheDocument()
+      expect(screen.getByText(cancelText)).toBeInTheDocument();
     });
-  
+
     it('should render confirm text button', () => {
-      expect(screen.getByText(confirmText)).toBeInTheDocument()
+      expect(screen.getByText(confirmText)).toBeInTheDocument();
     });
-  
+
     it('should call close action when click in close button', async () => {
       const mock = jest.fn();
       popoverComponent.$on('close', mock);
-      await act(() => {
-        fireEvent.click(screen.getByText(cancelText));
-      });
+      await user.click(screen.getByText(cancelText));
       expect(mock).toHaveBeenCalled();
     });
-  
+
     it('should call confirm action when click in confirm button', async () => {
       const mock = jest.fn();
       popoverComponent.$on('confirm', mock);
-      await act(() => {
-        fireEvent.click(screen.getByText(confirmText));
-      });
+      await user.click(screen.getByText(confirmText));
       expect(mock).toHaveBeenCalled();
     });
   });
-  
+
   describe('Custom fields', () => {
     it('should render custom cancel button text', () => {
-      const cancelText = 'Fechar'
+      const cancelText = 'Fechar';
       sut({
         ...defaultProps,
-        cancelText
+        cancelText,
       });
 
-      expect(screen.getByText(cancelText)).toBeInTheDocument()
+      expect(screen.getByText(cancelText)).toBeInTheDocument();
     });
 
     it('should render custom confirm button text', () => {
-      const confirmText = 'Concluir'
+      const confirmText = 'Concluir';
       sut({
         ...defaultProps,
-        confirmText
+        confirmText,
       });
 
-      expect(screen.getByText(cancelText)).toBeInTheDocument()
+      expect(screen.getByText(cancelText)).toBeInTheDocument();
     });
   });
 });

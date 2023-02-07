@@ -1,5 +1,6 @@
-import { act, fireEvent, render, screen } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import Modal from './Modal.svelte';
 
 interface ModalProps {
@@ -15,6 +16,7 @@ const cancelText = 'Cancelar';
 const confirmText = 'Confirmar';
 
 let modalComponent: Modal;
+const user = userEvent.setup();
 
 const sut = (props?: ModalProps) => {
   const { component } = render(Modal, {
@@ -44,18 +46,14 @@ describe('Modal Component', () => {
     it('should call close action when click in close button', async () => {
       const mock = jest.fn();
       modalComponent.$on('close', mock);
-      await act(() => {
-        fireEvent.click(screen.getByText(cancelText));
-      });
+      await user.click(screen.getByText(cancelText));
       expect(mock).toHaveBeenCalled();
     });
   
     it('should call confirm action when click in confirm button', async () => {
       const mock = jest.fn();
       modalComponent.$on('confirm', mock);
-      await act(() => {
-        fireEvent.click(screen.getByText(confirmText));
-      });
+      await user.click(screen.getByText(confirmText));
       expect(mock).toHaveBeenCalled();
     });
   });
