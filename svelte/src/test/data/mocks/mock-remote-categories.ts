@@ -7,11 +7,7 @@ export const mockRemoteCategoryModel = (): RemoteCategory.Model => ({
   name: faker.name.jobArea()
 })
 
-<<<<<<< HEAD
 export const mockRemoteCategoryListModel = (): RemoteCategory.Model[] => ([
-=======
-export const mockRemoteSurveyListModel = (): RemoteCategory.Model[] => ([
->>>>>>> e31287bb2b3389269151a443148e74839a4aa95c
   mockRemoteCategoryModel(),
   mockRemoteCategoryModel(),
   mockRemoteCategoryModel()
