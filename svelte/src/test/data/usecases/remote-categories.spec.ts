@@ -1,5 +1,5 @@
 import { RemoteCategory } from '../../../../src/data/usecases/remote-categories'
-import { HttpClientSpy, mockRemoteSurveyListModel } from '../../data/mocks';
+import { HttpClientSpy, mockRemoteCategoryListModel } from '../../data/mocks';
 
 
 import { faker } from '@faker-js/faker';
@@ -66,7 +66,7 @@ describe('RemoteCategory', () => {
 
   test('Should return a list of SurveyModels if HttpClient returns 200', async () => {
     const { sut, httpClientSpy } = makeSut()
-    const httpResult = mockRemoteSurveyListModel()
+    const httpResult = mockRemoteCategoryListModel()
     httpClientSpy.response = {
       statusCode: HttpStatusCode.ok,
       body: httpResult
@@ -93,6 +93,17 @@ describe('RemoteCategory', () => {
     }
 
     const surveyList = await sut.list({})
+
+    expect(surveyList).toEqual([])
+  })
+
+  test('Should return an empty list when delete a register', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.noContent
+    }
+
+    const surveyList = await sut.delete(mockRemoteCategoryListModel()[0].id)
 
     expect(surveyList).toEqual([])
   })
