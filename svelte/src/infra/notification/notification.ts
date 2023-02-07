@@ -10,7 +10,7 @@ export interface NotifacationProps {
 const createNotificationStore = () => {
   const _notifications = writable<NotifacationProps[]>([])
 
-  const send = (message: string, type = "default", timeout: number) => {
+  const send = (message: string, type = "default", timeout = 3000) => {
     _notifications.update(state => {
       return [...state, { id: id(), type, message, timeout }]
     })
