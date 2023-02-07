@@ -16,7 +16,8 @@ RSpec.describe ItemPresenter do
         sale_price: item.sale_price,
         purchase_price: item.purchase_price,
         item_type: item.item_type,
-        category_id: item.category_id
+        category: CategoryPresenter.payload_for_item(item.category),
+        sales_unit: SalesUnitPresenter.payload_for_item(item.sales_unit)
       }
 
       is_expected.to eq expected_payload

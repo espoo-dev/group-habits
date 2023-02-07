@@ -12,6 +12,7 @@ module Items
       items = ItemPolicy::Scope.new(user, Item).resolve
                                .by_name_like(name)
                                .by_item_type(item_type)
+                               .includes(%i[category sales_unit])
 
       authorize!(ItemPolicy, :index?, items)
     end
