@@ -119,14 +119,14 @@ class CustomerViewModel(
         }
     }
 
-    fun register(name: String, document: String, stateInscription: String, phone: String) {
+    fun register(name: String, document: String, stateInscription: String, phone: String, customerType: String) {
         registerNewCustomer(
             CustomerDataRequest(
                 name = name,
                 documentNumber = document,
                 stateInscription = stateInscription,
                 phone = phone,
-                customeType = "business"
+                customeType = customerType
             )
         )
     }
