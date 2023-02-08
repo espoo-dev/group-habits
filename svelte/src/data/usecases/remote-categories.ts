@@ -34,6 +34,15 @@ export class RemoteCategory implements Categories {
     })
     return HttpResponseHandler.handleResponse(httpResponse);
   }
+
+  async edit(category_id: number, category: Categories.Edit): Promise<Categories.Model> {
+    const httpResponse = await this.httpClient.request({
+      url: `${this.url}/${category_id}`,
+      method: 'put',
+      body: category
+    })
+    return HttpResponseHandler.handleResponse(httpResponse);
+  }
 }
 
 export namespace RemoteCategory {
