@@ -2,11 +2,20 @@
   import Popover from '../../lib/components/Popover/Popover.svelte';
   import Modal from '../../lib/components/Modal/Modal.svelte';
   import { makeRemoteCategory } from '../../main/factories/usecases/remote-category-factory';
+  import type { CategoryModel } from 'src/domain/models/category-model';
 
   let categories = [];
-  let modalIsOpen = false;
-  let newCategory = {
+  let defaultCategory: CategoryModel = {
+    id: 0,
     name: ''
+  };
+
+  let modal = {
+    title: 'Nova Categoria',
+    editTitle: 'Editar Categoria',
+    model: defaultCategory,
+    new: true,
+    opened: false
   }
 
   const apiCategory = makeRemoteCategory();
@@ -21,15 +30,24 @@
   }
 
   const closeModal = () => {
-    newCategory = {
-      name: ''
-    }
-    modalIsOpen = false
+    modal.model = defaultCategory
+    modal.opened = false
+    modal.new = true
   }
 
   const createCategory = async () => {
     try {
-      await apiCategory.create(newCategory)
+      await apiCategory.create(modal.model)
+      closeModal()
+      loadCategories()
+    } catch (error) {
+      console.log('error -> ', error);
+    }
+  }
+
+  const editCategory = async () => {
+    try {
+      await apiCategory.edit(modal.model.id, modal.model)
       closeModal()
       loadCategories()
     } catch (error) {
@@ -47,6 +65,12 @@
     }
   }
 
+  const openModalToEdit = (category: CategoryModel) => {
+    modal.opened = true
+    modal.new = false
+    modal.model = category
+  }
+
   loadCategories();
 </script>
 
@@ -61,7 +85,7 @@
       >
     </h1>
 
-    <button on:click={() => modalIsOpen = true} data-modal-target="staticModal" data-modal-toggle="staticModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    <button on:click={() => modal.opened = true} data-modal-target="staticModal" data-modal-toggle="staticModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
       Novo
     </button>
   </div>
@@ -88,6 +112,13 @@
             <td class="px-6 py-4"> {category.name} </td>
             <td class="px-6 py-4">
               <button
+                on:click={() => openModalToEdit(category)}
+                type="button"
+                class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                Editar
+              </button>
+
+              <button
                 on:click={() => category.popRemove = true}
                 type="button"
                 class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
@@ -109,18 +140,18 @@
     </table>
   </div>
 
-  {#if modalIsOpen}
+  {#if modal.opened}
     <Modal
-      title={'Nova Categoria'}
+      title={modal.new ? modal.title : modal.editTitle}
       on:close="{() => closeModal()}"
-      on:confirm="{() => createCategory()}"
+      on:confirm="{() => modal.new ? createCategory() : editCategory()}"
       >
       <form>
         <div class="grid gap-6 mb-6 md:grid-cols-1">
           <div>
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
             <input
-              bind:value={newCategory.name}
+              bind:value={modal.model.name}
               type="text"
               id="name"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
