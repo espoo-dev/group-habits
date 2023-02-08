@@ -4,6 +4,10 @@ package com.group.so.presentation.ui.customer
 
 import android.annotation.SuppressLint
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,7 +22,10 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,10 +35,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.ui.components.CustomRadioGroup
 import com.group.so.core.ui.components.ErrorField
 import com.group.so.core.ui.components.GenericLoading
 import com.group.so.core.ui.components.PrimaryButton
 import com.group.so.core.ui.components.validations.TextState
+import com.group.so.data.CustomerCustomType
 import com.group.so.presentation.ui.Routes
 import com.group.so.presentation.ui.customer.components.SaveAction
 
@@ -57,6 +66,11 @@ fun AddScreenCustomer(
     val stateInscriptionState = remember {
         TextState()
     }
+
+    var customerType by remember {
+        mutableStateOf(CustomerCustomType.PERSON.value)
+    }
+
     val viewState = customerViewModel.registerCustomerState.collectAsState()
     val context = LocalContext.current
 
@@ -98,7 +112,8 @@ fun AddScreenCustomer(
                             name = nameTextState.text,
                             phone = phoneTextState.text,
                             stateInscription = stateInscriptionState.text,
-                            document = documentTextState.text
+                            document = documentTextState.text,
+                            customerType = customerType
                         )
                     })
                 }
@@ -114,6 +129,15 @@ fun AddScreenCustomer(
                     .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
+                CustomRadioGroup(
+                    listOf(
+                        CustomerCustomType.PERSON.value,
+                        CustomerCustomType.BUSINESS.value
+                    ),
+                    onItemSelected = {
+                        customerType = it
+                    }
+                )
                 OutlinedTextField(
                     value = nameTextState.text,
                     onValueChange = {
@@ -150,17 +174,27 @@ fun AddScreenCustomer(
                         .padding(top = 16.dp)
                         .fillMaxWidth()
                 )
-                OutlinedTextField(
-                    value = stateInscriptionState.text,
-                    onValueChange = {
-                        stateInscriptionState.text = it
-                        stateInscriptionState.validate()
-                    },
-                    label = { Text(stringResource(R.string.lbl_field_state_inscription)) },
-                    modifier = Modifier
-                        .padding(top = 16.dp)
-                        .fillMaxWidth()
-                )
+                AnimatedVisibility(
+                    visible = customerType == CustomerCustomType.BUSINESS.value,
+                    enter = fadeIn(
+                        initialAlpha = 0.4f
+                    ),
+                    exit = fadeOut(
+                        animationSpec = tween(durationMillis = 250)
+                    )
+                ) {
+                    OutlinedTextField(
+                        value = stateInscriptionState.text,
+                        onValueChange = {
+                            stateInscriptionState.text = it
+                            stateInscriptionState.validate()
+                        },
+                        label = { Text(stringResource(R.string.lbl_field_state_inscription)) },
+                        modifier = Modifier
+                            .padding(top = 16.dp)
+                            .fillMaxWidth()
+                    )
+                }
 
                 PrimaryButton(
                     text = stringResource(R.string.title_button_register),
@@ -169,7 +203,8 @@ fun AddScreenCustomer(
                             name = nameTextState.text,
                             phone = phoneTextState.text,
                             stateInscription = stateInscriptionState.text,
-                            document = documentTextState.text
+                            document = documentTextState.text,
+                            customerType = customerType
                         )
                     },
                     enabled = nameTextState.isValid() && documentTextState.isValid() && phoneTextState.isValid(),
