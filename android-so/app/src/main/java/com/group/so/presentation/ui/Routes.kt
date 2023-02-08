@@ -13,8 +13,10 @@ sealed class Routes(val route: String, val title: String, val icon: ImageVector?
 
     object Category : Routes("Category", "Categorias", Icons.Filled.Menu)
 
+
     object Customer : Routes("Customer", "Clientes", Icons.Default.Person)
     object NewCostumer : Routes("newCostumer", "Clientes", Icons.Default.Person)
+    object EditCostumer : Routes("editCostumer", "Clientes", Icons.Default.Person)
 
     object ItemsMenu {
         var items = listOf(Routes.Home, Routes.Category, Routes.Customer)
