@@ -7,10 +7,11 @@ export interface NotifacationProps {
   timeout: number
 }
 
+const defaultTimeout = 4000
 const createNotificationStore = () => {
   const _notifications = writable<NotifacationProps[]>([])
 
-  const send = (message: string, type = "default", timeout = 3000) => {
+  const send = (message: string, type = "default", timeout = defaultTimeout) => {
     _notifications.update(state => {
       return [...state, { id: id(), type, message, timeout }]
     })
@@ -35,11 +36,11 @@ const createNotificationStore = () => {
   return {
     subscribe,
     send,
-    default: (msg: string, timeout: number) => send(msg, "default", timeout),
-    danger: (msg: string, timeout: number) => send(msg, "danger", timeout),
-    warning: (msg: string, timeout: number) => send(msg, "warning", timeout),
-    info: (msg: string, timeout: number) => send(msg, "info", timeout),
-    success: (msg: string, timeout: number) => send(msg, "success", timeout),
+    default: (msg: string, timeout?: number) => send(msg, "default", timeout),
+    danger: (msg: string, timeout?: number) => send(msg, "danger", timeout),
+    warning: (msg: string, timeout?: number) => send(msg, "warning", timeout),
+    info: (msg: string, timeout?: number) => send(msg, "info", timeout),
+    success: (msg: string, timeout?: number) => send(msg, "success", timeout),
   }
 }
 
