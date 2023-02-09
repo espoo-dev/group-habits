@@ -3,6 +3,7 @@
   import Modal from '../../lib/components/Modal/Modal.svelte';
   import { makeRemoteCategory } from '../../main/factories/usecases/remote-category-factory';
   import type { CategoryModel } from 'src/domain/models/category-model';
+  import { notifications } from '../../../src/infra/notification/notification';
 
   let categories = [];
   let defaultCategory: CategoryModel = {
@@ -41,7 +42,7 @@
       closeModal()
       loadCategories()
     } catch (error) {
-      console.log('error -> ', error);
+      notifications.danger(error)
     }
   }
 
@@ -51,7 +52,7 @@
       closeModal()
       loadCategories()
     } catch (error) {
-      console.log('error -> ', error);
+      notifications.danger(error)
     }
   }
 
