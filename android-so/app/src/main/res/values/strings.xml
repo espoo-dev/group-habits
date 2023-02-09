@@ -29,12 +29,6 @@
     <string name="label_delete_btn_dialog_delete">Delete</string>
 
 
-
-
-
-
-
-
     <!-- Categories -->
     <!-- Menu Actions -->
     <string name="title_toolbar_categories">Categories</string>
@@ -52,8 +46,6 @@
     <string name="title_fab_new_category">New Category</string>
     <string name="btn_save_category">Save</string>
     <string name="btn_cancel_category">Cancel</string>
-
-
 
 
     <!--Customers-->
@@ -75,6 +67,12 @@
     <string name="title_toolbar_edit_customer">Edit Costumer</string>
     <string name="title_button_edit">Save change</string>
     <string name="txt_edit_success_customer">Client successfully edited.</string>
+
+
+    <!--List Customers-->
+    <string name="tv_phone_customer">Phone: %s</string>
+    <string name="tv_customer_type_person">Person</string>
+    <string name="tv_customer_type_business">Business</string>
 
 
 </resources>
