@@ -56,14 +56,14 @@ fun CategoryEditScreen(
             Toast.makeText(
                 context,
                 (viewState.value as State.Error).error.message,
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         }
         if (viewState.value is State.Success) {
             Toast.makeText(
                 context,
                 R.string.txt_register_edit_category,
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
             text = ""
             dimissDialog()

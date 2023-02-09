@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import com.group.so.R
 import com.group.so.data.entities.model.Customer
 
@@ -31,7 +32,7 @@ fun CustomerBuildInfo(
         )
 
         Text(
-            text = "Telefone: ${customer.phone}",
+            text = stringResource(R.string.tv_phone_customer, customer.phone),
             style = MaterialTheme.typography.subtitle1,
             modifier = Modifier
                 .padding(bottom = dimensionResource(id = R.dimen.customer_phone_dimen))

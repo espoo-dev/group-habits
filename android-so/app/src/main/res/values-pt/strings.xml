@@ -67,4 +67,9 @@
     <string name="txt_edit_success_customer">Cliente editado com sucesso.</string>
 
 
+    <!--List Customers-->
+    <string name="tv_phone_customer">Telefone: %s</string>
+    <string name="tv_customer_type_person">Pessoa Física</string>
+    <string name="tv_customer_type_business">Pessoa Jurídica</string>
+
 </resources>
