@@ -66,6 +66,7 @@ fun configureDomainModuleForTest() = module {
     factory<DeleteCustomerUseCase> { DeleteCustomerUseCase(get()) }
     factory<EditCustomerUseCase> { EditCustomerUseCase(get()) }
     factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
+    factory<EditCustomerUseCase> { EditCustomerUseCase(get()) }
 }
 
 fun configureDAOModuleForTest() = module {
@@ -75,7 +76,7 @@ fun configureDAOModuleForTest() = module {
 fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
     factory { CategoryViewModel(get(), get(), get(), get(), get()) }
-    factory { CustomerViewModel(get(), get(), get(), get(), get()) }
+    factory { CustomerViewModel(get(), get(), get(), get(), get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(
