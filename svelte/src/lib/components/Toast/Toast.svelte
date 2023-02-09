@@ -1,27 +1,16 @@
-<script>
+<script lang="ts">
   import { notifications } from "../../../../src/infra/notification/notification";
   import { flip } from "svelte/animate";
   import { fly } from "svelte/transition";
-
-  export let themes = {
-    danger: "#E26D69",
-    success: "#84C991",
-    warning: "#f0ad4e",
-    info: "#5bc0de",
-    default: "#aaaaaa",
-  };
+  import ToastTemplate from "./ToastTemplate.svelte";
 </script>
 
 <div class="notifications">
   {#if $notifications}
     {#each $notifications as notification (notification.id)}
-      <div
-        animate:flip
-        class="toast"
-        style="background: {themes[notification.type]};"
-        transition:fly={{ y: 30 }}
-        >
-        <div class="content">{notification.message}</div>
+      <div animate:flip
+        transition:fly={{ y: 30 }}>
+        <ToastTemplate message={notification.message} type={notification.type} />
       </div>
     {/each}
   {/if}
