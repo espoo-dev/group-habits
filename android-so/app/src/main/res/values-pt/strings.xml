@@ -62,7 +62,9 @@
     <string name="lbl_field_document">Documento</string>
     <string name="lbl_field_name">Nome</string>
     <string name="txt_register_success_customer">Cliente cadastrado com sucesso.</string>
-
+    <string name="title_toolbar_edit_customer">Editar Cliente</string>
+    <string name="title_button_edit">Salvar Alteraçãoes</string>
+    <string name="txt_edit_success_customer">Cliente editado com sucesso.</string>
 
 
 </resources>

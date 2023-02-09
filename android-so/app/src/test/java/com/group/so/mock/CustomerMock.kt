@@ -3,6 +3,7 @@ package com.group.so.mock
 import com.group.so.core.Resource
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.request.customer.CustomerDataRequest
+import com.group.so.data.entities.request.customer.EditCustomerRequest
 import kotlinx.coroutines.flow.flowOf
 
 object CustomerMock {
@@ -108,6 +109,17 @@ object CustomerMock {
                 customerType = "business"
             ),
 
+        )
+    )
+
+    val customerRequestEditMock = EditCustomerRequest(
+        id = 1,
+        dataRequest = CustomerDataRequest(
+            name = "teste",
+            documentNumber = "123",
+            stateInscription = "123",
+            phone = "123",
+            customeType = "business"
         )
     )
 

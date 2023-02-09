@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CustomRadioGroup(
     items: List<String>,
-    selected: String = items[0],
+    selected: String? = items[0],
     onItemSelected: (String) -> Unit,
 ) {
 

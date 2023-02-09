@@ -1,8 +1,7 @@
-@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress("LongMethod", "FunctionNaming", "FunctionParameterNaming")
 
 package com.group.so.presentation.ui.customer
 
-import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -36,7 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
 import com.group.so.core.ui.components.CustomRadioGroup
@@ -45,14 +44,14 @@ import com.group.so.core.ui.components.GenericLoading
 import com.group.so.core.ui.components.PrimaryButton
 import com.group.so.core.ui.components.validations.TextState
 import com.group.so.data.CustomerCustomType
+import com.group.so.data.entities.model.Customer
 import com.group.so.presentation.ui.Routes
-import com.group.so.presentation.ui.customer.components.SaveAction
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun AddScreenCustomer(
-    navController: NavController,
-    customerViewModel: CustomerViewModel,
+fun DetailsCustomerScreen(
+    navController: NavHostController,
+    customer: Customer?,
+    viewModel: CustomerViewModel
 ) {
     val scaffoldState = rememberScaffoldState()
 
@@ -72,11 +71,18 @@ fun AddScreenCustomer(
     }
 
     var customerType by remember {
-        mutableStateOf(CustomerCustomType.PERSON.value)
+        mutableStateOf(customer?.customerType)
     }
-
-    val viewState = customerViewModel.registerCustomerState.collectAsState()
+    val viewState = viewModel.editCustomerState.collectAsState()
     val context = LocalContext.current
+
+    LaunchedEffect("") {
+        nameTextState.text = customer?.name.toString()
+        documentTextState.text = customer?.documentNumber.toString()
+        phoneTextState.text = customer?.phone.toString()
+        stateInscriptionState.text = customer?.stateInscription.toString()
+        customerType = customer?.customerType
+    }
 
     LaunchedEffect(viewState.value) {
         if (viewState.value is State.Error) {
@@ -89,7 +95,7 @@ fun AddScreenCustomer(
         if (viewState.value is State.Success) {
             Toast.makeText(
                 context,
-                R.string.txt_register_success_customer,
+                R.string.txt_edit_success_customer,
                 Toast.LENGTH_LONG
             ).show()
             navController.navigate(Routes.Customer.route) {
@@ -106,7 +112,7 @@ fun AddScreenCustomer(
                 elevation = 0.dp,
                 title = {
                     Text(
-                        text = stringResource(id = R.string.title_toolbar_add_new_customer),
+                        text = stringResource(R.string.title_toolbar_edit_customer),
                         color = Color.White
                     )
                 },
@@ -116,21 +122,11 @@ fun AddScreenCustomer(
                             imageVector = Icons.Default.ArrowBack, contentDescription = "Back",
                         )
                     }
-                },
-                actions = {
-                    SaveAction(onSearchClicked = {
-                        customerViewModel.register(
-                            name = nameTextState.text,
-                            phone = phoneTextState.text,
-                            stateInscription = stateInscriptionState.text,
-                            document = documentTextState.text,
-                            customerType = customerType
-                        )
-                    })
                 }
+
             )
-        },
-    ) {
+        }
+    ) { padding ->
         if (viewState.value is State.Loading) {
             GenericLoading()
         } else {
@@ -145,7 +141,11 @@ fun AddScreenCustomer(
                         CustomerCustomType.PERSON.value,
                         CustomerCustomType.BUSINESS.value
                     ),
+                    selected = customer?.customerType,
                     onItemSelected = {
+                        if (it.equals(CustomerCustomType.PERSON.value)) {
+                            stateInscriptionState.text = ""
+                        }
                         customerType = it
                     }
                 )
@@ -208,15 +208,17 @@ fun AddScreenCustomer(
                 }
 
                 PrimaryButton(
-                    text = stringResource(R.string.title_button_register),
+                    text = stringResource(R.string.title_button_edit),
                     onClick = {
-                        customerViewModel.register(
-                            name = nameTextState.text,
-                            phone = phoneTextState.text,
-                            stateInscription = stateInscriptionState.text,
-                            document = documentTextState.text,
-                            customerType = customerType
-                        )
+                        customer?.id?.let {
+                            viewModel.edit(
+                                it, name = nameTextState.text,
+                                phone = phoneTextState.text,
+                                stateInscription = stateInscriptionState.text,
+                                document = documentTextState.text,
+                                customerType = customerType ?: ""
+                            )
+                        }
                     },
                     enabled = nameTextState.isValid() && documentTextState.isValid() && phoneTextState.isValid(),
                     isLoading = viewState.value is State.Loading,

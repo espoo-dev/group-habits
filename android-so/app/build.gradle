@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 
 }
 
@@ -12,7 +13,6 @@ apply from: "../buildscripts/coveralls.gradle"
 android {
     namespace 'com.group.so'
     compileSdk 33
-
 
 
     defaultConfig {
@@ -86,7 +86,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_kotlin"
 
 
-
     //MockWebServer
     testImplementation "com.squareup.okhttp3:mockwebserver:$mock_webserver"
 
@@ -108,15 +107,12 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter"
 
 
-
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-beta01"
-
 
 
     implementation "io.insert-koin:koin-androidx-compose:3.4.0"
 
     implementation "androidx.navigation:navigation-compose:2.4.0-alpha04"
-
 
 
     // Room

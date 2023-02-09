@@ -1,4 +1,4 @@
-@file:Suppress("FunctionNaming", "FunctionParameterNaming")
+@file:Suppress("LongMethod", "FunctionNaming", "FunctionParameterNaming")
 
 package com.group.so.presentation.ui
 
@@ -15,11 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.group.so.data.entities.model.Customer
 import com.group.so.presentation.ui.category.CategoryListScreen
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.customer.AddScreenCustomer
 import com.group.so.presentation.ui.customer.CustomerScreen
 import com.group.so.presentation.ui.customer.CustomerViewModel
+import com.group.so.presentation.ui.customer.DetailsCustomerScreen
 import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
@@ -70,6 +72,12 @@ fun ScreenMain() {
                     navController.navigate(Routes.NewCostumer.route)
                 },
                 onCustomerClick = {
+                    navController.currentBackStackEntry?.savedStateHandle?.set(
+                        key = "customer",
+                        value = it
+                    )
+                    // navController.navigate(Routes.EditCostumer.route + "/${it.id}")
+                    navController.navigate(Routes.EditCostumer.route)
                 },
                 onDeleteCustomer = { customerViewModel.deleteCustomer(it.id) }
             ) { customerViewModel.fetchLatestCustomers() }
@@ -81,5 +89,27 @@ fun ScreenMain() {
                 customerViewModel,
             )
         }
+        composable(
+            Routes.EditCostumer.route,
+
+        ) {
+            val customer =
+                navController.previousBackStackEntry?.savedStateHandle?.get<Customer>("customer")
+            val customerViewModel = koinViewModel<CustomerViewModel>()
+            DetailsCustomerScreen(
+                navController,
+                customer,
+                customerViewModel
+            )
+        }
+//        composable(
+//            Routes.EditCostumer.route + "/{id}",
+//            arguments = listOf(navArgument(name = "id") { type = NavType.IntType })
+//        ) {
+//            val customerViewModel = koinViewModel<CustomerViewModel>()
+//            val customersListUiState by customerViewModel.customerListState.collectAsState()
+//
+//            DetailsCustomerScreen(navController,customersListUiState ,it.arguments?.getInt("id"),customerViewModel)
+//        }
     }
 }

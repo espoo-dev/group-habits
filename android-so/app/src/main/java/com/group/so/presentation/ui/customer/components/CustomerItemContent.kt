@@ -35,7 +35,7 @@ fun CustomerItemContent(
             ),
         elevation = dimensionResource(id = R.dimen.customer_elevation_card_dimen),
         onClick = {
-            onCustomerClick
+            onCustomerClick(customer)
         }
     ) {
         Row(

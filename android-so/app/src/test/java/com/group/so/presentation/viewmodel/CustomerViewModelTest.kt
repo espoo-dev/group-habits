@@ -10,12 +10,14 @@ import com.group.so.data.CustomerCustomType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.repository.customer.CustomerRepository
 import com.group.so.domain.customer.DeleteCustomerUseCase
+import com.group.so.domain.customer.EditCustomerUseCase
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
 import com.group.so.domain.customer.RegisterCustomerUseCase
 import com.group.so.mock.CustomerMock
 import com.group.so.mock.CustomerMock.customerMocked
+import com.group.so.mock.CustomerMock.customerRequestEditMock
 import com.group.so.mock.CustomerMock.customerRequestMock
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import io.mockk.coEvery
@@ -49,6 +51,8 @@ class CustomerViewModelTest {
 
     val deleteCustomerUseCase = DeleteCustomerUseCase(customerRepository)
 
+    val editCustomerUseCase = EditCustomerUseCase(customerRepository)
+
     private lateinit var viewModel: CustomerViewModel
 
     @get:Rule
@@ -67,7 +71,8 @@ class CustomerViewModelTest {
             getCustomersByCustomTypeUseCase,
             getCustomersByNameUseCase,
             registerCustomerUseCase,
-            deleteCustomerUseCase
+            deleteCustomerUseCase,
+            editCustomerUseCase
         )
         coEvery { getCustomersUseCase.execute() } returns flow {
             emit(Resource.Success(data = CustomerMock.mockCustomerList()))
@@ -165,10 +170,36 @@ class CustomerViewModelTest {
             document = "123",
             stateInscription = "123",
             phone = "123",
+            customerType = "business"
         )
         runCurrent()
         registerCustomerState.value = viewModel.registerCustomerState.value
 
         assert(registerCustomerState.value is State.Success)
+    }
+
+    @Test
+    fun ` register edit customer  successfully `() = runTest {
+
+        val editCustomerState = MutableStateFlow<State<Customer>>(State.Idle)
+        coEvery {
+            editCustomerUseCase.execute(
+                customerRequestEditMock
+            )
+        } returns flow {
+            emit(Resource.Success(data = customerMocked))
+        }
+        viewModel.edit(
+            id = 1,
+            name = "teste",
+            document = "123",
+            stateInscription = "123",
+            phone = "123",
+            customerType = "business"
+        )
+        runCurrent()
+        editCustomerState.value = viewModel.editCustomerState.value
+
+        assert(editCustomerState.value is State.Success)
     }
 }
