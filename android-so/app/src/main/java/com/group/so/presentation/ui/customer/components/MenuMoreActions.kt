@@ -26,7 +26,7 @@ fun MenuMoreActions(customerViewModel: CustomerViewModel) {
     var showMenu by remember { mutableStateOf(false) }
 
     IconButton(onClick = { showMenu = !showMenu }) {
-        Icon(painter = painterResource(id = R.drawable.ic_filter), "", tint = Color.White)
+        Icon(painter = painterResource(id = R.drawable.ic_filter_list), "", tint = Color.White)
     }
     DropdownMenu(
         expanded = showMenu,
