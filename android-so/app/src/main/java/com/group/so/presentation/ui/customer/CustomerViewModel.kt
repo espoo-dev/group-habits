@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions", "LongMethod", "MaxLineLength", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.presentation.ui.customer
 
 import androidx.lifecycle.ViewModel
@@ -7,7 +9,9 @@ import com.group.so.core.State
 import com.group.so.data.CustomerCustomType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.request.customer.CustomerDataRequest
+import com.group.so.data.entities.request.customer.EditCustomerRequest
 import com.group.so.domain.customer.DeleteCustomerUseCase
+import com.group.so.domain.customer.EditCustomerUseCase
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
@@ -25,7 +29,8 @@ class CustomerViewModel(
     private val getCustomersByCustomTypeUseCase: GetCustomersByCustomTypeUseCase,
     private val getCustomersByNameUseCase: GetCustomersByNameUseCase,
     private val registerCustomerUseCase: RegisterCustomerUseCase,
-    private val deleteCustomerUseCase: DeleteCustomerUseCase
+    private val deleteCustomerUseCase: DeleteCustomerUseCase,
+    private val editCustomerUseCase: EditCustomerUseCase
 ) : ViewModel() {
 
     private val _customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
@@ -33,6 +38,9 @@ class CustomerViewModel(
 
     private val _registerCustomerState = MutableStateFlow<State<Customer>>(State.Idle)
     val registerCustomerState = _registerCustomerState.asStateFlow()
+
+    private val _editCustomerState = MutableStateFlow<State<Customer>>(State.Idle)
+    val editCustomerState = _editCustomerState.asStateFlow()
 
     private val _customerDeleteState = MutableStateFlow<State<Int>>(State.Idle)
     val customerDeleteState = _customerDeleteState.asStateFlow()
@@ -119,7 +127,13 @@ class CustomerViewModel(
         }
     }
 
-    fun register(name: String, document: String, stateInscription: String, phone: String, customerType: String) {
+    fun register(
+        name: String,
+        document: String,
+        stateInscription: String,
+        phone: String,
+        customerType: String
+    ) {
         registerNewCustomer(
             CustomerDataRequest(
                 name = name,
@@ -149,6 +163,52 @@ class CustomerViewModel(
                     it.error?.let { throwable ->
                         with(RemoteException(throwable.message.toString())) {
                             _registerCustomerState.value = State.Error(this)
+                        }
+                    }
+                }
+        }
+    }
+
+    fun edit(
+        id: Int,
+        name: String,
+        document: String,
+        stateInscription: String,
+        phone: String,
+        customerType: String
+    ) {
+        editCustomer(
+            EditCustomerRequest(
+                id = id,
+                dataRequest = CustomerDataRequest(
+                    name = name,
+                    documentNumber = document,
+                    stateInscription = stateInscription,
+                    phone = phone,
+                    customeType = customerType
+                )
+            )
+        )
+    }
+
+    private fun editCustomer(editCustomerRequest: EditCustomerRequest) {
+        viewModelScope.launch {
+            editCustomerUseCase(editCustomerRequest)
+                .onStart {
+                    _editCustomerState.value = (State.Loading)
+                }.catch {
+                    with(RemoteException("Could not connect to Service Orders API")) {
+                        _editCustomerState.value = State.Error(this)
+                    }
+                }
+                .collect {
+                    it.data?.let { customer ->
+                        _editCustomerState.value = State.Success(customer)
+                        fetchCustomers()
+                    }
+                    it.error?.let { throwable ->
+                        with(RemoteException(throwable.message.toString())) {
+                            _editCustomerState.value = State.Error(this)
                         }
                     }
                 }
