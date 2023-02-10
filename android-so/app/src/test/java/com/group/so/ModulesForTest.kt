@@ -5,6 +5,10 @@ import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.category.CategoryRepositoryImpl
+import com.group.so.data.repository.customer.CustomerRepository
+import com.group.so.data.repository.customer.CustomerRepositoryImpl
+import com.group.so.data.repository.item.ItemRepository
+import com.group.so.data.repository.item.ItemRepositoryImpl
 import com.group.so.data.services.CategoryService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
@@ -45,6 +49,8 @@ fun configureDataModuleForTest(baseUrl: String) = module {
 
     single<LoginRepository> { LoginRepositoryImpl(get(), get()) }
     single<CategoryRepository> { CategoryRepositoryImpl(get(), get()) }
+    single<CustomerRepository> { CustomerRepositoryImpl(get(), get()) }
+    single<ItemRepository> { ItemRepositoryImpl(get(), get()) }
 }
 
 fun configureDomainModuleForTest() = module {
