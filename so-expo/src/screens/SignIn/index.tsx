@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Text, View } from 'react-native';
 import { RootStackParamList } from '../../../types';
 import { UIButton } from '../../components/UI/UIButton';
 import { UIContainer } from '../../components/UI/UIContainer';
@@ -16,26 +16,33 @@ function SignIn({ navigation }: Props) {
   }
 
   return (
-    <LinearGradient
-      colors={['#1A54F8', '#FBFBFC']}
-      className="h-full inline-flex items-center justify-end bg-lotion"
-    >
-      <UIContainer className="w-full inline-flex justify-between mt-12 h-[174px]">
-        <UIButton
-          onPress={handleSignIn}
-          size="extra-large"
-        >
-          Log in
-        </UIButton>
-
-        <UIButton
-          onPress={handleSignUp}
-          size="extra-large"
-        >
-          Sign up
-        </UIButton>
+    <View className="h-full w-full inline-flex items-center justify-between">
+      <UIContainer className="w-full h-1/2 inline-flex justify-center bg-blue-RYB">
+        <Text className="text-lotion font-bold text-4xl mt-4">
+          Bem vindo
+        </Text>
+        <Text className="text-lotion font-bold text-2xl mt-4">
+          de volta!
+        </Text>
       </UIContainer>
-    </LinearGradient>
+      <UIContainer className="w-full h-1/2 inline-flex items-center justify-end bg-lotion">
+        <View className="w-full inline-flex justify-between h-[104px]">
+          <UIButton
+            onPress={handleSignIn}
+            size="extra-large"
+          >
+            Log in
+          </UIButton>
+
+          <UIButton
+            onPress={handleSignUp}
+            size="extra-large"
+          >
+            Sign up
+          </UIButton>
+        </View>
+      </UIContainer>
+    </View>
   )
 }
 
