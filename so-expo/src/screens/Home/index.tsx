@@ -17,16 +17,16 @@ function Home({ navigation }: Props) {
 
   return (
     <UIContainer className="flex justify-between bg-blue-RYB h-full">
-      <Text className="text-lotion font-bold text-2xl mt-4">
+      <Text className="text-lotion font-bold text-4xl mt-4">
         S.O.
       </Text>
 
       <View>
-        <Text className="text-lotion font-bold text-2xl">
+        <Text className="text-lotion font-bold text-3xl">
           Ordem de Serviço
         </Text>
 
-        <Text className="text-lotion mt-1">
+        <Text className="text-lotion mt-1 text-base">
           Gerencie e organize seu negócio de um só lugar.
         </Text>
 
