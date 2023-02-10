@@ -8,7 +8,7 @@
 #  sale_price     :decimal(8, 2)    not null
 #  purchase_price :decimal(8, 2)
 #  item_type      :string           not null
-#  category_id    :string           not null
+#  category_id    :integer
 #  user_id        :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
