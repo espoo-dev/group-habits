@@ -2,7 +2,7 @@ class BasePresenter
   attr_accessor :category
 
   def self.payload_for_item(item)
-    new(item).payload
+    new(item).payload if item
   end
 
   def self.payload_for_list(items)
