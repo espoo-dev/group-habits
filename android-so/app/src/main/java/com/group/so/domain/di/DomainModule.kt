@@ -12,6 +12,7 @@ import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
 import com.group.so.domain.customer.RegisterCustomerUseCase
+import com.group.so.domain.item.GetItemsByNameUseCase
 import com.group.so.domain.item.GetItemsUseCase
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -46,6 +47,7 @@ object DomainModule {
 
             // Items
             factory { GetItemsUseCase(get()) }
+            factory { GetItemsByNameUseCase(get()) }
         }
     }
 }

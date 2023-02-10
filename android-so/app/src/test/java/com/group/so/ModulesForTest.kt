@@ -23,6 +23,7 @@ import com.group.so.domain.customer.EditCustomerUseCase
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
+import com.group.so.domain.item.GetItemsByNameUseCase
 import com.group.so.domain.item.GetItemsUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.customer.CustomerViewModel
@@ -77,6 +78,7 @@ fun configureDomainModuleForTest() = module {
 
     // Items
     factory<GetItemsUseCase> { GetItemsUseCase(get()) }
+    factory<GetItemsByNameUseCase> { GetItemsByNameUseCase(get()) }
 }
 
 fun configureDAOModuleForTest() = module {
