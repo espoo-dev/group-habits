@@ -39,6 +39,7 @@ object DataModule {
         return module {
             single { ServiceOrderDatabase.getInstance(androidContext()).dao }
             single { ServiceOrderDatabase.getInstance(androidContext()).daoCustomer }
+            single { ServiceOrderDatabase.getInstance(androidContext()).daoItem }
         }
     }
 
