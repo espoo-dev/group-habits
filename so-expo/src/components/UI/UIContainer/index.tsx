@@ -6,16 +6,18 @@ interface IUIContainer {
   as?: ComponentType | keyof JSX.IntrinsicElements;
   children: ReactNode;
   className: string;
+  paddingNone?: boolean;
 }
 
 function UIContainer({
-  as: Wrapper = View, children, className, ...rest
+  as: Wrapper = View, children, className, paddingNone = false, ...rest
 }: IUIContainer) {
 
 
   return <Wrapper
     className={classNames(
-      "flex justify-between h-full px-6 py-8",
+      "flex justify-between h-full w-full px-6 py-24",
+      paddingNone ? "p-0" : "",
       className,
     )}
     {...rest}

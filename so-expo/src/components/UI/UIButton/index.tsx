@@ -27,6 +27,7 @@ const SIZES = {
 
 interface IUIButton {
   children: ReactNode;
+  className?: string;
   onPress: (event: GestureResponderEvent) => void;
   size?: keyof typeof SIZES;
   variant?: keyof typeof VARIANTS;
@@ -36,13 +37,14 @@ interface IUIButton {
 
 
 function UIButton({
-  children, onPress, size = 'medium', variant = 'primary'
+  children, className = "", onPress, size = 'medium', variant = 'primary'
 }: IUIButton) {
   return <Pressable
     className={classNames(
       "inline-flex items-center border shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
       SIZES[size],
-      VARIANTS[variant].pressable
+      VARIANTS[variant].pressable,
+      className,
     )}
     onPress={onPress}
   >
