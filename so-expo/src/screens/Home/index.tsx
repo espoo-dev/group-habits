@@ -16,7 +16,7 @@ function Home({ navigation }: Props) {
   }
 
   return (
-    <UIContainer className="flex justify-between bg-blue-RYB px-4 py-8 h-full">
+    <UIContainer className="flex justify-between bg-blue-RYB h-full">
       <Text className="text-lotion font-bold text-2xl mt-4">
         S.O.
       </Text>
