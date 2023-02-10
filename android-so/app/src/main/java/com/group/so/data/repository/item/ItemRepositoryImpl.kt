@@ -59,5 +59,4 @@ class ItemRepositoryImpl(
             },
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
-
 }

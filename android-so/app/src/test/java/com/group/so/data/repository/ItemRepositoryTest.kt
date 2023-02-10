@@ -36,7 +36,6 @@ class ItemRepositoryTest {
             // THEN
         }
 
-
     @Test
     fun `should return list with success`() = runBlocking {
 
@@ -50,7 +49,6 @@ class ItemRepositoryTest {
         assertEquals(result.data?.size, mockItemResourceSuccess().data?.size)
         assertTrue(result is Resource.Success)
     }
-
 
     @Test
     fun `should return a Item list after searching by name`() = runBlocking {
