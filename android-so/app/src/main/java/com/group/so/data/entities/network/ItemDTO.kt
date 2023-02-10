@@ -1,6 +1,5 @@
 package com.group.so.data.entities.network
 
-import com.group.so.core.data.NullToEmptyString
 import com.group.so.data.entities.db.ItemDb
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
@@ -11,22 +10,17 @@ data class ItemDTO(
     @Json(name = "id") @field:Json(name = "id")
     val id: Int,
 
-    @NullToEmptyString
     val name: String,
 
-    @NullToEmptyString
     @Json(name = "extra_info") @field:Json(name = "extra_info")
     val extraInfo: String,
 
-    @NullToEmptyString
     @Json(name = "sale_price") @field:Json(name = "sale_price")
     val salePrice: String,
 
-    @NullToEmptyString
     @Json(name = "purchase_price") @field:Json(name = "purchase_price")
     val purchasePrice: String,
 
-    @NullToEmptyString
     @Json(name = "item_type") @field:Json(name = "item_type")
     val itemType: String,
 
