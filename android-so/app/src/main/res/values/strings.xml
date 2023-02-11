@@ -9,6 +9,8 @@
     <string name="text_button_dont_have_account">Don\'t have an Account ? Sign Up</string>
 
 
+    <string name="tv_money">$: %s</string>
+
     <!-- Generic messages -->
     <string name="msg_generic_error">Ops! Something went wrong…</string>
     <string name="msg_loading">Please wait…</string>
@@ -73,6 +75,14 @@
     <string name="tv_phone_customer">Phone: %s</string>
     <string name="tv_customer_type_person">Person</string>
     <string name="tv_customer_type_business">Business</string>
+
+
+
+    <!--Service-->
+    <string name="title_toolbar_service">Services</string>
+    <string name="title_fab_new_service">New Service</string>
+    <string name="msg_empty_service_list">No services registered at the moment</string>
+    <string name="tv_type_component_service">Service</string>
 
 
 </resources>
