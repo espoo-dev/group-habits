@@ -15,8 +15,8 @@ open class FakeItemTest {
             id = 1,
             name = "product",
             extraInfo = "obs",
-            salePrice = "10.90",
-            purchasePrice = "5.90",
+            salePrice = 11.0,
+            purchasePrice = 11.0,
             itemType = "product",
             category = Category(id = 1, name = "Geral"),
             saleUnit = SalesUnit(id = 1, name = "Meters")
