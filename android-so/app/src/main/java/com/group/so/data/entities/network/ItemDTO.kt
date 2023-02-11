@@ -16,10 +16,10 @@ data class ItemDTO(
     val extraInfo: String,
 
     @Json(name = "sale_price") @field:Json(name = "sale_price")
-    val salePrice: String,
+    val salePrice: Double,
 
     @Json(name = "purchase_price") @field:Json(name = "purchase_price")
-    val purchasePrice: String,
+    val purchasePrice: Double,
 
     @Json(name = "item_type") @field:Json(name = "item_type")
     val itemType: String,
@@ -35,8 +35,8 @@ data class ItemDTO(
         id = id,
         name = name ?: "",
         extraInfo = extraInfo ?: "",
-        salePrice = salePrice ?: "",
-        purchasePrice = purchasePrice ?: "",
+        salePrice = salePrice,
+        purchasePrice = purchasePrice,
         itemType = itemType ?: "",
         category = category,
         saleUnit = saleUnit
@@ -46,8 +46,8 @@ data class ItemDTO(
         id = id,
         name = name ?: "",
         extraInfo = extraInfo ?: "",
-        salePrice = salePrice ?: "",
-        purchasePrice = purchasePrice ?: "",
+        salePrice = salePrice,
+        purchasePrice = purchasePrice,
         itemType = itemType ?: "",
         category = category,
         saleUnit = saleUnit
