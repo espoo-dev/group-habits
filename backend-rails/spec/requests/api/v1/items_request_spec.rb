@@ -53,4 +53,53 @@ describe 'api/v1/items', type: :request do
       end
     end
   end
+
+  describe '#create' do
+    let(:user) { create(:user) }
+    let(:category_id) { create(:category, user:).id }
+    let(:sales_unit_id) { create(:sales_unit).id }
+
+    before do
+      post api_v1_items_path, params: create_item_params, headers: auth_headers, as: :json
+    end
+
+    context 'when data is valid' do
+      let(:create_item_params) { attributes_for(:item, user_id: nil, category_id:) }
+
+      it 'returns status 201 created' do
+        expect(response).to be_created
+      end
+
+      it 'returns item' do
+        expect(json_response['id']).to_not be_nil
+        expect(json_response['name']).to eq(create_item_params[:name])
+      end
+    end
+
+    context 'when data is not valid' do
+      context 'when name is not valid' do
+        let(:create_item_params) { attributes_for(:item, name: nil, user_id: nil, category_id:) }
+
+        it 'returns status 400 bad_request' do
+          expect(response).to be_bad_request
+        end
+
+        it 'returns item' do
+          expect(json_response['error']).to eq("Validation failed: Name can't be blank")
+        end
+      end
+
+      context 'when item_type is not valid' do
+        let(:create_item_params) { attributes_for(:item, item_type: 'invalid item type', user_id: nil) }
+
+        it 'returns status 400 bad_request' do
+          expect(response).to be_bad_request
+        end
+
+        it 'returns item' do
+          expect(json_response['error']).to eq('Validation failed: Item type is not included in the list')
+        end
+      end
+    end
+  end
 end
