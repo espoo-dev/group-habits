@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.group.so.core.State
 import com.group.so.core.ui.components.AsyncData
 import com.group.so.core.ui.components.GenericError
@@ -30,6 +32,9 @@ fun CategoryContent(
     onCategoryClick: (Category) -> Unit,
     onDeleteCategory: (Category) -> Unit
 ) {
+    val pullRefreshState =
+        rememberPullRefreshState(categoryListState is State.Loading, { reloadCategories() })
+
     Box(Modifier.padding(it)) {
         AsyncData(resultState = categoryListState, errorContent = {
             GenericError(
@@ -37,10 +42,7 @@ fun CategoryContent(
             )
         }) { categoriesList ->
             categoriesList?.let {
-                SwipeRefresh(
-                    state = rememberSwipeRefreshState(categoryListState is State.Loading),
-                    onRefresh = reloadCategories,
-                ) {
+                Box(Modifier.pullRefresh(pullRefreshState)) {
                     if (it.isEmpty()) {
                         EmptyListCategory()
                     } else {
@@ -55,6 +57,11 @@ fun CategoryContent(
                             }
                         }
                     }
+                    PullRefreshIndicator(
+                        categoryListState is State.Loading,
+                        pullRefreshState,
+                        Modifier.align(Alignment.TopCenter)
+                    )
                 }
             }
         }

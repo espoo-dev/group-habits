@@ -13,7 +13,7 @@ val Poppins = FontFamily(Font(R.font.poppins))
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = Poppins,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )
