@@ -13,7 +13,7 @@ RSpec.describe Items::ItemCreatorService do
         extra_info: 'nice phone',
         sale_price: 1000.50,
         purchase_price: 500.25,
-        item_type: "product",
+        item_type: 'product',
         category_id: category.id,
         sales_unit_id: sales_unit.id
       }
