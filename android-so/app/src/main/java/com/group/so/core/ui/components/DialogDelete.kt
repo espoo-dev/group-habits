@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -36,8 +37,8 @@ import com.group.so.R
 fun DialogDelete(
     showDialog: Boolean,
     cornerRadius: Dp = 12.dp,
-    deleteButtonColor: Color = Color(0xFFFF0000),
-    cancelButtonColor: Color = Color(0xFF35898F),
+    deleteButtonColor: Color = MaterialTheme.colors.secondary,
+    cancelButtonColor: Color = MaterialTheme.colors.primary,
     titleTextStyle: TextStyle = TextStyle(
         color = Color.Black.copy(alpha = 0.87f),
         fontSize = 20.sp

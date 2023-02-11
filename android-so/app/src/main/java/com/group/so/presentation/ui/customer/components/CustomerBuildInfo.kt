@@ -13,6 +13,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.group.so.R
 import com.group.so.data.entities.model.Customer
+import com.group.so.ui.theme.Poppins
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -27,6 +28,7 @@ fun CustomerBuildInfo(
         Text(
             text = customer.name,
             style = MaterialTheme.typography.h5,
+            fontFamily  = Poppins,
             modifier = Modifier
                 .padding(bottom = dimensionResource(id = R.dimen.customer_name_dimen))
         )
@@ -34,6 +36,7 @@ fun CustomerBuildInfo(
         Text(
             text = stringResource(R.string.tv_phone_customer, customer.phone),
             style = MaterialTheme.typography.subtitle1,
+            fontFamily  = Poppins,
             modifier = Modifier
                 .padding(bottom = dimensionResource(id = R.dimen.customer_phone_dimen))
         )

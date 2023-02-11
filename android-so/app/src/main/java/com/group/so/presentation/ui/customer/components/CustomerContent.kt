@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.group.so.core.State
 import com.group.so.core.ui.components.AsyncData
 import com.group.so.core.ui.components.GenericError
@@ -27,6 +29,9 @@ fun CustomersContent(
     onCustomerClick: (Customer) -> Unit,
     onDeleteCustomer: (Customer) -> Unit
 ) {
+    val pullRefreshState =
+        rememberPullRefreshState(customerListState is State.Loading, { reloadCustomers() })
+
     Box(Modifier.padding(it)) {
         AsyncData(resultState = customerListState, errorContent = {
             GenericError(
@@ -34,10 +39,8 @@ fun CustomersContent(
             )
         }) { customersList ->
             customersList?.let {
-                SwipeRefresh(
-                    state = rememberSwipeRefreshState(customerListState is State.Loading),
-                    onRefresh = reloadCustomers,
-                ) {
+
+                Box(Modifier.pullRefresh(pullRefreshState)) {
                     if (it.isEmpty()) {
                         EmptyListCustomer()
                     } else {
@@ -51,6 +54,11 @@ fun CustomersContent(
                             }
                         }
                     }
+                    PullRefreshIndicator(
+                        customerListState is State.Loading,
+                        pullRefreshState,
+                        Modifier.align(Alignment.TopCenter)
+                    )
                 }
             }
         }
