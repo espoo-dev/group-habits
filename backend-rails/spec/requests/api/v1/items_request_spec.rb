@@ -17,6 +17,11 @@ describe 'api/v1/items', type: :request do
       it "returns user's items" do
         expect(json_response.pluck('id')).to match_array(user_items.pluck(:id))
       end
+
+      it 'returns sale_price and purchase_price as float', :aggregate_failures do
+        expect(json_response.pluck('sale_price')).to match_array(user_items.pluck(:sale_price))
+        expect(json_response.pluck('purchase_price')).to match_array(user_items.pluck(:purchase_price))
+      end
     end
 
     context 'when filtering' do
