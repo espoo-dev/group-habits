@@ -39,6 +39,7 @@
   const createCategory = async () => {
     try {
       await apiCategory.create(modal.model)
+      notifications.success('Categoria criada com sucesso')
       closeModal()
       loadCategories()
     } catch (error) {
@@ -51,6 +52,7 @@
       await apiCategory.edit(modal.model.id, modal.model)
       closeModal()
       loadCategories()
+      notifications.success('Categoria editada com sucesso')
     } catch (error) {
       notifications.danger(error)
     }
@@ -60,9 +62,10 @@
     try {
       await apiCategory.delete(category.id)
       category.popRemove = false
+      notifications.success('Categoria removida com sucesso')
       loadCategories()
     } catch (error) {
-      console.log('error -> ', error);
+      notifications.danger(error)
     }
   }
 
