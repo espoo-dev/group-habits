@@ -36,7 +36,7 @@ class ServiceViewModel(
         fetchLatestServices()
     }
 
-    fun fetchLatestServices() {
+    private fun fetchLatestServices() {
         getAllItemsByItemType(ItemType.SERVICE)
     }
 
