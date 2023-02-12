@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
 import com.group.so.presentation.ui.category.CategoryListScreen
 import com.group.so.presentation.ui.category.CategoryViewModel
@@ -117,7 +118,7 @@ fun ScreenMain() {
                 onServiceClick = {
                 },
                 onDeleteService = { }
-            ) { serviceViewModel.fetchLatestItems() }
+            ) { serviceViewModel.getAllItemsByItemType(ItemType.SERVICE) }
         }
 
 //        composable(
