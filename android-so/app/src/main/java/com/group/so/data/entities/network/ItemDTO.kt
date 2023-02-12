@@ -39,7 +39,7 @@ data class ItemDTO(
         extraInfo = extraInfo,
         salePrice = salePrice,
         purchasePrice = purchasePrice,
-        itemType = itemType ,
+        itemType = itemType,
         category = category,
         saleUnit = saleUnit
     )

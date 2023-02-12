@@ -22,5 +22,4 @@ interface ItemService {
         @Query("name") name: String?,
         @Query("item_type") customType: String?
     ): List<ItemDTO>
-
 }

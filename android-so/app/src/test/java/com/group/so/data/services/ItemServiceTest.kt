@@ -50,7 +50,7 @@ class ItemServiceTest {
     fun `should return correct endpoint get item when receiving query name and item_type`() {
         runBlocking {
             mockWebServer.enqueue(MockResponse().setBody("[]"))
-            service.getItemsByNameAndType("service",ItemType.SERVICE.value)
+            service.getItemsByNameAndType("service", ItemType.SERVICE.value)
             val request = mockWebServer.takeRequest()
             println(request.path)
             assertEquals(request.path, "/items?name=service&item_type=service")
