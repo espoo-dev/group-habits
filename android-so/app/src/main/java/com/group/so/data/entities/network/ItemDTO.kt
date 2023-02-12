@@ -35,24 +35,22 @@ data class ItemDTO(
 ) {
     fun toModel(): Item = Item(
         id = id,
-        name = name ?: "",
-        extraInfo = extraInfo ?: "",
+        name = name,
+        extraInfo = extraInfo,
         salePrice = salePrice,
         purchasePrice = purchasePrice,
-        itemType = itemType ?: "",
+        itemType = itemType,
         category = category,
         saleUnit = saleUnit
     )
 
     fun toDb(): ItemDb = ItemDb(
         id = id,
-        name = name ?: "",
-        extraInfo = extraInfo ?: "",
+        name = name,
+        extraInfo = extraInfo,
         salePrice = salePrice,
         purchasePrice = purchasePrice,
-        itemType = itemType ?: "",
-//        category = category ?: Category(id=0,name=""),
-//        saleUnit = saleUnit ?: SalesUnit(0,"")
+        itemType = itemType,
         category = category,
         saleUnit = saleUnit
     )

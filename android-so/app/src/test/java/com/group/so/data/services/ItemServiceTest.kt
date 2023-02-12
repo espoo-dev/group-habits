@@ -1,5 +1,6 @@
 package com.group.so.data.services
 
+import com.group.so.data.ItemType
 import com.group.so.data.MockResponseFileReader
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -42,6 +43,17 @@ class ItemServiceTest {
             val request = mockWebServer.takeRequest()
             println(request.path)
             assertEquals(request.path, "/items?name=teste")
+        }
+    }
+
+    @Test
+    fun `should return correct endpoint get item when receiving query name and item_type`() {
+        runBlocking {
+            mockWebServer.enqueue(MockResponse().setBody("[]"))
+            service.getItemsByNameAndType("service", ItemType.SERVICE.value)
+            val request = mockWebServer.takeRequest()
+            println(request.path)
+            assertEquals(request.path, "/items?name=service&item_type=service")
         }
     }
 

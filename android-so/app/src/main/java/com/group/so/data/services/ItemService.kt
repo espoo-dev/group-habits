@@ -16,4 +16,10 @@ interface ItemService {
     suspend fun getItemsByItemType(
         @Query("item_type") customType: String?
     ): List<ItemDTO>
+
+    @GET("items")
+    suspend fun getItemsByNameAndType(
+        @Query("name") name: String?,
+        @Query("item_type") customType: String?
+    ): List<ItemDTO>
 }
