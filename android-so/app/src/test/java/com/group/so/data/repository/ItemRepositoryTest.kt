@@ -79,6 +79,25 @@ class ItemRepositoryTest {
     }
 
     @Test
+    fun `should return a item list after searching by name and item_type`() = runBlocking {
+
+        // GIVEN
+        coEvery {
+            itemRepository.listItemsByNameAndItemType(
+                "service",
+                "service"
+            )
+        } returns mockItemListItemsFlowResourceSuccess()
+
+        // WHEN
+        val result = itemRepository.listItemsByNameAndItemType("service", "service").first()
+
+        // THEN
+        assertEquals(result.data?.size, mockItemResourceSuccess().data?.size)
+        assertTrue(result is Resource.Success)
+    }
+
+    @Test
     fun `should return list empty with success`() {
         runBlocking {
             // GIVEN

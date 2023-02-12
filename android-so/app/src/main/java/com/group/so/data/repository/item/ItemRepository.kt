@@ -8,4 +8,5 @@ interface ItemRepository {
     suspend fun listItems(): Flow<Resource<List<Item>>>
     suspend fun listItemsByName(name: String): Flow<Resource<List<Item>>>
     suspend fun listItemsByItemType(name: String): Flow<Resource<List<Item>>>
+    suspend fun listItemsByNameAndItemType(name: String, type: String): Flow<Resource<List<Item>>>
 }
