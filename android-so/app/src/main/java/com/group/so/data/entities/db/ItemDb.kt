@@ -18,8 +18,8 @@ data class ItemDb(
     val salePrice: Double,
     val purchasePrice: Double,
     val itemType: String,
-    var category: Category? = null,
-    var saleUnit: SalesUnit? = null,
+    var category: Category?,
+    var saleUnit: SalesUnit?,
 ) {
     fun toModel(): Item = Item(
         id = id,
@@ -40,14 +40,14 @@ fun List<ItemDb>.toModel(): List<Item> =
 
 class CategoryTypeConverter {
     @TypeConverter
-    fun fromString(string: String): Category? {
+    fun fromString(string: String?): Category? {
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
         val jsonAdapter = moshi.adapter(Category::class.java)
         return jsonAdapter.fromJson(string)
     }
 
     @TypeConverter
-    fun toString(array: Category): String? {
+    fun toString(array: Category?): String? {
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
         val jsonAdapter = moshi.adapter(Category::class.java)
         return jsonAdapter.toJson(array)
@@ -56,14 +56,14 @@ class CategoryTypeConverter {
 
 class SaleUnitTypeConverter {
     @TypeConverter
-    fun fromString(string: String): SalesUnit? {
+    fun fromString(string: String?): SalesUnit? {
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
         val jsonAdapter = moshi.adapter(SalesUnit::class.java)
         return jsonAdapter.fromJson(string)
     }
 
     @TypeConverter
-    fun toString(array: SalesUnit): String? {
+    fun toString(array: SalesUnit?): String? {
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
         val jsonAdapter = moshi.adapter(SalesUnit::class.java)
         return jsonAdapter.toJson(array)

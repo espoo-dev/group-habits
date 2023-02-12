@@ -25,6 +25,8 @@ import com.group.so.presentation.ui.customer.DetailsCustomerScreen
 import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
+import com.group.so.presentation.ui.service.ServiceScreen
+import com.group.so.presentation.ui.service.ServiceViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalMaterialApi
@@ -102,6 +104,22 @@ fun ScreenMain() {
                 customerViewModel
             )
         }
+
+        composable(Routes.Service.route) {
+            val serviceViewModel = koinViewModel<ServiceViewModel>()
+            val servicesListUiState by serviceViewModel.itemListState.collectAsState()
+
+            ServiceScreen(
+                serviceViewModel = serviceViewModel,
+                serviceListState = servicesListUiState,
+                onNewServiceClick = {
+                },
+                onServiceClick = {
+                },
+                onDeleteService = { }
+            ) { serviceViewModel.fetchLatestItems() }
+        }
+
 //        composable(
 //            Routes.EditCostumer.route + "/{id}",
 //            arguments = listOf(navArgument(name = "id") { type = NavType.IntType })

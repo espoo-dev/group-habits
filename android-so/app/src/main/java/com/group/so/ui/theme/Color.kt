@@ -14,3 +14,5 @@ val LightTextColor = Color(0xFF758684)
 val SecondaryColor = Color(0xFFFDA858)
 val PlaceholderColor = Color(0xFFE5E5E5)
 val LightPrimaryColor = Color(0xFFFFF6EE)
+
+val MoneyColor = Color(0xFF388E3C)

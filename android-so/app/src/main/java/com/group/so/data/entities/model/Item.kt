@@ -14,6 +14,6 @@ class Item(
     val salePrice: Double,
     val purchasePrice: Double,
     val itemType: String,
-    var category: @RawValue Category? = null,
-    var saleUnit: @RawValue SalesUnit? = null,
+    var category: @RawValue Category?,
+    var saleUnit: @RawValue SalesUnit?,
 ) : Parcelable

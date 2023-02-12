@@ -5,7 +5,9 @@ import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.model.SalesUnit
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class ItemDTO(
     @Json(name = "id") @field:Json(name = "id")
     val id: Int,
@@ -49,6 +51,8 @@ data class ItemDTO(
         salePrice = salePrice,
         purchasePrice = purchasePrice,
         itemType = itemType ?: "",
+//        category = category ?: Category(id=0,name=""),
+//        saleUnit = saleUnit ?: SalesUnit(0,"")
         category = category,
         saleUnit = saleUnit
     )

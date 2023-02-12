@@ -9,6 +9,9 @@
     <string name="text_button_forgot_password">Esqueceu sua senha</string>
     <string name="text_button_dont_have_account">Não tem uma conta? Inscrever-se</string>
 
+
+    <string name="tv_money">R$: %s</string>
+
     <string name="msg_generic_error">Ops! Algo deu errado…</string>
     <string name="msg_loading">Por favor, espere…</string>
 
@@ -71,5 +74,13 @@
     <string name="tv_phone_customer">Telefone: %s</string>
     <string name="tv_customer_type_person">Pessoa Física</string>
     <string name="tv_customer_type_business">Pessoa Jurídica</string>
+
+
+    <!--Service-->
+    <string name="title_toolbar_service">Serviços</string>
+    <string name="title_fab_new_service">Novo Serviço</string>
+    <string name="msg_empty_service_list">Nenhum serviço cadastrado no momento</string>
+    <string name="tv_type_component_service">Serviço</string>
+
 
 </resources>

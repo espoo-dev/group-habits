@@ -10,6 +10,8 @@ import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.category.CategoryRepositoryImpl
 import com.group.so.data.repository.customer.CustomerRepository
 import com.group.so.data.repository.customer.CustomerRepositoryImpl
+import com.group.so.data.repository.item.ItemRepository
+import com.group.so.data.repository.item.ItemRepositoryImpl
 import com.group.so.data.services.CategoryService
 import com.group.so.data.services.CustomerService
 import com.group.so.data.services.ItemService
@@ -57,6 +59,12 @@ object DataModule {
                 CustomerRepositoryImpl(
                     customerService = get(),
                     customerDao = get()
+                )
+            }
+            single<ItemRepository> {
+                ItemRepositoryImpl(
+                    itemService = get(),
+                    itemDao = get()
                 )
             }
         }
