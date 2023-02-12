@@ -20,6 +20,7 @@ import com.group.so.core.State
 import com.group.so.core.ui.components.CustomTopAppBar
 import com.group.so.core.ui.components.SearchAppBarState
 import com.group.so.core.ui.components.SharedViewModel
+import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Item
 import com.group.so.presentation.ui.service.components.ServiceContent
 import org.koin.androidx.compose.koinViewModel
@@ -47,7 +48,7 @@ fun ServiceScreen(
             searchAppBarState = searchAppBarState,
             searchTextState = searchTextState,
             onSubmitSearch = {
-                serviceViewModel.getItemByName(it)
+                serviceViewModel.fetchItemsByNameAndType(it, ItemType.SERVICE)
             },
             moreAction = {
             }
