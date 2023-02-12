@@ -59,4 +59,17 @@ class ItemRepositoryImpl(
             },
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
+
+    override suspend fun listItemsByNameAndItemType(
+        name: String,
+        type: String
+    ): Flow<Resource<List<Item>>> =
+        networkBoundResource(
+            query = readFromDatabase,
+            fetch = { itemService.getItemsByNameAndType(name, type) },
+            saveFetchResult = { listItemsDto ->
+                clearDbAndSave(listItemsDto)
+            },
+            onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
+        )
 }
