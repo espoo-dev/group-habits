@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.group.so.presentation.ui.Routes.ItemsMenu.items
+import com.group.so.presentation.ui.home.util.BottomMenuItems.ItemsMenu.items
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
