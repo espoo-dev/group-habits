@@ -30,6 +30,7 @@ import com.group.so.domain.item.GetItemsUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import com.group.so.presentation.ui.login.LoginViewModel
+import com.group.so.presentation.ui.service.ServiceViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.koin.android.ext.koin.androidContext
@@ -93,6 +94,7 @@ fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
     factory { CategoryViewModel(get(), get(), get(), get(), get()) }
     factory { CustomerViewModel(get(), get(), get(), get(), get(), get()) }
+    factory { ServiceViewModel(get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(
