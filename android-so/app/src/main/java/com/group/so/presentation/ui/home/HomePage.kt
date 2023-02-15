@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -36,7 +37,7 @@ fun HomeScreen(navController: NavHostController) {
                         unselectedContentColor = Color.White,
                         icon = {
                             Icon(
-                                imageVector = screen.icon ?: Icons.Default.Home,
+                                painterResource(id = screen.icon),
                                 contentDescription = null
                             )
                         },
