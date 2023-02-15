@@ -1,4 +1,4 @@
-@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "MagicNumber", "LongParameterList")
+@file:Suppress("MaxLineLength", "MagicNumber", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "MagicNumber", "LongParameterList")
 
 package com.group.so.core.ui.components
 
@@ -22,6 +22,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -31,8 +32,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.group.so.R
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun DialogDelete(
     showDialog: Boolean,
@@ -64,6 +67,9 @@ fun DialogDelete(
 
     if (showDialog) {
         Dialog(
+            properties = DialogProperties(
+                usePlatformDefaultWidth = false
+            ),
             onDismissRequest = {
                 onDismiss()
             }
@@ -71,7 +77,7 @@ fun DialogDelete(
 
             Surface(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(0.92f)
                     .wrapContentHeight(),
                 shape = RoundedCornerShape(size = cornerRadius)
             ) {
