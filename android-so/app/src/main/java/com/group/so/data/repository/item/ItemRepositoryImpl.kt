@@ -8,9 +8,12 @@ import com.group.so.data.entities.db.toModel
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.network.ItemDTO
 import com.group.so.data.entities.network.toDb
+import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.services.ItemService
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import retrofit2.HttpException
 
 class ItemRepositoryImpl(
     private val itemService: ItemService,
@@ -72,4 +75,18 @@ class ItemRepositoryImpl(
             },
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
+
+    override suspend fun registerService(serviceDataRequest: ServiceDataRequest): Flow<Resource<Item>> =
+        flow {
+            try {
+                val resultServiceCustomer = itemService.registerService(
+                    serviceDataRequest
+                )
+                emit(Resource.Success(data = resultServiceCustomer.toModel()))
+            } catch (ex: HttpException) {
+                val error =
+                    RemoteException("An error occurred when trying to register a new customer")
+                emit(Resource.Error(data = null, error = error))
+            }
+        }
 }
