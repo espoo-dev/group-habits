@@ -84,6 +84,7 @@ fun configureDomainModuleForTest() = module {
     factory<GetItemsByNameUseCase> { GetItemsByNameUseCase(get()) }
     factory<GetItemByItemTypeUseCase> { GetItemByItemTypeUseCase(get()) }
     factory<GetItemByNameAndItemTypeUseCase> { GetItemByNameAndItemTypeUseCase(get()) }
+    factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
 }
 
 fun configureDAOModuleForTest() = module {

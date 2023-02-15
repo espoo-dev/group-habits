@@ -16,6 +16,7 @@ import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.GetItemsByNameUseCase
 import com.group.so.domain.item.GetItemsUseCase
+import com.group.so.domain.item.RegisterServiceUseCase
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -52,6 +53,7 @@ object DomainModule {
             factory { GetItemsByNameUseCase(get()) }
             factory { GetItemByItemTypeUseCase(get()) }
             factory { GetItemByNameAndItemTypeUseCase(get()) }
+            factory { RegisterServiceUseCase(get()) }
         }
     }
 }
