@@ -4,14 +4,17 @@ package com.group.so.data.repository
 
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
+import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.mock.ItemMock.mockItemEntityListEmpty
 import com.group.so.mock.ItemMock.mockItemListItemsFlowResourceSuccess
 import com.group.so.mock.ItemMock.mockItemResourceSuccess
+import com.group.so.mock.ItemMock.mockServiceRegisterFlowResourceSuccess
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -22,6 +25,14 @@ import org.junit.runners.JUnit4
 class ItemRepositoryTest {
 
     private val itemRepository = mockk<ItemRepository>()
+
+    val mockRegisterServiceRequest =
+        ServiceDataRequest(
+            name = "service teste roanderson",
+            extraInfo = "service",
+            salePrice = 2000.50,
+            itemType = "service"
+        )
 
     @Test(expected = RemoteException::class)
     fun ` should return an error after going to the repository to get the items`() =
@@ -112,4 +123,25 @@ class ItemRepositoryTest {
             assertTrue(result is Resource.Success)
         }
     }
+
+    @Test
+    fun `should return a service after register`() =
+        runBlocking {
+
+            // GIVEN
+            coEvery {
+                itemRepository.registerService(
+                    mockRegisterServiceRequest
+                )
+            } returns mockServiceRegisterFlowResourceSuccess()
+
+            val result = itemRepository.registerService(mockRegisterServiceRequest).first()
+
+            // THEN
+            Assert.assertEquals(
+                result.data?.name,
+                mockServiceRegisterFlowResourceSuccess().first().data?.name
+            )
+            Assert.assertTrue(result is Resource.Success)
+        }
 }
