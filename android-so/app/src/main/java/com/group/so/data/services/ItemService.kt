@@ -9,7 +9,6 @@ import retrofit2.http.Query
 
 interface ItemService {
 
-
     @POST("items")
     suspend fun registerService(@Body serviceDataRequest: ServiceDataRequest): ItemDTO
 

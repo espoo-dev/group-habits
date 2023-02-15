@@ -2,6 +2,7 @@ package com.group.so.data.services
 
 import com.group.so.data.ItemType
 import com.group.so.data.MockResponseFileReader
+import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.runBlocking
@@ -117,6 +118,38 @@ class ItemServiceTest {
         service.getAllItems()
 
         val request = mockWebServer.takeRequest()
+    }
+
+    @Test
+    fun `should return correct endpoint register new service`() {
+        runBlocking {
+            val response = MockResponse()
+            mockWebServer.enqueue(
+                response.setBody(
+                    "{\n" +
+                        "    \"id\": 13,\n" +
+                        "    \"name\": \"service teste roanderson\",\n" +
+                        "    \"extra_info\": \"service\",\n" +
+                        "    \"sale_price\": 2000.5,\n" +
+                        "    \"purchase_price\": 0.0,\n" +
+                        "    \"item_type\": \"service\",\n" +
+                        "    \"category\": null,\n" +
+                        "    \"sales_unit\": null\n" +
+                        "}"
+                )
+            )
+            service.registerService(
+                ServiceDataRequest(
+                    name = "service test roanderson",
+                    extraInfo = "extra_info",
+                    salePrice = 2000.50,
+                    itemType = "service"
+
+                )
+            )
+            val request = mockWebServer.takeRequest()
+            assertEquals(request.path, "/items")
+        }
     }
 
     @After

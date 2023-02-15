@@ -2,7 +2,6 @@ package com.group.so.data.entities.request.service
 
 import com.squareup.moshi.Json
 
-
 data class ServiceDataRequest(
     val name: String,
 
