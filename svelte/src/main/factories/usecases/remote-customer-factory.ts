@@ -4,6 +4,6 @@ import { RemoteCustomer } from '../../../data/usecases/remote-customers';
 
 export const makeRemoteCustomer = (): Customers =>
   new RemoteCustomer(
-    'https://group-habits.herokuapp.com/api/v1/customers',
+    `${import.meta.env.VITE_API}/customers`,
     makeAuthorizeHttpClientDecorator()
   );

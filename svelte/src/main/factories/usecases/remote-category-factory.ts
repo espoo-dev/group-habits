@@ -4,6 +4,6 @@ import { makeAuthorizeHttpClientDecorator } from '../decorators';
 
 export const makeRemoteCategory = (): Categories =>
   new RemoteCategory(
-    'https://group-habits.herokuapp.com/api/v1/categories',
+    `${import.meta.env.VITE_API}/categories`,
     makeAuthorizeHttpClientDecorator()
   );
