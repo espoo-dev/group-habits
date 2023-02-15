@@ -11,6 +11,11 @@ module Api
         render json: ItemPresenter.payload_for_item(item), status: :created
       end
 
+      def destroy
+        Items::ItemDestroyerService.new(user: current_user, destroy_params:).call
+        render json: {}, status: :no_content
+      end
+
       private
 
       def index_params
