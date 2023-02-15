@@ -1,28 +1,24 @@
 package com.group.so.presentation.ui.home.util
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.annotation.DrawableRes
+import com.group.so.R
 
-sealed class BottomMenuItems(val route: String, val title: String, val icon: ImageVector?) {
+sealed class BottomMenuItems(val route: String, val title: String, @DrawableRes val icon: Int) {
 
-    object Home : BottomMenuItems("Home", "Home", Icons.Default.Home)
+    object Home : BottomMenuItems("Home", "Home", R.drawable.ic_home)
 
-    object Category : BottomMenuItems("Category", "Categorias", Icons.Filled.Menu)
+    object Category : BottomMenuItems("Category", "Categorias", R.drawable.ic_category)
 
-    object Customer : BottomMenuItems("Customer", "Clientes", Icons.Default.Person)
+    object Customer : BottomMenuItems("Customer", "Clientes", R.drawable.ic_customer)
 
-    object Service : BottomMenuItems("Service", "Serviços", Icons.Default.Check)
+    object Service : BottomMenuItems("Service", "Serviços", R.drawable.ic_service)
 
     object ItemsMenu {
         var items = listOf(
-            BottomMenuItems.Home,
-            BottomMenuItems.Category,
-            BottomMenuItems.Customer,
-            BottomMenuItems.Service
+            Home,
+            Category,
+            Customer,
+            Service,
         )
     }
 }
