@@ -1,11 +1,16 @@
 <script lang="ts">
   import { Router, links, Route } from 'svelte-routing';
+  import Menu from './lib/components/Menu/Menu.svelte';
   import Toast from './lib/components/Toast/Toast.svelte';
   import Categories from './routes/pages/Categories.svelte';
   import Login from './routes/pages/Login.svelte';
 </script>
 
 <div use:links>
+  <Menu options={[
+    {name: 'Categorias', link: '/categories'},
+    {name: 'Clientes', link: '/customers'},
+  ]} />
   <Router url="">
     <div>
       <Route path="/" component={Login} />
