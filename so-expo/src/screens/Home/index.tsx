@@ -1,12 +1,11 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "react-native";
-import { RootStackParamList } from "../../../types";
 import { UIButton } from "../../components/UI/UIButton";
 import { UIContainer } from "../../components/UI/UIContainer";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Root'>;
+function Home() {
+  const navigation = useNavigation();
 
-function Home({ navigation }: Props) {
   const handleSignIn = () => {
     navigation.navigate('SignIn')
   }
