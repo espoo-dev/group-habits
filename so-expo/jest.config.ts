@@ -12,6 +12,7 @@ export default {
     "**/?(*.)+(spec|test).[tj]s?(x)"
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+  setupFiles: ['./node_modules/react-native-gesture-handler/jestSetup.js'],
   setupFilesAfterEnv: [
     '<rootDir>/jest-setup.ts',
     "@testing-library/jest-native/extend-expect",
