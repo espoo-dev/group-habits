@@ -4,21 +4,13 @@ import Menu from './Menu.svelte';
 
 const props = {
   options: [
-    {
-      name: 'Início',
-      link: '/home',
-    },
-    {
-      name: 'Categorias',
-      link: '/categories',
-    },
+    { name: 'Categorias', link: '/categories' },
+    { name: 'Clientes', link: '/customers' },
   ],
 };
 
 const sut = () => {
-  render(Menu, {
-    props,
-  });
+  render(Menu);
 };
 
 describe('Menu component', () => {

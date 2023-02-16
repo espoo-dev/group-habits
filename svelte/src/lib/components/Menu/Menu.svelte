@@ -1,12 +1,12 @@
 <script lang="ts">
   import { getCurrentAccountAdapter, setCurrentAccountAdapter } from "../../../main/adapters";
-  import { navigate } from 'svelte-routing';
 
   interface Option {
     name: string;
     link: string;
   }
-  export let options: Option[] = [
+
+  let options: Option[] = [
     {name: 'Categorias', link: '/categories'},
     {name: 'Clientes', link: '/customers'},
   ]
@@ -20,7 +20,7 @@
 
   const logout = () => {
     setCurrentAccountAdapter(undefined)
-    navigate('/', { replace: true });
+    window.location.href = '/'
   }
 </script>
 
