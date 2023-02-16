@@ -72,7 +72,7 @@ fun ScreenMain() {
                 customerViewModel = customerViewModel,
                 customerListState = customersListUiState,
                 onNewCustomerClick = {
-                    navController.navigate(Routes.NewCostumer.route)
+                    navController.navigate(Routes.NewCustomer.route)
                 },
                 onCustomerClick = {
                     navController.currentBackStackEntry?.savedStateHandle?.set(
@@ -80,12 +80,12 @@ fun ScreenMain() {
                         value = it
                     )
                     // navController.navigate(Routes.EditCostumer.route + "/${it.id}")
-                    navController.navigate(Routes.EditCostumer.route)
+                    navController.navigate(Routes.NewCustomer.route)
                 },
                 onDeleteCustomer = { customerViewModel.deleteCustomer(it.id) }
             ) { customerViewModel.fetchLatestCustomers() }
         }
-        composable(Routes.NewCostumer.route) {
+        composable(Routes.NewCustomer.route) {
             val customerViewModel = koinViewModel<CustomerViewModel>()
             AddScreenCustomer(
                 navController,
@@ -93,7 +93,7 @@ fun ScreenMain() {
             )
         }
         composable(
-            Routes.EditCostumer.route,
+            Routes.EditCustomer.route,
 
         ) {
             val customer =
