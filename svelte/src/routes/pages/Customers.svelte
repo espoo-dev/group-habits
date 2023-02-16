@@ -4,6 +4,7 @@
   import type { CategoryModel } from 'src/domain/models/category-model';
   import { notifications } from '../../../src/infra/notification/notification';
   import { makeRemoteCustomer } from '../../main/factories/usecases/remote-customer-factory';
+  import Menu from '../../lib/components/Menu/Menu.svelte';
 
   let customers = [];
   let defaultCategory: CategoryModel = {
@@ -78,6 +79,7 @@
   loadCategories();
 </script>
 
+<Menu />
 <div class="page-container">
   <div class="header-page">
     <h1
