@@ -8,8 +8,8 @@ sealed class Routes(val route: String) {
     object Category : Routes("Category")
 
     object Customer : Routes("Customer")
-    object NewCostumer : Routes("newCostumer")
-    object EditCostumer : Routes("editCostumer")
+    object NewCustumer : Routes("newCustumer")
+    object EditCustumer : Routes("editCustumer")
 
     object Service : Routes("Service")
 }
