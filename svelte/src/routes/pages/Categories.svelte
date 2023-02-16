@@ -5,6 +5,7 @@
   import type { CategoryModel } from 'src/domain/models/category-model';
   import { notifications } from '../../../src/infra/notification/notification';
   import Input from '../../lib/components/Input/Input.svelte';
+  import Menu from '../../lib/components/Menu/Menu.svelte';
 
   let categories = [];
   let defaultCategory: CategoryModel = {
@@ -79,6 +80,7 @@
   loadCategories();
 </script>
 
+<Menu />
 <div class="page-container">
   <div class="header-page">
     <h1

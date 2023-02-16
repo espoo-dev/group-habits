@@ -1,17 +1,26 @@
 <script lang="ts">
-  import { getCurrentAccountAdapter } from "../../../main/adapters";
+  import { getCurrentAccountAdapter, setCurrentAccountAdapter } from "../../../main/adapters";
+  import { navigate } from 'svelte-routing';
 
   interface Option {
     name: string;
     link: string;
   }
-  export let options: Option[] = []
+  export let options: Option[] = [
+    {name: 'Categorias', link: '/categories'},
+    {name: 'Clientes', link: '/customers'},
+  ]
 
   const account = getCurrentAccountAdapter()
   let showMinimenu = false
 
   const toggleMenu = () => {
     showMinimenu = !showMinimenu
+  }
+
+  const logout = () => {
+    setCurrentAccountAdapter(undefined)
+    navigate('/', { replace: true });
   }
 </script>
 
@@ -68,9 +77,14 @@
                 </a>
               </li>
             {/each}
-            <!-- <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sair</a>
-            </li> -->
+            <li>
+              <span
+                on:click={logout}
+                style="cursor: pointer;"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                Sair
+              </span>
+            </li>
           </ul>
         </div>
       {/if}
