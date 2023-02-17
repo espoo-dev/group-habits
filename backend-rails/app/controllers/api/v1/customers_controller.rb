@@ -7,7 +7,7 @@ module Api
       end
 
       def create
-        customer = Customers::CustomerCreatorService.new(user: current_user, create_customer_params:).call
+        customer = Customers::CustomerCreatorService.new(user: current_user, params: create_customer_params).call
         render json: CustomerPresenter.payload_for_item(customer), status: :created
       end
 
