@@ -12,7 +12,7 @@ module Api
       end
 
       def update
-        customer = Customers::CustomerUpdaterService.new(user: current_user, update_customer_params:).call
+        customer = Customers::CustomerUpdaterService.new(user: current_user, params: update_customer_params).call
         render json: CustomerPresenter.payload_for_item(customer), status: :ok
       end
 
