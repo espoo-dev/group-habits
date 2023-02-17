@@ -119,7 +119,9 @@ fun ScreenMain() {
                 },
                 onServiceClick = {
                 },
-                onDeleteService = { }
+                onDeleteService = {
+                    serviceViewModel.deleteItem(it.id)
+                }
             ) { serviceViewModel.getAllItemsByItemType(ItemType.SERVICE) }
         }
 

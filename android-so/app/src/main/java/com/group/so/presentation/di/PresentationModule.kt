@@ -20,7 +20,7 @@ object PresentationModule {
             factory { LoginViewModel(get()) }
             factory { CategoryViewModel(get(), get(), get(), get(), get()) }
             factory { CustomerViewModel(get(), get(), get(), get(), get(), get()) }
-            factory { ServiceViewModel(get(), get(), get()) }
+            factory { ServiceViewModel(get(), get(), get(), get()) }
             factory { SharedViewModel() }
         }
     }
