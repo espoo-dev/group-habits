@@ -1,11 +1,11 @@
 module Categories
   class CategoryUpdaterService < BaseService
-    attr_reader :user, :id, :name
+    attr_reader :id, :update_category_params
 
     def initialize(user:, update_category_params:)
       @user = user
       @id = update_category_params[:id]
-      @name = update_category_params[:name]
+      @update_category_params = update_category_params
     end
 
     def call
@@ -13,7 +13,7 @@ module Categories
 
       authorize!(CategoryPolicy, :update?, category)
 
-      category.update!(name:)
+      category.update!(update_category_params)
       category
     end
   end

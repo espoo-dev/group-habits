@@ -1,15 +1,12 @@
 module Customers
   class CustomerUpdaterService < BaseService
-    attr_reader :user, :id, :name, :document_number, :phone, :state_inscription, :customer_type
+    attr_reader :id, :update_customer_params
 
     def initialize(user:, update_customer_params:)
       @user = user
       @id = update_customer_params[:id]
-      @name = update_customer_params[:name]
-      @document_number = update_customer_params[:document_number]
-      @phone = update_customer_params[:phone]
-      @state_inscription = update_customer_params[:state_inscription]
-      @customer_type = Customer.customer_types[update_customer_params[:customer_type]]
+      @update_customer_params = update_customer_params.dup
+      @update_customer_params[:customer_type] = Customer.customer_types[update_customer_params[:customer_type]]
     end
 
     def call
@@ -17,7 +14,7 @@ module Customers
 
       authorize!(CustomerPolicy, :update?, customer)
 
-      customer.update!(name:, document_number:, phone:, state_inscription:, customer_type:)
+      customer.update!(update_customer_params)
       customer
     end
   end

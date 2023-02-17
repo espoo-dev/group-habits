@@ -1,6 +1,6 @@
 module Items
   class ItemUpdaterService < BaseService
-    attr_reader :user, :item, :id, :update_item_params
+    attr_reader :id, :update_item_params
 
     def initialize(user:, update_item_params:)
       @user = user
