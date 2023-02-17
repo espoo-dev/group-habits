@@ -12,7 +12,7 @@ module Api
       end
 
       def update
-        category = Categories::CategoryUpdaterService.new(user: current_user, update_category_params:).call
+        category = Categories::CategoryUpdaterService.new(user: current_user, params: update_category_params).call
         render json: CategoryPresenter.payload_for_item(category), status: :ok
       end
 
