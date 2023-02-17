@@ -1,8 +1,7 @@
 module Customers
   class CustomerUpdaterService < BaseService
     def initialize(user:, params:)
-      @user = user
-      @params = params.dup
+      super
       @params[:customer_type] = Customer.customer_types[params[:customer_type]]
     end
 

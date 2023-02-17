@@ -3,7 +3,7 @@ module Customers
     attr_reader :name, :customer_type
 
     def initialize(user:, params:)
-      @user = user
+      super
       @name = params[:name]
       @customer_type = params[:customer_type]
     end

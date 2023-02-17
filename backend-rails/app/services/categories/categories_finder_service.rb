@@ -3,7 +3,7 @@ module Categories
     attr_reader :name
 
     def initialize(user:, params:)
-      @user = user
+      super
       @name = params[:name]
     end
 

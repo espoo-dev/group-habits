@@ -3,7 +3,7 @@ class BaseService
 
   def initialize(user:, params:)
     @user = user
-    @params = params
+    @params = params.dup
   end
 
   def authorize!(klass, method, entity)
