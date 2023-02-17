@@ -1,6 +1,6 @@
 module Customers
   class CustomersFinderService < BaseService
-    attr_reader :user, :name, :customer_type
+    attr_reader :name, :customer_type
 
     def initialize(user:, params:)
       @user = user

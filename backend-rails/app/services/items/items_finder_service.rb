@@ -1,6 +1,6 @@
 module Items
   class ItemsFinderService < BaseService
-    attr_reader :user, :name, :item_type
+    attr_reader :name, :item_type
 
     def initialize(user:, params:)
       @user = user
