@@ -26,6 +26,7 @@ import com.group.so.presentation.ui.customer.DetailsCustomerScreen
 import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
+import com.group.so.presentation.ui.service.AddScreenService
 import com.group.so.presentation.ui.service.ServiceScreen
 import com.group.so.presentation.ui.service.ServiceViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -114,11 +115,20 @@ fun ScreenMain() {
                 serviceViewModel = serviceViewModel,
                 serviceListState = servicesListUiState,
                 onNewServiceClick = {
+                    navController.navigate(Routes.NewService.route)
                 },
                 onServiceClick = {
                 },
                 onDeleteService = { }
             ) { serviceViewModel.getAllItemsByItemType(ItemType.SERVICE) }
+        }
+
+        composable(Routes.NewService.route) {
+            val serviceViewModel = koinViewModel<ServiceViewModel>()
+            AddScreenService(
+                navController,
+                serviceViewModel,
+            )
         }
 
 //        composable(

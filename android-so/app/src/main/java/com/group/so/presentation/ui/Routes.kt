@@ -12,4 +12,5 @@ sealed class Routes(val route: String) {
     object EditCustomer : Routes("editCustomer")
 
     object Service : Routes("Service")
+    object NewService : Routes("newService")
 }
