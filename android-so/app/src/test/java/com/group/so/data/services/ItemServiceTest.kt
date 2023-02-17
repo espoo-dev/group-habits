@@ -127,15 +127,15 @@ class ItemServiceTest {
             mockWebServer.enqueue(
                 response.setBody(
                     "{\n" +
-                            "    \"id\": 13,\n" +
-                            "    \"name\": \"service teste roanderson\",\n" +
-                            "    \"extra_info\": \"service\",\n" +
-                            "    \"sale_price\": 2000.5,\n" +
-                            "    \"purchase_price\": 0.0,\n" +
-                            "    \"item_type\": \"service\",\n" +
-                            "    \"category\": null,\n" +
-                            "    \"sales_unit\": null\n" +
-                            "}"
+                        "    \"id\": 13,\n" +
+                        "    \"name\": \"service teste roanderson\",\n" +
+                        "    \"extra_info\": \"service\",\n" +
+                        "    \"sale_price\": 2000.5,\n" +
+                        "    \"purchase_price\": 0.0,\n" +
+                        "    \"item_type\": \"service\",\n" +
+                        "    \"category\": null,\n" +
+                        "    \"sales_unit\": null\n" +
+                        "}"
                 )
             )
             service.registerService(
