@@ -11,6 +11,11 @@ module Api
         render json: ItemPresenter.payload_for_item(item), status: :created
       end
 
+      def update
+        item = Items::ItemUpdaterService.new(user: current_user, update_item_params:).call
+        render json: ItemPresenter.payload_for_item(item), status: :ok
+      end
+
       def destroy
         Items::ItemDestroyerService.new(user: current_user, destroy_params:).call
         render json: {}, status: :no_content
@@ -24,6 +29,10 @@ module Api
 
       def create_item_params
         params.permit(:name, :extra_info, :sale_price, :purchase_price, :item_type, :category_id, :sales_unit_id)
+      end
+
+      def update_item_params
+        params.permit(:id, :name, :extra_info, :sale_price, :purchase_price, :item_type, :category_id, :sales_unit_id)
       end
     end
   end

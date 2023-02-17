@@ -132,4 +132,32 @@ describe 'api/v1/items', type: :request do
       end
     end
   end
+
+  describe '#update' do
+    let(:user) { create(:user) }
+    let!(:item) { create(:item, user:) }
+
+    before do
+      put api_v1_item_path(item.id), params: update_item_params, headers: auth_headers,
+                                     as: :json
+    end
+
+    context 'when data is valid' do
+      let(:update_item_params) { { name: 'new_name' } }
+      it 'returns status 200 ok' do
+        expect(response).to be_successful
+      end
+
+      it 'updates item name' do
+        expect(item.reload.name).to eq('new_name')
+      end
+    end
+
+    context 'when data is not valid' do
+      let(:update_item_params) { { name: nil } }
+      it 'returns status 400 bad_request' do
+        expect(response).to be_bad_request
+      end
+    end
+  end
 end
