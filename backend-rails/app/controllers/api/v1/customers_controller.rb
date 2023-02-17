@@ -17,7 +17,7 @@ module Api
       end
 
       def destroy
-        Customers::CustomerDestroyerService.new(user: current_user, destroy_params:).call
+        Customers::CustomerDestroyerService.new(user: current_user, params: destroy_params).call
         render json: {}, status: :no_content
       end
 
