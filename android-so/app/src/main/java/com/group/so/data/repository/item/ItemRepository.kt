@@ -12,4 +12,5 @@ interface ItemRepository {
     suspend fun listItemsByNameAndItemType(name: String, type: String): Flow<Resource<List<Item>>>
 
     suspend fun registerService(serviceDataRequest: ServiceDataRequest): Flow<Resource<Item>>
+    suspend fun deleteService(id: Int): Flow<Resource<Int>>
 }

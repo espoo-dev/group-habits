@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import retrofit2.HttpException
+import java.net.HttpURLConnection
 
 class ItemRepositoryImpl(
     private val itemService: ItemService,
@@ -89,4 +90,23 @@ class ItemRepositoryImpl(
                 emit(Resource.Error(data = null, error = error))
             }
         }
+
+    override suspend fun deleteService(id: Int): Flow<Resource<Int>> = flow {
+
+        try {
+            val resultDeleteCustomer = itemService.deleteItem(
+                id = id
+            )
+            if (resultDeleteCustomer.code() == HttpURLConnection.HTTP_NO_CONTENT) {
+                emit(Resource.Success(data = resultDeleteCustomer.code()))
+            } else {
+                val error =
+                    RemoteException("An error occurred when trying to delete a  customer")
+                emit(Resource.Error(data = null, error = error))
+            }
+        } catch (ex: HttpException) {
+            val error = RemoteException("An error occurred when trying to delete a  customer")
+            emit(Resource.Error(data = null, error = error))
+        }
+    }
 }
