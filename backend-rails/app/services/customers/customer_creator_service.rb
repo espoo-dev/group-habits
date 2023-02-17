@@ -1,6 +1,5 @@
 module Customers
   class CustomerCreatorService < BaseService
-    attr_reader :params
 
     def initialize(user:, params:)
       @user = user
