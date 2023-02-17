@@ -1,290 +1,382 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
-<View
+exports[`src > screens > Home renders correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
   style={
     [
       {
-        "display": "flex",
+        "flex": 1,
       },
-      {
-        "justifyContent": "space-between",
-      },
-      {
-        "height": "100%",
-      },
-      {
-        "width": "100%",
-      },
-      {
-        "paddingLeft": 24,
-        "paddingRight": 24,
-      },
-      {
-        "paddingBottom": 96,
-        "paddingTop": 96,
-      },
-      {
-        "display": "flex",
-      },
-      {
-        "justifyContent": "space-between",
-      },
-      {
-        "backgroundColor": "#1A54F8",
-      },
-      {
-        "height": "100%",
-      },
+      undefined,
     ]
   }
 >
-  <Text
+  <RNSScreenStack
     style={
-      [
-        {
-          "color": "#FBFBFC",
-        },
-        {
-          "fontWeight": "700",
-        },
-        {
-          "fontSize": 36,
-          "lineHeight": 40,
-        },
-        {
-          "marginTop": 16,
-        },
-      ]
+      {
+        "flex": 1,
+      }
     }
   >
-    S.O.
-  </Text>
-  <View>
-    <Text
-      style={
-        [
-          {
-            "color": "#FBFBFC",
-          },
-          {
-            "fontWeight": "700",
-          },
-          {
-            "fontSize": 30,
-            "lineHeight": 36,
-          },
-        ]
+    <RNSScreen
+      collapsable={false}
+      forwardedRef={[Function]}
+      gestureResponseDistance={
+        {
+          "bottom": -1,
+          "end": -1,
+          "start": -1,
+          "top": -1,
+        }
       }
-    >
-      Ordem de Serviço
-    </Text>
-    <Text
+      nativeBackButtonDismissalEnabled={false}
+      onAppear={[Function]}
+      onDisappear={[Function]}
+      onDismissed={[Function]}
+      onHeaderBackButtonClicked={[Function]}
+      onNativeDismissCancelled={[Function]}
+      onTransitionProgress={[Function]}
+      onWillDisappear={[Function]}
+      replaceAnimation="push"
+      stackPresentation="push"
       style={
-        [
-          {
-            "color": "#FBFBFC",
-          },
-          {
-            "marginTop": 4,
-          },
-          {
-            "fontSize": 16,
-            "lineHeight": 24,
-          },
-        ]
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
       }
+      swipeDirection="horizontal"
     >
-      Gerencie e organize seu negócio de um só lugar.
-    </Text>
-    <View
-      style={
-        [
-          {
-            "display": "flex",
-          },
-          {
-            "justifyContent": "space-between",
-          },
-          {
-            "backgroundColor": "#1A54F8",
-          },
-          {
-            "marginTop": 48,
-          },
-          {
-            "height": 104,
-          },
-        ]
-      }
-    >
+      <RNSScreenStackHeaderConfig
+        backButtonInCustomView={false}
+        backgroundColor="rgb(255, 255, 255)"
+        color="rgb(0, 122, 255)"
+        direction="ltr"
+        disableBackButtonMenu={false}
+        hidden={false}
+        hideBackButton={false}
+        largeTitleHideShadow={false}
+        title="Root"
+        titleColor="rgb(28, 28, 30)"
+        topInsetEnabled={false}
+        translucent={false}
+      />
       <View
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+        accessibilityElementsHidden={false}
+        importantForAccessibility="auto"
         style={
-          [
-            {
-              "alignItems": "center",
-            },
-            {
-              "borderBottomWidth": 1,
-              "borderLeftWidth": 1,
-              "borderRightWidth": 1,
-              "borderTopWidth": 1,
-            },
-            {
-              "shadowColor": "rgba(0, 0, 0, 0.1)",
-              "shadowOffset": {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 2,
-            },
-            {
-              "borderBottomLeftRadius": 6,
-              "borderBottomRightRadius": 6,
-              "borderTopLeftRadius": 6,
-              "borderTopRightRadius": 6,
-            },
-            {
-              "paddingLeft": 24,
-              "paddingRight": 24,
-            },
-            {
-              "paddingBottom": 12,
-              "paddingTop": 12,
-            },
-            {
-              "borderBottomColor": "transparent",
-              "borderLeftColor": "transparent",
-              "borderRightColor": "transparent",
-              "borderTopColor": "transparent",
-            },
-            {
-              "backgroundColor": "#e0e7ff",
-            },
-          ]
+          {
+            "flex": 1,
+            "flexDirection": "column-reverse",
+          }
         }
       >
-        <Text
+        <View
           style={
             [
               {
-                "display": "flex",
+                "flex": 1,
               },
               {
-                "textAlign": "center",
+                "backgroundColor": "rgb(242, 242, 242)",
               },
-              {
-                "width": "100%",
-              },
-              {
-                "fontWeight": "700",
-              },
-              {
-                "color": "#4338ca",
-              },
+              undefined,
             ]
           }
         >
-          Log in
-        </Text>
+          <View
+            style={
+              [
+                {
+                  "display": "flex",
+                },
+                {
+                  "justifyContent": "space-between",
+                },
+                {
+                  "height": "100%",
+                },
+                {
+                  "width": "100%",
+                },
+                {
+                  "paddingLeft": 24,
+                  "paddingRight": 24,
+                },
+                {
+                  "paddingBottom": 96,
+                  "paddingTop": 96,
+                },
+                {
+                  "display": "flex",
+                },
+                {
+                  "justifyContent": "space-between",
+                },
+                {
+                  "backgroundColor": "#1A54F8",
+                },
+                {
+                  "height": "100%",
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#FBFBFC",
+                  },
+                  {
+                    "fontWeight": "700",
+                  },
+                  {
+                    "fontSize": 36,
+                    "lineHeight": 40,
+                  },
+                  {
+                    "marginTop": 16,
+                  },
+                ]
+              }
+            >
+              S.O.
+            </Text>
+            <View>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#FBFBFC",
+                    },
+                    {
+                      "fontWeight": "700",
+                    },
+                    {
+                      "fontSize": 30,
+                      "lineHeight": 36,
+                    },
+                  ]
+                }
+              >
+                Ordem de Serviço
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#FBFBFC",
+                    },
+                    {
+                      "marginTop": 4,
+                    },
+                    {
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
+                }
+              >
+                Gerencie e organize seu negócio de um só lugar.
+              </Text>
+              <View
+                style={
+                  [
+                    {
+                      "display": "flex",
+                    },
+                    {
+                      "justifyContent": "space-between",
+                    },
+                    {
+                      "backgroundColor": "#1A54F8",
+                    },
+                    {
+                      "marginTop": 48,
+                    },
+                    {
+                      "height": 104,
+                    },
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                      },
+                      {
+                        "borderBottomWidth": 1,
+                        "borderLeftWidth": 1,
+                        "borderRightWidth": 1,
+                        "borderTopWidth": 1,
+                      },
+                      {
+                        "shadowColor": "rgba(0, 0, 0, 0.1)",
+                        "shadowOffset": {
+                          "height": 1,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 2,
+                      },
+                      {
+                        "borderBottomLeftRadius": 6,
+                        "borderBottomRightRadius": 6,
+                        "borderTopLeftRadius": 6,
+                        "borderTopRightRadius": 6,
+                      },
+                      {
+                        "paddingLeft": 24,
+                        "paddingRight": 24,
+                      },
+                      {
+                        "paddingBottom": 12,
+                        "paddingTop": 12,
+                      },
+                      {
+                        "borderBottomColor": "transparent",
+                        "borderLeftColor": "transparent",
+                        "borderRightColor": "transparent",
+                        "borderTopColor": "transparent",
+                      },
+                      {
+                        "backgroundColor": "#e0e7ff",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "display": "flex",
+                        },
+                        {
+                          "textAlign": "center",
+                        },
+                        {
+                          "width": "100%",
+                        },
+                        {
+                          "fontWeight": "700",
+                        },
+                        {
+                          "color": "#4338ca",
+                        },
+                      ]
+                    }
+                  >
+                    Log in
+                  </Text>
+                </View>
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                      },
+                      {
+                        "borderBottomWidth": 1,
+                        "borderLeftWidth": 1,
+                        "borderRightWidth": 1,
+                        "borderTopWidth": 1,
+                      },
+                      {
+                        "shadowColor": "rgba(0, 0, 0, 0.1)",
+                        "shadowOffset": {
+                          "height": 1,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 2,
+                      },
+                      {
+                        "borderBottomLeftRadius": 6,
+                        "borderBottomRightRadius": 6,
+                        "borderTopLeftRadius": 6,
+                        "borderTopRightRadius": 6,
+                      },
+                      {
+                        "paddingLeft": 24,
+                        "paddingRight": 24,
+                      },
+                      {
+                        "paddingBottom": 12,
+                        "paddingTop": 12,
+                      },
+                      {
+                        "borderBottomColor": "transparent",
+                        "borderLeftColor": "transparent",
+                        "borderRightColor": "transparent",
+                        "borderTopColor": "transparent",
+                      },
+                      {
+                        "backgroundColor": "#e0e7ff",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "display": "flex",
+                        },
+                        {
+                          "textAlign": "center",
+                        },
+                        {
+                          "width": "100%",
+                        },
+                        {
+                          "fontWeight": "700",
+                        },
+                        {
+                          "color": "#4338ca",
+                        },
+                      ]
+                    }
+                  >
+                    Sign up
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
-      <View
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          [
-            {
-              "alignItems": "center",
-            },
-            {
-              "borderBottomWidth": 1,
-              "borderLeftWidth": 1,
-              "borderRightWidth": 1,
-              "borderTopWidth": 1,
-            },
-            {
-              "shadowColor": "rgba(0, 0, 0, 0.1)",
-              "shadowOffset": {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 2,
-            },
-            {
-              "borderBottomLeftRadius": 6,
-              "borderBottomRightRadius": 6,
-              "borderTopLeftRadius": 6,
-              "borderTopRightRadius": 6,
-            },
-            {
-              "paddingLeft": 24,
-              "paddingRight": 24,
-            },
-            {
-              "paddingBottom": 12,
-              "paddingTop": 12,
-            },
-            {
-              "borderBottomColor": "transparent",
-              "borderLeftColor": "transparent",
-              "borderRightColor": "transparent",
-              "borderTopColor": "transparent",
-            },
-            {
-              "backgroundColor": "#e0e7ff",
-            },
-          ]
-        }
-      >
-        <Text
-          style={
-            [
-              {
-                "display": "flex",
-              },
-              {
-                "textAlign": "center",
-              },
-              {
-                "width": "100%",
-              },
-              {
-                "fontWeight": "700",
-              },
-              {
-                "color": "#4338ca",
-              },
-            ]
-          }
-        >
-          Sign up
-        </Text>
-      </View>
-    </View>
-  </View>
-</View>
+    </RNSScreen>
+  </RNSScreenStack>
+</RNCSafeAreaProvider>
 `;
