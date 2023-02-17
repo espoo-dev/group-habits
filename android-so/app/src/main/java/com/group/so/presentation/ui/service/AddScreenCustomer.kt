@@ -36,14 +36,13 @@ import com.group.so.core.ui.components.TopBarWhite
 import com.group.so.core.ui.components.validations.TextState
 import com.group.so.presentation.ui.Routes
 
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun AddScreenService(
     navController: NavController,
     serviceViewModel: ServiceViewModel,
 
-    ) {
+) {
     val scaffoldState = rememberScaffoldState()
 
     val nameTextState = remember {
@@ -53,7 +52,6 @@ fun AddScreenService(
         TextState()
     }
     val salePriceTextState = remember { TextState() }
-
 
     val viewState = serviceViewModel.serviceState.collectAsState()
     val context = LocalContext.current
@@ -90,7 +88,8 @@ fun AddScreenService(
                         extraInfo = extraInfoTextState.text,
                         salePrice = salePriceTextState.text.toDouble()
                     )
-                })
+                }
+            )
         },
     ) {
         if (viewState.value is State.Loading) {
@@ -166,6 +165,3 @@ fun AddScreenService(
         }
     }
 }
-
-
-

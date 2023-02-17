@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.core.ui.components
 
 import androidx.compose.foundation.background
@@ -23,7 +25,7 @@ import com.group.so.ui.theme.Cyan
 import com.group.so.ui.theme.PrimaryColor
 
 @Composable
- fun TopBarWhite(title: String, navController: NavController,  onActionClicked: () -> Unit) {
+fun TopBarWhite(title: String, navController: NavController, onActionClicked: () -> Unit) {
     Row(
         Modifier
             .fillMaxWidth()
@@ -32,7 +34,7 @@ import com.group.so.ui.theme.PrimaryColor
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            onClick = {navController.popBackStack()}, modifier = Modifier.background(Cyan, RoundedCornerShape(8.dp))
+            onClick = { navController.popBackStack() }, modifier = Modifier.background(Cyan, RoundedCornerShape(8.dp))
         ) {
             Icon(painterResource(id = R.drawable.ic_back), contentDescription = "Menu")
         }
@@ -44,7 +46,7 @@ import com.group.so.ui.theme.PrimaryColor
         )
         IconButton(
             onClick = {}, modifier = Modifier.background(Cyan, RoundedCornerShape(8.dp))
-        ){
+        ) {
             ActionMenu(colorIcon = PrimaryColor) {
                 onActionClicked()
             }

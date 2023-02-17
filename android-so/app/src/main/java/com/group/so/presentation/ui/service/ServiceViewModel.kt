@@ -16,7 +16,6 @@ import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Item
-import com.group.so.data.entities.request.customer.CustomerDataRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
@@ -66,7 +65,6 @@ class ServiceViewModel(
         )
     }
 
-
     private fun registerNewService(serviceDataRequest: ServiceDataRequest) {
         viewModelScope.launch {
             registerServiceUseCase(serviceDataRequest)
@@ -90,7 +88,6 @@ class ServiceViewModel(
                 }
         }
     }
-
 
     private fun getItemsByNameAndItemType(query: Query) {
         viewModelScope.launch {
