@@ -7,7 +7,7 @@ module Api
       end
 
       def create
-        category = Categories::CategoryCreatorService.new(user: current_user, create_category_params:).call
+        category = Categories::CategoryCreatorService.new(user: current_user, params: create_category_params).call
         render json: CategoryPresenter.payload_for_item(category), status: :created
       end
 

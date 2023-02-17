@@ -1,14 +1,14 @@
 module Categories
   class CategoryCreatorService < BaseService
-    attr_reader :create_category_params
+    attr_reader :params
 
-    def initialize(user:, create_category_params:)
+    def initialize(user:, params:)
       @user = user
-      @create_category_params = create_category_params.merge(user:)
+      @params = params.merge(user:)
     end
 
     def call
-      category = Category.new(create_category_params)
+      category = Category.new(params)
 
       authorize!(CategoryPolicy, :create?, category)
 
