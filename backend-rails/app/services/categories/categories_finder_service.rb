@@ -1,10 +1,10 @@
 module Categories
   class CategoriesFinderService < BaseService
-    attr_reader :user, :name
+    attr_reader :name
 
-    def initialize(user:, find_params:)
-      @user = user
-      @name = find_params[:name]
+    def initialize(user:, params:)
+      super
+      @name = params[:name]
     end
 
     def call

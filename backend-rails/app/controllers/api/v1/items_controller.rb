@@ -2,22 +2,22 @@ module Api
   module V1
     class ItemsController < Api::V1::ApiController
       def index
-        items = Items::ItemsFinderService.new(user: current_user, index_params:).call
+        items = Items::ItemsFinderService.new(user: current_user, params: index_params).call
         render json: ItemPresenter.payload_for_list(items)
       end
 
       def create
-        item = Items::ItemCreatorService.new(user: current_user, create_item_params:).call
+        item = Items::ItemCreatorService.new(user: current_user, params: create_item_params).call
         render json: ItemPresenter.payload_for_item(item), status: :created
       end
 
       def update
-        item = Items::ItemUpdaterService.new(user: current_user, update_item_params:).call
+        item = Items::ItemUpdaterService.new(user: current_user, params: update_item_params).call
         render json: ItemPresenter.payload_for_item(item), status: :ok
       end
 
       def destroy
-        Items::ItemDestroyerService.new(user: current_user, destroy_params:).call
+        Items::ItemDestroyerService.new(user: current_user, params: destroy_params).call
         render json: {}, status: :no_content
       end
 

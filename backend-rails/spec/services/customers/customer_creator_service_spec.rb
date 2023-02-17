@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Customers::CustomerCreatorService do
   describe '#call' do
     let!(:user) { create(:user) }
-    let!(:create_customer_params) do
+    let!(:params) do
       {
         name: 'john',
         document_number: '0032133335',
@@ -15,16 +15,16 @@ RSpec.describe Customers::CustomerCreatorService do
       }
     end
 
-    subject { described_class.new(user:, create_customer_params:).call }
+    subject { described_class.new(user:, params:).call }
 
     it 'returns customer with proper fields', :aggregate_failures do
       subject
-      expect(subject.name).to eq(create_customer_params[:name])
-      expect(subject.name).to eq(create_customer_params[:name])
-      expect(subject.document_number).to eq(create_customer_params[:document_number])
-      expect(subject.customer_type).to eq(create_customer_params[:customer_type])
-      expect(subject.phone).to eq(create_customer_params[:phone])
-      expect(subject.state_inscription).to eq(create_customer_params[:state_inscription])
+      expect(subject.name).to eq(params[:name])
+      expect(subject.name).to eq(params[:name])
+      expect(subject.document_number).to eq(params[:document_number])
+      expect(subject.customer_type).to eq(params[:customer_type])
+      expect(subject.phone).to eq(params[:phone])
+      expect(subject.state_inscription).to eq(params[:state_inscription])
     end
 
     it 'creates customer', :aggregate_failures do

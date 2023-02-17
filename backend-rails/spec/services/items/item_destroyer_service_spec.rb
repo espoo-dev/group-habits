@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe Items::ItemDestroyerService do
   describe '#call' do
     let!(:user) { create(:user) }
-    let!(:destroy_params) { { id: item.id } }
+    let!(:params) { { id: item.id } }
 
-    subject { described_class.new(user:, destroy_params:).call }
+    subject { described_class.new(user:, params:).call }
 
     describe 'when user is item owner' do
       let!(:item) { create(:item, user:) }

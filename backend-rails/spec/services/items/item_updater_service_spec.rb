@@ -6,9 +6,9 @@ RSpec.describe Items::ItemUpdaterService do
   describe '#call' do
     let!(:user) { create(:user) }
     let!(:new_item_name) { create(:user) }
-    let(:update_item_params) { { id: item.id, name: new_item_name } }
+    let(:params) { { id: item.id, name: new_item_name } }
 
-    subject { described_class.new(user:, update_item_params:).call }
+    subject { described_class.new(user:, params:).call }
 
     describe 'when user is item owner' do
       let!(:item) { create(:item, user:) }
