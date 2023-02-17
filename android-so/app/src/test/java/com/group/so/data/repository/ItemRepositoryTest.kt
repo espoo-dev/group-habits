@@ -9,6 +9,7 @@ import com.group.so.data.repository.item.ItemRepository
 import com.group.so.mock.ItemMock.mockItemEntityListEmpty
 import com.group.so.mock.ItemMock.mockItemListItemsFlowResourceSuccess
 import com.group.so.mock.ItemMock.mockItemResourceSuccess
+import com.group.so.mock.ItemMock.mockServiceDeleteResourceSucess
 import com.group.so.mock.ItemMock.mockServiceRegisterFlowResourceSuccess
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -143,5 +144,25 @@ class ItemRepositoryTest {
                 mockServiceRegisterFlowResourceSuccess().first().data?.name
             )
             Assert.assertTrue(result is Resource.Success)
+        }
+    @Test
+    fun `should return a 204 after delete`() =
+        runBlocking {
+
+            // GIVEN
+            coEvery {
+                itemRepository.deleteService(
+                    1
+                )
+            } returns mockServiceDeleteResourceSucess()
+
+            val result = itemRepository.deleteService(1).first()
+
+            // THEN
+            assertEquals(
+                result.data,
+                204
+            )
+            assertTrue(result is Resource.Success)
         }
 }
