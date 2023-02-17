@@ -127,15 +127,15 @@ class ItemServiceTest {
             mockWebServer.enqueue(
                 response.setBody(
                     "{\n" +
-                        "    \"id\": 13,\n" +
-                        "    \"name\": \"service teste roanderson\",\n" +
-                        "    \"extra_info\": \"service\",\n" +
-                        "    \"sale_price\": 2000.5,\n" +
-                        "    \"purchase_price\": 0.0,\n" +
-                        "    \"item_type\": \"service\",\n" +
-                        "    \"category\": null,\n" +
-                        "    \"sales_unit\": null\n" +
-                        "}"
+                            "    \"id\": 13,\n" +
+                            "    \"name\": \"service teste roanderson\",\n" +
+                            "    \"extra_info\": \"service\",\n" +
+                            "    \"sale_price\": 2000.5,\n" +
+                            "    \"purchase_price\": 0.0,\n" +
+                            "    \"item_type\": \"service\",\n" +
+                            "    \"category\": null,\n" +
+                            "    \"sales_unit\": null\n" +
+                            "}"
                 )
             )
             service.registerService(
@@ -149,6 +149,23 @@ class ItemServiceTest {
             )
             val request = mockWebServer.takeRequest()
             assertEquals(request.path, "/items")
+        }
+    }
+
+    @Test
+    fun `should return correct endpoint delete item`() {
+        runBlocking {
+            val response = MockResponse()
+            mockWebServer.enqueue(
+                response.setBody(
+                    "[]"
+                )
+            )
+            service.deleteItem(
+                1
+            )
+            val request = mockWebServer.takeRequest()
+            assertEquals(request.path, "/items/1")
         }
     }
 
