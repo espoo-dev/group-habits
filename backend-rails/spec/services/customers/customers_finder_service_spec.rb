@@ -10,7 +10,7 @@ RSpec.describe Customers::CustomersFinderService do
     let!(:customer3) { create(:customer) }
 
     context 'when not querying' do
-      subject { described_class.new(user:, index_params: {}).call }
+      subject { described_class.new(user:, params: {}).call }
       it 'returns user customers' do
         is_expected.to eq [customer, customer2]
       end
@@ -18,14 +18,14 @@ RSpec.describe Customers::CustomersFinderService do
 
     context 'when querying' do
       context 'when by name like' do
-        subject { described_class.new(user:, index_params: { name: 'b' }).call }
+        subject { described_class.new(user:, params: { name: 'b' }).call }
         it 'returns user customers matching filter' do
           is_expected.to eq [customer]
         end
       end
 
       context 'when by customer_type' do
-        subject { described_class.new(user:, index_params: { customer_type: 'business' }).call }
+        subject { described_class.new(user:, params: { customer_type: 'business' }).call }
         it 'returns user customers matching filter' do
           is_expected.to eq [customer2]
         end

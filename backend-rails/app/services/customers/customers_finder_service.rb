@@ -2,10 +2,10 @@ module Customers
   class CustomersFinderService < BaseService
     attr_reader :user, :name, :customer_type
 
-    def initialize(user:, index_params:)
+    def initialize(user:, params:)
       @user = user
-      @name = index_params[:name]
-      @customer_type = index_params[:customer_type]
+      @name = params[:name]
+      @customer_type = params[:customer_type]
     end
 
     def call

@@ -2,7 +2,7 @@ module Api
   module V1
     class CustomersController < Api::V1::ApiController
       def index
-        customers = Customers::CustomersFinderService.new(user: current_user, index_params:).call
+        customers = Customers::CustomersFinderService.new(user: current_user, params: index_params).call
         render json: CustomerPresenter.payload_for_list(customers)
       end
 
