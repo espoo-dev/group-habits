@@ -152,6 +152,23 @@ class ItemServiceTest {
         }
     }
 
+    @Test
+    fun `should return correct endpoint delete item`() {
+        runBlocking {
+            val response = MockResponse()
+            mockWebServer.enqueue(
+                response.setBody(
+                    "[]"
+                )
+            )
+            service.deleteItem(
+                1
+            )
+            val request = mockWebServer.takeRequest()
+            assertEquals(request.path, "/items/1")
+        }
+    }
+
     @After
     fun stopService() {
         mockWebServer.shutdown()
