@@ -74,6 +74,11 @@ object ItemMock {
 
         )
     )
+    fun mockServiceDeleteResourceSucess() = flowOf(
+        Resource.Success(
+            data = 204
+        )
+    )
 
     fun mockItemResourceSuccess(): Resource<List<Item>> =
         Resource.Success(data = ItemMock.mockItemList())
