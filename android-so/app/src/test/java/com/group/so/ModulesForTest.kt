@@ -23,7 +23,12 @@ import com.group.so.domain.customer.EditCustomerUseCase
 import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
 import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
-import com.group.so.domain.item.*
+import com.group.so.domain.item.DeleteItemUseCase
+import com.group.so.domain.item.GetItemByItemTypeUseCase
+import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
+import com.group.so.domain.item.GetItemsByNameUseCase
+import com.group.so.domain.item.GetItemsUseCase
+import com.group.so.domain.item.RegisterServiceUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import com.group.so.presentation.ui.login.LoginViewModel
@@ -81,7 +86,7 @@ fun configureDomainModuleForTest() = module {
     factory<GetItemsByNameUseCase> { GetItemsByNameUseCase(get()) }
     factory<GetItemByItemTypeUseCase> { GetItemByItemTypeUseCase(get()) }
     factory<GetItemByNameAndItemTypeUseCase> { GetItemByNameAndItemTypeUseCase(get()) }
-    factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
+    factory<RegisterServiceUseCase> { RegisterServiceUseCase(get()) }
     factory<DeleteItemUseCase> { DeleteItemUseCase(get()) }
 }
 
