@@ -17,9 +17,12 @@ import com.group.so.core.State
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.request.service.ServiceDataRequest
+import com.group.so.domain.item.DeleteItemUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterServiceUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
@@ -29,7 +32,8 @@ import kotlinx.coroutines.launch
 class ServiceViewModel(
     private val getItemByItemTypeUseCase: GetItemByItemTypeUseCase,
     private val getItemByNameAndItemTypeUseCase: GetItemByNameAndItemTypeUseCase,
-    private val registerServiceUseCase: RegisterServiceUseCase
+    private val registerServiceUseCase: RegisterServiceUseCase,
+    private val deleteItemUseCase: DeleteItemUseCase,
 ) : ViewModel() {
 
     private val _itemListState = MutableStateFlow<State<List<Item>>>(State.Idle)
@@ -37,6 +41,11 @@ class ServiceViewModel(
 
     private val _registerServiceState = MutableStateFlow<State<Item>>(State.Idle)
     val serviceState = _registerServiceState.asStateFlow()
+
+    private var removeItemJob: Job? = null
+
+    private val _itemDeleteState = MutableStateFlow<State<Int>>(State.Idle)
+    val itemDeleteState = _itemDeleteState.asStateFlow()
 
     init {
         fetchLatestServices()
@@ -133,5 +142,33 @@ class ServiceViewModel(
                 }
             }
         }
+    }
+    private fun deleteItemById(id: Int) {
+        removeItemJob?.cancel()
+        removeItemJob = viewModelScope.launch {
+            launch(Dispatchers.Main) {
+                deleteItemUseCase(id).onStart {
+                    _itemDeleteState.value = State.Loading
+                }.catch {
+                    with(RemoteException("Could not connect to Service Order API")) {
+                        _itemDeleteState.value = State.Error(this)
+                    }
+                }.collect {
+                    it.data?.let { id ->
+                        _itemDeleteState.value = State.Success(id)
+                        fetchLatestServices()
+                    }
+                    it.error?.let { error ->
+                        with(RemoteException(error.message.toString())) {
+                            _itemDeleteState.value = State.Error(this)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun deleteItem(id: Int) {
+        deleteItemById(id)
     }
 }

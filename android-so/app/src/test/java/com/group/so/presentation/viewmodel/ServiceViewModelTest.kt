@@ -11,6 +11,7 @@ import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.repository.item.ItemRepository
+import com.group.so.domain.item.DeleteItemUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterServiceUseCase
@@ -43,6 +44,8 @@ class ServiceViewModelTest {
 
     private val registerServiceUseCase = RegisterServiceUseCase(itemRepository)
 
+    private val deleteItemUseCase = DeleteItemUseCase(itemRepository)
+
     private lateinit var viewModel: ServiceViewModel
 
     @get:Rule
@@ -67,7 +70,8 @@ class ServiceViewModelTest {
         viewModel = ServiceViewModel(
             getItemByItemTypeUseCase,
             getItemsByNameAndItemTypeUseCase,
-            registerServiceUseCase
+            registerServiceUseCase,
+            deleteItemUseCase
         )
         coEvery { getItemByItemTypeUseCase.execute("services") } returns flow {
             emit(Resource.Success(data = mockItemList()))
@@ -161,5 +165,19 @@ class ServiceViewModelTest {
         serviceListState.value = viewModel.itemListState.value
 
         assert(serviceListState.value is State.Success)
+    }
+
+    @Test
+    fun ` delete item  successfully `() = runTest {
+
+        val deleteItemState = MutableStateFlow<State<Int>>(State.Idle)
+        coEvery { deleteItemUseCase.execute(85) } returns flow {
+            emit(Resource.Success(data = 204))
+        }
+        viewModel.deleteItem(85)
+        runCurrent()
+        deleteItemState.value = viewModel.itemDeleteState.value
+
+        assert(deleteItemState.value is State.Success)
     }
 }
