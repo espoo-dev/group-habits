@@ -17,7 +17,7 @@ module Api
       end
 
       def destroy
-        Categories::CategoryDestroyerService.new(user: current_user, destroy_params:).call
+        Categories::CategoryDestroyerService.new(user: current_user, params: destroy_params).call
         render json: {}, status: :no_content
       end
 

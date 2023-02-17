@@ -2,9 +2,9 @@ module Categories
   class CategoryDestroyerService < BaseService
     attr_reader :user, :category_id
 
-    def initialize(user:, destroy_params:)
+    def initialize(user:, params:)
       @user = user
-      @category_id = destroy_params[:id]
+      @category_id = params[:id]
     end
 
     def call
