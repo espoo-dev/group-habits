@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming")
+
 package com.group.so.presentation.ui.home.components
 
 import androidx.compose.foundation.background
