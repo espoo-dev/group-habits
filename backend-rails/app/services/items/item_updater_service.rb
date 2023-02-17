@@ -1,6 +1,5 @@
 module Items
   class ItemUpdaterService < BaseService
-
     def call
       item = Item.find(resource_id)
 

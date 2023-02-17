@@ -1,6 +1,5 @@
 module Categories
   class CategoryDestroyerService < BaseService
-
     def call
       category = Category.find(resource_id)
 

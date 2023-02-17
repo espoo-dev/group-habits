@@ -1,6 +1,5 @@
 module Customers
   class CustomerDestroyerService < BaseService
-
     def call
       customer = Customer.find(resource_id)
 
