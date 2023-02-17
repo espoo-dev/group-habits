@@ -122,5 +122,17 @@
     <string name="msg_empty_service_list">No services registered at the moment</string>
     <string name="tv_type_component_service">Service</string>
 
+    <!--Customers Add New service-->
+    <string name="title_button_register_service">Add new service</string>
+    <string name="title_toolbar_add_new_service">Add new service</string>
+    <string name="txt_register_success_service">Service registered successfully</string>
+    <string name="title_toolbar_edit_service">Edit Service</string>
+    <string name="title_button_edit_service">Save change</string>
+    <string name="txt_edit_success_service">Service successfully edited.</string>
+
+    <string name="lbl_field_extra_info">Extra Info</string>
+    <string name="lbl_field_name_service">Name Service</string>
+    <string name="lbl_field_price_service">Service price</string>
+
 
 </resources>

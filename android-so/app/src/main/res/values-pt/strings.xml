@@ -20,8 +20,6 @@
     <string name="subtitle_menu_profile">Visualize e atualize seus dados de forma simples</string>
 
 
-
-
     <!--SubMenu Home-->
     <string name="title_submenu_home">Como podemos te ajudar?</string>
     <string name="desc_submenu_home">Podemos te auxiliar com algumas  ações</string>
@@ -109,6 +107,16 @@
     <string name="msg_empty_service_list">Nenhum serviço cadastrado no momento</string>
     <string name="tv_type_component_service">Serviço</string>
     <string name="desc_quote_of_the_day">Tenha um dia produtivo</string>
+
+    <string name="title_button_register_service">Adicionar novo serviço</string>
+    <string name="title_toolbar_add_new_service">Adicionar novo serviço</string>
+    <string name="txt_register_success_service">Serviço registrado com sucesso.</string>
+    <string name="title_toolbar_edit_service">Editar serviço</string>
+    <string name="title_button_edit_service">Salvar alterações</string>
+    <string name="txt_edit_success_service">Serviço editado com sucesso.</string>
+    <string name="lbl_field_extra_info">Observação</string>
+    <string name="lbl_field_name_service">Nome Serviço</string>
+    <string name="lbl_field_price_service">Preço serviço</string>
 
 
 </resources>
