@@ -98,7 +98,7 @@ fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
     factory { CategoryViewModel(get(), get(), get(), get(), get()) }
     factory { CustomerViewModel(get(), get(), get(), get(), get(), get()) }
-    factory { ServiceViewModel(get(), get(), get()) }
+    factory { ServiceViewModel(get(), get(), get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(
