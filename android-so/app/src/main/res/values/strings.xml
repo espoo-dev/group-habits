@@ -11,6 +11,44 @@
 
     <string name="tv_money">$: %s</string>
 
+    <!--Menu Home-->
+    <string name="title_menu_service_order">Order Service</string>
+    <string name="subtitle_menu_service_order">Create your work orders</string>
+
+    <string name="title_menu_profile">Profile</string>
+    <string name="subtitle_menu_profile">View and update your data in a simple way</string>
+
+
+
+
+
+    <!--SubMenu Home-->
+    <string name="desc_quote_of_the_day">Have a productive day</string>
+
+
+
+    <string name="title_submenu_home">How can we help you?</string>
+    <string name="desc_submenu_home">We can help you with some actions</string>
+
+
+    <string name="title_submenu_home_service">Services</string>
+    <string name="desc_submenu_home_service">Register your services</string>
+
+    <string name="title_submenu_home_customer">Customer</string>
+    <string name="desc_submenu_home_customer">Register your customers</string>
+
+    <string name="title_submenu_home_product">Product</string>
+    <string name="desc_submenu_home_product">Register your products</string>
+
+    <string name="title_submenu_home_category">Categories</string>
+    <string name="desc_submenu_home_category">Register your categories</string>
+
+
+
+
+
+
+
     <!-- Generic messages -->
     <string name="msg_generic_error">Ops! Something went wrong…</string>
     <string name="msg_loading">Please wait…</string>

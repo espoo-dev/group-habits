@@ -16,3 +16,6 @@ val PlaceholderColor = Color(0xFFE5E5E5)
 val LightPrimaryColor = Color(0xFFFFF6EE)
 
 val MoneyColor = Color(0xFF388E3C)
+
+val Cyan = Color(0xffF5F8FF)
+val Blue = Color(0xff2A72E1)
