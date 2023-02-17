@@ -8,11 +8,16 @@ import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.core.State
 import com.group.so.data.ItemType
+import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.model.Item
+import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
+import com.group.so.domain.item.RegisterServiceUseCase
+import com.group.so.mock.CustomerMock
 import com.group.so.mock.ItemMock.mockItemList
+import com.group.so.mock.ItemMock.mockServiceRegisterFlowResourceSuccess
 import com.group.so.presentation.ui.service.ServiceViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -39,6 +44,8 @@ class ServiceViewModelTest {
 
     private val getItemsByNameAndItemTypeUseCase = GetItemByNameAndItemTypeUseCase(itemRepository)
 
+    private val registerServiceUseCase = RegisterServiceUseCase(itemRepository)
+
     private lateinit var viewModel: ServiceViewModel
 
     @get:Rule
@@ -47,12 +54,25 @@ class ServiceViewModelTest {
     @get:Rule
     val coroutinesTestRule = CoroutineTestRule()
 
+
+    val mockRegisterServiceRequest =
+        ServiceDataRequest(
+            name = "service teste roanderson",
+            extraInfo = "service",
+            salePrice = 2000.50,
+            itemType = "service"
+        )
+
     @Before
     fun setup() {
 
         // Dispatchers.setMain(Dispatchers.Unconfined)
         Dispatchers.setMain(StandardTestDispatcher())
-        viewModel = ServiceViewModel(getItemByItemTypeUseCase, getItemsByNameAndItemTypeUseCase)
+        viewModel = ServiceViewModel(
+            getItemByItemTypeUseCase,
+            getItemsByNameAndItemTypeUseCase,
+            registerServiceUseCase
+        )
         coEvery { getItemByItemTypeUseCase.execute("services") } returns flow {
             emit(Resource.Success(data = mockItemList()))
         }
@@ -62,6 +82,42 @@ class ServiceViewModelTest {
     fun tearDown() {
         Dispatchers.resetMain()
     }
+
+    @Test
+    fun ` register new customer  successfully `() = runTest {
+
+        val registerServiceState = MutableStateFlow<State<Item>>(State.Idle)
+        coEvery {
+            registerServiceUseCase.execute(
+                mockRegisterServiceRequest
+            )
+        } returns flow {
+            emit(
+                Resource.Success(
+                    data = Item(
+                        id = 1,
+                        name = "service teste roanderson",
+                        extraInfo = "service",
+                        salePrice = 2000.50,
+                        purchasePrice = 0.0,
+                        itemType = "service",
+                        category = null,
+                        saleUnit = null,
+                    )
+                )
+            )
+        }
+        viewModel.register(
+            name = "service teste roanderson",
+            extraInfo = "service",
+            salePrice = 2000.50,
+        )
+        runCurrent()
+        registerServiceState.value = viewModel.serviceState.value
+
+        assert(registerServiceState.value is State.Success)
+    }
+
 
     @Test
     fun ` loading services successfully `() = runTest {
