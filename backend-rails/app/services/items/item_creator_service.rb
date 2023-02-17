@@ -1,14 +1,14 @@
 module Items
   class ItemCreatorService < BaseService
-    attr_reader :create_item_params
+    attr_reader :params
 
-    def initialize(user:, create_item_params:)
+    def initialize(user:, params:)
       @user = user
-      @create_item_params = create_item_params.merge(user:)
+      @params = params.merge(user:)
     end
 
     def call
-      item = Item.new(create_item_params)
+      item = Item.new(params)
 
       authorize!(ItemPolicy, :create?, item)
 

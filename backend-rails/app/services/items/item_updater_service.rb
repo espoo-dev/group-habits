@@ -1,11 +1,11 @@
 module Items
   class ItemUpdaterService < BaseService
-    attr_reader :id, :update_item_params
+    attr_reader :id, :params
 
-    def initialize(user:, update_item_params:)
+    def initialize(user:, params:)
       @user = user
-      @id = update_item_params[:id]
-      @update_item_params = update_item_params
+      @id = params[:id]
+      @params = params
     end
 
     def call
@@ -13,7 +13,7 @@ module Items
 
       authorize!(ItemPolicy, :update?, item)
 
-      item.update!(update_item_params)
+      item.update!(params)
       item
     end
   end

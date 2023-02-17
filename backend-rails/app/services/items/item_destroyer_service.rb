@@ -2,9 +2,9 @@ module Items
   class ItemDestroyerService < BaseService
     attr_reader :user, :item_id
 
-    def initialize(user:, destroy_params:)
+    def initialize(user:, params:)
       @user = user
-      @item_id = destroy_params[:id]
+      @item_id = params[:id]
     end
 
     def call
