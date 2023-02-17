@@ -1,4 +1,3 @@
 package com.group.so.presentation.ui.service
 
-class AddScreenCustomer {
-}
+class AddScreenCustomer
