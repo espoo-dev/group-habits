@@ -6,7 +6,6 @@ import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.repository.item.ItemRepository
-import com.group.so.mock.CustomerMock
 import com.group.so.mock.ItemMock.mockItemEntityListEmpty
 import com.group.so.mock.ItemMock.mockItemListItemsFlowResourceSuccess
 import com.group.so.mock.ItemMock.mockItemResourceSuccess
@@ -166,5 +165,4 @@ class ItemRepositoryTest {
             )
             assertTrue(result is Resource.Success)
         }
-
 }
