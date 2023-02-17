@@ -8,16 +8,13 @@ import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.core.State
 import com.group.so.data.ItemType
-import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterServiceUseCase
-import com.group.so.mock.CustomerMock
 import com.group.so.mock.ItemMock.mockItemList
-import com.group.so.mock.ItemMock.mockServiceRegisterFlowResourceSuccess
 import com.group.so.presentation.ui.service.ServiceViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -53,7 +50,6 @@ class ServiceViewModelTest {
 
     @get:Rule
     val coroutinesTestRule = CoroutineTestRule()
-
 
     val mockRegisterServiceRequest =
         ServiceDataRequest(
@@ -117,7 +113,6 @@ class ServiceViewModelTest {
 
         assert(registerServiceState.value is State.Success)
     }
-
 
     @Test
     fun ` loading services successfully `() = runTest {
