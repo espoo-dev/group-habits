@@ -15,4 +15,8 @@ class BaseService
   def resource_id
     params[:id]
   end
+
+  def params_with_user
+    params.merge(user:)
+  end
 end
