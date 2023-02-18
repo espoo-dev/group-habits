@@ -1,12 +1,7 @@
 module Customers
-  class CustomerDestroyerService < BaseService
-    def call
-      customer = Customer.find(resource_id)
-
-      authorize!(CustomerPolicy, :destroy?, customer)
-
-      customer.destroy!
-      nil
+  class CustomerDestroyerService < DestroyerService
+    def prepare_resource
+      Customer.find(resource_id)
     end
   end
 end

@@ -1,10 +1,9 @@
-class UpdaterService < BaseService
+class FinderService < BaseService
   def resource_policy_action
-    :update?
+    :index?
   end
 
   def call_action
-    resource.update!(params)
     resource
   end
 end

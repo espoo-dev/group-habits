@@ -1,10 +1,10 @@
-class UpdaterService < BaseService
+class CreatorService < BaseService
   def resource_policy_action
-    :update?
+    :create?
   end
 
   def call_action
-    resource.update!(params)
+    resource.save!
     resource
   end
 end

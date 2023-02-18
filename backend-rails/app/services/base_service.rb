@@ -14,8 +14,10 @@ class BaseService
     call_action
   end
 
-  def resource_policy_class
-    Pundit::PolicyFinder.new(resource).policy
+  protected
+
+  def resource_id
+    params[:id]
   end
 
   def authorize!(klass, method, entity)
@@ -24,11 +26,13 @@ class BaseService
     entity
   end
 
-  def resource_id
-    params[:id]
-  end
-
   def params_with_user
     params.merge(user:)
+  end
+
+  private
+
+  def resource_policy_class
+    Pundit::PolicyFinder.new(resource).policy
   end
 end

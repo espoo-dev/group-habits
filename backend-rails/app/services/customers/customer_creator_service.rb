@@ -1,17 +1,9 @@
 module Customers
-  class CustomerCreatorService < BaseService
-    def initialize(user:, params:)
-      super
+  class CustomerCreatorService < CreatorService
+    def prepare_resource
       @params[:customer_type] = Customer.customer_types[params[:customer_type]]
-    end
 
-    def call
-      customer = Customer.new(params_with_user)
-
-      authorize!(CustomerPolicy, :create?, customer)
-
-      customer.save!
-      customer
+      Customer.new(params_with_user)
     end
   end
 end
