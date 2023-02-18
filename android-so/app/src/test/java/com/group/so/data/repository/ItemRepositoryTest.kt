@@ -4,6 +4,7 @@ package com.group.so.data.repository
 
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
+import com.group.so.data.entities.request.service.EditServiceRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.mock.ItemMock.mockItemEntityListEmpty
@@ -27,12 +28,23 @@ class ItemRepositoryTest {
 
     private val itemRepository = mockk<ItemRepository>()
 
-    val mockRegisterServiceRequest =
+    private val mockRegisterServiceRequest =
         ServiceDataRequest(
             name = "service teste roanderson",
             extraInfo = "service",
             salePrice = 2000.50,
             itemType = "service"
+        )
+
+    private val mockEditServiceRequest =
+        EditServiceRequest(
+            id = 1,
+            ServiceDataRequest(
+                name = "service teste roanderson",
+                extraInfo = "service",
+                salePrice = 2000.50,
+                itemType = "service"
+            )
         )
 
     @Test(expected = RemoteException::class)
@@ -145,6 +157,7 @@ class ItemRepositoryTest {
             )
             Assert.assertTrue(result is Resource.Success)
         }
+
     @Test
     fun `should return a 204 after delete`() =
         runBlocking {
@@ -164,5 +177,25 @@ class ItemRepositoryTest {
                 204
             )
             assertTrue(result is Resource.Success)
+        }
+
+    @Test
+    fun `should return a service after editing`() =
+        runBlocking {
+            // GIVEN
+            coEvery {
+                itemRepository.edit(
+                    mockEditServiceRequest
+                )
+            } returns mockServiceRegisterFlowResourceSuccess()
+
+            val result = itemRepository.edit(mockEditServiceRequest).first()
+
+            // THEN
+            Assert.assertEquals(
+                result.data?.name,
+                mockServiceRegisterFlowResourceSuccess().first().data?.name
+            )
+            Assert.assertTrue(result is Resource.Success)
         }
 }
