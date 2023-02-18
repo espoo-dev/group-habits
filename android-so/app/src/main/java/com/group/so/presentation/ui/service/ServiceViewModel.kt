@@ -16,8 +16,10 @@ import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Item
+import com.group.so.data.entities.request.service.EditServiceRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.domain.item.DeleteItemUseCase
+import com.group.so.domain.item.EditServiceUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterServiceUseCase
@@ -34,6 +36,7 @@ class ServiceViewModel(
     private val getItemByNameAndItemTypeUseCase: GetItemByNameAndItemTypeUseCase,
     private val registerServiceUseCase: RegisterServiceUseCase,
     private val deleteItemUseCase: DeleteItemUseCase,
+    private val editServiceUseCase: EditServiceUseCase
 ) : ViewModel() {
 
     private val _itemListState = MutableStateFlow<State<List<Item>>>(State.Idle)
@@ -41,6 +44,9 @@ class ServiceViewModel(
 
     private val _registerServiceState = MutableStateFlow<State<Item>>(State.Idle)
     val serviceState = _registerServiceState.asStateFlow()
+
+    private val _editServiceState = MutableStateFlow<State<Item>>(State.Idle)
+    val editServiceState = _editServiceState.asStateFlow()
 
     private var removeItemJob: Job? = null
 
@@ -98,6 +104,49 @@ class ServiceViewModel(
         }
     }
 
+    fun edit(
+        id: Int,
+        name: String,
+        extraInfo: String,
+        salePrice: Double,
+    ) {
+        editService(
+            EditServiceRequest(
+                id = id,
+                dataRequest = ServiceDataRequest(
+                    name = name,
+                    extraInfo = extraInfo,
+                    salePrice = salePrice,
+                    itemType = ItemType.SERVICE.value
+                )
+            )
+        )
+    }
+
+    private fun editService(editServiceRequest: EditServiceRequest) {
+        viewModelScope.launch {
+            editServiceUseCase(editServiceRequest)
+                .onStart {
+                    _editServiceState.value = (State.Loading)
+                }.catch {
+                    with(RemoteException("Could not connect to Service Orders API")) {
+                        _editServiceState.value = State.Error(this)
+                    }
+                }
+                .collect {
+                    it.data?.let { service ->
+                        _editServiceState.value = State.Success(service)
+                        fetchLatestServices()
+                    }
+                    it.error?.let { throwable ->
+                        with(RemoteException(throwable.message.toString())) {
+                            _editServiceState.value = State.Error(this)
+                        }
+                    }
+                }
+        }
+    }
+
     private fun getItemsByNameAndItemType(query: Query) {
         viewModelScope.launch {
             getItemByNameAndItemTypeUseCase(query).onStart {
@@ -143,6 +192,7 @@ class ServiceViewModel(
             }
         }
     }
+
     private fun deleteItemById(id: Int) {
         removeItemJob?.cancel()
         removeItemJob = viewModelScope.launch {
