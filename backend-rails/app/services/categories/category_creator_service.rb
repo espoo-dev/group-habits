@@ -1,12 +1,7 @@
 module Categories
-  class CategoryCreatorService < BaseService
-    def call
-      category = Category.new(params_with_user)
-
-      authorize!(CategoryPolicy, :create?, category)
-
-      category.save!
-      category
+  class CategoryCreatorService < CreatorService
+    def prepare_resource
+      resource = Category.new(params_with_user)
     end
   end
 end

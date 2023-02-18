@@ -1,12 +1,8 @@
 module Items
-  class ItemCreatorService < BaseService
-    def call
-      item = Item.new(params_with_user)
+  class ItemCreatorService < CreatorService
 
-      authorize!(ItemPolicy, :create?, item)
-
-      item.save!
-      item
+    def prepare_resource
+      resource = Item.new(params_with_user)
     end
   end
 end
