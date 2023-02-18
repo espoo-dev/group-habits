@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :categories, only: %i[index create destroy update]
       resources :items, only: %i[index create destroy update]
       resources :customers, only: %i[index create destroy update]
+      resources :sales_units, only: %i[index]
 
       get :status, to: 'api#status'
 
