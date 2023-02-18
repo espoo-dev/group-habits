@@ -1,17 +1,12 @@
 module Customers
-  class CustomerUpdaterService < BaseService
+  class CustomerUpdaterService < UpdaterService
     def initialize(user:, params:)
       super
       @params[:customer_type] = Customer.customer_types[params[:customer_type]]
     end
 
-    def call
-      customer = Customer.find(resource_id)
-
-      authorize!(CustomerPolicy, :update?, customer)
-
-      customer.update!(params)
-      customer
+    def resource_class
+      Customer
     end
   end
 end
