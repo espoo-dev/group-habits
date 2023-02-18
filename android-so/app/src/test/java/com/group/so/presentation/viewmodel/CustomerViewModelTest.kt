@@ -179,7 +179,7 @@ class CustomerViewModelTest {
     }
 
     @Test
-    fun ` register edit customer  successfully `() = runTest {
+    fun ` edit customer  successfully `() = runTest {
 
         val editCustomerState = MutableStateFlow<State<Customer>>(State.Idle)
         coEvery {
