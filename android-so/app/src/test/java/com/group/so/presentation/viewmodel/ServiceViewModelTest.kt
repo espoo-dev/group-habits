@@ -9,9 +9,11 @@ import com.group.so.core.Resource
 import com.group.so.core.State
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Item
+import com.group.so.data.entities.request.service.EditServiceRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.domain.item.DeleteItemUseCase
+import com.group.so.domain.item.EditServiceUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterServiceUseCase
@@ -46,6 +48,8 @@ class ServiceViewModelTest {
 
     private val deleteItemUseCase = DeleteItemUseCase(itemRepository)
 
+    private val editServiceUseCase = EditServiceUseCase(itemRepository)
+
     private lateinit var viewModel: ServiceViewModel
 
     @get:Rule
@@ -54,12 +58,23 @@ class ServiceViewModelTest {
     @get:Rule
     val coroutinesTestRule = CoroutineTestRule()
 
-    val mockRegisterServiceRequest =
+    private val mockRegisterServiceRequest =
         ServiceDataRequest(
             name = "service teste roanderson",
             extraInfo = "service",
             salePrice = 2000.50,
             itemType = "service"
+        )
+
+    private val mockEditServiceRequest =
+        EditServiceRequest(
+            id = 1,
+            ServiceDataRequest(
+                name = "service teste roanderson",
+                extraInfo = "service",
+                salePrice = 2000.50,
+                itemType = "service"
+            )
         )
 
     @Before
@@ -71,7 +86,8 @@ class ServiceViewModelTest {
             getItemByItemTypeUseCase,
             getItemsByNameAndItemTypeUseCase,
             registerServiceUseCase,
-            deleteItemUseCase
+            deleteItemUseCase,
+            editServiceUseCase
         )
         coEvery { getItemByItemTypeUseCase.execute("services") } returns flow {
             emit(Resource.Success(data = mockItemList()))
@@ -179,5 +195,41 @@ class ServiceViewModelTest {
         deleteItemState.value = viewModel.itemDeleteState.value
 
         assert(deleteItemState.value is State.Success)
+    }
+
+    @Test
+    fun ` edit service  successfully `() = runTest {
+
+        val editServiceState = MutableStateFlow<State<Item>>(State.Idle)
+        coEvery {
+            editServiceUseCase.execute(
+                mockEditServiceRequest
+            )
+        } returns flow {
+            emit(
+                Resource.Success(
+                    data = Item(
+                        id = 1,
+                        name = "service teste roanderson",
+                        extraInfo = "service",
+                        salePrice = 2000.50,
+                        itemType = "service",
+                        purchasePrice = 0.0,
+                        category = null,
+                        saleUnit = null
+                    )
+                )
+            )
+        }
+        viewModel.edit(
+            id = 1,
+            name = "service teste roanderson",
+            extraInfo = "service",
+            salePrice = 2000.50,
+        )
+        runCurrent()
+        editServiceState.value = viewModel.editServiceState.value
+
+        assert(editServiceState.value is State.Success)
     }
 }
