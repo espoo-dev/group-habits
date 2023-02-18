@@ -1,17 +1,9 @@
 module Categories
-  class CategoriesFinderService < BaseService
-    attr_reader :name
+  class CategoriesFinderService < FinderService
 
-    def initialize(user:, params:)
-      super
-      @name = params[:name]
-    end
-
-    def call
-      categories = CategoryPolicy::Scope.new(user, Category).resolve
-                                        .by_name_like(name)
-
-      authorize!(CategoryPolicy, :index?, categories)
+    def prepare_resource
+      resource = CategoryPolicy::Scope.new(user, Category).resolve
+      .by_name_like(params[:name])
     end
   end
 end
