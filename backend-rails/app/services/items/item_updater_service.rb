@@ -1,12 +1,7 @@
 module Items
-  class ItemUpdaterService < BaseService
-    def call
-      item = Item.find(resource_id)
-
-      authorize!(ItemPolicy, :update?, item)
-
-      item.update!(params)
-      item
+  class ItemUpdaterService < UpdaterService
+    def resource_class
+      Item
     end
   end
 end

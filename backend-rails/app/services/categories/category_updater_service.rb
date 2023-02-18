@@ -1,12 +1,7 @@
 module Categories
-  class CategoryUpdaterService < BaseService
-    def call
-      category = Category.find(resource_id)
-
-      authorize!(CategoryPolicy, :update?, category)
-
-      category.update!(params)
-      category
+  class CategoryUpdaterService < UpdaterService
+    def resource_class
+      Category
     end
   end
 end
