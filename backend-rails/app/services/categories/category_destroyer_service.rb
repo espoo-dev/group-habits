@@ -1,12 +1,8 @@
 module Categories
-  class CategoryDestroyerService < BaseService
-    def call
-      category = Category.find(resource_id)
+  class CategoryDestroyerService < DestroyerService
 
-      authorize!(CategoryPolicy, :destroy?, category)
-
-      category.destroy!
-      nil
+    def prepare_resource
+      resource = Category.find(resource_id)
     end
   end
 end

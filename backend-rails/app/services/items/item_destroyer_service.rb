@@ -1,12 +1,7 @@
 module Items
-  class ItemDestroyerService < BaseService
-    def call
-      item = Item.find(resource_id)
-
-      authorize!(ItemPolicy, :destroy?, item)
-
-      item.destroy!
-      nil
+  class ItemDestroyerService < DestroyerService
+    def prepare_resource
+      resource = Item.find(resource_id)
     end
   end
 end
