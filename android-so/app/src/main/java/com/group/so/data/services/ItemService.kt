@@ -8,6 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -35,4 +36,10 @@ interface ItemService {
 
     @DELETE("items/{id}")
     suspend fun deleteItem(@Path("id") id: Int): Response<ResponseBody>
+
+    @PUT("items/{id}")
+    suspend fun editItem(
+        @Path("id") id: Int,
+        @Body serviceDataRequest: ServiceDataRequest
+    ): ItemDTO
 }
