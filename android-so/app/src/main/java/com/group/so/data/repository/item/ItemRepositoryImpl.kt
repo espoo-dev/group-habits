@@ -8,6 +8,7 @@ import com.group.so.data.entities.db.toModel
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.network.ItemDTO
 import com.group.so.data.entities.network.toDb
+import com.group.so.data.entities.request.service.EditServiceRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.services.ItemService
 import kotlinx.coroutines.flow.Flow
@@ -109,4 +110,19 @@ class ItemRepositoryImpl(
             emit(Resource.Error(data = null, error = error))
         }
     }
+
+    override suspend fun edit(editServiceRequest: EditServiceRequest): Flow<Resource<Item>> =
+        flow {
+            try {
+                val resultEditService = itemService.editItem(
+                    editServiceRequest.id,
+                    editServiceRequest.dataRequest
+                )
+                emit(Resource.Success(data = resultEditService.toModel()))
+            } catch (ex: HttpException) {
+                val error =
+                    RemoteException("An error occurred when trying to edit a customer")
+                emit(Resource.Error(data = null, error = error))
+            }
+        }
 }
