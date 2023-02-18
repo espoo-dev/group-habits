@@ -1,7 +1,7 @@
 module Items
   class ItemUpdaterService < UpdaterService
-    def resource_class
-      Item
+    def prepare_resource
+      Item.find(resource_id)
     end
   end
 end
