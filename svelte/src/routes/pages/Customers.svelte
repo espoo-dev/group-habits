@@ -55,14 +55,14 @@
   }
 
   const edit = async () => {
-    // try {
-    //   await apiCategory.edit(modal.model.id, modal.model)
-    //   closeModal()
-    //   load()
-    //   notifications.success('Categoria editada com sucesso')
-    // } catch (error) {
-    //   notifications.danger(error)
-    // }
+    try {
+      await apiCustomer.edit(modal.model.id, modal.model)
+      closeModal()
+      load()
+      notifications.success(`${crudName} editado com sucesso`)
+    } catch (error) {
+      notifications.danger(error)
+    }
   }
 
   // const removeCategory = async (category) => {
@@ -76,11 +76,11 @@
   //   }
   // }
 
-  // const openModalToEdit = (category: CategoryModel) => {
-  //   modal.opened = true
-  //   modal.new = false
-  //   modal.model = category
-  // }
+  const openModalToEdit = (customer: CustomerModel) => {
+    modal.opened = true
+    modal.new = false
+    modal.model = customer
+  }
 
   load();
 </script>
@@ -126,30 +126,30 @@
             <td class="px-6 py-4"> {customer.name} </td>
             <td class="px-6 py-4"> {customer.customer_type} </td>
             <td class="px-6 py-4"> {customer.phone} </td>
-            <!-- <td class="px-6 py-4">
+            <td class="px-6 py-4">
               <button
-                on:click={() => openModalToEdit(category)}
+                on:click={() => openModalToEdit(customer)}
                 type="button"
                 class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                 Editar
               </button>
 
-              <button
+              <!-- <button
                 on:click={() => category.popRemove = true}
                 type="button"
                 class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                 Remover
-              </button>
+              </button> -->
 
-              {#if category.popRemove}
+              <!-- {#if customer.popRemove}
                 <Popover
-                  message={`Tem certeza que deseja excluir a categoria ${category.name}`}
-                  on:close={() => category.popRemove = false}
+                  message={`Tem certeza que deseja excluir a categoria ${customer.name}`}
+                  on:close={() => customer.popRemove = false}
                   on:confirm={() => removeCategory(category)}
                   >
                 </Popover>
-              {/if}
-            </td> -->
+              {/if} -->
+            </td>
           </tr>
         {/each}
       </tbody>

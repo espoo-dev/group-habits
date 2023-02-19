@@ -26,6 +26,18 @@ export class RemoteCustomer implements Customers {
     });
     return HttpResponseHandler.handleResponse(httpResponse);
   }
+
+  async edit(
+    customer_id: number,
+    customer: Customers.Edit
+  ): Promise<Customers.Model> {
+    const httpResponse = await this.httpClient.request({
+      url: `${this.url}/${customer_id}`,
+      method: 'put',
+      body: customer,
+    });
+    return HttpResponseHandler.handleResponse(httpResponse);
+  }
 }
 
 export namespace RemoteCustomer {
