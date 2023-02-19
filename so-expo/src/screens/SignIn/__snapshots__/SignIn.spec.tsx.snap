@@ -359,6 +359,7 @@ exports[`src > screens > SignIn renders correctly 1`] = `
                       <TextInput
                         keyboardType="email-address"
                         onBlur={[Function]}
+                        onChangeText={[Function]}
                         onFocus={[Function]}
                         placeholder="minha-empresa@example.com"
                         placeholderTextColor="gray"
@@ -406,6 +407,8 @@ exports[`src > screens > SignIn renders correctly 1`] = `
                             },
                           ]
                         }
+                        testID="email-input"
+                        value=""
                       />
                     </View>
                   </View>
@@ -454,6 +457,7 @@ exports[`src > screens > SignIn renders correctly 1`] = `
                       <TextInput
                         keyboardType="default"
                         onBlur={[Function]}
+                        onChangeText={[Function]}
                         onFocus={[Function]}
                         placeholder="****************"
                         placeholderTextColor="gray"
@@ -502,6 +506,8 @@ exports[`src > screens > SignIn renders correctly 1`] = `
                             },
                           ]
                         }
+                        testID="password-input"
+                        value=""
                       />
                     </View>
                   </View>
@@ -591,7 +597,7 @@ exports[`src > screens > SignIn renders correctly 1`] = `
                         ]
                       }
                     >
-                      Log in
+                      Sign in
                     </Text>
                   </View>
                   <View

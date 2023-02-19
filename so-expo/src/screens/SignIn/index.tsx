@@ -1,15 +1,30 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import isEmpty from 'lodash/isEmpty';
+import { useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 import { RootStackParamList } from '../../../types';
 import { UIButton } from '../../components/UI/UIButton';
 import { UIContainer } from '../../components/UI/UIContainer';
 import { UIDivider } from '../../components/UI/UIDivider';
+import { auth } from '../../services/auth';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 function SignIn({ navigation }: Props) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const handleSignIn = () => {
-    console.log('Opá')
+    if (isEmpty(email) || isEmpty(password)) return;
+
+    const payload = {
+      user: {
+        email,
+        password,
+      }
+    }
+
+    auth(payload)
   }
 
   const handleSignUp = () => {
@@ -48,10 +63,14 @@ function SignIn({ navigation }: Props) {
                 </Text>
                 <View className="w-full mt-1">
                   <TextInput
+                    autoCapitalize='none'
                     className="block w-full pl-4 h-10 rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    keyboardType="email-address"
+                    onChangeText={setEmail}
                     placeholder="minha-empresa@example.com"
                     placeholderTextColor="gray"
-                    keyboardType="email-address"
+                    testID="email-input"
+                    value={email}
                   />
                 </View>
               </View>
@@ -62,11 +81,15 @@ function SignIn({ navigation }: Props) {
                 </Text>
                 <View className="w-full mt-1">
                   <TextInput
+                    autoCapitalize='none'
                     className="block w-full pl-4 h-10 rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    keyboardType="default"
+                    onChangeText={setPassword}
                     placeholder="****************"
                     placeholderTextColor="gray"
                     secureTextEntry={true}
-                    keyboardType="default"
+                    testID="password-input"
+                    value={password}
                   />
                 </View>
               </View>
@@ -76,7 +99,7 @@ function SignIn({ navigation }: Props) {
                 onPress={handleSignIn}
                 size="extra-large"
               >
-                Log in
+                Sign in
               </UIButton>
 
               <UIDivider className="w-full mt-2" />
