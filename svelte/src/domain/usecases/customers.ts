@@ -3,6 +3,7 @@ import type { CustomerModel } from '../models/customer-model';
 export interface Customers {
   list: (params?: Customers.Params) => Promise<Customers.Model[]>;
   create: (payload: Customers.New) => Promise<Customers.Model>;
+  delete: (customer_id: number) => Promise<void>;
   edit: (
     customer_id: number,
     customer: Customers.Edit

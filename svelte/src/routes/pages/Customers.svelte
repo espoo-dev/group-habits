@@ -65,16 +65,16 @@
     }
   }
 
-  // const removeCategory = async (category) => {
-  //   try {
-  //     await apiCategory.delete(category.id)
-  //     category.popRemove = false
-  //     notifications.success('Categoria removida com sucesso')
-  //     load()
-  //   } catch (error) {
-  //     notifications.danger(error)
-  //   }
-  // }
+  const remove = async (customer) => {
+    try {
+      await apiCustomer.delete(customer.id)
+      customer.popRemove = false
+      notifications.success(`${crudName} removido com sucesso`)
+      load()
+    } catch (error) {
+      notifications.danger(error)
+    }
+  }
 
   const openModalToEdit = (customer: CustomerModel) => {
     modal.opened = true
@@ -134,21 +134,21 @@
                 Editar
               </button>
 
-              <!-- <button
-                on:click={() => category.popRemove = true}
+              <button
+                on:click={() => customer.popRemove = true}
                 type="button"
                 class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                 Remover
-              </button> -->
+              </button>
 
-              <!-- {#if customer.popRemove}
+              {#if customer.popRemove}
                 <Popover
-                  message={`Tem certeza que deseja excluir a categoria ${customer.name}`}
+                  message={`Tem certeza que deseja excluir o cliente ${customer.name}`}
                   on:close={() => customer.popRemove = false}
-                  on:confirm={() => removeCategory(category)}
+                  on:confirm={() => remove(customer)}
                   >
                 </Popover>
-              {/if} -->
+              {/if}
             </td>
           </tr>
         {/each}
