@@ -27,6 +27,14 @@ export class RemoteCustomer implements Customers {
     return HttpResponseHandler.handleResponse(httpResponse);
   }
 
+  async delete(customer_id: number): Promise<void> {
+    const httpResponse = await this.httpClient.request({
+      url: `${this.url}/${customer_id}`,
+      method: 'delete',
+    });
+    return HttpResponseHandler.handleResponse(httpResponse);
+  }
+
   async edit(
     customer_id: number,
     customer: Customers.Edit
