@@ -357,6 +357,7 @@ exports[`src > screens > SignIn renders correctly 1`] = `
                       }
                     >
                       <TextInput
+                        autoCapitalize="none"
                         keyboardType="email-address"
                         onBlur={[Function]}
                         onChangeText={[Function]}
@@ -455,6 +456,7 @@ exports[`src > screens > SignIn renders correctly 1`] = `
                       }
                     >
                       <TextInput
+                        autoCapitalize="none"
                         keyboardType="default"
                         onBlur={[Function]}
                         onChangeText={[Function]}
