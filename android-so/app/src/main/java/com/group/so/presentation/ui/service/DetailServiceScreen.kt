@@ -39,7 +39,7 @@ import com.group.so.presentation.ui.Routes
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun DetailsCustomerScreen(
+fun DetailsServiceScreen(
     navController: NavHostController,
     service: Item?,
     viewModel: ServiceViewModel
@@ -77,8 +77,9 @@ fun DetailsCustomerScreen(
                 R.string.txt_edit_success_service,
                 Toast.LENGTH_LONG
             ).show()
-            navController.navigate(Routes.Customer.route) {
-                popUpTo(Routes.Customer.route) { inclusive = true }
+            navController.navigate(Routes.Service.route) {
+                popUpTo(Routes.Service.route) { inclusive = true }
+
             }
         }
     }
