@@ -4,7 +4,10 @@ export interface Categories {
   list: (params?: Categories.Params) => Promise<Categories.Model[]>;
   create: (payload: Categories.New) => Promise<Categories.Model>;
   delete: (category_id: number) => Promise<void>;
-  edit: (category_id: number, category: Categories.Edit) => Promise<Categories.Model>;
+  edit: (
+    category_id: number,
+    category: Categories.Edit
+  ) => Promise<Categories.Model>;
 }
 
 export namespace Categories {

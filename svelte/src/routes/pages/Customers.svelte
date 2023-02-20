@@ -1,28 +1,34 @@
 <script lang="ts">
   import Popover from '../../lib/components/Popover/Popover.svelte';
   import Modal from '../../lib/components/Modal/Modal.svelte';
-  import type { CategoryModel } from 'src/domain/models/category-model';
   import { notifications } from '../../../src/infra/notification/notification';
   import { makeRemoteCustomer } from '../../main/factories/usecases/remote-customer-factory';
   import Menu from '../../lib/components/Menu/Menu.svelte';
+  import type { CustomerModel } from 'src/domain/models/customer-model';
+  import Input from '../../lib/components/Input/Input.svelte';
 
+  const crudName = 'Cliente'
   let customers = [];
-  let defaultCategory: CategoryModel = {
+  let defaultCustomer: CustomerModel = {
     id: 0,
-    name: ''
+    name: '',
+    document_number: 0,
+    phone: 0,
+    state_inscription: '',
+    customer_type: 'business'
   };
 
   let modal = {
-    title: 'Nova Categoria',
-    editTitle: 'Editar Categoria',
-    model: defaultCategory,
+    title: `Adicionar ${crudName}`,
+    editTitle: `Editar ${crudName}`,
+    model: {...defaultCustomer},
     new: true,
     opened: false
   }
 
-  const apiCategory = makeRemoteCustomer();
-  const loadCategories = async () => {
-    customers = await apiCategory.list();
+  const apiCustomer = makeRemoteCustomer();
+  const load = async () => {
+    customers = await apiCustomer.list();
     customers = customers.map((customer) => {
       return {
         ...customer,
@@ -32,51 +38,51 @@
   }
 
   const closeModal = () => {
-    modal.model = defaultCategory
+    modal.model = {...defaultCustomer}
     modal.opened = false
     modal.new = true
   }
 
-  // const createCategory = async () => {
-  //   try {
-  //     await apiCategory.create(modal.model)
-  //     notifications.success('Categoria criada com sucesso')
-  //     closeModal()
-  //     loadCategories()
-  //   } catch (error) {
-  //     notifications.danger(error)
-  //   }
-  // }
-
-  // const editCategory = async () => {
-  //   try {
-  //     await apiCategory.edit(modal.model.id, modal.model)
-  //     closeModal()
-  //     loadCategories()
-  //     notifications.success('Categoria editada com sucesso')
-  //   } catch (error) {
-  //     notifications.danger(error)
-  //   }
-  // }
-
-  // const removeCategory = async (category) => {
-  //   try {
-  //     await apiCategory.delete(category.id)
-  //     category.popRemove = false
-  //     notifications.success('Categoria removida com sucesso')
-  //     loadCategories()
-  //   } catch (error) {
-  //     notifications.danger(error)
-  //   }
-  // }
-
-  const openModalToEdit = (category: CategoryModel) => {
-    modal.opened = true
-    modal.new = false
-    modal.model = category
+  const create = async () => {
+    try {
+      await apiCustomer.create(modal.model)
+      notifications.success(`${crudName} criado com sucesso`)
+      closeModal()
+      load()
+    } catch (error) {
+      notifications.danger(error)
+    }
   }
 
-  loadCategories();
+  const edit = async () => {
+    try {
+      await apiCustomer.edit(modal.model.id, modal.model)
+      closeModal()
+      load()
+      notifications.success(`${crudName} editado com sucesso`)
+    } catch (error) {
+      notifications.danger(error)
+    }
+  }
+
+  const remove = async (customer) => {
+    try {
+      await apiCustomer.delete(customer.id)
+      customer.popRemove = false
+      notifications.success(`${crudName} removido com sucesso`)
+      load()
+    } catch (error) {
+      notifications.danger(error)
+    }
+  }
+
+  const openModalToEdit = (customer: CustomerModel) => {
+    modal.opened = true
+    modal.new = false
+    modal.model = customer
+  }
+
+  load();
 </script>
 
 <Menu />
@@ -91,9 +97,9 @@
       >
     </h1>
 
-    <!-- <button on:click={() => modal.opened = true} data-modal-target="staticModal" data-modal-toggle="staticModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    <button on:click={() => modal.opened = true} class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
       Novo
-    </button> -->
+    </button>
   </div>
 
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -120,58 +126,86 @@
             <td class="px-6 py-4"> {customer.name} </td>
             <td class="px-6 py-4"> {customer.customer_type} </td>
             <td class="px-6 py-4"> {customer.phone} </td>
-            <!-- <td class="px-6 py-4">
+            <td class="px-6 py-4">
               <button
-                on:click={() => openModalToEdit(category)}
+                on:click={() => openModalToEdit(customer)}
                 type="button"
                 class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                 Editar
               </button>
 
               <button
-                on:click={() => category.popRemove = true}
+                on:click={() => customer.popRemove = true}
                 type="button"
                 class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                 Remover
               </button>
 
-              {#if category.popRemove}
+              {#if customer.popRemove}
                 <Popover
-                  message={`Tem certeza que deseja excluir a categoria ${category.name}`}
-                  on:close={() => category.popRemove = false}
-                  on:confirm={() => removeCategory(category)}
+                  message={`Tem certeza que deseja excluir o cliente ${customer.name}`}
+                  on:close={() => customer.popRemove = false}
+                  on:confirm={() => remove(customer)}
                   >
                 </Popover>
               {/if}
-            </td> -->
+            </td>
           </tr>
         {/each}
       </tbody>
     </table>
   </div>
 
-  <!-- {#if modal.opened}
+  {#if modal.opened}
     <Modal
       title={modal.new ? modal.title : modal.editTitle}
       on:close="{() => closeModal()}"
-      on:confirm="{() => modal.new ? createCategory() : editCategory()}"
+      on:confirm="{() => modal.new ? create() : edit()}"
       >
       <form>
         <div class="grid gap-6 mb-6 md:grid-cols-1">
-          <div>
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-            <input
-              bind:value={modal.model.name}
+          <Input 
+            label='Nome'
+            bind:value={modal.model.name}
+          />
+          <Input 
+            label='Documento'
+            bind:value={modal.model.document_number} 
+            type="number"
+          />
+          <Input 
+            label='Telefone'
+            bind:value={modal.model.phone} 
+            type="number"
+          />
+
+          <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Tipo do cliente</h3>
+          <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+              <div class="flex items-center pl-3">
+                <input id="horizontal-list-radio-license" bind:group={modal.model.customer_type} type="radio" value={'business'} name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                <label for="horizontal-list-radio-license" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Business</label>
+              </div>
+            </li>
+            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+              <div class="flex items-center pl-3">
+                <input id="horizontal-list-radio-id" bind:group={modal.model.customer_type} type="radio" value={'person'} name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                <label for="horizontal-list-radio-id" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Person</label>
+              </div>
+            </li>
+          </ul>
+
+          {#if modal.model.customer_type === 'business'}
+            <Input 
+              label='Inscrição Estadual'
+              bind:value={modal.model.state_inscription} 
               type="text"
-              id="name"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Carros"
-              required>
-          </div>
+            />
+          {/if}
         </div>
       </form>
     </Modal>
-  {/if} -->
+  {/if}
 
 </div>
 

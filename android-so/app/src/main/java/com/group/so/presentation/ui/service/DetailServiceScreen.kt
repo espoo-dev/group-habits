@@ -79,6 +79,7 @@ fun DetailsServiceScreen(
             ).show()
             navController.navigate(Routes.Service.route) {
                 popUpTo(Routes.Service.route) { inclusive = true }
+
             }
         }
     }
