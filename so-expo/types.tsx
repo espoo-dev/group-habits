@@ -20,6 +20,12 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
+export type PrivateStackParamList = {
+  Dashboard: NavigatorScreenParams<RootParamList> | undefined;
+  Modal: undefined;
+  NotFound: undefined;
+};
+
 export type RootParamList = {
   Home: undefined;
 };
