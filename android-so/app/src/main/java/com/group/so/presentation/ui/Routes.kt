@@ -13,4 +13,6 @@ sealed class Routes(val route: String) {
 
     object Service : Routes("Service")
     object NewService : Routes("newService")
+
+    object EditService : Routes("editService")
 }

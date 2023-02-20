@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
+import com.group.so.data.entities.model.Item
 import com.group.so.presentation.ui.category.CategoryListScreen
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.customer.AddScreenCustomer
@@ -27,6 +28,7 @@ import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
 import com.group.so.presentation.ui.service.AddScreenService
+import com.group.so.presentation.ui.service.DetailsServiceScreen
 import com.group.so.presentation.ui.service.ServiceScreen
 import com.group.so.presentation.ui.service.ServiceViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -81,7 +83,7 @@ fun ScreenMain() {
                         value = it
                     )
                     // navController.navigate(Routes.EditCostumer.route + "/${it.id}")
-                    navController.navigate(Routes.NewCustomer.route)
+                    navController.navigate(Routes.EditCustomer.route)
                 },
                 onDeleteCustomer = { customerViewModel.deleteCustomer(it.id) }
             ) { customerViewModel.fetchLatestCustomers() }
@@ -118,6 +120,12 @@ fun ScreenMain() {
                     navController.navigate(Routes.NewService.route)
                 },
                 onServiceClick = {
+                    navController.currentBackStackEntry?.savedStateHandle?.set(
+                        key = "service",
+                        value = it
+                    )
+
+                    navController.navigate(Routes.EditService.route)
                 },
                 onDeleteService = {
                     serviceViewModel.deleteItem(it.id)
@@ -130,6 +138,19 @@ fun ScreenMain() {
             AddScreenService(
                 navController,
                 serviceViewModel,
+            )
+        }
+        composable(
+            Routes.EditService.route,
+
+        ) {
+            val service =
+                navController.previousBackStackEntry?.savedStateHandle?.get<Item>("service")
+            val serviceViewModel = koinViewModel<ServiceViewModel>()
+            DetailsServiceScreen(
+                navController,
+                service,
+                serviceViewModel
             )
         }
 
