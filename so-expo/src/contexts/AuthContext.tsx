@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useCallback } from "react";
-
+import { auth as authAPI } from "../services/auth";
 type UserCredentials = {
   email: string;
   password: string;
@@ -21,7 +21,7 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const auth = useCallback(async (params: AuthParams) => {
-    const response = await auth(params)
+    const response = await authAPI(params)
     console.log('response', response)
   }, [])
 

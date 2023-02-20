@@ -1,16 +1,17 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import isEmpty from 'lodash/isEmpty';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 import { RootStackParamList } from '../../../types';
 import { UIButton } from '../../components/UI/UIButton';
 import { UIContainer } from '../../components/UI/UIContainer';
 import { UIDivider } from '../../components/UI/UIDivider';
-import { auth } from '../../services/auth';
+import { AuthContext } from '../../contexts/AuthContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 function SignIn({ navigation }: Props) {
+  const { auth } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 

@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import { RootStackParamList } from '../../../types';
+import { AuthProvider } from '../../contexts/AuthContext';
 import * as authService from "../../services/auth";
 import { SignUp } from '../SignUp';
 import { SignIn } from './index';
@@ -10,16 +11,18 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const component = (
   <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="SignIn"
-        component={SignIn}
-      />
-      <Stack.Screen
-        name="SignUp"
-        component={SignUp}
-      />
-    </Stack.Navigator>
+    <AuthProvider>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+        />
+      </Stack.Navigator>
+    </AuthProvider>
   </NavigationContainer>
 );
 
