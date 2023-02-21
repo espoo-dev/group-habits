@@ -24,7 +24,7 @@ class DeleteItemUseCaseTest {
 
             // GIVEN
             coEvery {
-                itemRepository.deleteService(
+                itemRepository.deleteItem(
                     1
                 )
             } returns mockServiceDeleteResourceSucess()
@@ -42,7 +42,7 @@ class DeleteItemUseCaseTest {
     @Test(expected = RemoteException::class)
     fun `should throw an exception after trying to delete a item`() = runBlocking {
 
-        coEvery { itemRepository.deleteService(1) } throws RemoteException("")
+        coEvery { itemRepository.deleteItem(1) } throws RemoteException("")
         val result = deleteItemUseCase(1)
     }
 }

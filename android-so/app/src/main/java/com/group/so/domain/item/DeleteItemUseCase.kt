@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 class DeleteItemUseCase(private val repository: ItemRepository) :
     UseCase<Int, Resource<Int>>() {
     override suspend fun execute(param: Int): Flow<Resource<Int>> {
-        return repository.deleteService(param)
+        return repository.deleteItem(param)
     }
 }

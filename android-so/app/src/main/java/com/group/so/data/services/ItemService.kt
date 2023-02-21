@@ -1,6 +1,7 @@
 package com.group.so.data.services
 
 import com.group.so.data.entities.network.ItemDTO
+import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -16,6 +17,9 @@ interface ItemService {
 
     @POST("items")
     suspend fun registerService(@Body serviceDataRequest: ServiceDataRequest): ItemDTO
+
+    @POST("items")
+    suspend fun registerProduct(@Body productDataRequest: ProductDataRequest): ItemDTO
 
     @GET("items")
     suspend fun getAllItems(): List<ItemDTO>
