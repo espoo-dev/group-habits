@@ -23,6 +23,7 @@ require 'rails_helper'
 RSpec.describe Customer, type: :model do
   context 'relationship' do
     it { should belong_to(:user).required }
+    it { should have_many(:service_orders).dependent(:destroy) }
   end
 
   context 'validations' do

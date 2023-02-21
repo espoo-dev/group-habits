@@ -24,6 +24,8 @@ class Customer < ApplicationRecord
   enum :customer_type, %i[person business]
 
   belongs_to :user
+  has_many :service_orders, dependent: :destroy
+
   validates :name, presence: true
   validates :document_number, presence: true
   validates :phone, presence: true
