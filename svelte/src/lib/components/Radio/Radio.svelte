@@ -1,6 +1,12 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
   export let label: string
   export let value: string
+  export let checked: boolean = false
+
+  const dispatch = createEventDispatcher();
+  const onChange = () => dispatch('onChange')
 </script>
 
 <input
@@ -8,6 +14,9 @@
   data-testid={`${label}-radio-id`}
   type="radio"
   bind:value={value}
+  name={value}
+  checked={checked}
+  on:change={onChange}
   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
 >
 <label
