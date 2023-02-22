@@ -224,6 +224,9 @@ exports[`src > screens > Home renders correctly 1`] = `
                         "alignItems": "center",
                       },
                       {
+                        "justifyContent": "center",
+                      },
+                      {
                         "borderBottomWidth": 1,
                         "borderLeftWidth": 1,
                         "borderRightWidth": 1,
@@ -269,6 +272,12 @@ exports[`src > screens > Home renders correctly 1`] = `
                       [
                         {
                           "display": "flex",
+                        },
+                        {
+                          "alignItems": "center",
+                        },
+                        {
+                          "justifyContent": "center",
                         },
                         {
                           "textAlign": "center",
@@ -307,6 +316,9 @@ exports[`src > screens > Home renders correctly 1`] = `
                         "alignItems": "center",
                       },
                       {
+                        "justifyContent": "center",
+                      },
+                      {
                         "borderBottomWidth": 1,
                         "borderLeftWidth": 1,
                         "borderRightWidth": 1,
@@ -352,6 +364,12 @@ exports[`src > screens > Home renders correctly 1`] = `
                       [
                         {
                           "display": "flex",
+                        },
+                        {
+                          "alignItems": "center",
+                        },
+                        {
+                          "justifyContent": "center",
                         },
                         {
                           "textAlign": "center",
