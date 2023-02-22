@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { GestureResponderEvent, Pressable, Text } from "react-native";
+import { ReactNode } from "react";
+import { ActivityIndicator, Pressable, PressableProps, Text, View } from "react-native";
 import { classNames } from '../../../utils/strings';
 
 const VARIANTS = {
@@ -19,16 +19,16 @@ const VARIANTS = {
 
 const SIZES = {
   'extra-small': 'rounded px-2.5 py-1.5 text-xs"',
-  small: 'rounded-md px-3 py-2 text-sm leading-4"',
-  medium: 'rounded-md px-4 py-2 text-sm"',
-  large: 'rounded-md px-4 py-2 text-base"',
+  small: 'rounded-md px-3 py-2.5 text-sm leading-4"',
+  medium: 'rounded-md px-4 py-2.5 text-sm"',
+  large: 'rounded-md px-4 py-2.5 text-base"',
   'extra-large': 'rounded-md px-6 py-3 text-base"',
 }
 
-interface IUIButton {
-  children: ReactNode;
+interface IUIButton extends PressableProps {
   className?: string;
-  onPress: (event: GestureResponderEvent) => void;
+  children: ReactNode;
+  loading?: boolean;
   size?: keyof typeof SIZES;
   variant?: keyof typeof VARIANTS;
   weight?: string,
@@ -37,27 +37,29 @@ interface IUIButton {
 
 
 function UIButton({
-  children, className = "", onPress, size = 'medium', variant = 'primary'
+  children, className = "", loading, onPress, size = 'medium', variant = 'primary', ...rest
 }: IUIButton) {
   return <Pressable
     className={classNames(
-      "inline-flex items-center border shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
+      "inline-flex items-center justify-center border shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
       SIZES[size],
       VARIANTS[variant].pressable,
       className,
     )}
     onPress={onPress}
+    {...rest}
   >
-    <>
-      <Text
-        className={classNames(
-          "flex text-center w-full font-bold",
-          VARIANTS[variant].text
-        )}
-      >
-        {children}
-      </Text>
-    </>
+    <Text
+      className={classNames(
+        "flex items-center justify-center text-center w-full font-bold",
+        VARIANTS[variant].text
+      )}
+    >
+      {loading ? <View className="min-w-full flex items-center justify-center">
+        <ActivityIndicator color="#5C93FA" />
+      </View>
+        : children}
+    </Text>
   </Pressable>
 }
 
