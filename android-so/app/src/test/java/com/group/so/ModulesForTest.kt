@@ -29,6 +29,7 @@ import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.GetItemsByNameUseCase
 import com.group.so.domain.item.GetItemsUseCase
+import com.group.so.domain.item.RegisterProductUseCase
 import com.group.so.domain.item.RegisterServiceUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.customer.CustomerViewModel
@@ -90,6 +91,7 @@ fun configureDomainModuleForTest() = module {
     factory<RegisterServiceUseCase> { RegisterServiceUseCase(get()) }
     factory<DeleteItemUseCase> { DeleteItemUseCase(get()) }
     factory<EditServiceUseCase> { EditServiceUseCase(get()) }
+    factory<RegisterProductUseCase> { RegisterProductUseCase(get()) }
 }
 
 fun configureDAOModuleForTest() = module {
