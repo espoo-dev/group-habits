@@ -29,6 +29,8 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :sales_unit, optional: true
   belongs_to :category, optional: true
+  has_many :item_service_orders, dependent: :destroy
+  has_many :service_orders, through: :item_service_orders, dependent: :destroy
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :user_id, case_sensitive: false }

@@ -28,6 +28,8 @@ RSpec.describe Item, type: :model do
     it { should belong_to(:user).required }
     it { should belong_to(:category).optional }
     it { should belong_to(:sales_unit).optional }
+    it { should have_many(:item_service_orders).dependent(:destroy) }
+    it { should have_many(:service_orders).through(:item_service_orders).dependent(:destroy) }
   end
 
   context 'validations' do
