@@ -39,15 +39,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   const auth = useCallback(async (params: AuthParams) => {
-    setLoading(true)
     try {
+      setLoading(true)
       const { user } = await authAPI(params)
       const { authorization } = user;
+
       setToken(authorization)
+      setLoading(false)
     } catch (error) {
       console.error(error)
+      setLoading(false)
     }
-    setLoading(false)
   }, [])
 
   const logout = async () => {

@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { act, fireEvent, render, screen } from '@testing-library/react-native';
 import { RootStackParamList } from '../../../types';
 import { AuthProvider } from '../../contexts/AuthContext';
 import * as authService from "../../services/auth";
@@ -60,26 +60,26 @@ describe('src > screens > SignIn', () => {
     describe('and email and password is filled', () => {
       let authServiceSpy: any;
 
-      beforeEach(() => {
+      beforeEach(async () => {
         authServiceSpy = jest.spyOn(authService, 'auth')
         setup();
         const email = screen.getByTestId('email-input')
         const password = screen.getByTestId('password-input')
-
-        // fireEvent.changeText(email, 'email@email.com')
-        // fireEvent.changeText(password, 'secret')
-        fireEvent.changeText(email, 'user@email.com')
-        fireEvent.changeText(password, '123456789')
-
         const signInButton = screen.getByText(/sign in/i)
-        fireEvent.press(signInButton)
+
+        fireEvent.changeText(email, 'email@email.com')
+        fireEvent.changeText(password, 'secret')
+
+        await act(() => {
+          fireEvent.press(signInButton)
+        })
       })
 
       it('should navigate to Dashboard Page', async () => {
         const expectedProps = {
           "user": {
-            "email": "user@email.com",
-            "password": "123456789"
+            "email": "email@email.com",
+            "password": "secret"
           }
         }
 
