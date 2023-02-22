@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src > components > UI > UIButton match snapshot 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    [
+      {
+        "alignItems": "center",
+      },
+      {
+        "justifyContent": "center",
+      },
+      {
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderRightWidth": 1,
+        "borderTopWidth": 1,
+      },
+      {
+        "shadowColor": "rgba(0, 0, 0, 0.1)",
+        "shadowOffset": {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 1,
+        "shadowRadius": 2,
+      },
+      {
+        "borderBottomLeftRadius": 6,
+        "borderBottomRightRadius": 6,
+        "borderTopLeftRadius": 6,
+        "borderTopRightRadius": 6,
+      },
+      {
+        "paddingLeft": 16,
+        "paddingRight": 16,
+      },
+      {
+        "paddingBottom": 10,
+        "paddingTop": 10,
+      },
+      {
+        "borderBottomColor": "transparent",
+        "borderLeftColor": "transparent",
+        "borderRightColor": "transparent",
+        "borderTopColor": "transparent",
+      },
+      {
+        "backgroundColor": "#4f46e5",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "display": "flex",
+        },
+        {
+          "alignItems": "center",
+        },
+        {
+          "justifyContent": "center",
+        },
+        {
+          "textAlign": "center",
+        },
+        {
+          "width": "100%",
+        },
+        {
+          "fontWeight": "700",
+        },
+        {
+          "color": "#fff",
+        },
+      ]
+    }
+  >
+    Button
+  </Text>
+</View>
+`;

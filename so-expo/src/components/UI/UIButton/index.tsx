@@ -25,7 +25,7 @@ const SIZES = {
   'extra-large': 'rounded-md px-6 py-3 text-base"',
 }
 
-interface IUIButton extends PressableProps {
+export interface IUIButtonProps extends PressableProps {
   className?: string;
   children: ReactNode;
   loading?: boolean;
@@ -38,7 +38,7 @@ interface IUIButton extends PressableProps {
 
 function UIButton({
   children, className = "", loading, onPress, size = 'medium', variant = 'primary', ...rest
-}: IUIButton) {
+}: IUIButtonProps) {
   return <Pressable
     className={classNames(
       "inline-flex items-center justify-center border shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
@@ -56,7 +56,7 @@ function UIButton({
       )}
     >
       {loading ? <View className="min-w-full flex items-center justify-center">
-        <ActivityIndicator color="#5C93FA" />
+        <ActivityIndicator color="#5C93FA" testID="spec-ui-button-activity-indicator" />
       </View>
         : children}
     </Text>
