@@ -36,7 +36,7 @@ class EditServiceUseCaseTest {
 
             // GIVEN
             coEvery {
-                itemRepository.edit(
+                itemRepository.editService(
                     mockEditServiceRequest
                 )
             } returns mockServiceRegisterFlowResourceSuccess()
@@ -54,7 +54,7 @@ class EditServiceUseCaseTest {
     @Test(expected = Exception::class)
     fun `should throw an exception after trying to edit a service`() = runBlocking {
 
-        coEvery { itemRepository.edit(mockEditServiceRequest) } throws RemoteException("")
+        coEvery { itemRepository.editService(mockEditServiceRequest) } throws RemoteException("")
         val result = editServiceUseCase(mockEditServiceRequest)
     }
 }

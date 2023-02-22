@@ -8,6 +8,7 @@ import com.group.so.data.entities.db.toModel
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.network.ItemDTO
 import com.group.so.data.entities.network.toDb
+import com.group.so.data.entities.request.product.EditProductRequest
 import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.entities.request.service.EditServiceRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
@@ -107,6 +108,21 @@ class ItemRepositoryImpl(
             }
         }
 
+    override suspend fun editProduct(editProductRequest: EditProductRequest): Flow<Resource<Item>> =
+        flow {
+            try {
+                val resultEditProduct = itemService.editProduct(
+                    editProductRequest.id,
+                    editProductRequest.dataRequest
+                )
+                emit(Resource.Success(data = resultEditProduct.toModel()))
+            } catch (ex: HttpException) {
+                val error =
+                    RemoteException("An error occurred when trying to edit a customer")
+                emit(Resource.Error(data = null, error = error))
+            }
+        }
+
     override suspend fun deleteItem(id: Int): Flow<Resource<Int>> = flow {
 
         try {
@@ -126,10 +142,10 @@ class ItemRepositoryImpl(
         }
     }
 
-    override suspend fun edit(editServiceRequest: EditServiceRequest): Flow<Resource<Item>> =
+    override suspend fun editService(editServiceRequest: EditServiceRequest): Flow<Resource<Item>> =
         flow {
             try {
-                val resultEditService = itemService.editItem(
+                val resultEditService = itemService.editService(
                     editServiceRequest.id,
                     editServiceRequest.dataRequest
                 )

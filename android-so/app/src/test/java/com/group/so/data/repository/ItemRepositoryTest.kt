@@ -6,6 +6,7 @@ import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.SalesUnit
+import com.group.so.data.entities.request.product.EditProductRequest
 import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.entities.request.service.EditServiceRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
@@ -58,6 +59,20 @@ class ItemRepositoryTest {
                 extraInfo = "service",
                 salePrice = 2000.50,
                 itemType = "service"
+            )
+        )
+
+    private val mockEditProductRequest =
+        EditProductRequest(
+            id = 1,
+            ProductDataRequest(
+                name = "Product 1",
+                extraInfo = "service",
+                salePrice = 2000.50,
+                purchasePrice = 3000.00,
+                itemType = "Product",
+                category = Category(id = 1, name = "Category 1"),
+                saleUnit = SalesUnit(id = 1, name = "Sale Unit test")
             )
         )
 
@@ -218,17 +233,37 @@ class ItemRepositoryTest {
         runBlocking {
             // GIVEN
             coEvery {
-                itemRepository.edit(
+                itemRepository.editService(
                     mockEditServiceRequest
                 )
             } returns mockServiceRegisterFlowResourceSuccess()
 
-            val result = itemRepository.edit(mockEditServiceRequest).first()
+            val result = itemRepository.editService(mockEditServiceRequest).first()
 
             // THEN
             Assert.assertEquals(
                 result.data?.name,
                 mockServiceRegisterFlowResourceSuccess().first().data?.name
+            )
+            Assert.assertTrue(result is Resource.Success)
+        }
+
+    @Test
+    fun `should return a product after editing`() =
+        runBlocking {
+            // GIVEN
+            coEvery {
+                itemRepository.editProduct(
+                    mockEditProductRequest
+                )
+            } returns mockProductRegisterFlowResourceSuccess()
+
+            val result = itemRepository.editProduct(mockEditProductRequest).first()
+
+            // THEN
+            Assert.assertEquals(
+                result.data?.name,
+                mockProductRegisterFlowResourceSuccess().first().data?.name
             )
             Assert.assertTrue(result is Resource.Success)
         }

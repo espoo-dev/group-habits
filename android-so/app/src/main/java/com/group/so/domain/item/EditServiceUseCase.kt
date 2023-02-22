@@ -11,5 +11,5 @@ class EditServiceUseCase(private val repository: ItemRepository) :
     UseCase<EditServiceRequest, Resource<Item>>() {
 
     override suspend fun execute(param: EditServiceRequest): Flow<Resource<Item>> =
-        repository.edit(param)
+        repository.editService(param)
 }

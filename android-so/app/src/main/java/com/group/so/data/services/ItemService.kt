@@ -42,8 +42,14 @@ interface ItemService {
     suspend fun deleteItem(@Path("id") id: Int): Response<ResponseBody>
 
     @PUT("items/{id}")
-    suspend fun editItem(
+    suspend fun editService(
         @Path("id") id: Int,
         @Body serviceDataRequest: ServiceDataRequest
+    ): ItemDTO
+
+    @PUT("items/{id}")
+    suspend fun editProduct(
+        @Path("id") id: Int,
+        @Body productRequest: ProductDataRequest
     ): ItemDTO
 }
