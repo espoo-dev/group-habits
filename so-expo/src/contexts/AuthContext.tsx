@@ -15,6 +15,7 @@ type AuthContextType = {
   auth: (params: AuthParams) => Promise<void>;
   isSignedIn: boolean;
   getToken: () => Promise<string | null>;
+  loading: boolean;
   logout: () => Promise<void>;
 }
 
@@ -26,6 +27,7 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [isSignedIn, setIsSignedIn] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const getToken = async (): Promise<string | null> => {
     return await getItemAsync('auth-token');
@@ -37,11 +39,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   const auth = useCallback(async (params: AuthParams) => {
-    const { user } = await authAPI(params)
-
-    const { authorization } = user;
-
-    setToken(authorization)
+    setLoading(true)
+    try {
+      const { user } = await authAPI(params)
+      const { authorization } = user;
+      setToken(authorization)
+    } catch (error) {
+      console.error(error)
+    }
+    setLoading(false)
   }, [])
 
   const logout = async () => {
@@ -55,6 +61,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         auth,
         isSignedIn,
         getToken,
+        loading,
         logout,
       }}
     >

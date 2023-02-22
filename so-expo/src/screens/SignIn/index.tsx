@@ -11,7 +11,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 type Props = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 function SignIn({ navigation }: Props) {
-  const { auth } = useContext(AuthContext)
+  const { auth, loading } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -97,8 +97,10 @@ function SignIn({ navigation }: Props) {
 
               <UIButton
                 className="w-full mt-3"
+                loading={loading}
                 onPress={handleSignIn}
                 size="extra-large"
+                disabled={loading}
               >
                 Sign in
               </UIButton>
