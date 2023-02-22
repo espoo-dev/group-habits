@@ -8,6 +8,7 @@ import com.group.so.data.entities.db.toModel
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.network.ItemDTO
 import com.group.so.data.entities.network.toDb
+import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.entities.request.service.EditServiceRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.services.ItemService
@@ -81,10 +82,10 @@ class ItemRepositoryImpl(
     override suspend fun registerService(serviceDataRequest: ServiceDataRequest): Flow<Resource<Item>> =
         flow {
             try {
-                val resultServiceCustomer = itemService.registerService(
+                val resultService = itemService.registerService(
                     serviceDataRequest
                 )
-                emit(Resource.Success(data = resultServiceCustomer.toModel()))
+                emit(Resource.Success(data = resultService.toModel()))
             } catch (ex: HttpException) {
                 val error =
                     RemoteException("An error occurred when trying to register a new customer")
@@ -92,7 +93,21 @@ class ItemRepositoryImpl(
             }
         }
 
-    override suspend fun deleteService(id: Int): Flow<Resource<Int>> = flow {
+    override suspend fun registerProduct(productDataRequest: ProductDataRequest): Flow<Resource<Item>> =
+        flow {
+            try {
+                val resultProduct = itemService.registerProduct(
+                    productDataRequest
+                )
+                emit(Resource.Success(data = resultProduct.toModel()))
+            } catch (ex: HttpException) {
+                val error =
+                    RemoteException("An error occurred when trying to register a new customer")
+                emit(Resource.Error(data = null, error = error))
+            }
+        }
+
+    override suspend fun deleteItem(id: Int): Flow<Resource<Int>> = flow {
 
         try {
             val resultDeleteCustomer = itemService.deleteItem(

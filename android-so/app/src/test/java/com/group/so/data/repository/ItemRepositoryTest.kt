@@ -164,12 +164,12 @@ class ItemRepositoryTest {
 
             // GIVEN
             coEvery {
-                itemRepository.deleteService(
+                itemRepository.deleteItem(
                     1
                 )
             } returns mockServiceDeleteResourceSucess()
 
-            val result = itemRepository.deleteService(1).first()
+            val result = itemRepository.deleteItem(1).first()
 
             // THEN
             assertEquals(
