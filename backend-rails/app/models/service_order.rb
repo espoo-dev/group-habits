@@ -25,6 +25,8 @@ class ServiceOrder < ApplicationRecord
 
   belongs_to :user
   belongs_to :customer
+  has_many :item_service_orders, dependent: :destroy
+  has_many :items, through: :item_service_orders, dependent: :destroy
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :user_id, case_sensitive: false }

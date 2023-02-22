@@ -26,6 +26,8 @@ RSpec.describe ServiceOrder, type: :model do
   context 'relationship' do
     it { should belong_to(:user).required }
     it { should belong_to(:customer).required }
+    it { should have_many(:item_service_orders).dependent(:destroy) }
+    it { should have_many(:items).through(:item_service_orders).dependent(:destroy) }
   end
 
   context 'validations' do
