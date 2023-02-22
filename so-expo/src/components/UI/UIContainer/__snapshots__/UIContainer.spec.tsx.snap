@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src > components > UI > UIContainer match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "display": "flex",
+      },
+      {
+        "justifyContent": "space-between",
+      },
+      {
+        "height": "100%",
+      },
+      {
+        "width": "100%",
+      },
+      {
+        "paddingLeft": 24,
+        "paddingRight": 24,
+      },
+      {
+        "paddingBottom": 96,
+        "paddingTop": 96,
+      },
+    ]
+  }
+>
+  <Text>
+    Content Here
+  </Text>
+</View>
+`;

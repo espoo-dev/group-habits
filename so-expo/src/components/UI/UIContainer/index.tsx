@@ -5,12 +5,12 @@ import { classNames } from "../../../utils/strings";
 interface IUIContainer {
   as?: ComponentType | keyof JSX.IntrinsicElements;
   children: ReactNode;
-  className: string;
+  className?: string;
   paddingNone?: boolean;
 }
 
 function UIContainer({
-  as: Wrapper = View, children, className, paddingNone = false, ...rest
+  as: Wrapper = View, children, className = '', paddingNone = false, ...rest
 }: IUIContainer) {
 
 
