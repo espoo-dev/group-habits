@@ -58,6 +58,23 @@ object ItemMock {
         )
     )
 
+    fun mockProductRegisterFlowResourceSuccess() = flowOf(
+        Resource.Success(
+            data =
+            Item(
+                id = 1,
+                name = "Product 1",
+                extraInfo = "service",
+                salePrice = 2000.50,
+                purchasePrice = 3000.00,
+                itemType = "Product",
+                category = Category(id = 1, name = "Category 1"),
+                saleUnit = SalesUnit(id = 1, name = "Sale Unit test")
+            )
+
+        )
+    )
+
     fun mockServiceRegisterFlowResourceSuccess() = flowOf(
         Resource.Success(
             data =
