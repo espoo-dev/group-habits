@@ -2,6 +2,9 @@ package com.group.so.data.services
 
 import com.group.so.data.ItemType
 import com.group.so.data.MockResponseFileReader
+import com.group.so.data.entities.model.Category
+import com.group.so.data.entities.model.SalesUnit
+import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -151,8 +154,9 @@ class ItemServiceTest {
             assertEquals(request.path, "/items")
         }
     }
+
     @Test
-    fun `should return correct endpoint edit new item`() {
+    fun `should return correct endpoint edit new item service`() {
         runBlocking {
             val response = MockResponse()
             mockWebServer.enqueue(
@@ -169,7 +173,7 @@ class ItemServiceTest {
                         "}"
                 )
             )
-            service.editItem(
+            service.editService(
                 1,
                 ServiceDataRequest(
                     name = "service test roanderson",
@@ -177,6 +181,43 @@ class ItemServiceTest {
                     salePrice = 2000.50,
                     itemType = "service"
 
+                )
+            )
+            val request = mockWebServer.takeRequest()
+            assertEquals(request.path, "/items/1")
+        }
+    }
+
+    @Test
+    fun `should return correct endpoint edit new item product`() {
+        runBlocking {
+            val response = MockResponse()
+            mockWebServer.enqueue(
+                response.setBody(
+                    "{\n" +
+                        "    \"id\": 13,\n" +
+                        "    \"name\": \"prod teste roanderson\",\n" +
+                        "    \"extra_info\": \"produt\",\n" +
+                        "    \"sale_price\": 2000.5,\n" +
+                        "    \"purchase_price\": 0.0,\n" +
+                        "    \"item_type\": \"service\",\n" +
+                        "    \"category\": null,\n" +
+                        "    \"sales_unit\": null\n" +
+                        "}"
+                )
+            )
+            service.editProduct(
+                1,
+                ProductDataRequest(
+                    name = "service test roanderson",
+                    extraInfo = "extra_info",
+                    salePrice = 2000.50,
+                    purchasePrice = 3000.00,
+                    itemType = "service",
+                    category = Category(
+                        id = 1, name = "product1"
+                    ),
+                    saleUnit = SalesUnit(id = 1, name = "sale unit test")
                 )
             )
             val request = mockWebServer.takeRequest()
