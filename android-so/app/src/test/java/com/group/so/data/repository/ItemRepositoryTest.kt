@@ -4,12 +4,16 @@ package com.group.so.data.repository
 
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
+import com.group.so.data.entities.model.Category
+import com.group.so.data.entities.model.SalesUnit
+import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.entities.request.service.EditServiceRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.mock.ItemMock.mockItemEntityListEmpty
 import com.group.so.mock.ItemMock.mockItemListItemsFlowResourceSuccess
 import com.group.so.mock.ItemMock.mockItemResourceSuccess
+import com.group.so.mock.ItemMock.mockProductRegisterFlowResourceSuccess
 import com.group.so.mock.ItemMock.mockServiceDeleteResourceSucess
 import com.group.so.mock.ItemMock.mockServiceRegisterFlowResourceSuccess
 import io.mockk.coEvery
@@ -28,6 +32,16 @@ class ItemRepositoryTest {
 
     private val itemRepository = mockk<ItemRepository>()
 
+    private val mockRegisterProductRequest =
+        ProductDataRequest(
+            name = "Product 1",
+            extraInfo = "service",
+            salePrice = 2000.50,
+            purchasePrice = 3000.00,
+            itemType = "Product",
+            category = Category(id = 1, name = "Category 1"),
+            saleUnit = SalesUnit(id = 1, name = "Sale Unit test")
+        )
     private val mockRegisterServiceRequest =
         ServiceDataRequest(
             name = "service teste roanderson",
@@ -154,6 +168,26 @@ class ItemRepositoryTest {
             Assert.assertEquals(
                 result.data?.name,
                 mockServiceRegisterFlowResourceSuccess().first().data?.name
+            )
+            Assert.assertTrue(result is Resource.Success)
+        }
+    @Test
+    fun `should return a product after register`() =
+        runBlocking {
+
+            // GIVEN
+            coEvery {
+                itemRepository.registerProduct(
+                    mockRegisterProductRequest
+                )
+            } returns mockProductRegisterFlowResourceSuccess()
+
+            val result = itemRepository.registerProduct(mockRegisterProductRequest).first()
+
+            // THEN
+            Assert.assertEquals(
+                result.data?.name,
+                mockProductRegisterFlowResourceSuccess().first().data?.name
             )
             Assert.assertTrue(result is Resource.Success)
         }
