@@ -13,6 +13,7 @@ import com.group.so.domain.customer.GetCustomersByNameUseCase
 import com.group.so.domain.customer.GetCustomersUseCase
 import com.group.so.domain.customer.RegisterCustomerUseCase
 import com.group.so.domain.item.DeleteItemUseCase
+import com.group.so.domain.item.EditProductUseCase
 import com.group.so.domain.item.EditServiceUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
@@ -60,6 +61,7 @@ object DomainModule {
             factory { DeleteItemUseCase(get()) }
             factory { EditServiceUseCase(get()) }
             factory { RegisterProductUseCase(get()) }
+            factory { EditProductUseCase(get()) }
         }
     }
 }
