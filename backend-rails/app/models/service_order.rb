@@ -21,6 +21,8 @@
 #  index_service_orders_on_user_id_and_name  (user_id,name) UNIQUE
 #
 class ServiceOrder < ApplicationRecord
+  include NameFilterable
+
   STATUSES = %w[budge waiting_resources approved in_progress canceled finished invoiced].freeze
 
   belongs_to :user
