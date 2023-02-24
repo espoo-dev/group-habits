@@ -22,6 +22,7 @@
 #  index_items_on_user_id_and_name  (user_id,name) UNIQUE
 #
 class Item < ApplicationRecord
+  has_paper_trail
   include NameFilterable
 
   ITEM_TYPES = %w[product service].freeze
