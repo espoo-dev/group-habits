@@ -6,6 +6,11 @@ module Api
         render json: ServiceOrderPresenter.payload_for_list(service_orders)
       end
 
+      def destroy
+        ServiceOrders::ServiceOrderDestroyerService.new(user: current_user, params: destroy_params).call
+        render json: {}, status: :no_content
+      end
+
       private
 
       def index_params
