@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.ui.components.PasswordField
 import com.group.so.core.ui.components.PrimaryButton
 import com.group.so.core.ui.components.SecondaryButton
 import com.group.so.data.entities.model.User
@@ -73,7 +74,19 @@ fun LoginContent(
                         emailState.text = it
                         emailState.validate()
                     }
-                    Password(passwordState.text, passwordState.error) {
+                    PasswordField(
+                        labelText = stringResource(R.string.label_password),
+                        textColor = MaterialTheme.colors.primary,
+                        valueText = passwordState.text,
+                        error = passwordState.error,
+                        iconColor = MaterialTheme.colors.primary,
+                        iconClear = passwordState.text.isNotBlank(),
+                        clearText = {
+                            passwordState.text = ""
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
                         passwordState.text = it
                         passwordState.validate()
                     }
