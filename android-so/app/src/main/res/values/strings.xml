@@ -122,7 +122,7 @@
     <string name="msg_empty_service_list">No services registered at the moment</string>
     <string name="tv_type_component_service">Service</string>
 
-    <!--Customers Add New service-->
+    <!--Add New service-->
     <string name="title_button_register_service">Add new service</string>
     <string name="title_toolbar_add_new_service">Add new service</string>
     <string name="txt_register_success_service">Service registered successfully</string>
@@ -133,6 +133,26 @@
     <string name="lbl_field_extra_info">Extra Info</string>
     <string name="lbl_field_name_service">Name Service</string>
     <string name="lbl_field_price_service">Service price</string>
+
+
+
+    <!--Product-->
+    <string name="title_toolbar_product">Products</string>
+    <string name="title_fab_new_product">New Product</string>
+    <string name="msg_empty_product_list">No products registered at the moment</string>
+    <string name="tv_type_component_product">Product</string>
+
+
+    <string name="title_button_register_product">Add new product</string>
+    <string name="title_toolbar_add_new_product">Add new product</string>
+    <string name="txt_register_success_product">Product registered successfully</string>
+    <string name="title_toolbar_edit_product">Edit Product</string>
+    <string name="title_button_edit_product">Save change</string>
+    <string name="txt_edit_success_product">Product successfully edited.</string>
+
+    <string name="lbl_field_extra_info_product">Extra Info</string>
+    <string name="lbl_field_name_product">Name Product</string>
+    <string name="lbl_field_price_product">Product price</string>
 
 
 </resources>

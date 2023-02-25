@@ -12,12 +12,15 @@
 
     <string name="tv_money">R$: %s</string>
 
+    <string name="desc_quote_of_the_day">Tenha um dia produtivo</string>
+
     <!--Menu Home-->
     <string name="title_menu_service_order">Ordem Serviço</string>
     <string name="subtitle_menu_service_order">Crie suas ordens de serviço</string>
 
     <string name="title_menu_profile">Perfil</string>
     <string name="subtitle_menu_profile">Visualize e atualize seus dados de forma simples</string>
+
 
 
     <!--SubMenu Home-->
@@ -106,7 +109,7 @@
     <string name="title_fab_new_service">Novo Serviço</string>
     <string name="msg_empty_service_list">Nenhum serviço cadastrado no momento</string>
     <string name="tv_type_component_service">Serviço</string>
-    <string name="desc_quote_of_the_day">Tenha um dia produtivo</string>
+
 
     <string name="title_button_register_service">Adicionar novo serviço</string>
     <string name="title_toolbar_add_new_service">Adicionar novo serviço</string>
@@ -117,6 +120,23 @@
     <string name="lbl_field_extra_info">Observação</string>
     <string name="lbl_field_name_service">Nome Serviço</string>
     <string name="lbl_field_price_service">Preço serviço</string>
+
+
+    <!--Product-->
+    <string name="title_toolbar_product">Produtos</string>
+    <string name="title_fab_new_product">Novo Produto</string>
+    <string name="msg_empty_product_list">Nenhum produto cadastrado no momento</string>
+    <string name="tv_type_component_product">Produto</string>
+
+    <string name="title_button_register_product">Adicionar novo produto</string>
+    <string name="title_toolbar_add_new_product">Adicionar novo produto</string>
+    <string name="txt_register_success_product">Produto registrado com sucesso.</string>
+    <string name="title_toolbar_edit_product">Editar produto</string>
+    <string name="title_button_edit_product">Salvar alterações</string>
+    <string name="txt_edit_success_product">Produto editado com sucesso.</string>
+    <string name="lbl_field_extra_info_product">Observação</string>
+    <string name="lbl_field_name_product">Nome produto</string>
+    <string name="lbl_field_price_product">Preço produto</string>
 
 
 </resources>
