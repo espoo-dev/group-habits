@@ -58,6 +58,29 @@ object ItemMock {
         )
     )
 
+    fun mockProductList() = listOf(
+        Item(
+            id = 1,
+            name = "Product 1",
+            extraInfo = "Obs",
+            salePrice = 11.0,
+            purchasePrice = 11.0,
+            itemType = "product",
+            category = Category(id = 1, name = "Category1"),
+            saleUnit = SalesUnit(id = 1, name = "Unity"),
+        ),
+        Item(
+            id = 1,
+            name = "Product 2",
+            extraInfo = "Obs",
+            salePrice = 11.0,
+            purchasePrice = 11.0,
+            itemType = "product",
+            category = Category(id = 1, name = "Category1"),
+            saleUnit = SalesUnit(id = 1, name = "Unity"),
+        )
+    )
+
     fun mockProductRegisterFlowResourceSuccess() = flowOf(
         Resource.Success(
             data =
@@ -91,6 +114,7 @@ object ItemMock {
 
         )
     )
+
     fun mockServiceDeleteResourceSucess() = flowOf(
         Resource.Success(
             data = 204

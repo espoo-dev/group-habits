@@ -27,6 +27,8 @@ import com.group.so.presentation.ui.customer.DetailsCustomerScreen
 import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
+import com.group.so.presentation.ui.product.ProductScreen
+import com.group.so.presentation.ui.product.ProductViewModel
 import com.group.so.presentation.ui.service.AddScreenService
 import com.group.so.presentation.ui.service.DetailsServiceScreen
 import com.group.so.presentation.ui.service.ServiceScreen
@@ -152,6 +154,23 @@ fun ScreenMain() {
                 service,
                 serviceViewModel
             )
+        }
+
+        composable(Routes.Product.route) {
+            val productViewModel = koinViewModel<ProductViewModel>()
+            val productListUiState by productViewModel.productListState.collectAsState()
+
+            ProductScreen(
+                productViewModel = productViewModel,
+                productListState = productListUiState,
+                onNewProductClick = {
+                },
+                onProductClick = {
+                },
+                onDeleteProduct = {
+                    productViewModel.deleteProduct(it.id)
+                }
+            ) { productViewModel.getAllProducts() }
         }
 
 //        composable(
