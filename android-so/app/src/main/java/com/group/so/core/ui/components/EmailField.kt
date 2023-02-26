@@ -16,21 +16,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.group.so.R
 
 @Composable
-fun PasswordField(
+fun EmailField(
     labelText: String?,
     textColor: Color?,
     valueText: String,
@@ -41,13 +37,12 @@ fun PasswordField(
     modifier: Modifier,
     onTextChanged: (String) -> Unit,
 ) {
-    var isPasswordOpen by remember { mutableStateOf(false) }
 
     Column {
         OutlinedTextField(
             label = {
                 Text(
-                    text = labelText ?: stringResource(R.string.label_password),
+                    text = labelText ?: stringResource(R.string.label_text_email),
                     color = textColor ?: MaterialTheme.colors.primary
                 )
             },
@@ -58,11 +53,10 @@ fun PasswordField(
                 .padding(horizontal = 20.dp)
                 .padding(top = 10.dp),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            visualTransformation = if (!isPasswordOpen) PasswordVisualTransformation() else VisualTransformation.None,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             leadingIcon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_password),
+                    painter = painterResource(id = R.drawable.ic_email),
                     contentDescription = "",
                     tint = iconColor ?: MaterialTheme.colors.primary,
                     modifier = Modifier.size(24.dp)
@@ -70,23 +64,6 @@ fun PasswordField(
             },
             trailingIcon = {
                 Row {
-                    IconButton(onClick = { isPasswordOpen = !isPasswordOpen }) {
-                        if (!isPasswordOpen) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_eye_open),
-                                contentDescription = "",
-                                tint = iconColor ?: MaterialTheme.colors.primary,
-                                modifier = Modifier.size(24.dp)
-                            )
-                        } else {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_eye_close),
-                                contentDescription = "",
-                                tint = iconColor ?: MaterialTheme.colors.primary,
-                                modifier = Modifier.size(24.dp)
-                            )
-                        }
-                    }
                     if (iconClear) {
                         IconButton(
                             onClick = {

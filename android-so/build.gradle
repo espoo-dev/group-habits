@@ -14,8 +14,22 @@ buildscript {
         moshi_converter = "2.9.0"
         ext.jacocoAndroidVersion = "0.2"
         ext.coverallsVersion = "2.12.0"
-        mockk_version = '1.12.0'
-        mockk_android_version = '1.12.0'
+        mockk_version = "1.12.0"
+        mockk_android_version = "1.12.0"
+        core_ktx = "1.9.0"
+        lifecycle_runtime = "2.5.1"
+        activity_compose = "1.6.1"
+        material = "1.3.1"
+        material3 = "1.0.1"
+        compose_ui_util = "1.3.3"
+        koin_compose = "3.4.0"
+        navigation_animation = "0.29.0-alpha"
+        coil_compose = "2.2.2"
+        lottie_compose = "5.0.0"
+        junit_version = "4.13.2"
+        ext_junit = "1.1.5"
+        espresso_core = "3.5.1"
+        core_testing = "1.1.1"
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
