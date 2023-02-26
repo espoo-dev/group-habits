@@ -9,9 +9,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -53,7 +53,7 @@ fun ScreenMain() {
         }
         composable(Routes.Category.route) {
             val categoryViewModel = koinViewModel<CategoryViewModel>()
-            val categoriesListUiState by categoryViewModel.categoryState.collectAsState()
+            val categoriesListUiState by categoryViewModel.categoryState.collectAsStateWithLifecycle()
 
             CategoryListScreen(
                 categoryViewModel,
@@ -71,7 +71,7 @@ fun ScreenMain() {
 
         composable(Routes.Customer.route) {
             val customerViewModel = koinViewModel<CustomerViewModel>()
-            val customersListUiState by customerViewModel.customerListState.collectAsState()
+            val customersListUiState by customerViewModel.customerListState.collectAsStateWithLifecycle()
 
             CustomerScreen(
                 customerViewModel = customerViewModel,
@@ -113,7 +113,7 @@ fun ScreenMain() {
 
         composable(Routes.Service.route) {
             val serviceViewModel = koinViewModel<ServiceViewModel>()
-            val servicesListUiState by serviceViewModel.itemListState.collectAsState()
+            val servicesListUiState by serviceViewModel.itemListState.collectAsStateWithLifecycle()
 
             ServiceScreen(
                 serviceViewModel = serviceViewModel,
@@ -158,7 +158,7 @@ fun ScreenMain() {
 
         composable(Routes.Product.route) {
             val productViewModel = koinViewModel<ProductViewModel>()
-            val productListUiState by productViewModel.productListState.collectAsState()
+            val productListUiState by productViewModel.productListState.collectAsStateWithLifecycle()
 
             ProductScreen(
                 productViewModel = productViewModel,

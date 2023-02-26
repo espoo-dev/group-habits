@@ -15,7 +15,6 @@ import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,6 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.group.so.R
 import com.group.so.core.State
 import com.group.so.data.entities.model.Category
@@ -41,7 +41,7 @@ fun CategoryEditScreen(
     showDialog: Boolean,
     dimissDialog: () -> Unit
 ) {
-    val viewState = categoryViewModel.editCategoryState.collectAsState()
+    val viewState = categoryViewModel.editCategoryState.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var text by remember { mutableStateOf("") }
     var title: String

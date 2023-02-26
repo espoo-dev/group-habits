@@ -8,11 +8,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
@@ -25,7 +25,7 @@ fun LoginScreen(
     navController: NavHostController,
     _loginViewModel: LoginViewModel,
 ) {
-    val viewState = _loginViewModel.loginState.collectAsState()
+    val viewState = _loginViewModel.loginState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
     LaunchedEffect(viewState.value) {
