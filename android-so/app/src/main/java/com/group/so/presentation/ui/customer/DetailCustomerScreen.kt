@@ -35,6 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
@@ -73,7 +74,7 @@ fun DetailsCustomerScreen(
     var customerType by remember {
         mutableStateOf(customer?.customerType)
     }
-    val viewState = viewModel.editCustomerState.collectAsState()
+    val viewState = viewModel.editCustomerState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
     LaunchedEffect("") {

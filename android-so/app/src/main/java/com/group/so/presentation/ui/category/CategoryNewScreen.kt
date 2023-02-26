@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.group.so.R
 import com.group.so.core.State
 import com.group.so.ui.theme.Poppins
@@ -39,7 +40,7 @@ fun CategoryNewScreen(
     showDialog: Boolean,
     dimissDialog: () -> Unit
 ) {
-    val viewState = categoryViewModel.registerCategoryState.collectAsState()
+    val viewState = categoryViewModel.registerCategoryState.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var text by remember { mutableStateOf("") }
 

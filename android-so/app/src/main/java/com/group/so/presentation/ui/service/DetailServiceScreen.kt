@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
@@ -54,7 +55,7 @@ fun DetailsServiceScreen(
     }
     val salePriceTextState = remember { TextState() }
 
-    val viewState = viewModel.editServiceState.collectAsState()
+    val viewState = viewModel.editServiceState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
     LaunchedEffect("") {
