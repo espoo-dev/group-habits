@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.ui.components.EmailField
 import com.group.so.core.ui.components.PasswordField
 import com.group.so.core.ui.components.PrimaryButton
 import com.group.so.core.ui.components.SecondaryButton
@@ -70,10 +71,23 @@ fun LoginContent(
             ) {
 
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Email(emailState.text, emailState.error) {
-                        emailState.text = it
-                        emailState.validate()
+                    EmailField(
+                        labelText = stringResource(R.string.label_text_email),
+                        textColor = MaterialTheme.colors.primary,
+                        valueText = emailState.text,
+                        error = emailState.error,
+                        iconColor = MaterialTheme.colors.primary,
+                        iconClear = emailState.text.isNotBlank(),
+                        clearText = {
+                            emailState.text = ""
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        passwordState.text = it
+                        passwordState.validate()
                     }
+
                     PasswordField(
                         labelText = stringResource(R.string.label_password),
                         textColor = MaterialTheme.colors.primary,
