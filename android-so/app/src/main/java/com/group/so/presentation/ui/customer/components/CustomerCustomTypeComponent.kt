@@ -37,7 +37,7 @@ fun CustomerCustomTypeComponent(customer: Customer) {
         val typeCustomer = if (customer.customerType == CustomerCustomType.PERSON.value) {
             stringResource(R.string.tv_customer_type_person)
         } else {
-            stringResource(R.string.tv_customer_type_person)
+            stringResource(R.string.tv_customer_type_business)
         }
 
         AssistChip(
