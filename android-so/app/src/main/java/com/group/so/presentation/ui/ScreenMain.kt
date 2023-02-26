@@ -9,7 +9,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -101,7 +100,7 @@ fun ScreenMain() {
         composable(
             Routes.EditCustomer.route,
 
-            ) {
+        ) {
             val customer =
                 navController.previousBackStackEntry?.savedStateHandle?.get<Customer>("customer")
             val customerViewModel = koinViewModel<CustomerViewModel>()
@@ -146,7 +145,7 @@ fun ScreenMain() {
         composable(
             Routes.EditService.route,
 
-            ) {
+        ) {
             val service =
                 navController.previousBackStackEntry?.savedStateHandle?.get<Item>("service")
             val serviceViewModel = koinViewModel<ServiceViewModel>()
