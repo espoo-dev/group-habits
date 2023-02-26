@@ -3,7 +3,7 @@
     <string name="app_name">Ordem de Serviço</string>
     <string name="title_header_login">Bem-vindo(a) Minha Ordem de Serviço</string>
     <string name="title_body_login">Entrar com e-mail</string>
-
+    <string name="text_button_dont_have_account">Não tem uma conta? Inscrever-se</string>
     <string name="title_button_login">Entrar</string>
     <string name="text_button_forgot_password">Esqueceu sua senha</string>
 
