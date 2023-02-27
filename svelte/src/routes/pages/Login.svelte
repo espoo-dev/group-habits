@@ -3,11 +3,14 @@
   import { navigate } from 'svelte-routing';
   import { setCurrentAccountAdapter } from '../../main/adapters';
   import { notifications } from '../../../src/infra/notification/notification';
+  import Select from '../../../src/lib/components/Select/Select.svelte';
 
   const user = {
     email: 'user@email.com',
     password: '123456789',
   };
+
+  let selected: any;
 
   const http = makeRemoteAuthentication();
 
@@ -44,6 +47,12 @@
         />
 
         <button on:click={login}>Entrar</button>
+        <Select bind:selected={selected} options={[
+          {name: 'Carros', value: 'carros'},
+          {name: 'Motos', value: 'motos'},
+        ]} />
+
+        <span>{selected && selected.name}</span>
       </div>
     </div>
   </div>
