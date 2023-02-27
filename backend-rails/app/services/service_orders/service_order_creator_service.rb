@@ -7,9 +7,11 @@ module ServiceOrders
     end
 
     private
+
     def items
       items_ids = params_with_user[:items_ids]
-      items_ids.map { Item.find(_1) }
+      items = items_ids&.map { Item.find(_1) }
+      items || []
     end
   end
 end

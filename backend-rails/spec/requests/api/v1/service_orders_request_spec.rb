@@ -37,6 +37,32 @@ describe 'api/v1/service_orders', type: :request do
     end
   end
 
+  describe '#create' do
+    let!(:user) { create(:user) }
+    let!(:customer) { create(:customer, user:) }
+    let!(:item) { create(:item, user:) }
+
+    before do
+      post api_v1_service_orders_path, params: create_service_order_params, headers: auth_headers, as: :json
+    end
+
+    context 'when data is valid' do
+      let(:service_order_params) { attributes_for(:service_order, user_id: nil, customer_id: customer.id) }
+      let(:items_ids) { { items_ids: [item.id] } }
+      let(:create_service_order_params) { service_order_params.merge(items_ids) }
+
+      it 'returns status 201 created' do
+        expect(response).to be_created
+      end
+
+      it 'returns item' do
+        expect(json_response['id']).to_not be_nil
+        expect(json_response['name']).to eq(create_service_order_params[:name])
+        expect(json_response['items'][0]['id']).to eq(item.id)
+      end
+    end
+  end
+
   describe '#destroy' do
     let(:user) { create(:user) }
     let!(:service_order) { create(:service_order, user:) }
