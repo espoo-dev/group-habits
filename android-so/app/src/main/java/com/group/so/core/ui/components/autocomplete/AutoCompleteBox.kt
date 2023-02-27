@@ -1,4 +1,4 @@
-@file:Suppress("TopLevelPropertyNaming","LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress("TopLevelPropertyNaming", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
 package com.group.so.core.ui.components.autocomplete
 
