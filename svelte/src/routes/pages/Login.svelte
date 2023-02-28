@@ -10,7 +10,7 @@
     password: '123456789',
   };
 
-  let selected: any;
+  let selected: string;
 
   const http = makeRemoteAuthentication();
 
@@ -51,8 +51,6 @@
           {name: 'Carros', value: 'carros'},
           {name: 'Motos', value: 'motos'},
         ]} />
-
-        <span>{selected && selected.name}</span>
       </div>
     </div>
   </div>
