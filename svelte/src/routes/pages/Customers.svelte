@@ -8,7 +8,7 @@
   import Input from '../../lib/components/Input/Input.svelte';
   import RadioGroup from '../../lib/components/RadioGroup/RadioGroup.svelte';
 
-  const crudName = 'Cliente'
+  const crudName = 'Cliente';
   let customers = [];
   let defaultCustomer: CustomerModel = {
     id: 0,
@@ -16,16 +16,16 @@
     document_number: 0,
     phone: 0,
     state_inscription: '',
-    customer_type: 'business'
+    customer_type: 'business',
   };
 
   let modal = {
     title: `Adicionar ${crudName}`,
     editTitle: `Editar ${crudName}`,
-    model: {...defaultCustomer},
+    model: { ...defaultCustomer },
     new: true,
-    opened: false
-  }
+    opened: false,
+  };
 
   const apiCustomer = makeRemoteCustomer();
   const load = async () => {
@@ -33,55 +33,55 @@
     customers = customers.map((customer) => {
       return {
         ...customer,
-        popRemove: false
-      }
-    })
-  }
+        popRemove: false,
+      };
+    });
+  };
 
   const closeModal = () => {
-    modal.model = {...defaultCustomer}
-    modal.opened = false
-    modal.new = true
-  }
+    modal.model = { ...defaultCustomer };
+    modal.opened = false;
+    modal.new = true;
+  };
 
   const create = async () => {
     try {
-      await apiCustomer.create(modal.model)
-      notifications.success(`${crudName} criado com sucesso`)
-      closeModal()
-      load()
+      await apiCustomer.create(modal.model);
+      notifications.success(`${crudName} criado com sucesso`);
+      closeModal();
+      load();
     } catch (error) {
-      notifications.danger(error)
+      notifications.danger(error);
     }
-  }
+  };
 
   const edit = async () => {
     try {
-      await apiCustomer.edit(modal.model.id, modal.model)
-      closeModal()
-      load()
-      notifications.success(`${crudName} editado com sucesso`)
+      await apiCustomer.edit(modal.model.id, modal.model);
+      closeModal();
+      load();
+      notifications.success(`${crudName} editado com sucesso`);
     } catch (error) {
-      notifications.danger(error)
+      notifications.danger(error);
     }
-  }
+  };
 
   const remove = async (customer) => {
     try {
-      await apiCustomer.delete(customer.id)
-      customer.popRemove = false
-      notifications.success(`${crudName} removido com sucesso`)
-      load()
+      await apiCustomer.delete(customer.id);
+      customer.popRemove = false;
+      notifications.success(`${crudName} removido com sucesso`);
+      load();
     } catch (error) {
-      notifications.danger(error)
+      notifications.danger(error);
     }
-  }
+  };
 
   const openModalToEdit = (customer: CustomerModel) => {
-    modal.opened = true
-    modal.new = false
-    modal.model = customer
-  }
+    modal.opened = true;
+    modal.new = false;
+    modal.model = customer;
+  };
 
   load();
 </script>
@@ -92,13 +92,14 @@
     <h1
       class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
     >
-      <span
-        class="text-blue-600 dark:text-blue-500"
-        >Clientes</span
-      >
+      <span class="text-blue-600 dark:text-blue-500">Clientes</span>
     </h1>
 
-    <button on:click={() => modal.opened = true} class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    <button
+      on:click={() => (modal.opened = true)}
+      class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      type="button"
+    >
       Novo
     </button>
   </div>
@@ -131,24 +132,25 @@
               <button
                 on:click={() => openModalToEdit(customer)}
                 type="button"
-                class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+              >
                 Editar
               </button>
 
               <button
-                on:click={() => customer.popRemove = true}
+                on:click={() => (customer.popRemove = true)}
                 type="button"
-                class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+              >
                 Remover
               </button>
 
               {#if customer.popRemove}
                 <Popover
                   message={`Tem certeza que deseja excluir o cliente ${customer.name}`}
-                  on:close={() => customer.popRemove = false}
+                  on:close={() => (customer.popRemove = false)}
                   on:confirm={() => remove(customer)}
-                  >
-                </Popover>
+                />
               {/if}
             </td>
           </tr>
@@ -160,39 +162,39 @@
   {#if modal.opened}
     <Modal
       title={modal.new ? modal.title : modal.editTitle}
-      on:close="{() => closeModal()}"
-      on:confirm="{() => modal.new ? create() : edit()}"
-      >
+      on:close={() => closeModal()}
+      on:confirm={() => (modal.new ? create() : edit())}
+    >
       <form>
         <div class="grid gap-6 mb-6 md:grid-cols-1">
-          <Input 
-            label='Nome'
-            bind:value={modal.model.name}
-          />
-          <Input 
-            label='Documento'
-            bind:value={modal.model.document_number} 
+          <Input label="Nome" bind:value={modal.model.name} />
+          <Input
+            label="Documento"
+            bind:value={modal.model.document_number}
             type="number"
           />
-          <Input 
-            label='Telefone'
-            bind:value={modal.model.phone} 
+          <Input
+            label="Telefone"
+            bind:value={modal.model.phone}
             type="number"
           />
 
-          <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Tipo do cliente</h3>
+          <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">
+            Tipo do cliente
+          </h3>
 
-          <RadioGroup options={[
-              {label: 'Business', value: 'business'},
-              {label: 'Person', value: 'person'}
-            ]}  
-            bind:selectedValue={modal.model.customer_type} 
+          <RadioGroup
+            options={[
+              { label: 'Business', value: 'business' },
+              { label: 'Person', value: 'person' },
+            ]}
+            bind:selectedValue={modal.model.customer_type}
           />
 
           {#if modal.model.customer_type === 'business'}
-            <Input 
-              label='Inscrição Estadual'
-              bind:value={modal.model.state_inscription} 
+            <Input
+              label="Inscrição Estadual"
+              bind:value={modal.model.state_inscription}
               type="text"
             />
           {/if}
@@ -200,7 +202,6 @@
       </form>
     </Modal>
   {/if}
-
 </div>
 
 <style>
@@ -212,7 +213,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     margin-bottom: 46px;
   }
 </style>

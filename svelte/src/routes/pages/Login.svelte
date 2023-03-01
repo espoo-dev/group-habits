@@ -19,7 +19,7 @@
     if (response.user) {
       navigate('/categories', { replace: true });
       setCurrentAccountAdapter(response);
-      notifications.success('Bem vindo!', 3000)
+      notifications.success('Bem vindo!', 3000);
     }
   };
 </script>
@@ -47,10 +47,13 @@
         />
 
         <button on:click={login}>Entrar</button>
-        <Select bind:selected={selected} options={[
-          {name: 'Carros', value: 'carros'},
-          {name: 'Motos', value: 'motos'},
-        ]} />
+        <Select
+          bind:selected
+          options={[
+            { name: 'Carros', value: 'carros' },
+            { name: 'Motos', value: 'motos' },
+          ]}
+        />
       </div>
     </div>
   </div>

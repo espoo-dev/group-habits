@@ -1,22 +1,26 @@
 <script lang="ts">
-  import Radio from "../Radio/Radio.svelte";
+  import Radio from '../Radio/Radio.svelte';
 
   interface Option {
     label: string;
     value: string;
   }
 
-  export let options: Option[]
-  export let selectedValue = ''
+  export let options: Option[];
+  export let selectedValue = '';
 
   const handleChange = (option: Option) => {
-    selectedValue = option.value
-  }
+    selectedValue = option.value;
+  };
 </script>
 
-<ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+<ul
+  class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+>
   {#each options as option}
-    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+    <li
+      class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600"
+    >
       <div class="flex items-center pl-3">
         <Radio
           {...option}
