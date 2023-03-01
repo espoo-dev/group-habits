@@ -10,7 +10,7 @@
   let categories = [];
   let defaultCategory: CategoryModel = {
     id: 0,
-    name: ''
+    name: '',
   };
 
   let modal = {
@@ -18,8 +18,8 @@
     editTitle: 'Editar Categoria',
     model: defaultCategory,
     new: true,
-    opened: false
-  }
+    opened: false,
+  };
 
   const apiCategory = makeRemoteCategory();
   const loadCategories = async () => {
@@ -27,55 +27,55 @@
     categories = categories.map((category) => {
       return {
         ...category,
-        popRemove: false
-      }
-    })
-  }
+        popRemove: false,
+      };
+    });
+  };
 
   const closeModal = () => {
-    modal.model = defaultCategory
-    modal.opened = false
-    modal.new = true
-  }
+    modal.model = defaultCategory;
+    modal.opened = false;
+    modal.new = true;
+  };
 
   const createCategory = async () => {
     try {
-      await apiCategory.create(modal.model)
-      notifications.success('Categoria criada com sucesso')
-      closeModal()
-      loadCategories()
+      await apiCategory.create(modal.model);
+      notifications.success('Categoria criada com sucesso');
+      closeModal();
+      loadCategories();
     } catch (error) {
-      notifications.danger(error)
+      notifications.danger(error);
     }
-  }
+  };
 
   const editCategory = async () => {
     try {
-      await apiCategory.edit(modal.model.id, modal.model)
-      closeModal()
-      loadCategories()
-      notifications.success('Categoria editada com sucesso')
+      await apiCategory.edit(modal.model.id, modal.model);
+      closeModal();
+      loadCategories();
+      notifications.success('Categoria editada com sucesso');
     } catch (error) {
-      notifications.danger(error)
+      notifications.danger(error);
     }
-  }
+  };
 
   const removeCategory = async (category) => {
     try {
-      await apiCategory.delete(category.id)
-      category.popRemove = false
-      notifications.success('Categoria removida com sucesso')
-      loadCategories()
+      await apiCategory.delete(category.id);
+      category.popRemove = false;
+      notifications.success('Categoria removida com sucesso');
+      loadCategories();
     } catch (error) {
-      notifications.danger(error)
+      notifications.danger(error);
     }
-  }
+  };
 
   const openModalToEdit = (category: CategoryModel) => {
-    modal.opened = true
-    modal.new = false
-    modal.model = category
-  }
+    modal.opened = true;
+    modal.new = false;
+    modal.model = category;
+  };
 
   loadCategories();
 </script>
@@ -86,13 +86,16 @@
     <h1
       class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
     >
-      <span
-        class="text-blue-600 dark:text-blue-500"
-        >Categorias</span
-      >
+      <span class="text-blue-600 dark:text-blue-500">Categorias</span>
     </h1>
 
-    <button on:click={() => modal.opened = true} data-modal-target="staticModal" data-modal-toggle="staticModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    <button
+      on:click={() => (modal.opened = true)}
+      data-modal-target="staticModal"
+      data-modal-toggle="staticModal"
+      class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      type="button"
+    >
       Novo
     </button>
   </div>
@@ -121,24 +124,25 @@
               <button
                 on:click={() => openModalToEdit(category)}
                 type="button"
-                class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium md:font-medium rounded-lg text-sm md:px-5 px-2 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium md:font-medium rounded-lg text-sm md:px-5 px-2 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+              >
                 Editar
               </button>
 
               <button
-                on:click={() => category.popRemove = true}
+                on:click={() => (category.popRemove = true)}
                 type="button"
-                class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm md:px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm md:px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+              >
                 Remover
               </button>
 
               {#if category.popRemove}
                 <Popover
                   message={`Tem certeza que deseja excluir a categoria ${category.name}`}
-                  on:close={() => category.popRemove = false}
+                  on:close={() => (category.popRemove = false)}
                   on:confirm={() => removeCategory(category)}
-                  >
-                </Popover>
+                />
               {/if}
             </td>
           </tr>
@@ -150,17 +154,20 @@
   {#if modal.opened}
     <Modal
       title={modal.new ? modal.title : modal.editTitle}
-      on:close="{() => closeModal()}"
-      on:confirm="{() => modal.new ? createCategory() : editCategory()}"
-      >
+      on:close={() => closeModal()}
+      on:confirm={() => (modal.new ? createCategory() : editCategory())}
+    >
       <form>
         <div class="grid gap-6 mb-6 md:grid-cols-1">
-          <Input label='Nome' bind:value={modal.model.name} placeholder={'Ex.: Carros'}/>
+          <Input
+            label="Nome"
+            bind:value={modal.model.name}
+            placeholder={'Ex.: Carros'}
+          />
         </div>
       </form>
     </Modal>
   {/if}
-
 </div>
 
 <style>
@@ -172,7 +179,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     margin-bottom: 46px;
   }
 </style>
