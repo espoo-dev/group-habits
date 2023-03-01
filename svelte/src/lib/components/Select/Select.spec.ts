@@ -42,9 +42,9 @@ describe('Select component', () => {
     });
 
     it('should select a option', async () => {
-      await user.selectOptions(selectElement, props.options[0].name);
-      // screen.debug();
-      // expect(sele)
+      const optionToSelect = props.options[0].name;
+      await user.selectOptions(selectElement, optionToSelect);
+      expect(screen.getByRole('option', {name: optionToSelect})).toBeInTheDocument()
     });
   });
 });
