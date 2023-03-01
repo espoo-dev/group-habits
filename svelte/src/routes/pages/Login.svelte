@@ -47,13 +47,6 @@
         />
 
         <button on:click={login}>Entrar</button>
-        <Select
-          bind:selected
-          options={[
-            { name: 'Carros', value: 'carros' },
-            { name: 'Motos', value: 'motos' },
-          ]}
-        />
       </div>
     </div>
   </div>
