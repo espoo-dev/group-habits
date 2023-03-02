@@ -48,8 +48,6 @@
         />
 
         <button on:click={login}>Entrar</button>
-
-        {selected}
       </div>
     </div>
   </div>
