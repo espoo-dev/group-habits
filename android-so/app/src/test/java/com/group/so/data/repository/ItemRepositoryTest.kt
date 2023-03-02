@@ -4,8 +4,6 @@ package com.group.so.data.repository
 
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
-import com.group.so.data.entities.model.Category
-import com.group.so.data.entities.model.SalesUnit
 import com.group.so.data.entities.request.product.EditProductRequest
 import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.entities.request.service.EditServiceRequest
@@ -40,8 +38,8 @@ class ItemRepositoryTest {
             salePrice = 2000.50,
             purchasePrice = 3000.00,
             itemType = "Product",
-            category = Category(id = 1, name = "Category 1"),
-            saleUnit = SalesUnit(id = 1, name = "Sale Unit test")
+            categoryId = 1,
+            saleUnitId = 1
         )
     private val mockRegisterServiceRequest =
         ServiceDataRequest(
@@ -71,8 +69,8 @@ class ItemRepositoryTest {
                 salePrice = 2000.50,
                 purchasePrice = 3000.00,
                 itemType = "Product",
-                category = Category(id = 1, name = "Category 1"),
-                saleUnit = SalesUnit(id = 1, name = "Sale Unit test")
+                categoryId = 1,
+                saleUnitId = 1
             )
         )
 

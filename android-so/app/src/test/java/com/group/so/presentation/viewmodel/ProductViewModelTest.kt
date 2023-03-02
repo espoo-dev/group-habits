@@ -6,13 +6,17 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.core.State
+import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
+import com.group.so.data.entities.model.SalesUnit
+import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.item.DeleteItemUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
+import com.group.so.domain.item.RegisterProductUseCase
 import com.group.so.mock.ItemMock.mockItemList
 import com.group.so.mock.ItemMock.mockProductList
 import com.group.so.presentation.ui.product.ProductViewModel
@@ -42,6 +46,18 @@ class ProductViewModelTest {
     private val getItemsByNameAndItemTypeUseCase = GetItemByNameAndItemTypeUseCase(itemRepository)
     private val deleteItemUseCase = DeleteItemUseCase(itemRepository)
     private val getCategoriesUseCase = GetCategoriesUseCase(categoryRepository)
+    private val registerProductUseCase = RegisterProductUseCase(itemRepository)
+
+    private val mockRegisterProductRequest =
+        ProductDataRequest(
+            name = "product test",
+            extraInfo = "service",
+            salePrice = 2000.50,
+            purchasePrice = 1500.50,
+            itemType = "product",
+            categoryId = 1,
+            saleUnitId = 1
+        )
 
     private lateinit var viewModel: ProductViewModel
 
@@ -60,7 +76,8 @@ class ProductViewModelTest {
             getItemByItemTypeUseCase,
             getItemsByNameAndItemTypeUseCase,
             deleteItemUseCase,
-            getCategoriesUseCase
+            getCategoriesUseCase,
+            registerProductUseCase
         )
         coEvery { getItemByItemTypeUseCase.execute("services") } returns flow {
             emit(Resource.Success(data = mockItemList()))
@@ -70,6 +87,45 @@ class ProductViewModelTest {
     @After
     fun tearDown() {
         Dispatchers.resetMain()
+    }
+
+    @Test
+    fun ` register new product  successfully `() = runTest {
+
+        val registerProductState = MutableStateFlow<State<Item>>(State.Idle)
+        coEvery {
+            registerProductUseCase.execute(
+                mockRegisterProductRequest
+            )
+        } returns flow {
+            emit(
+                Resource.Success(
+                    data = Item(
+                        id = 1,
+                        name = "product test",
+                        extraInfo = "product",
+                        salePrice = 2000.50,
+                        purchasePrice = 1500.50,
+                        itemType = "product",
+                        category = Category(id = 1, name = "Test"),
+                        saleUnit = SalesUnit(id = 1, name = "Test"),
+                    )
+                )
+            )
+        }
+
+        viewModel.register(
+            name = "product teste roanderson",
+            extraInfo = "product",
+            salePrice = 2000.50,
+            purchasePrice = 1500.50,
+            categoryId = 1,
+            salesUnitId = 1
+        )
+        runCurrent()
+        registerProductState.value = viewModel.registerProductState.value
+
+        assert(registerProductState.value is State.Success)
     }
 
     @Test

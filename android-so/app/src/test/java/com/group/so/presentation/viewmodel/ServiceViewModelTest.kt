@@ -100,7 +100,7 @@ class ServiceViewModelTest {
     }
 
     @Test
-    fun ` register new customer  successfully `() = runTest {
+    fun ` register new service  successfully `() = runTest {
 
         val registerServiceState = MutableStateFlow<State<Item>>(State.Idle)
         coEvery {

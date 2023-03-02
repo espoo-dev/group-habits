@@ -2,8 +2,6 @@ package com.group.so.data.services
 
 import com.group.so.data.ItemType
 import com.group.so.data.MockResponseFileReader
-import com.group.so.data.entities.model.Category
-import com.group.so.data.entities.model.SalesUnit
 import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.squareup.moshi.Moshi
@@ -213,11 +211,9 @@ class ItemServiceTest {
                     extraInfo = "extra_info",
                     salePrice = 2000.50,
                     purchasePrice = 3000.00,
-                    itemType = "service",
-                    category = Category(
-                        id = 1, name = "product1"
-                    ),
-                    saleUnit = SalesUnit(id = 1, name = "sale unit test")
+                    itemType = "product",
+                    categoryId = 1,
+                    saleUnitId = 1
                 )
             )
             val request = mockWebServer.takeRequest()

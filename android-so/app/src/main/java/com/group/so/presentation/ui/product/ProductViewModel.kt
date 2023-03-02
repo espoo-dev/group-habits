@@ -17,10 +17,12 @@ import com.group.so.core.State
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
+import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.item.DeleteItemUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
+import com.group.so.domain.item.RegisterProductUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -34,6 +36,7 @@ class ProductViewModel(
     private val getItemByNameAndItemTypeUseCase: GetItemByNameAndItemTypeUseCase,
     private val deleteItemUseCase: DeleteItemUseCase,
     private val getCategoriesUseCase: GetCategoriesUseCase,
+    private val registerProductUseCase: RegisterProductUseCase,
 ) : ViewModel() {
 
     private val _categoriesListState = MutableStateFlow<State<List<Category>>>(State.Idle)
@@ -41,6 +44,9 @@ class ProductViewModel(
 
     private val _productListState = MutableStateFlow<State<List<Item>>>(State.Idle)
     val productListState = _productListState.asStateFlow()
+
+    private val _registerProductState = MutableStateFlow<State<Item>>(State.Idle)
+    val registerProductState = _registerProductState.asStateFlow()
 
     private var removeItemJob: Job? = null
 
@@ -50,6 +56,51 @@ class ProductViewModel(
     init {
         fetchLatestProducts()
         fetchLatestCategories()
+    }
+
+    fun register(
+        name: String,
+        extraInfo: String,
+        salePrice: Double,
+        purchasePrice: Double,
+        categoryId: Int,
+        salesUnitId: Int
+    ) {
+        registerNewProduct(
+            ProductDataRequest(
+                name = name,
+                extraInfo = extraInfo,
+                salePrice = salePrice,
+                purchasePrice = purchasePrice,
+                itemType = ItemType.PRODUCT.value,
+                categoryId = categoryId,
+                saleUnitId = salesUnitId
+            )
+        )
+    }
+
+    private fun registerNewProduct(productDataRequest: ProductDataRequest) {
+        viewModelScope.launch {
+            registerProductUseCase(productDataRequest)
+                .onStart {
+                    _registerProductState.value = (State.Loading)
+                }.catch {
+                    with(RemoteException("Could not connect to Service Orders API")) {
+                        _registerProductState.value = State.Error(this)
+                    }
+                }
+                .collect {
+                    it.data?.let { item ->
+                        _registerProductState.value = State.Success(item)
+                        fetchLatestProducts()
+                    }
+                    it.error?.let { throwable ->
+                        with(RemoteException(throwable.message.toString())) {
+                            _registerProductState.value = State.Error(this)
+                        }
+                    }
+                }
+        }
     }
 
     private fun fetchLatestProducts() {
