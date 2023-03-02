@@ -1,12 +1,15 @@
 @file:Suppress("MaxLineLength", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
 package com.group.so.presentation.viewmodel
+
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.core.State
 import com.group.so.data.entities.model.Item
+import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.item.ItemRepository
+import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.item.DeleteItemUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
@@ -33,10 +36,12 @@ import org.junit.Test
 class ProductViewModelTest {
 
     private val itemRepository = mockk<ItemRepository>(relaxed = true)
+    private val categoryRepository = mockk<CategoryRepository>(relaxed = true)
 
     private val getItemByItemTypeUseCase = GetItemByItemTypeUseCase(itemRepository)
     private val getItemsByNameAndItemTypeUseCase = GetItemByNameAndItemTypeUseCase(itemRepository)
     private val deleteItemUseCase = DeleteItemUseCase(itemRepository)
+    private val getCategoriesUseCase = GetCategoriesUseCase(categoryRepository)
 
     private lateinit var viewModel: ProductViewModel
 
@@ -55,6 +60,7 @@ class ProductViewModelTest {
             getItemByItemTypeUseCase,
             getItemsByNameAndItemTypeUseCase,
             deleteItemUseCase,
+            getCategoriesUseCase
         )
         coEvery { getItemByItemTypeUseCase.execute("services") } returns flow {
             emit(Resource.Success(data = mockItemList()))
