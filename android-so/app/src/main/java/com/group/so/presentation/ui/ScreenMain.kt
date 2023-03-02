@@ -27,6 +27,7 @@ import com.group.so.presentation.ui.customer.DetailsCustomerScreen
 import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
+import com.group.so.presentation.ui.product.AddProductScreen
 import com.group.so.presentation.ui.product.ProductScreen
 import com.group.so.presentation.ui.product.ProductViewModel
 import com.group.so.presentation.ui.service.AddScreenService
@@ -100,7 +101,7 @@ fun ScreenMain() {
         composable(
             Routes.EditCustomer.route,
 
-        ) {
+            ) {
             val customer =
                 navController.previousBackStackEntry?.savedStateHandle?.get<Customer>("customer")
             val customerViewModel = koinViewModel<CustomerViewModel>()
@@ -145,7 +146,7 @@ fun ScreenMain() {
         composable(
             Routes.EditService.route,
 
-        ) {
+            ) {
             val service =
                 navController.previousBackStackEntry?.savedStateHandle?.get<Item>("service")
             val serviceViewModel = koinViewModel<ServiceViewModel>()
@@ -164,6 +165,7 @@ fun ScreenMain() {
                 productViewModel = productViewModel,
                 productListState = productListUiState,
                 onNewProductClick = {
+                    navController.navigate(Routes.NewProduct.route)
                 },
                 onProductClick = {
                 },
@@ -171,6 +173,15 @@ fun ScreenMain() {
                     productViewModel.deleteProduct(it.id)
                 }
             ) { productViewModel.getAllProducts() }
+        }
+        composable(Routes.NewProduct.route) {
+            val productViewModel = koinViewModel<ProductViewModel>()
+            val categoriesListState by productViewModel.categoriesListState.collectAsStateWithLifecycle()
+            AddProductScreen(
+                navController,
+                productViewModel,
+                categoriesListState
+            )
         }
 
 //        composable(

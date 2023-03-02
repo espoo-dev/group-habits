@@ -31,7 +31,11 @@ import com.group.so.data.entities.model.Category
 
 @ExperimentalAnimationApi
 @Composable
-fun AutoCompleteCategory(categories: List<Category>, itemSelected: (Category) -> Unit) {
+fun AutoCompleteCategory(
+    categories: List<Category>,
+    initialValue: (Category) = categories.first(),
+    itemSelected: (Category) -> Unit
+) {
     AutoCompleteBox(
         items = categories,
         itemContent = { category ->
@@ -51,7 +55,7 @@ fun AutoCompleteCategory(categories: List<Category>, itemSelected: (Category) ->
         TextSearchBar(
             modifier = Modifier.testTag(AutoCompleteSearchBarTag),
             value = value,
-            label = "Search with objects",
+            label = "Search category",
             onDoneActionClick = {
                 view.clearFocus()
             },

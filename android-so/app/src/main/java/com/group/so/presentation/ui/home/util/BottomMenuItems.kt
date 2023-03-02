@@ -13,12 +13,15 @@ sealed class BottomMenuItems(val route: String, val title: String, @DrawableRes 
 
     object Service : BottomMenuItems("Service", "Serviços", R.drawable.ic_service)
 
+    object Product : BottomMenuItems("Product", "Serviços", R.drawable.ic_product)
+
     object ItemsMenu {
         var items = listOf(
             Home,
             Category,
             Customer,
             Service,
+            Product
         )
     }
 }

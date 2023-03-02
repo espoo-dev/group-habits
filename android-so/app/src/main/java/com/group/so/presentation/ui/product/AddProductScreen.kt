@@ -1,15 +1,15 @@
 @file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
-package com.group.so.presentation.ui.service
+package com.group.so.presentation.ui.product
 
 import android.annotation.SuppressLint
-import android.widget.Toast
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
@@ -17,32 +17,40 @@ import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.ui.components.AsyncData
 import com.group.so.core.ui.components.ErrorField
-import com.group.so.core.ui.components.GenericLoading
+import com.group.so.core.ui.components.GenericError
+import com.group.so.core.ui.components.MoneyField
 import com.group.so.core.ui.components.PrimaryButton
 import com.group.so.core.ui.components.TopBarWhite
 import com.group.so.core.ui.components.validations.TextState
-import com.group.so.presentation.ui.Routes
+import com.group.so.data.entities.model.Category
+import com.group.so.presentation.ui.product.components.AutoCompleteCategory
 
+
+
+@OptIn(ExperimentalAnimationApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun AddScreenService(
+fun AddProductScreen(
     navController: NavController,
-    serviceViewModel: ServiceViewModel,
+    productViewModel: ProductViewModel,
+    categoriesListState: State<List<Category>>,
 
-) {
+    ) {
     val scaffoldState = rememberScaffoldState()
 
     val nameTextState = remember {
@@ -53,115 +61,135 @@ fun AddScreenService(
     }
     val salePriceTextState = remember { TextState() }
 
-    val viewState = serviceViewModel.serviceState.collectAsStateWithLifecycle()
+    val purchasePriceTextState = remember { TextState() }
+
+    var category by remember { mutableStateOf(0) }
+
     val context = LocalContext.current
 
-    LaunchedEffect(viewState.value) {
-        if (viewState.value is State.Error) {
-            Toast.makeText(
-                context,
-                (viewState.value as State.Error).error.message,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-        if (viewState.value is State.Success) {
-            Toast.makeText(
-                context,
-                R.string.txt_register_success_service,
-                Toast.LENGTH_LONG
-            ).show()
-            navController.navigate(Routes.Service.route) {
-                popUpTo(Routes.Service.route) { inclusive = true }
-            }
-        }
-    }
+    LaunchedEffect(Unit, block = {
+        productViewModel.fetchLatestCategories()
+    })
 
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
             TopBarWhite(
-                stringResource(id = R.string.title_toolbar_add_new_service),
+                stringResource(id = R.string.title_toolbar_add_new_product),
                 navController,
                 onActionClicked = {
-                    serviceViewModel.register(
-                        name = nameTextState.text,
-                        extraInfo = extraInfoTextState.text,
-                        salePrice = salePriceTextState.text.toDouble()
-                    )
+
                 }
             )
         },
     ) {
-        if (viewState.value is State.Loading) {
-            GenericLoading()
-        } else {
-            Column(
+
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 16.dp)
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            OutlinedTextField(
+                value = nameTextState.text,
+                onValueChange = {
+                    nameTextState.text = it
+                    nameTextState.validate()
+                },
+                label = { Text(stringResource(R.string.lbl_field_name_product)) },
                 modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 16.dp)
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                OutlinedTextField(
-                    value = nameTextState.text,
-                    onValueChange = {
-                        nameTextState.text = it
-                        nameTextState.validate()
-                    },
-                    label = { Text(stringResource(R.string.lbl_field_name_service)) },
-                    modifier = Modifier
-                        .padding(top = 16.dp)
-                        .fillMaxWidth()
-                )
-                nameTextState.error?.let { ErrorField(it) }
+                    .padding(top = 16.dp)
+                    .fillMaxWidth()
+            )
+            nameTextState.error?.let { ErrorField(it) }
 
-                OutlinedTextField(
-                    value = extraInfoTextState.text,
-                    onValueChange = {
-                        extraInfoTextState.text = it
-                        extraInfoTextState.validate()
-                    },
-                    label = { Text(stringResource(R.string.lbl_field_extra_info)) },
-                    modifier = Modifier
-                        .padding(top = 16.dp)
-                        .fillMaxWidth()
-                )
-                extraInfoTextState.error?.let { ErrorField(it) }
-
-                OutlinedTextField(
-                    value = salePriceTextState.text,
-                    onValueChange = {
-                        salePriceTextState.text = it
-                        salePriceTextState.validate()
-                    },
-                    label = { Text(stringResource(R.string.lbl_field_price_service)) },
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    modifier = Modifier
-                        .padding(top = 16.dp)
-                        .fillMaxWidth()
-                )
-                salePriceTextState.error?.let { ErrorField(it) }
-
-                PrimaryButton(
-                    text = stringResource(R.string.title_button_register_service),
-                    onClick = {
-                        serviceViewModel.register(
-                            name = nameTextState.text,
-                            extraInfo = extraInfoTextState.text,
-                            salePrice = salePriceTextState.text.toDouble()
-                        )
-                    },
-                    enabled = nameTextState.isValid() && extraInfoTextState.isValid() && salePriceTextState.isValid(),
-                    isLoading = viewState.value is State.Loading,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 0.dp)
-                        .padding(top = 16.dp),
-                    backgroundColor = MaterialTheme.colors.primary,
-                    contentColor = Color.White,
-                    contentPadding = PaddingValues(vertical = 14.dp),
-                )
+            Box(Modifier.padding(it)) {
+                AsyncData(resultState = categoriesListState, errorContent = {
+                    GenericError(
+                        onDismissAction = {}
+                    )
+                }) { categoriesList ->
+                    categoriesList?.let {
+                        if (it.isEmpty()) {
+                            Text("Você não possui categorias")
+                        } else {
+                            AutoCompleteCategory(
+                                categories = categoriesList,
+                                itemSelected = { itemSelected ->
+                                    category = itemSelected.id
+                                },
+                            )
+                        }
+                    }
+                }
             }
+
+
+            OutlinedTextField(
+                value = extraInfoTextState.text,
+                onValueChange = {
+                    extraInfoTextState.text = it
+                    extraInfoTextState.validate()
+                },
+                label = { Text(stringResource(R.string.lbl_field_extra_info_product)) },
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .fillMaxWidth()
+            )
+            extraInfoTextState.error?.let { ErrorField(it) }
+
+
+            MoneyField(
+                labelText = stringResource(R.string.lbl_field_purchase_price_product),
+                textColor = MaterialTheme.colors.primary,
+                valueText = purchasePriceTextState.text,
+                error = purchasePriceTextState.error,
+                iconColor = MaterialTheme.colors.primary,
+                iconClear = purchasePriceTextState.text.isNotBlank(),
+                clearText = {
+                    purchasePriceTextState.text = ""
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                purchasePriceTextState.text = it
+                purchasePriceTextState.validate()
+            }
+
+            MoneyField(
+                labelText = stringResource(R.string.lbl_field_price_product),
+                textColor = MaterialTheme.colors.primary,
+                valueText = salePriceTextState.text,
+                error = salePriceTextState.error,
+                iconColor = MaterialTheme.colors.primary,
+                iconClear = salePriceTextState.text.isNotBlank(),
+                clearText = {
+                    salePriceTextState.text = ""
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                salePriceTextState.text = it
+                salePriceTextState.validate()
+            }
+
+
+            PrimaryButton(
+                text = stringResource(R.string.title_button_register_product),
+                onClick = {
+
+                },
+                enabled = nameTextState.isValid() && extraInfoTextState.isValid() && salePriceTextState.isValid(),
+                isLoading = false,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 0.dp)
+                    .padding(top = 16.dp),
+                backgroundColor = MaterialTheme.colors.primary,
+                contentColor = Color.White,
+                contentPadding = PaddingValues(vertical = 14.dp),
+            )
         }
+
     }
 }

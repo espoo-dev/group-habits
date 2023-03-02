@@ -157,6 +157,8 @@
     <string name="lbl_field_extra_info_product">Extra Info</string>
     <string name="lbl_field_name_product">Name Product</string>
     <string name="lbl_field_price_product">Product price</string>
+    <string name="lbl_field_purchase_price_product">Purchase Price</string>
 
+    <string name="lbl_field_search_categories_product">Search category</string>
 
 </resources>
