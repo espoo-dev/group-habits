@@ -4,13 +4,14 @@
   import { setCurrentAccountAdapter } from '../../main/adapters';
   import { notifications } from '../../../src/infra/notification/notification';
   import Select from '../../../src/lib/components/Select/Select.svelte';
+  import { makeRemoteSalesUnits } from '../../../src/main/factories/usecases/remote-sales-unit-factory';
 
   const user = {
     email: 'user@email.com',
     password: '123456789',
   };
 
-  let selected: string;
+  let selected: string | number;
 
   const http = makeRemoteAuthentication();
 
@@ -47,6 +48,13 @@
         />
 
         <button on:click={login}>Entrar</button>
+
+        <Select
+          bind:selected={selected}
+          service={{factory: makeRemoteSalesUnits()}}
+        />
+
+        {selected}
       </div>
     </div>
   </div>
