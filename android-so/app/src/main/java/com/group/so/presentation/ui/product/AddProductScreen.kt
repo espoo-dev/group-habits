@@ -24,7 +24,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -63,7 +62,7 @@ fun AddProductScreen(
 
     var category by remember { mutableStateOf(0) }
 
-  //  val context = LocalContext.current
+    //  val context = LocalContext.current
 
     LaunchedEffect(Unit, block = {
         productViewModel.fetchLatestCategories()
