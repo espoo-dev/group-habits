@@ -49,11 +49,6 @@
 
         <button on:click={login}>Entrar</button>
 
-        <Select
-          bind:selected={selected}
-          service={{factory: makeRemoteSalesUnits()}}
-        />
-
         {selected}
       </div>
     </div>
