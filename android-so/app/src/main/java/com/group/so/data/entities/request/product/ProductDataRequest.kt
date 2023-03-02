@@ -1,7 +1,5 @@
 package com.group.so.data.entities.request.product
 
-import com.group.so.data.entities.model.Category
-import com.group.so.data.entities.model.SalesUnit
 import com.squareup.moshi.Json
 
 data class ProductDataRequest(
@@ -19,9 +17,9 @@ data class ProductDataRequest(
     @Json(name = "item_type") @field:Json(name = "item_type")
     val itemType: String,
 
-    @Json(name = "category") @field:Json(name = "category")
-    val category: Category?,
+    @Json(name = "category_id") @field:Json(name = "category_id")
+    val categoryId: Int,
 
-    @Json(name = "sales_unit") @field:Json(name = "sales_unit")
-    val saleUnit: SalesUnit?
+    @Json(name = "sales_unit_id") @field:Json(name = "sales_unit_id")
+    val saleUnitId: Int
 )
