@@ -50,7 +50,7 @@ fun MoneyField(
             onValueChange = { value -> onTextChanged(value) },
             isError = error != null,
             modifier = modifier
-                .padding(horizontal = 20.dp)
+                // .padding(horizontal = 20.dp)
                 .padding(top = 10.dp),
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),

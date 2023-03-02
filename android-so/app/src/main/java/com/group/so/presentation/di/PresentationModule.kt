@@ -22,7 +22,7 @@ object PresentationModule {
             factory { CategoryViewModel(get(), get(), get(), get(), get()) }
             factory { CustomerViewModel(get(), get(), get(), get(), get(), get()) }
             factory { ServiceViewModel(get(), get(), get(), get(), get()) }
-            factory { ProductViewModel(get(), get(), get()) }
+            factory { ProductViewModel(get(), get(), get(), get()) }
             factory { SharedViewModel() }
         }
     }

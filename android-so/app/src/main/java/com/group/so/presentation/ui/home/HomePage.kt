@@ -232,7 +232,9 @@ private fun SubMenuHome(navController: NavHostController) {
             icon = R.drawable.ic_product,
             title = stringResource(R.string.title_submenu_home_product),
             subtitle = stringResource(R.string.desc_submenu_home_product),
-            modifier = Modifier.clickable { }
+            modifier = Modifier.clickable {
+                navigateTo(navController = navController, screen = BottomMenuItems.Product)
+            }
         )
         SubMenuItem(
             icon = R.drawable.ic_service,

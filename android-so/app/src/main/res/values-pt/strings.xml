@@ -24,7 +24,6 @@
     <string name="subtitle_menu_profile">Visualize e atualize seus dados de forma simples</string>
 
 
-
     <!--SubMenu Home-->
     <string name="title_submenu_home">Como podemos te ajudar?</string>
     <string name="desc_submenu_home">Podemos te auxiliar com algumas  ações</string>
@@ -139,6 +138,8 @@
     <string name="lbl_field_extra_info_product">Observação</string>
     <string name="lbl_field_name_product">Nome produto</string>
     <string name="lbl_field_price_product">Preço produto</string>
+    <string name="lbl_field_purchase_price_product">Preço de compra</string>
 
+    <string name="lbl_field_search_categories_product">Buscar Categoria</string>
 
 </resources>

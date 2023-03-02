@@ -23,7 +23,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.group.so.R
 import com.group.so.core.ui.components.autocomplete.AutoCompleteBox
 import com.group.so.core.ui.components.autocomplete.utils.AutoCompleteSearchBarTag
 import com.group.so.core.ui.components.searchbar.TextSearchBar
@@ -31,7 +33,12 @@ import com.group.so.data.entities.model.Category
 
 @ExperimentalAnimationApi
 @Composable
-fun AutoCompleteCategory(categories: List<Category>, itemSelected: (Category) -> Unit) {
+fun AutoCompleteCategory(
+    categories: List<Category>,
+    initialValue: (Category) = categories.first(),
+    itemSelected: (Category) -> Unit
+) {
+    println(initialValue)
     AutoCompleteBox(
         items = categories,
         itemContent = { category ->
@@ -51,7 +58,7 @@ fun AutoCompleteCategory(categories: List<Category>, itemSelected: (Category) ->
         TextSearchBar(
             modifier = Modifier.testTag(AutoCompleteSearchBarTag),
             value = value,
-            label = "Search with objects",
+            label = stringResource(id = R.string.lbl_field_search_categories_product),
             onDoneActionClick = {
                 view.clearFocus()
             },
