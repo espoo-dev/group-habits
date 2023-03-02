@@ -1,12 +1,26 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
   interface Option {
     name: string;
-    value: string;
+    value: string | number;
   }
 
   export let options: Option[] = [];
   export let label: string = '';
-  export let selected: string;
+  export let selected: string | number;
+  export let service: { factory: any } = null;
+  export let valueKey: string = 'id';
+  
+  const onLoad = async () => {
+    options = await service.factory.list()
+  }
+
+  onMount(() => {
+    if (service) {
+      onLoad()
+    }
+  })
 </script>
 
 <label for="select" class="block mb-2 text-sm font-medium text-gray-900"
@@ -20,7 +34,7 @@
 >
   {#if options.length}
     {#each options as option}
-      <option value={option.value} selected={option.value === selected}
+      <option value={option[valueKey]} selected={option.value === selected}
         >{option.name}</option
       >
     {/each}
