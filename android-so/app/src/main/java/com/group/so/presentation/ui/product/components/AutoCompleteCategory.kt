@@ -36,6 +36,7 @@ fun AutoCompleteCategory(
     initialValue: (Category) = categories.first(),
     itemSelected: (Category) -> Unit
 ) {
+    println(initialValue)
     AutoCompleteBox(
         items = categories,
         itemContent = { category ->

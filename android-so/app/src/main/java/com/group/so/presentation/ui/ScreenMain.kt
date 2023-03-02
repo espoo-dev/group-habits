@@ -101,7 +101,7 @@ fun ScreenMain() {
         composable(
             Routes.EditCustomer.route,
 
-            ) {
+        ) {
             val customer =
                 navController.previousBackStackEntry?.savedStateHandle?.get<Customer>("customer")
             val customerViewModel = koinViewModel<CustomerViewModel>()
@@ -146,7 +146,7 @@ fun ScreenMain() {
         composable(
             Routes.EditService.route,
 
-            ) {
+        ) {
             val service =
                 navController.previousBackStackEntry?.savedStateHandle?.get<Item>("service")
             val serviceViewModel = koinViewModel<ServiceViewModel>()

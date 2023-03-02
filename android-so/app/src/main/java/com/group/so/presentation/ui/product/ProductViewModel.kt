@@ -9,7 +9,6 @@
 
 package com.group.so.presentation.ui.product
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.group.so.core.Query

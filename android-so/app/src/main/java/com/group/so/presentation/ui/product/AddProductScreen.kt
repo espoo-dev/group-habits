@@ -40,8 +40,6 @@ import com.group.so.core.ui.components.validations.TextState
 import com.group.so.data.entities.model.Category
 import com.group.so.presentation.ui.product.components.AutoCompleteCategory
 
-
-
 @OptIn(ExperimentalAnimationApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -50,7 +48,7 @@ fun AddProductScreen(
     productViewModel: ProductViewModel,
     categoriesListState: State<List<Category>>,
 
-    ) {
+) {
     val scaffoldState = rememberScaffoldState()
 
     val nameTextState = remember {
@@ -65,7 +63,7 @@ fun AddProductScreen(
 
     var category by remember { mutableStateOf(0) }
 
-    val context = LocalContext.current
+  //  val context = LocalContext.current
 
     LaunchedEffect(Unit, block = {
         productViewModel.fetchLatestCategories()
@@ -78,7 +76,6 @@ fun AddProductScreen(
                 stringResource(id = R.string.title_toolbar_add_new_product),
                 navController,
                 onActionClicked = {
-
                 }
             )
         },
@@ -124,7 +121,6 @@ fun AddProductScreen(
                 }
             }
 
-
             OutlinedTextField(
                 value = extraInfoTextState.text,
                 onValueChange = {
@@ -137,7 +133,6 @@ fun AddProductScreen(
                     .fillMaxWidth()
             )
             extraInfoTextState.error?.let { ErrorField(it) }
-
 
             MoneyField(
                 labelText = stringResource(R.string.lbl_field_purchase_price_product),
@@ -173,11 +168,9 @@ fun AddProductScreen(
                 salePriceTextState.validate()
             }
 
-
             PrimaryButton(
                 text = stringResource(R.string.title_button_register_product),
                 onClick = {
-
                 },
                 enabled = nameTextState.isValid() && extraInfoTextState.isValid() && salePriceTextState.isValid(),
                 isLoading = false,
@@ -190,6 +183,5 @@ fun AddProductScreen(
                 contentPadding = PaddingValues(vertical = 14.dp),
             )
         }
-
     }
 }
