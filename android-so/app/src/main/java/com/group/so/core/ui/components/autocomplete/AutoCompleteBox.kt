@@ -1,4 +1,10 @@
-@file:Suppress("TopLevelPropertyNaming", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress(
+    "TopLevelPropertyNaming",
+    "LongMethod",
+    "FunctionParameterNaming",
+    "FunctionNaming",
+    "LongParameterList"
+)
 
 package com.group.so.core.ui.components.autocomplete
 
@@ -63,7 +69,8 @@ private fun Modifier.autoComplete(
 
     baseModifier
         .testTag(AutoCompleteBoxTag)
-        .fillMaxWidth(autoCompleteItemScope.boxWidthPercentage)
+        .fillMaxWidth()
+        // .fillMaxWidth(autoCompleteItemScope.boxWidthPercentage)
         .border(
             border = autoCompleteItemScope.boxBorderStroke,
             shape = autoCompleteItemScope.boxShape
