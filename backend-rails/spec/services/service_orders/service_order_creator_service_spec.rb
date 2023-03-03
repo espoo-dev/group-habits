@@ -7,8 +7,8 @@ RSpec.describe ServiceOrders::ServiceOrderCreatorService do
     let!(:user) { create(:user) }
     let!(:customer) { create(:customer, user:) }
     let!(:item) { create(:item, user:) }
-    let(:creation_date) { "01/03/2023" }
-    let(:conclusion_date) { "02/03/2023" }
+    let(:creation_date) { '21/03/2023' }
+    let(:conclusion_date) { '22/03/2023' }
 
     let!(:params) do
       {
@@ -34,10 +34,9 @@ RSpec.describe ServiceOrders::ServiceOrderCreatorService do
 
     it 'set date fields properly' do
       subject
-      expect(subject.creation_date).to eq(DateTime.strptime(creation_date, "%m/%d/%Y"))
-      expect(subject.conclusion_date).to eq(DateTime.strptime(conclusion_date, "%m/%d/%Y"))
+      expect(subject.creation_date).to eq(DateTime.new(2023, 3, 21))
+      expect(subject.conclusion_date).to eq(DateTime.new(2023, 3, 22))
     end
-
 
     it 'creates service_order', :aggregate_failures do
       expect { subject }.to change { ServiceOrder.count }.from(0).to(1)
