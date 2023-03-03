@@ -1,6 +1,8 @@
 module ServiceOrders
   class ServiceOrderCreatorService < CreatorService
     def prepare_resource
+      params[:creation_date] = DateUtil.parse_date(params[:creation_date])
+      params[:conclusion_date] = DateUtil.parse_date(params[:conclusion_date])
       service_order = ServiceOrder.new(params_with_user.except(:items_ids))
       service_order.items = items
       service_order

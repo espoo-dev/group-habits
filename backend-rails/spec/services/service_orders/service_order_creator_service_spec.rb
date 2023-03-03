@@ -7,12 +7,17 @@ RSpec.describe ServiceOrders::ServiceOrderCreatorService do
     let!(:user) { create(:user) }
     let!(:customer) { create(:customer, user:) }
     let!(:item) { create(:item, user:) }
+    let(:creation_date) { '21/03/2023' }
+    let(:conclusion_date) { '22/03/2023' }
+
     let!(:params) do
       {
         name: 'service order name',
         status: 'budge',
         customer_id: customer.id,
-        items_ids: [item.id]
+        items_ids: [item.id],
+        creation_date:,
+        conclusion_date:
       }
     end
 
@@ -25,6 +30,12 @@ RSpec.describe ServiceOrders::ServiceOrderCreatorService do
       expect(subject.customer_id).to eq(customer.id)
       expect(subject.user_id).to eq(user.id)
       expect(subject.items).to eq([item])
+    end
+
+    it 'set date fields properly' do
+      subject
+      expect(subject.creation_date).to eq(DateTime.new(2023, 3, 21))
+      expect(subject.conclusion_date).to eq(DateTime.new(2023, 3, 22))
     end
 
     it 'creates service_order', :aggregate_failures do
