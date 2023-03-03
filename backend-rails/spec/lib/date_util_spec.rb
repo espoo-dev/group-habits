@@ -26,4 +26,24 @@ RSpec.describe DateUtil do
       end
     end
   end
+
+  describe 'format_date' do
+    subject { described_class.format_date(date) }
+
+    context 'when date is nil' do
+      let(:date) { nil }
+
+      it 'returns nil' do
+        is_expected.to be_nil
+      end
+    end
+
+    context 'when date is valid' do
+      let(:date) { DateTime.new(2022, 1, 25) }
+
+      it 'returns formatted date' do
+        is_expected.to eq('25/01/2022')
+      end
+    end
+  end
 end
