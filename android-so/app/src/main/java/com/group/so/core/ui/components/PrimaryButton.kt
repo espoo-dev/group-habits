@@ -1,4 +1,11 @@
-@file:Suppress("MaxLineLength", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress(
+    "MaxLineLength",
+    "LongMethod",
+    "FunctionParameterNaming",
+    "FunctionNaming",
+    "LongParameterList",
+    "EmptyIfBlock"
+)
 
 package com.group.so.core.ui.components
 
@@ -40,7 +47,12 @@ fun PrimaryButton(
 ) {
 
     Button(
-        onClick = onClick,
+        onClick = {
+            if (isLoading) {
+            } else {
+                onClick()
+            }
+        },
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = backgroundColor,
@@ -49,7 +61,10 @@ fun PrimaryButton(
         enabled = enabled,
         contentPadding = contentPadding
     ) {
-        if (isLoading) CircularProgressIndicator(modifier = Modifier.then(Modifier.size(32.dp)), color = Color.White) else Text(text = text, fontFamily = Poppins)
+        if (isLoading) CircularProgressIndicator(
+            modifier = Modifier.then(Modifier.size(32.dp)),
+            color = Color.White
+        ) else Text(text = text, fontFamily = Poppins)
     }
 }
 
