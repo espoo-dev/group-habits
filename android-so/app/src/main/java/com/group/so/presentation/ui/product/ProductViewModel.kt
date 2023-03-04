@@ -17,9 +17,11 @@ import com.group.so.core.State
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
+import com.group.so.data.entities.request.product.EditProductRequest
 import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.item.DeleteItemUseCase
+import com.group.so.domain.item.EditProductUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterProductUseCase
@@ -37,6 +39,7 @@ class ProductViewModel(
     private val deleteItemUseCase: DeleteItemUseCase,
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val registerProductUseCase: RegisterProductUseCase,
+    private val editProductUseCase: EditProductUseCase
 ) : ViewModel() {
 
     private val _categoriesListState = MutableStateFlow<State<List<Category>>>(State.Idle)
@@ -47,6 +50,9 @@ class ProductViewModel(
 
     private val _registerProductState = MutableStateFlow<State<Item>>(State.Idle)
     val registerProductState = _registerProductState.asStateFlow()
+
+    private val _editProductState = MutableStateFlow<State<Item>>(State.Idle)
+    val editProductState = _editProductState.asStateFlow()
 
     private var removeItemJob: Job? = null
 
@@ -97,6 +103,55 @@ class ProductViewModel(
                     it.error?.let { throwable ->
                         with(RemoteException(throwable.message.toString())) {
                             _registerProductState.value = State.Error(this)
+                        }
+                    }
+                }
+        }
+    }
+
+    fun edit(
+        id: Int,
+        name: String,
+        extraInfo: String,
+        salePrice: Double,
+        purchasePrice: Double,
+        categoryId: Int,
+        salesUnitId: Int
+    ) {
+        editProduct(
+            EditProductRequest(
+                id = id,
+                dataRequest = ProductDataRequest(
+                    name = name,
+                    extraInfo = extraInfo,
+                    salePrice = salePrice,
+                    purchasePrice = purchasePrice,
+                    itemType = ItemType.PRODUCT.value,
+                    categoryId = categoryId,
+                    saleUnitId = salesUnitId
+                )
+            )
+        )
+    }
+
+    private fun editProduct(editProductRequest: EditProductRequest) {
+        viewModelScope.launch {
+            editProductUseCase(editProductRequest)
+                .onStart {
+                    _editProductState.value = (State.Loading)
+                }.catch {
+                    with(RemoteException("Could not connect to Service Orders API")) {
+                        _editProductState.value = State.Error(this)
+                    }
+                }
+                .collect {
+                    it.data?.let { product ->
+                        _editProductState.value = State.Success(product)
+                        fetchLatestProducts()
+                    }
+                    it.error?.let { throwable ->
+                        with(RemoteException(throwable.message.toString())) {
+                            _editProductState.value = State.Error(this)
                         }
                     }
                 }

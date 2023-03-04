@@ -28,6 +28,7 @@ import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
 import com.group.so.presentation.ui.product.AddProductScreen
+import com.group.so.presentation.ui.product.DetailsProductScreen
 import com.group.so.presentation.ui.product.ProductScreen
 import com.group.so.presentation.ui.product.ProductViewModel
 import com.group.so.presentation.ui.service.AddScreenService
@@ -168,6 +169,12 @@ fun ScreenMain() {
                     navController.navigate(Routes.NewProduct.route)
                 },
                 onProductClick = {
+                    navController.currentBackStackEntry?.savedStateHandle?.set(
+                        key = "product",
+                        value = it
+                    )
+
+                    navController.navigate(Routes.EditProduct.route)
                 },
                 onDeleteProduct = {
                     productViewModel.deleteProduct(it.id)
@@ -179,6 +186,22 @@ fun ScreenMain() {
             val categoriesListState by productViewModel.categoriesListState.collectAsStateWithLifecycle()
             AddProductScreen(
                 navController,
+                productViewModel,
+                categoriesListState
+            )
+        }
+
+        composable(
+            Routes.EditProduct.route,
+
+        ) {
+            val product =
+                navController.previousBackStackEntry?.savedStateHandle?.get<Item>("product")
+            val productViewModel = koinViewModel<ProductViewModel>()
+            val categoriesListState by productViewModel.categoriesListState.collectAsStateWithLifecycle()
+            DetailsProductScreen(
+                navController,
+                product,
                 productViewModel,
                 categoriesListState
             )
