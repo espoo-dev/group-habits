@@ -14,6 +14,7 @@ import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.item.DeleteItemUseCase
+import com.group.so.domain.item.EditProductUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterProductUseCase
@@ -47,6 +48,7 @@ class ProductViewModelTest {
     private val deleteItemUseCase = DeleteItemUseCase(itemRepository)
     private val getCategoriesUseCase = GetCategoriesUseCase(categoryRepository)
     private val registerProductUseCase = RegisterProductUseCase(itemRepository)
+    private val editProductUseCase = EditProductUseCase(itemRepository)
 
     private val mockRegisterProductRequest =
         ProductDataRequest(
@@ -77,7 +79,8 @@ class ProductViewModelTest {
             getItemsByNameAndItemTypeUseCase,
             deleteItemUseCase,
             getCategoriesUseCase,
-            registerProductUseCase
+            registerProductUseCase,
+            editProductUseCase
         )
         coEvery { getItemByItemTypeUseCase.execute("services") } returns flow {
             emit(Resource.Success(data = mockItemList()))

@@ -35,7 +35,7 @@ import com.group.so.data.entities.model.Category
 @Composable
 fun AutoCompleteCategory(
     categories: List<Category>,
-    initialValue: (Category) = categories.first(),
+    initialValue: (Category?) = categories.first(),
     itemSelected: (Category) -> Unit
 ) {
     println(initialValue)
@@ -45,7 +45,7 @@ fun AutoCompleteCategory(
             CategoryAutoCompleteItem(category)
         }
     ) {
-        var value by remember { mutableStateOf("") }
+        var value by remember { mutableStateOf(initialValue?.name ?: "") }
         val view = LocalView.current
 
         onItemSelected { category ->

@@ -20,13 +20,16 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.group.so.R
 
 @Composable
 fun TextSearchBar(
@@ -51,6 +54,19 @@ fun TextSearchBar(
         label = { Text(text = label) },
         textStyle = MaterialTheme.typography.subtitle1,
         singleLine = true,
+        leadingIcon = {
+            IconButton(
+                onClick = {}
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = stringResource(
+                        id = R.string.search_icon
+                    ),
+                    tint = MaterialTheme.colors.primary
+                )
+            }
+        },
         trailingIcon = {
             IconButton(onClick = { onClearClick() }) {
                 Icon(imageVector = Icons.Filled.Clear, contentDescription = "Clear")
