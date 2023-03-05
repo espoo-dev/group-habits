@@ -136,7 +136,7 @@ private fun TopBarHome(horizontalPadding: Dp) {
             modifier = Modifier.weight(1f)
         )
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = painterResource(id = R.drawable.ic_launcher),
             contentDescription = "Profile",
             Modifier
                 .fillMaxHeight()
