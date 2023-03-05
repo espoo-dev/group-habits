@@ -9,6 +9,7 @@ import com.group.so.core.State
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.model.SalesUnit
+import com.group.so.data.entities.request.product.EditProductRequest
 import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.item.ItemRepository
@@ -59,6 +60,21 @@ class ProductViewModelTest {
             itemType = "product",
             categoryId = 1,
             saleUnitId = 1
+        )
+
+    private val mockEditProductRequest =
+        EditProductRequest(
+            id = 1,
+            ProductDataRequest(
+                name = "product test",
+                extraInfo = "service",
+                salePrice = 2000.50,
+                purchasePrice = 1500.50,
+                itemType = "product",
+                categoryId = 1,
+                saleUnitId = 1
+            )
+
         )
 
     private lateinit var viewModel: ProductViewModel
@@ -129,6 +145,45 @@ class ProductViewModelTest {
         registerProductState.value = viewModel.registerProductState.value
 
         assert(registerProductState.value is State.Success)
+    }
+
+    @Test
+    fun ` edit product  successfully `() = runTest {
+
+        val editProductState = MutableStateFlow<State<Item>>(State.Idle)
+        coEvery {
+            editProductUseCase.execute(
+                mockEditProductRequest
+            )
+        } returns flow {
+            emit(
+                Resource.Success(
+                    data = Item(
+                        id = 1,
+                        name = "product test",
+                        extraInfo = "service",
+                        salePrice = 2000.50,
+                        purchasePrice = 1500.50,
+                        itemType = "product",
+                        category = Category(id = 1, name = "Category 1"),
+                        saleUnit = SalesUnit(id = 1, name = "Sale unit")
+                    )
+                )
+            )
+        }
+        viewModel.edit(
+            id = 1,
+            name = "product test",
+            extraInfo = "service",
+            salePrice = 2000.50,
+            purchasePrice = 1500.50,
+            categoryId = 1,
+            salesUnitId = 1
+        )
+        runCurrent()
+        editProductState.value = viewModel.editProductState.value
+
+        assert(editProductState.value is State.Success)
     }
 
     @Test
