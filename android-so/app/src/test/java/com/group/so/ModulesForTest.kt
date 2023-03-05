@@ -35,6 +35,7 @@ import com.group.so.domain.item.RegisterServiceUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import com.group.so.presentation.ui.login.LoginViewModel
+import com.group.so.presentation.ui.product.ProductViewModel
 import com.group.so.presentation.ui.service.ServiceViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -105,6 +106,7 @@ fun configurePresentationModuleForTest() = module {
     factory { CategoryViewModel(get(), get(), get(), get(), get()) }
     factory { CustomerViewModel(get(), get(), get(), get(), get(), get()) }
     factory { ServiceViewModel(get(), get(), get(), get(), get()) }
+    factory { ProductViewModel(get(), get(), get(), get(), get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(
