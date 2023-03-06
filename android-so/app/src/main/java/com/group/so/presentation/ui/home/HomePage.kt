@@ -1,42 +1,48 @@
-@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming")
+@file:Suppress( "UnusedPrivateMember", "LongMethod", "FunctionParameterNaming", "FunctionNaming")
 
 package com.group.so.presentation.ui.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Divider
+import androidx.compose.material.DrawerValue
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.ModalDrawer
 import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.rememberDrawerState
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -44,78 +50,70 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.group.so.R
-import com.group.so.presentation.ui.home.components.BigButton
-import com.group.so.presentation.ui.home.components.SubMenuItem
-import com.group.so.presentation.ui.home.util.BottomMenuItems
-import com.group.so.presentation.ui.home.util.BottomMenuItems.ItemsMenu.items
+import com.group.so.presentation.ui.home.components.BodyHome
+import com.group.so.presentation.ui.home.components.DrawerButton
+import com.group.so.presentation.ui.home.util.MenuItems
+import com.group.so.presentation.ui.home.util.Utils
 import com.group.so.ui.theme.Cyan
-import com.group.so.ui.theme.PrimaryColor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+
+const val DIVIDER_FOOTER_DRAWER = 4
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 @ExperimentalComposeApi
 fun HomeScreen(navController: NavHostController) {
+    val scaffoldState = rememberScaffoldState(
+        drawerState = rememberDrawerState(initialValue = DrawerValue.Open)
+    )
+    val scope = rememberCoroutineScope()
+
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val coroutineScope = rememberCoroutineScope()
+    val openDrawer: () -> Unit = { coroutineScope.launch { drawerState.open() } }
+    val closeDrawer: () -> Unit = { coroutineScope.launch { drawerState.close() } }
+    var selectedIndex by remember { mutableStateOf(0) }
 
     Scaffold(
-        bottomBar = {
-            BottomNavigation() {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry?.destination?.route
-
-                items.forEach { screen ->
-                    BottomNavigationItem(
-                        selectedContentColor = Color.White,
-                        unselectedContentColor = Color.White,
-                        icon = {
-                            Icon(
-                                painterResource(id = screen.icon),
-                                contentDescription = null
-                            )
-                        },
-
-                        label = { Text(text = screen.title, color = Color.White) },
-                        selected = currentRoute == screen.route,
-                        onClick = {
-
-                            // NavigateTo(navController, screen)
-                        }
-                    )
+        scaffoldState = scaffoldState,
+        topBar = { TopBarHome(16.dp, scope, scaffoldState, openDrawer) },
+    ) {
+        ModalDrawer(
+            drawerElevation = 24.dp,
+            // drawerShape = CutCornerShape(topEnd = 24.dp),
+            drawerState = drawerState,
+            drawerContent = {
+                ModalDrawerContentHeader()
+                Divider()
+                ModelDrawerContentBody(
+                    navController,
+                    selectedIndex,
+                    onSelected = {
+                        selectedIndex = it
+                    },
+                    closeDrawer = closeDrawer
+                )
+            },
+            content = {
+                Column(modifier = Modifier.fillMaxSize()) {
+                    val horizontalPadding = 16.dp
+                    BodyHome(horizontalPadding, navController)
                 }
             }
-        }
-
-    ) {
-    }
-    val horizontalPadding = 16.dp
-
-    Scaffold(
-        topBar = {
-            TopBarHome(horizontalPadding)
-        }
-    ) {
-        BodyHome(horizontalPadding, navController)
-    }
-}
-
-private fun navigateTo(
-    navController: NavHostController,
-    screen: BottomMenuItems
-) {
-    navController.navigate(screen.route) {
-        popUpTo(navController.graph.findStartDestination().id) {
-            saveState = true
-        }
-        launchSingleTop = true
-        restoreState = true
+        )
     }
 }
 
 @Composable
-private fun TopBarHome(horizontalPadding: Dp) {
+private fun TopBarHome(
+    horizontalPadding: Dp,
+    scope: CoroutineScope,
+    scaffoldState: ScaffoldState,
+    openDrawer: () -> Unit
+) {
     Row(
         Modifier
             .fillMaxWidth()
@@ -124,7 +122,9 @@ private fun TopBarHome(horizontalPadding: Dp) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            onClick = {}, modifier = Modifier.background(Cyan, RoundedCornerShape(8.dp))
+            onClick = {
+                openDrawer()
+            }, modifier = Modifier.background(Cyan, RoundedCornerShape(8.dp))
         ) {
             Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu")
         }
@@ -148,110 +148,60 @@ private fun TopBarHome(horizontalPadding: Dp) {
 }
 
 @Composable
-private fun BodyHome(horizontalPadding: Dp, navController: NavHostController) {
+fun ModalDrawerContentHeader() {
     Column(
-        Modifier
+        modifier = Modifier
             .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = horizontalPadding)
+            .height(180.dp)
+            .padding(20.dp)
     ) {
-        InformationUser()
-        MenuHome()
-        HeaderSubMenu()
-        SubMenuHome(navController)
-    }
-}
 
-@Composable
-private fun InformationUser() {
-    Spacer(modifier = Modifier.height(24.dp))
-    Text(text = "Olá Roanderson \uD83D\uDC9C\t", fontWeight = FontWeight.Bold, fontSize = 24.sp)
-    Text(
-        text = stringResource(R.string.desc_quote_of_the_day),
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp,
-        color = Color.Gray
-    )
-}
-
-@Composable
-private fun MenuHome() {
-    Spacer(modifier = Modifier.height(24.dp))
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .horizontalScroll(rememberScrollState())
-    ) {
-        BigButton(
-            icon = R.drawable.ic_service_order,
-            iconTint = PrimaryColor,
-            title = stringResource(R.string.title_menu_service_order),
-            subtitle = stringResource(R.string.subtitle_menu_service_order),
+        Image(
             modifier = Modifier
-                .weight(1f)
-                .clickable { }
+                .size(60.dp),
+            // .clip(CircleShape),
+            painter = painterResource(id = R.drawable.ic_launcher),
+            contentDescription = null
         )
-        Spacer(modifier = Modifier.width(8.dp))
-        BigButton(
-            icon = R.drawable.ic_person_outline,
-            iconTint = PrimaryColor,
-            title = stringResource(R.string.title_menu_profile),
-            subtitle = stringResource(R.string.subtitle_menu_profile),
-            modifier = Modifier
-                .weight(1f)
-                .clickable { }
-        )
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Text(text = "User", fontWeight = FontWeight.Bold, fontSize = 22.sp)
+        Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+                Text(text = "use@email.com")
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = null)
+            }
+        }
     }
 }
 
 @Composable
-private fun HeaderSubMenu() {
-    Spacer(modifier = Modifier.height(32.dp))
-    Text(text = stringResource(R.string.title_submenu_home), fontWeight = FontWeight.SemiBold, fontSize = 20.sp)
-    Text(
-        text = stringResource(R.string.desc_submenu_home),
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp,
-        color = Color.Gray
-    )
-}
+fun ModelDrawerContentBody(
+    navController: NavHostController,
+    selectedIndex: Int,
+    onSelected: (Int) -> Unit,
+    closeDrawer: () -> Unit
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        MenuItems.ItemsMenu.items.forEachIndexed { index, pair ->
+            val label = pair.title
+            val imageVector = pair.icon
+            DrawerButton(
+                icon = imageVector,
+                label = label,
+                isSelected = selectedIndex == index,
+                action = {
+                    onSelected(index)
+                    Utils.navigateTo(navController = navController, screen = pair)
+                    closeDrawer()
+                }
+            )
 
-@Composable
-private fun SubMenuHome(navController: NavHostController) {
-    Spacer(modifier = Modifier.height(16.dp))
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        SubMenuItem(
-            icon = R.drawable.ic_category,
-            title = stringResource(R.string.title_submenu_home_category),
-            subtitle = stringResource(R.string.desc_submenu_home_category),
-            modifier = Modifier.clickable {
-                navigateTo(navController = navController, screen = BottomMenuItems.Category)
+            if (index == DIVIDER_FOOTER_DRAWER) {
+                Divider()
             }
-        )
-        SubMenuItem(
-            icon = R.drawable.ic_product,
-            title = stringResource(R.string.title_submenu_home_product),
-            subtitle = stringResource(R.string.desc_submenu_home_product),
-            modifier = Modifier.clickable {
-                navigateTo(navController = navController, screen = BottomMenuItems.Product)
-            }
-        )
-        SubMenuItem(
-            icon = R.drawable.ic_service,
-            title = stringResource(R.string.title_submenu_home_service),
-            subtitle = stringResource(R.string.desc_submenu_home_service),
-            modifier = Modifier.clickable {
-                navigateTo(navController = navController, screen = BottomMenuItems.Service)
-            }
-        )
-        SubMenuItem(
-            icon = R.drawable.ic_customer,
-            title = stringResource(R.string.title_submenu_home_customer),
-            subtitle = stringResource(R.string.desc_submenu_home_customer),
-            modifier = Modifier.clickable {
-                navigateTo(navController = navController, screen = BottomMenuItems.Customer)
-            }
-        )
+        }
     }
-    Spacer(modifier = Modifier.height(16.dp))
 }
