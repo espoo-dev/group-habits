@@ -1,4 +1,4 @@
-@file:Suppress( "UnusedPrivateMember", "LongMethod", "FunctionParameterNaming", "FunctionNaming")
+@file:Suppress("UnusedPrivateMember", "LongMethod", "FunctionParameterNaming", "FunctionNaming")
 
 package com.group.so.presentation.ui.home
 
