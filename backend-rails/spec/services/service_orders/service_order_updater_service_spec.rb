@@ -7,12 +7,11 @@ RSpec.describe ServiceOrders::ServiceOrderUpdaterService do
     let!(:user) { create(:user) }
     let!(:service_order) { create(:service_order, name: 'abc', user:, items: create_list(:item, 2)) }
     let!(:items_ids) { create_list(:item, 3).pluck(:id) }
-    let!(:name) { "new name" }
-    let!(:name) { "new name" }
-    let!(:extra_info) { "new extra_info" }
-    let!(:status) { "waiting_resources" }
-    let!(:creation_date) { Time.zone.now }
-    let!(:conclusion_date) { Time.zone.now + 1.day }
+    let!(:name) { 'new name' }
+    let!(:extra_info) { 'new extra_info' }
+    let!(:status) { 'waiting_resources' }
+    let!(:creation_date) { DateTime.new(2022, 1, 25) }
+    let!(:conclusion_date) { DateTime.new(2022, 1, 26) }
     let!(:discount) { 1234 }
     let!(:customer_id) { create(:customer).id }
 
