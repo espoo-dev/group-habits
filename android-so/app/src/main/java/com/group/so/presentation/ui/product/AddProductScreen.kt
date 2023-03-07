@@ -42,7 +42,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.group.so.R
-import com.group.so.core.HUNDRED
 import com.group.so.core.State
 import com.group.so.core.orZero
 import com.group.so.core.ui.components.AsyncData
@@ -65,7 +64,7 @@ fun AddProductScreen(
     productViewModel: ProductViewModel,
     categoriesListState: State<List<Category>>,
 
-    ) {
+) {
     val scaffoldState = rememberScaffoldState()
 
     val nameTextState = remember {

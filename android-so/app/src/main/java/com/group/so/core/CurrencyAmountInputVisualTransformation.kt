@@ -1,7 +1,7 @@
 @file:Suppress(
     "MagicNumber",
 
-    )
+)
 package com.group.so.core
 
 import androidx.compose.ui.text.AnnotatedString
