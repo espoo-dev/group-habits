@@ -8,7 +8,7 @@ open class TextFieldState(
     private val validator: (String) -> Boolean = { true },
     private val errorMessage: (String) -> String
 ) {
-    var text by mutableStateOf<String>("")
+    var text by mutableStateOf("")
     var error by mutableStateOf<String?>(null)
 
     fun validate() {
@@ -18,5 +18,6 @@ open class TextFieldState(
             errorMessage(text)
         }
     }
+
     fun isValid() = validator(text)
 }
