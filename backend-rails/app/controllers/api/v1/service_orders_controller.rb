@@ -12,6 +12,12 @@ module Api
         render json: ServiceOrderPresenter.payload_for_item(service_order), status: :created
       end
 
+      def update
+        service_order = ServiceOrders::ServiceOrderUpdaterService.new(user: current_user,
+                                                                      params: update_service_order_params).call
+        render json: ServiceOrderPresenter.payload_for_item(service_order), status: :ok
+      end
+
       def destroy
         ServiceOrders::ServiceOrderDestroyerService.new(user: current_user, params: destroy_params).call
         render json: {}, status: :no_content
@@ -25,6 +31,11 @@ module Api
 
       def create_service_order_params
         params.permit(:name, :extra_info, :status, :creation_date, :conclusion_date, :discount, :customer_id,
+                      items_ids: [])
+      end
+
+      def update_service_order_params
+        params.permit(:id, :name, :extra_info, :status, :creation_date, :conclusion_date, :discount, :customer_id,
                       items_ids: [])
       end
     end
