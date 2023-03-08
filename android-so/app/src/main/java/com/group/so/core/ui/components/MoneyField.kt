@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.group.so.R
+import com.group.so.core.CurrencyAmountInputVisualTransformation
 
 @Composable
 fun MoneyField(
@@ -51,7 +52,10 @@ fun MoneyField(
                 // .padding(horizontal = 20.dp)
                 .padding(top = 10.dp),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            visualTransformation = CurrencyAmountInputVisualTransformation(fixedCursorAtTheEnd = true),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Decimal
+            ),
             leadingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_money),

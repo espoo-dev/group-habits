@@ -1,4 +1,5 @@
 @file:Suppress(
+    "MaxLineLength",
     "ComplexCondition",
     "CyclomaticComplexMethod",
     "LongMethod",
@@ -12,12 +13,15 @@ package com.group.so.presentation.ui.product
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
@@ -39,6 +43,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.orZero
 import com.group.so.core.ui.components.AsyncData
 import com.group.so.core.ui.components.ErrorField
 import com.group.so.core.ui.components.GenericError
@@ -74,6 +79,8 @@ fun AddProductScreen(
 
     var category by remember { mutableStateOf(0) }
 
+    var total by remember { mutableStateOf("") }
+
     val viewState = productViewModel.registerProductState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
@@ -95,6 +102,8 @@ fun AddProductScreen(
 
     LaunchedEffect(Unit, block = {
         productViewModel.fetchLatestCategories()
+        // salePriceTextState.text = "0"
+        // purchasePriceTextState.text = "0"
     })
 
     Scaffold(
@@ -104,9 +113,7 @@ fun AddProductScreen(
                 stringResource(id = R.string.title_toolbar_add_new_product),
                 navController,
                 onActionClicked = {
-                    if (nameTextState.isValid() && extraInfoTextState.isValid() &&
-                        purchasePriceTextState.isValid() && salePriceTextState.isValid() && category != 0
-                    ) {
+                    if (nameTextState.isValid() && extraInfoTextState.isValid() && purchasePriceTextState.isValid() && salePriceTextState.isValid() && category != 0) {
                         productViewModel.register(
                             name = nameTextState.text,
                             extraInfo = extraInfoTextState.text,
@@ -187,6 +194,12 @@ fun AddProductScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     purchasePriceTextState.text = it
+                    if (salePriceTextState.text.isNotBlank() && purchasePriceTextState.text.isNotBlank()) {
+                        total = productViewModel.calculateProfitProduct(
+                            salePrice = salePriceTextState.text.toDouble().orZero(),
+                            purchasePrice = purchasePriceTextState.text.toDouble().orZero()
+                        )
+                    }
                     purchasePriceTextState.validate()
                 }
 
@@ -203,7 +216,18 @@ fun AddProductScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     salePriceTextState.text = it
+                    if (salePriceTextState.text.isNotBlank() && purchasePriceTextState.text.isNotBlank()) {
+                        total = productViewModel.calculateProfitProduct(
+                            salePrice = salePriceTextState.text.toDouble().orZero(),
+                            purchasePrice = purchasePriceTextState.text.toDouble().orZero()
+                        )
+                    }
+
                     salePriceTextState.validate()
+                }
+                Divider()
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
+                    Text(total)
                 }
 
                 PrimaryButton(
@@ -218,8 +242,7 @@ fun AddProductScreen(
                             salesUnitId = 1
                         )
                     },
-                    enabled = nameTextState.isValid() && extraInfoTextState.isValid() &&
-                        salePriceTextState.isValid() && purchasePriceTextState.isValid(),
+                    enabled = nameTextState.isValid() && extraInfoTextState.isValid() && salePriceTextState.isValid() && purchasePriceTextState.isValid(),
                     isLoading = viewState.value is State.Loading,
                     modifier = Modifier
                         .fillMaxWidth()
