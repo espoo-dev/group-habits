@@ -47,7 +47,7 @@ class CategoryServiceTest {
     @Test
     fun `should return correct endpoint get categories`() {
         runBlocking {
-            mockWebServer.enqueue(MockResponse().setBody(""))
+            mockWebServer.enqueue(MockResponse().setBody("[]"))
             service.getAllCategories()
             val request = mockWebServer.takeRequest()
             assertEquals(request.path, "/categories")

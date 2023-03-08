@@ -23,6 +23,7 @@ require 'rails_helper'
 RSpec.describe Customer, type: :model do
   context 'relationship' do
     it { should belong_to(:user).required }
+    it { should have_many(:service_orders).dependent(:destroy) }
   end
 
   context 'validations' do
@@ -34,6 +35,7 @@ RSpec.describe Customer, type: :model do
       it { should validate_presence_of(:name) }
       it { should validate_presence_of(:document_number) }
       it { should validate_presence_of(:phone) }
+      it { should validate_presence_of(:customer_type) }
     end
 
     context 'uniqueness' do
@@ -83,6 +85,59 @@ RSpec.describe Customer, type: :model do
       context 'when has state_inscription present' do
         let(:state_inscription) { 'something' }
         it { is_expected.to be_valid }
+      end
+    end
+  end
+
+  context 'scopes' do
+    context '.by_name_like' do
+      let!(:customer1) { create(:customer, name: 'abcde') }
+      let!(:customer2) { create(:customer, name: 'bcd') }
+      let!(:customer3) { create(:customer, name: 'abc') }
+      let!(:customer4) { create(:customer, name: 'bcde') }
+      context 'when name_like is present' do
+        subject { described_class.by_name_like('bcd') }
+
+        it 'returns categories with name like' do
+          is_expected.to match_array([customer1, customer2, customer4])
+        end
+      end
+      context 'when name_like is not present' do
+        subject { described_class.by_name_like(nil) }
+
+        it 'returns all categories' do
+          is_expected.to match_array([customer1, customer2, customer3, customer4])
+        end
+      end
+    end
+
+    context '.by_customer_type' do
+      let!(:customer1) { create(:customer, customer_type: Customer.customer_types[:person]) }
+      let!(:customer2) { create(:customer, customer_type: Customer.customer_types[:person]) }
+      let!(:customer3) { create(:customer, customer_type: Customer.customer_types[:business]) }
+      let!(:customer4) { create(:customer, customer_type: Customer.customer_types[:business]) }
+      subject { described_class.by_customer_type(customer_type) }
+
+      context 'when customer_type is person' do
+        let(:customer_type) { 'person' }
+
+        it 'returns customers with customer_type person' do
+          is_expected.to match_array([customer1, customer2])
+        end
+      end
+      context 'when customer_type is business' do
+        let(:customer_type) { 'business' }
+
+        it 'returns customers with customer_type business' do
+          is_expected.to match_array([customer3, customer4])
+        end
+      end
+      context 'when customer_type is nil' do
+        let(:customer_type) { nil }
+
+        it 'returns all customers' do
+          is_expected.to match_array([customer1, customer2, customer3, customer4])
+        end
       end
     end
   end

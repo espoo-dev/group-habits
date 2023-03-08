@@ -1,5 +1,6 @@
-import { act, fireEvent, render, screen } from '@testing-library/svelte';
+import { act, render, screen } from '@testing-library/svelte';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import Day from './Day.svelte';
 
 const props = {
@@ -12,6 +13,8 @@ const sut = () => {
     props,
   });
 };
+
+const user = userEvent.setup();
 
 describe('Day component', () => {
   beforeEach(() => {
@@ -28,9 +31,7 @@ describe('Day component', () => {
 
   it('should change style when select the day', async () => {
     const day = screen.getByTestId(`day-${props.dayNumber}`);
-    await act(() => {
-      fireEvent.click(day);
-    });
+    await user.click(day);
     expect(day).toHaveClass('selected');
   });
 });

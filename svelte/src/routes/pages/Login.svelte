@@ -1,19 +1,27 @@
 <script lang="ts">
-  import AxiosAdapter from '../../infra/http/AxiosAdapter';
+  import { makeRemoteAuthentication } from '../../main/factories/usecases/remote-authentication-factory';
+  import { navigate } from 'svelte-routing';
+  import { setCurrentAccountAdapter } from '../../main/adapters';
+  import { notifications } from '../../../src/infra/notification/notification';
+  import Select from '../../../src/lib/components/Select/Select.svelte';
+  import { makeRemoteSalesUnits } from '../../../src/main/factories/usecases/remote-sales-unit-factory';
 
   const user = {
-    email: '',
-    password: '',
+    email: 'user@email.com',
+    password: '123456789',
   };
 
-  const api = new AxiosAdapter();
+  let selected: string | number;
+
+  const http = makeRemoteAuthentication();
 
   const login = async () => {
-    api
-      .post('https://group-habits.herokuapp.com/api/v1/users/sign_in', { user })
-      .then((resp) => {
-        localStorage.setItem('user', JSON.stringify(resp));
-      });
+    const response = await http.auth({ user });
+    if (response.user) {
+      navigate('/categories', { replace: true });
+      setCurrentAccountAdapter(response);
+      notifications.success('Bem vindo!', 3000);
+    }
   };
 </script>
 

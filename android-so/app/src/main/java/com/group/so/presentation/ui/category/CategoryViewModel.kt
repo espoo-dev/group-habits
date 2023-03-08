@@ -60,8 +60,8 @@ class CategoryViewModel(
                     _categoryState.value = State.Error(this)
                 }
             }.collect {
-                it.data?.let { posts ->
-                    _categoryState.value = State.Success(posts)
+                it.data?.let { categories ->
+                    _categoryState.value = State.Success(categories)
                 }
                 it.error?.let { error ->
                     with(RemoteException(error.message.toString())) {
@@ -85,8 +85,8 @@ class CategoryViewModel(
                     _categoryState.value = State.Error(this)
                 }
             }.collect {
-                it.data?.let { posts ->
-                    _categoryState.value = State.Success(posts)
+                it.data?.let { categories ->
+                    _categoryState.value = State.Success(categories)
                 }
                 it.error?.let { error ->
                     with(RemoteException(error.message.toString())) {

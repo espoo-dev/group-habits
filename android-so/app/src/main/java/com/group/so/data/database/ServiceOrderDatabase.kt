@@ -4,16 +4,26 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.group.so.data.dao.CategoryDao
+import com.group.so.data.dao.CustomerDao
+import com.group.so.data.dao.ItemDao
 import com.group.so.data.entities.db.CategoryDb
+import com.group.so.data.entities.db.CategoryTypeConverter
+import com.group.so.data.entities.db.CustomerDb
+import com.group.so.data.entities.db.ItemDb
+import com.group.so.data.entities.db.SaleUnitTypeConverter
 
 @Database(
-    entities = [CategoryDb::class],
-    version = 1,
+    entities = [CategoryDb::class, CustomerDb::class, ItemDb::class],
+    version = 4,
     exportSchema = false
 )
+@TypeConverters(CategoryTypeConverter::class, SaleUnitTypeConverter::class)
 abstract class ServiceOrderDatabase : RoomDatabase() {
     abstract val dao: CategoryDao
+    abstract val daoCustomer: CustomerDao
+    abstract val daoItem: ItemDao
 
     companion object {
 

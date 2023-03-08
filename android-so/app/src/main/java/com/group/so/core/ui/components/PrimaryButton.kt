@@ -1,12 +1,21 @@
-@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress(
+    "MaxLineLength",
+    "LongMethod",
+    "FunctionParameterNaming",
+    "FunctionNaming",
+    "LongParameterList",
+    "EmptyIfBlock"
+)
 
 package com.group.so.core.ui.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.group.so.ui.theme.Poppins
-import com.group.so.ui.theme.Purple500
 import com.group.so.ui.theme.SOTheme
 
 /**
@@ -39,7 +47,12 @@ fun PrimaryButton(
 ) {
 
     Button(
-        onClick = onClick,
+        onClick = {
+            if (isLoading) {
+            } else {
+                onClick()
+            }
+        },
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = backgroundColor,
@@ -48,7 +61,10 @@ fun PrimaryButton(
         enabled = enabled,
         contentPadding = contentPadding
     ) {
-        if (isLoading) CircularProgressIndicator(color = Color.White) else Text(text = text, fontFamily = Poppins)
+        if (isLoading) CircularProgressIndicator(
+            modifier = Modifier.then(Modifier.size(32.dp)),
+            color = Color.White
+        ) else Text(text = text, fontFamily = Poppins)
     }
 }
 
@@ -68,7 +84,7 @@ private fun PrimaryButtonPreview() {
             text = "Primary button",
             onClick = {},
             enabled = false,
-            backgroundColor = Purple500,
+            backgroundColor = MaterialTheme.colors.primary,
             contentColor = Color.White,
             contentPadding = PaddingValues(vertical = 14.dp)
         )
@@ -91,7 +107,7 @@ private fun DisabledPrimaryButtonPreview() {
             text = "Primary button",
             onClick = {},
             enabled = true,
-            backgroundColor = Purple500,
+            backgroundColor = MaterialTheme.colors.primary,
             contentColor = Color.White,
             contentPadding = PaddingValues(vertical = 14.dp)
         )

@@ -16,7 +16,7 @@ AllCops:
     - db/migrate/20221115160408_add_default_value_to_daily_habit.rb
 
 Metrics/AbcSize:
-  Max: 20
+  Max: 23
 
 Lint/UnusedMethodArgument:
   Exclude:

@@ -5,6 +5,10 @@ import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.category.CategoryRepositoryImpl
+import com.group.so.data.repository.customer.CustomerRepository
+import com.group.so.data.repository.customer.CustomerRepositoryImpl
+import com.group.so.data.repository.item.ItemRepository
+import com.group.so.data.repository.item.ItemRepositoryImpl
 import com.group.so.data.services.CategoryService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
@@ -14,8 +18,25 @@ import com.group.so.domain.category.EditCategoryUseCase
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.category.RegisterCategoryUseCase
 import com.group.so.domain.category.SearchCategoriesUseCase
+import com.group.so.domain.customer.DeleteCustomerUseCase
+import com.group.so.domain.customer.EditCustomerUseCase
+import com.group.so.domain.customer.GetCustomersByCustomTypeUseCase
+import com.group.so.domain.customer.GetCustomersByNameUseCase
+import com.group.so.domain.customer.GetCustomersUseCase
+import com.group.so.domain.item.DeleteItemUseCase
+import com.group.so.domain.item.EditProductUseCase
+import com.group.so.domain.item.EditServiceUseCase
+import com.group.so.domain.item.GetItemByItemTypeUseCase
+import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
+import com.group.so.domain.item.GetItemsByNameUseCase
+import com.group.so.domain.item.GetItemsUseCase
+import com.group.so.domain.item.RegisterProductUseCase
+import com.group.so.domain.item.RegisterServiceUseCase
 import com.group.so.presentation.ui.category.CategoryViewModel
+import com.group.so.presentation.ui.customer.CustomerViewModel
 import com.group.so.presentation.ui.login.LoginViewModel
+import com.group.so.presentation.ui.product.ProductViewModel
+import com.group.so.presentation.ui.service.ServiceViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.koin.android.ext.koin.androidContext
@@ -39,16 +60,41 @@ fun configureDataModuleForTest(baseUrl: String) = module {
 
     single<LoginRepository> { LoginRepositoryImpl(get(), get()) }
     single<CategoryRepository> { CategoryRepositoryImpl(get(), get()) }
+    single<CustomerRepository> { CustomerRepositoryImpl(get(), get()) }
+    single<ItemRepository> { ItemRepositoryImpl(get(), get()) }
 }
 
 fun configureDomainModuleForTest() = module {
+
+    // Login
     factory<LoginUseCase> { LoginUseCase(get()) }
 
+    // Category
     factory<GetCategoriesUseCase> { GetCategoriesUseCase(get()) }
     factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
     factory<DeleteCategoryUseCase> { DeleteCategoryUseCase(get()) }
     factory<EditCategoryUseCase> { EditCategoryUseCase(get()) }
     factory<SearchCategoriesUseCase> { SearchCategoriesUseCase(get()) }
+
+    // Customer
+    factory<GetCustomersUseCase> { GetCustomersUseCase(get()) }
+    factory<GetCustomersByNameUseCase> { GetCustomersByNameUseCase(get()) }
+    factory<GetCustomersByCustomTypeUseCase> { GetCustomersByCustomTypeUseCase(get()) }
+    factory<DeleteCustomerUseCase> { DeleteCustomerUseCase(get()) }
+    factory<EditCustomerUseCase> { EditCustomerUseCase(get()) }
+    factory<RegisterCategoryUseCase> { RegisterCategoryUseCase(get()) }
+    factory<EditCustomerUseCase> { EditCustomerUseCase(get()) }
+
+    // Items
+    factory<GetItemsUseCase> { GetItemsUseCase(get()) }
+    factory<GetItemsByNameUseCase> { GetItemsByNameUseCase(get()) }
+    factory<GetItemByItemTypeUseCase> { GetItemByItemTypeUseCase(get()) }
+    factory<GetItemByNameAndItemTypeUseCase> { GetItemByNameAndItemTypeUseCase(get()) }
+    factory<RegisterServiceUseCase> { RegisterServiceUseCase(get()) }
+    factory<DeleteItemUseCase> { DeleteItemUseCase(get()) }
+    factory<EditServiceUseCase> { EditServiceUseCase(get()) }
+    factory<RegisterProductUseCase> { RegisterProductUseCase(get()) }
+    factory<EditProductUseCase> { EditProductUseCase(get()) }
 }
 
 fun configureDAOModuleForTest() = module {
@@ -58,6 +104,9 @@ fun configureDAOModuleForTest() = module {
 fun configurePresentationModuleForTest() = module {
     factory { LoginViewModel(get()) }
     factory { CategoryViewModel(get(), get(), get(), get(), get()) }
+    factory { CustomerViewModel(get(), get(), get(), get(), get(), get()) }
+    factory { ServiceViewModel(get(), get(), get(), get(), get()) }
+    factory { ProductViewModel(get(), get(), get(), get(), get(), get()) }
 }
 
 private inline fun <reified T> createServiceForTest(

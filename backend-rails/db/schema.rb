@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_24_204835) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_182855) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -123,20 +123,53 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_204835) do
     t.index ["group_id"], name: "index_habits_on_group_id"
   end
 
+  create_table "item_service_orders", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "service_order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_service_orders_on_item_id"
+    t.index ["service_order_id"], name: "index_item_service_orders_on_service_order_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.string "extra_info"
     t.decimal "sale_price", precision: 8, scale: 2, null: false
     t.decimal "purchase_price", precision: 8, scale: 2
-    t.string "sales_unit", null: false
     t.string "item_type", null: false
-    t.string "category_id", null: false
+    t.integer "category_id"
     t.string "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sales_unit_id"
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["sales_unit_id"], name: "index_items_on_sales_unit_id"
     t.index ["user_id", "name"], name: "index_items_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "sales_units", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_sales_units_on_name", unique: true
+  end
+
+  create_table "service_orders", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "extra_info"
+    t.string "status", null: false
+    t.datetime "creation_date"
+    t.datetime "conclusion_date"
+    t.decimal "discount", precision: 8, scale: 2
+    t.integer "user_id", null: false
+    t.integer "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_service_orders_on_customer_id"
+    t.index ["user_id", "name"], name: "index_service_orders_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_service_orders_on_user_id"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -171,6 +204,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_204835) do
     t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "daily_habits", "habits"

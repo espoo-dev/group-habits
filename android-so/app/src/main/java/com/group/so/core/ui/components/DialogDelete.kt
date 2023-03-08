@@ -1,4 +1,4 @@
-@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "MagicNumber", "LongParameterList")
+@file:Suppress("MaxLineLength", "MagicNumber", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "MagicNumber", "LongParameterList")
 
 package com.group.so.core.ui.components
 
@@ -16,11 +16,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -30,14 +32,16 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.group.so.R
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun DialogDelete(
     showDialog: Boolean,
     cornerRadius: Dp = 12.dp,
-    deleteButtonColor: Color = Color(0xFFFF0000),
-    cancelButtonColor: Color = Color(0xFF35898F),
+    deleteButtonColor: Color = MaterialTheme.colors.secondary,
+    cancelButtonColor: Color = MaterialTheme.colors.primary,
     titleTextStyle: TextStyle = TextStyle(
         color = Color.Black.copy(alpha = 0.87f),
         fontSize = 20.sp
@@ -63,6 +67,9 @@ fun DialogDelete(
 
     if (showDialog) {
         Dialog(
+            properties = DialogProperties(
+                usePlatformDefaultWidth = false
+            ),
             onDismissRequest = {
                 onDismiss()
             }
@@ -70,7 +77,7 @@ fun DialogDelete(
 
             Surface(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(0.92f)
                     .wrapContentHeight(),
                 shape = RoundedCornerShape(size = cornerRadius)
             ) {
@@ -149,7 +156,7 @@ fun DialogDelete(
                                     indication = null,
                                     interactionSource = interactionSource
                                 ) {
-                                    onDismiss
+                                    onDismiss()
                                     onDeleteSuccess()
                                 }
                                 .background(

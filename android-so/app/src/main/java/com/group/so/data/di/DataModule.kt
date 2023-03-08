@@ -1,13 +1,20 @@
 package com.group.so.data.di
 
 import android.util.Log
+import com.group.so.core.data.NullToEmptyStringAdapter
 import com.group.so.data.database.ServiceOrderDatabase
 import com.group.so.data.di.interceptor.AuthInterceptor
 import com.group.so.data.repository.LoginRepository
 import com.group.so.data.repository.LoginRepositoryImpl
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.category.CategoryRepositoryImpl
+import com.group.so.data.repository.customer.CustomerRepository
+import com.group.so.data.repository.customer.CustomerRepositoryImpl
+import com.group.so.data.repository.item.ItemRepository
+import com.group.so.data.repository.item.ItemRepositoryImpl
 import com.group.so.data.services.CategoryService
+import com.group.so.data.services.CustomerService
+import com.group.so.data.services.ItemService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.squareup.moshi.Moshi
@@ -34,13 +41,32 @@ object DataModule {
     private fun daoModule(): Module {
         return module {
             single { ServiceOrderDatabase.getInstance(androidContext()).dao }
+            single { ServiceOrderDatabase.getInstance(androidContext()).daoCustomer }
+            single { ServiceOrderDatabase.getInstance(androidContext()).daoItem }
         }
     }
 
     private fun postsModule(): Module {
         return module {
             single<LoginRepository> { LoginRepositoryImpl(service = get(), get()) }
-            single<CategoryRepository> { CategoryRepositoryImpl(categoryService = get(), categoryDao = get()) }
+            single<CategoryRepository> {
+                CategoryRepositoryImpl(
+                    categoryService = get(),
+                    categoryDao = get()
+                )
+            }
+            single<CustomerRepository> {
+                CustomerRepositoryImpl(
+                    customerService = get(),
+                    customerDao = get()
+                )
+            }
+            single<ItemRepository> {
+                ItemRepositoryImpl(
+                    itemService = get(),
+                    itemDao = get()
+                )
+            }
         }
     }
 
@@ -56,7 +82,8 @@ object DataModule {
             }
 
             single {
-                Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+                Moshi.Builder().add(NullToEmptyStringAdapter()).add(KotlinJsonAdapterFactory())
+                    .build()
             }
 
             single {
@@ -64,6 +91,12 @@ object DataModule {
             }
             single {
                 createService<CategoryService>(get(), get())
+            }
+            single {
+                createService<CustomerService>(get(), get())
+            }
+            single {
+                createService<ItemService>(get(), get())
             }
         }
     }

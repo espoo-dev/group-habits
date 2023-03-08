@@ -12,11 +12,11 @@ class ItemPresenter < BasePresenter
       id: item.id,
       name: item.name,
       extra_info: item.extra_info,
-      sale_price: item.sale_price,
-      purchase_price: item.purchase_price,
-      sales_unit: item.sales_unit,
+      sale_price: item.sale_price.to_f,
+      purchase_price: item.purchase_price.to_f,
       item_type: item.item_type,
-      category_id: item.category_id
+      category: CategoryPresenter.payload_for_item(item.category),
+      sales_unit: SalesUnitPresenter.payload_for_item(item.sales_unit)
     }
   end
 end

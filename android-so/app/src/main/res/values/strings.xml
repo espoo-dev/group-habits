@@ -2,47 +2,69 @@
     <string name="app_name">Services Order</string>
     <string name="title_header_login">Welcome to My Service Order</string>
     <string name="title_body_login">Log In with Email</string>
-    <string name="label_text_email">Email Address</string>
-    <string name="label_password">Password</string>
+
     <string name="title_button_login">Login</string>
     <string name="text_button_forgot_password">Forgot Password</string>
     <string name="text_button_dont_have_account">Don\'t have an Account ? Sign Up</string>
+
+
+    <string name="label_text_email">Email Address</string>
+    <string name="label_password">Password</string>
+    <string name="label_money">Price</string>
+
+
+    <string name="tv_money">$: %s</string>
+
+    <!--Menu Home-->
+    <string name="title_menu_service_order">Order Service</string>
+    <string name="subtitle_menu_service_order">Create your work orders</string>
+
+    <string name="title_menu_profile">Profile</string>
+    <string name="subtitle_menu_profile">View and update your data in a simple way</string>
+
+
+
+
+
+    <!--SubMenu Home-->
+    <string name="desc_quote_of_the_day">Have a productive day</string>
+
+
+
+    <string name="title_submenu_home">How can we help you?</string>
+    <string name="desc_submenu_home">We can help you with some actions</string>
+
+
+    <string name="title_submenu_home_service">Services</string>
+    <string name="desc_submenu_home_service">Register your services</string>
+
+    <string name="title_submenu_home_customer">Customer</string>
+    <string name="desc_submenu_home_customer">Register your customers</string>
+
+    <string name="title_submenu_home_product">Product</string>
+    <string name="desc_submenu_home_product">Register your products</string>
+
+    <string name="title_submenu_home_category">Categories</string>
+    <string name="desc_submenu_home_category">Register your categories</string>
+
+
+
+
+
 
 
     <!-- Generic messages -->
     <string name="msg_generic_error">Ops! Something went wrong…</string>
     <string name="msg_loading">Please wait…</string>
 
+    <!--Search bar-->
+    <string name="search">Search</string>
+    <string name="search_icon">search icon</string>
+    <string name="close_icon">close icon</string>
+
     <!-- Button Texts -->
     <string name="button_save">Save</string>
     <string name="button_ok">OK</string>
-
-
-
-
-
-
-    <!-- Categories -->
-    <!-- Menu Actions -->
-
-    <string name="title_toolbar_categories">Categories</string>
-
-    <string name="menu_action_edit">Edit</string>
-    <string name="menu_action_logout">Logout</string>
-    <string name="menu_action_settings">Settings</string>
-
-    <string name="msg_empty_categories_list">No categories registered at the moment</string>
-    <string name="msg_category_deleted">Category deleted.</string>
-
-    <string name="cd_new_category">Insert new book</string>
-    <string name="btn_register_dialog_new_category">Register New Category</string>
-    <string name="title_dialog_new_category">New Category</string>
-    <string name="title_dialog_edit_category">Edit Category %s</string>
-    <string name="txt_register_success_category">Category registered successfully</string>
-    <string name="txt_register_edit_category">Category edited successfully</string>
-
-    <string name="btn_save_category">Save</string>
-    <string name="btn_cancel_category">Cancel</string>
 
     <!-- Delete dialog-->
     <string name="title_dialog_delete">Delete Item ?</string>
@@ -50,10 +72,93 @@
     <string name="label_btn_dialog_delete">Cancel</string>
     <string name="label_delete_btn_dialog_delete">Delete</string>
 
-    <!--Search bar-->
-    <string name="search">Search</string>
-    <string name="search_icon">search icon</string>
-    <string name="close_icon">close icon</string>
 
+    <!-- Categories -->
+    <!-- Menu Actions -->
+    <string name="title_toolbar_categories">Categories</string>
+    <string name="menu_action_edit">Edit</string>
+    <string name="menu_action_logout">Logout</string>
+    <string name="menu_action_settings">Settings</string>
+    <string name="msg_empty_categories_list">No categories registered at the moment</string>
+    <string name="msg_category_deleted">Category deleted.</string>
+    <string name="cd_new_category">Insert new Category</string>
+    <string name="btn_register_dialog_new_category">Register New Category</string>
+    <string name="title_dialog_new_category">New Category</string>
+    <string name="title_dialog_edit_category">Edit Category %s</string>
+    <string name="txt_register_success_category">Category registered successfully</string>
+    <string name="txt_register_edit_category">Category edited successfully</string>
+    <string name="title_fab_new_category">New Category</string>
+    <string name="btn_save_category">Save</string>
+    <string name="btn_cancel_category">Cancel</string>
+
+
+    <!--Customers-->
+    <string name="title_toolbar_customers">Customers</string>
+    <string name="title_fab_new_customer">New Customer</string>
+    <string name="cd_new_customer">Insert new Customer</string>
+    <string name="msg_empty_customer_list">No customers registered at the moment</string>
+    <string name="title_menu_person">Person</string>
+    <string name="title_menu_business">Business</string>
+
+    <!--Customers Add New Customer-->
+    <string name="title_button_register">Add new customer</string>
+    <string name="title_toolbar_add_new_customer">Add new Customer</string>
+    <string name="lbl_field_state_inscription">Registration number</string>
+    <string name="lbl_field_phone">Phone</string>
+    <string name="lbl_field_document">Document</string>
+    <string name="lbl_field_name">Name</string>
+    <string name="txt_register_success_customer">Customer registered successfully</string>
+    <string name="title_toolbar_edit_customer">Edit Costumer</string>
+    <string name="title_button_edit">Save change</string>
+    <string name="txt_edit_success_customer">Client successfully edited.</string>
+
+
+    <!--List Customers-->
+    <string name="tv_phone_customer">Phone: %s</string>
+    <string name="tv_customer_type_person">Person</string>
+    <string name="tv_customer_type_business">Business</string>
+
+
+
+    <!--Service-->
+    <string name="title_toolbar_service">Services</string>
+    <string name="title_fab_new_service">New Service</string>
+    <string name="msg_empty_service_list">No services registered at the moment</string>
+    <string name="tv_type_component_service">Service</string>
+
+    <!--Add New service-->
+    <string name="title_button_register_service">Add new service</string>
+    <string name="title_toolbar_add_new_service">Add new service</string>
+    <string name="txt_register_success_service">Service registered successfully</string>
+    <string name="title_toolbar_edit_service">Edit Service</string>
+    <string name="title_button_edit_service">Save change</string>
+    <string name="txt_edit_success_service">Service successfully edited.</string>
+
+    <string name="lbl_field_extra_info">Extra Info</string>
+    <string name="lbl_field_name_service">Name Service</string>
+    <string name="lbl_field_price_service">Service price</string>
+
+
+
+    <!--Product-->
+    <string name="title_toolbar_product">Products</string>
+    <string name="title_fab_new_product">New Product</string>
+    <string name="msg_empty_product_list">No products registered at the moment</string>
+    <string name="tv_type_component_product">Product</string>
+
+
+    <string name="title_button_register_product">Add new product</string>
+    <string name="title_toolbar_add_new_product">Add new product</string>
+    <string name="txt_register_success_product">Product registered successfully</string>
+    <string name="title_toolbar_edit_product">Edit Product</string>
+    <string name="title_button_edit_product">Save change</string>
+    <string name="txt_edit_success_product">Product successfully edited.</string>
+
+    <string name="lbl_field_extra_info_product">Extra Info</string>
+    <string name="lbl_field_name_product">Name Product</string>
+    <string name="lbl_field_price_product">Product price</string>
+    <string name="lbl_field_purchase_price_product">Purchase Price</string>
+
+    <string name="lbl_field_search_categories_product">Search category</string>
 
 </resources>

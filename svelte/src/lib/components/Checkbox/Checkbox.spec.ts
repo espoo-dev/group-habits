@@ -1,5 +1,6 @@
-import { act, fireEvent, render, screen } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import Checkbox from './Checkbox.svelte';
 
 const props = {
@@ -9,6 +10,7 @@ const props = {
 
 let checkboxElement: HTMLElement;
 let checkboxComponent: Checkbox;
+const user = userEvent.setup();
 
 const sut = () => {
   const { getByRole, component } = render(Checkbox, {
@@ -31,27 +33,23 @@ describe('Checkbox component', () => {
     expect(checkboxElement).not.toBeChecked();
   });
 
-  it('should be checked when clicked', () => {
-    fireEvent.click(checkboxElement);
+  it('should be checked when clicked', async () => {
+    await user.click(checkboxElement);
     expect(checkboxElement).toBeChecked();
   });
 
   it('should have selected class when is checked', async () => {
-    await act(() => {
-      fireEvent.click(checkboxElement);
-    });
+    await user.click(checkboxElement);
     expect(checkboxElement).toHaveClass('selected');
   });
 
   it('should call event when select checkbox', async () => {
-    let mockEvent = jest.fn();
+    const mockEvent = jest.fn();
 
     checkboxComponent.$on('change_selected', function (event) {
       mockEvent(event.detail);
     });
-    await act(() => {
-      fireEvent.click(checkboxElement);
-    });
+    await user.click(checkboxElement);
 
     expect(mockEvent).toHaveBeenLastCalledWith({
       selected: true,

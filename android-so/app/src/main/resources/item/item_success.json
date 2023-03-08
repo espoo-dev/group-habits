@@ -1,0 +1,44 @@
+[
+  {
+    "id": 5,
+    "name": "product 1",
+    "extra_info": "info 1",
+    "sale_price": "11.0",
+    "purchase_price": "5.0",
+    "item_type": "product",
+    "category": {
+      "id": 119,
+      "name": "iury teste 2"
+    },
+    "sales_unit": {
+      "id": 1,
+      "name": "unit"
+    }
+  },
+  {
+    "id": 7,
+    "name": "product 2",
+    "extra_info": "info 2",
+    "sale_price": "11.0",
+    "purchase_price": "5.0",
+    "item_type": "product",
+    "category": {
+      "id": 119,
+      "name": "iury teste 2"
+    },
+    "sales_unit": {
+      "id": 1,
+      "name": "unit"
+    }
+  },
+  {
+    "id": 8,
+    "name": "service 1",
+    "extra_info": "info 2",
+    "sale_price": "11.0",
+    "purchase_price": "5.0",
+    "item_type": "service",
+    "category": null,
+    "sales_unit": null
+  }
+]
