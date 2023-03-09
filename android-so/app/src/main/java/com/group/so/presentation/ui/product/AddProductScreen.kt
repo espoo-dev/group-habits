@@ -13,9 +13,11 @@ package com.group.so.presentation.ui.product
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -40,6 +42,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.ZERO
 import com.group.so.core.ui.components.AsyncData
 import com.group.so.core.ui.components.ErrorField
 import com.group.so.core.ui.components.GenericError
@@ -75,6 +78,8 @@ fun AddProductScreen(
 
     var category by remember { mutableStateOf(0) }
 
+    var totalProfitLabel by remember { mutableStateOf("") }
+
     val viewState = productViewModel.registerProductState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
@@ -105,7 +110,7 @@ fun AddProductScreen(
                 stringResource(id = R.string.title_toolbar_add_new_product),
                 navController,
                 onActionClicked = {
-                    if (nameTextState.isValid() && extraInfoTextState.isValid() &&
+                    if (nameTextState.isValid() &&
                         purchasePriceTextState.isValid() && salePriceTextState.isValid() && category != 0
                     ) {
                         productViewModel.register(
@@ -147,8 +152,9 @@ fun AddProductScreen(
                     AsyncData(resultState = categoriesListState, errorContent = {
                         GenericError(onDismissAction = {})
                     }) { categoriesList ->
-                        categoriesList?.let {
-                            if (it.isEmpty()) {
+                        categoriesList?.let { categories ->
+                            category = categories.first().id
+                            if (categories.isEmpty()) {
                                 Text("Você não possui categorias")
                             } else {
                                 AutoCompleteCategory(
@@ -189,6 +195,13 @@ fun AddProductScreen(
                 ) {
                     purchasePriceTextState.text = it
                     purchasePriceTextState.validate()
+
+                    if (salePriceTextState.text.isNotBlank() && purchasePriceTextState.text.isNotBlank()) {
+                        totalProfitLabel = productViewModel.calculateProfitProduct(
+                            salePrice = salePriceTextState.text.toDouble(),
+                            purchasePrice = purchasePriceTextState.text.toDouble()
+                        )
+                    }
                 }
 
                 MoneyField(
@@ -205,6 +218,23 @@ fun AddProductScreen(
                 ) {
                     salePriceTextState.text = it
                     salePriceTextState.validate()
+                    if (salePriceTextState.text.isNotBlank() && purchasePriceTextState.text.isNotBlank()) {
+                        totalProfitLabel = productViewModel.calculateProfitProduct(
+                            salePrice = salePriceTextState.text.toDouble(),
+                            purchasePrice = purchasePriceTextState.text.toDouble()
+                        )
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Text(
+                        color = if (productViewModel.totalProfit.value <= ZERO)
+                            MaterialTheme.colors.error else MaterialTheme.colors.primary,
+                        text = totalProfitLabel
+                    )
                 }
 
                 PrimaryButton(

@@ -9,6 +9,8 @@
 
 package com.group.so.presentation.ui.product
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.group.so.core.HUNDRED
@@ -16,7 +18,7 @@ import com.group.so.core.Query
 import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.core.ZERO
-import com.group.so.core.toReal
+import com.group.so.core.toMoney
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
@@ -61,6 +63,9 @@ class ProductViewModel(
 
     private val _productDeleteState = MutableStateFlow<State<Int>>(State.Idle)
     val productDeleteState = _productDeleteState.asStateFlow()
+
+    val totalProfit: MutableState<Double> =
+        mutableStateOf(0.0)
 
     init {
         fetchLatestProducts()
@@ -271,11 +276,18 @@ class ProductViewModel(
     }
 
     fun calculateProfitProduct(salePrice: Double, purchasePrice: Double): String {
-        val totalProfit = salePrice - purchasePrice
-        val totalProfitPercentage = ((totalProfit / salePrice) * HUNDRED)
+        val totalProfitProduct = salePrice - purchasePrice
+        val totalProfitPercentage = ((totalProfitProduct / salePrice) * HUNDRED)
         var totalProfitPercentageLabel =
-            if (totalProfitPercentage < 0) ZERO else totalProfitPercentage
+            if (totalProfitPercentage < ZERO) ZERO else totalProfitPercentage
 
-        return "Lucro: R$ ${totalProfit.toReal()}/ $totalProfitPercentageLabel%"
+        totalProfit.value = totalProfitProduct
+        return buildString {
+            append("Lucro:  ")
+            append(totalProfitProduct.toMoney())
+            append("/ ")
+            append(totalProfitPercentageLabel)
+            append("%")
+        }
     }
 }

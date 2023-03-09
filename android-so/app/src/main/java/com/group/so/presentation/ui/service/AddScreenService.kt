@@ -83,11 +83,13 @@ fun AddScreenService(
                 stringResource(id = R.string.title_toolbar_add_new_service),
                 navController,
                 onActionClicked = {
-                    serviceViewModel.register(
-                        name = nameTextState.text,
-                        extraInfo = extraInfoTextState.text,
-                        salePrice = salePriceTextState.text.toDouble()
-                    )
+                    if (salePriceTextState.isValid() && nameTextState.isValid()) {
+                        serviceViewModel.register(
+                            name = nameTextState.text,
+                            extraInfo = extraInfoTextState.text,
+                            salePrice = salePriceTextState.text.toDouble()
+                        )
+                    }
                 }
             )
         },
