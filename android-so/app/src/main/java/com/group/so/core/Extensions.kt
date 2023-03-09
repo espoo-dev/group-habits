@@ -18,6 +18,6 @@ fun Double?.isNegative() = this.orZero() < ZERO.toDouble()
 
 fun Double?.isPositive() = this.orZero() > ZERO.toDouble()
 
-fun Double?.toReal(): String {
+fun Double?.toMoney(): String {
     return NumberFormat.getCurrencyInstance(Locale.getDefault()).format(this)
 }

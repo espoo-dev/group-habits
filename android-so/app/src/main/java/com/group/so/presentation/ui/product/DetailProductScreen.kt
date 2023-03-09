@@ -11,9 +11,11 @@ package com.group.so.presentation.ui.product
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -38,6 +40,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.ZERO
 import com.group.so.core.ui.components.AsyncData
 import com.group.so.core.ui.components.ErrorField
 import com.group.so.core.ui.components.GenericError
@@ -74,6 +77,8 @@ fun DetailsProductScreen(
 
     var category by remember { mutableStateOf(0) }
 
+    var totalProfit by remember { mutableStateOf("") }
+
     val viewState = viewModel.editProductState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
@@ -83,6 +88,10 @@ fun DetailsProductScreen(
         salePriceTextState.text = product?.salePrice.toString()
         purchasePriceTextState.text = product?.purchasePrice.toString()
         category = product?.category?.id ?: 0
+        totalProfit = viewModel.calculateProfitProduct(
+            salePrice = product?.salePrice!!,
+            purchasePrice = product?.purchasePrice
+        )
     }
 
     LaunchedEffect(viewState.value) {
@@ -112,7 +121,7 @@ fun DetailsProductScreen(
                 stringResource(id = R.string.title_toolbar_edit_product),
                 navController,
                 onActionClicked = {
-                    if (nameTextState.isValid() && extraInfoTextState.isValid() &&
+                    if (nameTextState.isValid() &&
                         purchasePriceTextState.isValid() && salePriceTextState.isValid() && category != 0
                     ) {
                         viewModel.edit(
@@ -198,6 +207,12 @@ fun DetailsProductScreen(
                 ) {
                     purchasePriceTextState.text = it
                     purchasePriceTextState.validate()
+                    if (salePriceTextState.text.isNotBlank() && purchasePriceTextState.text.isNotBlank()) {
+                        totalProfit = viewModel.calculateProfitProduct(
+                            salePrice = salePriceTextState.text.toDouble(),
+                            purchasePrice = purchasePriceTextState.text.toDouble()
+                        )
+                    }
                 }
 
                 MoneyField(
@@ -214,6 +229,23 @@ fun DetailsProductScreen(
                 ) {
                     salePriceTextState.text = it
                     salePriceTextState.validate()
+                    if (salePriceTextState.text.isNotBlank() && purchasePriceTextState.text.isNotBlank()) {
+                        totalProfit = viewModel.calculateProfitProduct(
+                            salePrice = salePriceTextState.text.toDouble(),
+                            purchasePrice = purchasePriceTextState.text.toDouble()
+                        )
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Text(
+                        color = if (viewModel.totalProfit.value <= ZERO)
+                            MaterialTheme.colors.error else MaterialTheme.colors.primary,
+                        text = totalProfit
+                    )
                 }
 
                 PrimaryButton(
@@ -229,7 +261,7 @@ fun DetailsProductScreen(
                             salesUnitId = 1
                         )
                     },
-                    enabled = nameTextState.isValid() && extraInfoTextState.isValid() &&
+                    enabled = nameTextState.isValid() &&
                         salePriceTextState.isValid() && purchasePriceTextState.isValid(),
                     isLoading = viewState.value is State.Loading,
                     modifier = Modifier
