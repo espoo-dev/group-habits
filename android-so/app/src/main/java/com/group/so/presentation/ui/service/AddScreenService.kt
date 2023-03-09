@@ -151,7 +151,7 @@ fun AddScreenService(
                             salePrice = salePriceTextState.text.toDouble()
                         )
                     },
-                    enabled = nameTextState.isValid() && extraInfoTextState.isValid() && salePriceTextState.isValid(),
+                    enabled = nameTextState.isValid() && salePriceTextState.isValid(),
                     isLoading = viewState.value is State.Loading,
                     modifier = Modifier
                         .fillMaxWidth()

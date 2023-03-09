@@ -51,7 +51,10 @@ fun MoneyField(
                 // .padding(horizontal = 20.dp)
                 .padding(top = 10.dp),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            visualTransformation = ThousandSeparatorTransformation(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Decimal
+            ),
             leadingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_money),

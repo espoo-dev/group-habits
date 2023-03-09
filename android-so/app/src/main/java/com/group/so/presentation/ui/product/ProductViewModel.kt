@@ -11,9 +11,12 @@ package com.group.so.presentation.ui.product
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.group.so.core.HUNDRED
 import com.group.so.core.Query
 import com.group.so.core.RemoteException
 import com.group.so.core.State
+import com.group.so.core.ZERO
+import com.group.so.core.toReal
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
@@ -265,5 +268,14 @@ class ProductViewModel(
 
     fun deleteProduct(id: Int) {
         deleteProductById(id)
+    }
+
+    fun calculateProfitProduct(salePrice: Double, purchasePrice: Double): String {
+        val totalProfit = salePrice - purchasePrice
+        val totalProfitPercentage = ((totalProfit / salePrice) * HUNDRED)
+        var totalProfitPercentageLabel =
+            if (totalProfitPercentage < 0) ZERO else totalProfitPercentage
+
+        return "Lucro: R$ ${totalProfit.toReal()}/ $totalProfitPercentageLabel%"
     }
 }
