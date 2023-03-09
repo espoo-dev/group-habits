@@ -16,6 +16,7 @@ import com.group.so.core.Query
 import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.core.ZERO
+import com.group.so.core.toReal
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
@@ -275,6 +276,6 @@ class ProductViewModel(
         var totalProfitPercentageLabel =
             if (totalProfitPercentage < 0) ZERO else totalProfitPercentage
 
-        return "Lucro: R$ $totalProfit/ $totalProfitPercentageLabel%"
+        return "Lucro: R$ ${totalProfit.toReal()}/ $totalProfitPercentageLabel%"
     }
 }

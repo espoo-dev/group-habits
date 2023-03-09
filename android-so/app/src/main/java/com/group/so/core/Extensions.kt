@@ -19,6 +19,5 @@ fun Double?.isNegative() = this.orZero() < ZERO.toDouble()
 fun Double?.isPositive() = this.orZero() > ZERO.toDouble()
 
 fun Double?.toReal(): String {
-    val ptBr = Locale("pt", "BR")
-    return NumberFormat.getCurrencyInstance(ptBr).format(this)
+    return NumberFormat.getCurrencyInstance(Locale.getDefault()).format(this)
 }
