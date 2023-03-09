@@ -4,7 +4,8 @@
     "LongMethod",
     "FunctionParameterNaming",
     "FunctionNaming",
-    "LongParameterList"
+    "LongParameterList",
+    "MaxLineLength"
 )
 
 package com.group.so.presentation.ui.product
