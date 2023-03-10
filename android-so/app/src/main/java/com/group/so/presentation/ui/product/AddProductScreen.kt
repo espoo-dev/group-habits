@@ -155,7 +155,23 @@ fun AddProductScreen(
                         categoriesList?.let { categories ->
                             category = categories.first().id
                             if (categories.isEmpty()) {
-                                Text("Você não possui categorias")
+                                PrimaryButton(
+                                    text = stringResource(R.string.title_button_register_category_in_product),
+                                    onClick = {
+                                        navController.navigate(Routes.Category.route) {
+                                            popUpTo(Routes.Product.route) { inclusive = true }
+                                        }
+                                    },
+                                    enabled = nameTextState.isValid() && salePriceTextState.isValid() && purchasePriceTextState.isValid(),
+                                    isLoading = viewState.value is State.Loading,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 0.dp)
+                                        .padding(top = 16.dp),
+                                    backgroundColor = MaterialTheme.colors.primary,
+                                    contentColor = Color.White,
+                                    contentPadding = PaddingValues(vertical = 14.dp),
+                                )
                             } else {
                                 AutoCompleteCategory(
                                     categories = categoriesList,

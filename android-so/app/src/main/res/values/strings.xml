@@ -152,6 +152,7 @@
     <string name="txt_register_success_product">Product registered successfully</string>
     <string name="title_toolbar_edit_product">Edit Product</string>
     <string name="title_button_edit_product">Save change</string>
+    <string name="title_button_register_category_in_product">Add new Category</string>
     <string name="txt_edit_success_product">Product successfully edited.</string>
 
     <string name="lbl_field_extra_info_product">Extra Info</string>
