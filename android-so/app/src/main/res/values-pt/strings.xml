@@ -130,6 +130,7 @@
     <string name="tv_type_component_product">Produto</string>
 
     <string name="title_button_register_product">Adicionar novo produto</string>
+    <string name="title_button_register_category_in_product">Adicionar nova categoria</string>
     <string name="title_toolbar_add_new_product">Adicionar novo produto</string>
     <string name="txt_register_success_product">Produto registrado com sucesso.</string>
     <string name="title_toolbar_edit_product">Editar produto</string>
