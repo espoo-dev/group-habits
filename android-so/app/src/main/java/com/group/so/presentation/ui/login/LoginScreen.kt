@@ -47,7 +47,7 @@ fun LoginScreen(
         }
     }
     HeaderLogin()
-    LoginContent(_loginViewModel, viewState)
+    LoginContent(navController, _loginViewModel, viewState)
 }
 
 @Composable

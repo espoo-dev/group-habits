@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
 import com.group.so.core.ui.components.EmailField
@@ -29,12 +30,14 @@ import com.group.so.core.ui.components.PasswordField
 import com.group.so.core.ui.components.PrimaryButton
 import com.group.so.core.ui.components.SecondaryButton
 import com.group.so.data.entities.model.User
+import com.group.so.presentation.ui.Routes
 import com.group.so.presentation.ui.login.LoginViewModel
 import com.group.so.ui.theme.Poppins
 import com.group.so.ui.theme.Shapes
 
 @Composable
 fun LoginContent(
+    navController: NavHostController,
     _loginViewModel: LoginViewModel,
     viewState: androidx.compose.runtime.State<State<User>>
 ) {
@@ -84,8 +87,8 @@ fun LoginContent(
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
-                        passwordState.text = it
-                        passwordState.validate()
+                        emailState.text = it
+                        emailState.validate()
                     }
 
                     PasswordField(
@@ -123,7 +126,10 @@ fun LoginContent(
 
                     SecondaryButton(
                         text = stringResource(R.string.text_button_forgot_password),
-                        onClick = {},
+                        onClick = {
+                            // navController.popBackStack()
+                            navController.navigate(Routes.ForgotPassword.route)
+                        },
                         modifier = Modifier.padding(top = 26.dp)
                     )
                     SecondaryButton(
