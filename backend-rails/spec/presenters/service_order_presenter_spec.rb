@@ -10,7 +10,6 @@ RSpec.describe ServiceOrderPresenter do
     it 'matches expected attributes' do
       expected_payload = {
         id: service_order.id,
-        name: service_order.name,
         extra_info: service_order.extra_info,
         status: service_order.status,
         creation_date: DateUtil.format_date(service_order.creation_date),

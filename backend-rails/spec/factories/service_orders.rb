@@ -3,7 +3,6 @@
 # Table name: service_orders
 #
 #  id              :bigint           not null, primary key
-#  name            :string           not null
 #  extra_info      :string
 #  status          :string           not null
 #  creation_date   :datetime
@@ -16,13 +15,11 @@
 #
 # Indexes
 #
-#  index_service_orders_on_customer_id       (customer_id)
-#  index_service_orders_on_user_id           (user_id)
-#  index_service_orders_on_user_id_and_name  (user_id,name) UNIQUE
+#  index_service_orders_on_customer_id  (customer_id)
+#  index_service_orders_on_user_id      (user_id)
 #
 FactoryBot.define do
   factory :service_order do
-    name { 'service order name' }
     status { 'budge' }
     association :user
     association :customer

@@ -12,7 +12,6 @@ RSpec.describe ServiceOrders::ServiceOrderCreatorService do
 
     let!(:params) do
       {
-        name: 'service order name',
         status: 'budge',
         customer_id: customer.id,
         items_ids: [item.id],
@@ -25,7 +24,6 @@ RSpec.describe ServiceOrders::ServiceOrderCreatorService do
 
     it 'returns service order with proper fields', :aggregate_failures do
       subject
-      expect(subject.name).to eq(params[:name])
       expect(subject.status).to eq(params[:status])
       expect(subject.customer_id).to eq(customer.id)
       expect(subject.user_id).to eq(user.id)
