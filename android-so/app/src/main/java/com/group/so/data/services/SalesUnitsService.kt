@@ -5,6 +5,5 @@ import retrofit2.http.GET
 
 interface SalesUnitsService {
     @GET("sales_units")
-    suspend fun getAllSalesUnit(
-    ): List<SalesUnitDTO>
+    suspend fun getAllSalesUnit(): List<SalesUnitDTO>
 }

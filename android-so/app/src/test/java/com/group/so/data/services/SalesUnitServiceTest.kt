@@ -70,7 +70,6 @@ class SalesUnitServiceTest {
         assertEquals(0, actualResponse.size)
     }
 
-
     @After
     fun stopService() {
         mockWebServer.shutdown()
