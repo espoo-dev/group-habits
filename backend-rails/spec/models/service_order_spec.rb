@@ -3,7 +3,6 @@
 # Table name: service_orders
 #
 #  id              :bigint           not null, primary key
-#  name            :string           not null
 #  extra_info      :string
 #  status          :string           not null
 #  creation_date   :datetime
@@ -16,9 +15,8 @@
 #
 # Indexes
 #
-#  index_service_orders_on_customer_id       (customer_id)
-#  index_service_orders_on_user_id           (user_id)
-#  index_service_orders_on_user_id_and_name  (user_id,name) UNIQUE
+#  index_service_orders_on_customer_id  (customer_id)
+#  index_service_orders_on_user_id      (user_id)
 #
 require 'rails_helper'
 
@@ -28,17 +26,6 @@ RSpec.describe ServiceOrder, type: :model do
     it { should belong_to(:customer).required }
     it { should have_many(:item_service_orders).dependent(:destroy) }
     it { should have_many(:items).through(:item_service_orders).dependent(:destroy) }
-  end
-
-  context 'validations' do
-    context 'presence' do
-      it { should validate_presence_of(:name) }
-    end
-  end
-
-  context 'uniqueness' do
-    subject { create(:service_order) }
-    it { should validate_uniqueness_of(:name).scoped_to(:user_id).case_insensitive }
   end
 
   context 'inclusion' do

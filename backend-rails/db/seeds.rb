@@ -22,6 +22,6 @@ if Rails.env.development?
   Customer.create!(name: 'company', document_number: '123456789321654',
                    customer_type: Customer.customer_types[:business], phone: '25996686868', user:)
 
-  ServiceOrder.create!(name: 'service order name', status: ServiceOrder::STATUSES.first, user:, customer:)
+  ServiceOrder.create!(status: ServiceOrder::STATUSES.first, user:, customer:)
   Setting.create_or_find_by!(key: 'min_version', value: '0.0')
 end

@@ -30,12 +30,12 @@ module Api
       end
 
       def create_service_order_params
-        params.permit(:name, :extra_info, :status, :creation_date, :conclusion_date, :discount, :customer_id,
+        params.permit(:extra_info, :status, :creation_date, :conclusion_date, :discount, :customer_id,
                       items_ids: [])
       end
 
       def update_service_order_params
-        params.permit(:id, :name, :extra_info, :status, :creation_date, :conclusion_date, :discount, :customer_id,
+        params.permit(:id, :extra_info, :status, :creation_date, :conclusion_date, :discount, :customer_id,
                       items_ids: [])
       end
     end

@@ -3,7 +3,6 @@
 # Table name: service_orders
 #
 #  id              :bigint           not null, primary key
-#  name            :string           not null
 #  extra_info      :string
 #  status          :string           not null
 #  creation_date   :datetime
@@ -16,9 +15,8 @@
 #
 # Indexes
 #
-#  index_service_orders_on_customer_id       (customer_id)
-#  index_service_orders_on_user_id           (user_id)
-#  index_service_orders_on_user_id_and_name  (user_id,name) UNIQUE
+#  index_service_orders_on_customer_id  (customer_id)
+#  index_service_orders_on_user_id      (user_id)
 #
 class ServiceOrder < ApplicationRecord
   include NameFilterable
@@ -30,7 +28,5 @@ class ServiceOrder < ApplicationRecord
   has_many :item_service_orders, dependent: :destroy
   has_many :items, through: :item_service_orders, dependent: :destroy
 
-  validates :name, presence: true
-  validates :name, uniqueness: { scope: :user_id, case_sensitive: false }
   validates :status, inclusion: STATUSES
 end
