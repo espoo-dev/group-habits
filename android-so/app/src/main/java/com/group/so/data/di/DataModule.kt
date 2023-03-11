@@ -12,6 +12,8 @@ import com.group.so.data.repository.customer.CustomerRepository
 import com.group.so.data.repository.customer.CustomerRepositoryImpl
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.data.repository.item.ItemRepositoryImpl
+import com.group.so.data.repository.salesUnit.SalesUnitRepository
+import com.group.so.data.repository.salesUnit.SalesUnitRepositoryImpl
 import com.group.so.data.services.CategoryService
 import com.group.so.data.services.CustomerService
 import com.group.so.data.services.ItemService
@@ -44,6 +46,7 @@ object DataModule {
             single { ServiceOrderDatabase.getInstance(androidContext()).dao }
             single { ServiceOrderDatabase.getInstance(androidContext()).daoCustomer }
             single { ServiceOrderDatabase.getInstance(androidContext()).daoItem }
+            single { ServiceOrderDatabase.getInstance(androidContext()).daoSalesUnit }
         }
     }
 
@@ -66,6 +69,12 @@ object DataModule {
                 ItemRepositoryImpl(
                     itemService = get(),
                     itemDao = get()
+                )
+            }
+            single<SalesUnitRepository> {
+                SalesUnitRepositoryImpl(
+                    salesUnitsService = get(),
+                    salesUnitDao = get()
                 )
             }
         }
