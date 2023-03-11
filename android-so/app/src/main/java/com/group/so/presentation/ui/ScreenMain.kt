@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,6 +25,7 @@ import com.group.so.presentation.ui.customer.AddScreenCustomer
 import com.group.so.presentation.ui.customer.CustomerScreen
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import com.group.so.presentation.ui.customer.DetailsCustomerScreen
+import com.group.so.presentation.ui.forgotPassword.ForgotPasswordScreen
 import com.group.so.presentation.ui.home.HomeScreen
 import com.group.so.presentation.ui.login.LoginScreen
 import com.group.so.presentation.ui.login.LoginViewModel
@@ -44,6 +46,7 @@ fun ScreenMain() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Routes.Login.route) {
+
         composable(Routes.Login.route) {
             val loginViewModel = koinViewModel<LoginViewModel>()
             Surface(color = MaterialTheme.colors.primary, modifier = Modifier.fillMaxSize()) {
@@ -53,6 +56,13 @@ fun ScreenMain() {
                 )
             }
         }
+
+        composable(Routes.ForgotPassword.route) {
+            Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
+                ForgotPasswordScreen()
+            }
+        }
+
         composable(Routes.Category.route) {
             val categoryViewModel = koinViewModel<CategoryViewModel>()
             val categoriesListUiState by categoryViewModel.categoryState.collectAsStateWithLifecycle()

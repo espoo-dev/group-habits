@@ -11,4 +11,8 @@ val Shapes = Shapes(
     large = RoundedCornerShape(0.dp)
 )
 
+val InputBoxShape = Shapes(
+    medium = RoundedCornerShape(14.dp)
+)
+
 val ButtonShape = RoundedCornerShape(ROUNDED_CORNER)
