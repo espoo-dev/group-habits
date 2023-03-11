@@ -9,7 +9,10 @@ import com.group.so.data.repository.customer.CustomerRepository
 import com.group.so.data.repository.customer.CustomerRepositoryImpl
 import com.group.so.data.repository.item.ItemRepository
 import com.group.so.data.repository.item.ItemRepositoryImpl
+import com.group.so.data.repository.salesUnit.SalesUnitRepository
+import com.group.so.data.repository.salesUnit.SalesUnitRepositoryImpl
 import com.group.so.data.services.CategoryService
+import com.group.so.data.services.SalesUnitsService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.group.so.domain.LoginUseCase
@@ -54,12 +57,18 @@ fun configureDataModuleForTest(baseUrl: String) = module {
         createServiceForTest(factory = factory, baseUrl = baseUrl)
     }
 
+    single<SalesUnitsService> {
+        val factory = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        createServiceForTest(factory = factory, baseUrl = baseUrl)
+    }
+
     single {
         SessionManager(androidContext())
     }
 
     single<LoginRepository> { LoginRepositoryImpl(get(), get()) }
     single<CategoryRepository> { CategoryRepositoryImpl(get(), get()) }
+    single<SalesUnitRepository> { SalesUnitRepositoryImpl(get(), get()) }
     single<CustomerRepository> { CustomerRepositoryImpl(get(), get()) }
     single<ItemRepository> { ItemRepositoryImpl(get(), get()) }
 }
