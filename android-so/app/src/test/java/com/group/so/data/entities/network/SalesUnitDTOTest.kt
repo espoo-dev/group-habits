@@ -18,6 +18,5 @@ class SalesUnitDTOTest {
         val salesUnit: SalesUnit = salesUnitDTO.toModel()
 
         assert(salesUnit.name == salesUnitDTO.name)
-
     }
 }

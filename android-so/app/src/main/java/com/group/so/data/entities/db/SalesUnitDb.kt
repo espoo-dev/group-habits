@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.group.so.data.entities.model.SalesUnit
 
-
 @Entity(tableName = "salesUnit")
 data class SalesUnitDb(
     @PrimaryKey
@@ -21,4 +20,3 @@ fun List<SalesUnitDb>.toModel(): List<SalesUnit> =
     this.map {
         it.toModel()
     }
-
