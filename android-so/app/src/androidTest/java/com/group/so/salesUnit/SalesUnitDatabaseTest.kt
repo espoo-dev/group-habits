@@ -1,12 +1,13 @@
-package com.group.so
+package com.group.so.salesUnit
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.group.so.data.dao.CategoryDao
+import com.group.so.DbTest
+import com.group.so.data.dao.SalesUnitDao
 import com.group.so.data.database.ServiceOrderDatabase
-import com.group.so.data.entities.db.CategoryDb
+import com.group.so.data.entities.db.SalesUnitDb
 import junit.framework.Assert.assertFalse
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -18,9 +19,9 @@ import org.junit.runner.RunWith
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
-class CategoryDatabaseTest : DbTest() {
+class SalesUnitDatabaseTest : DbTest() {
 
-    private lateinit var dao: CategoryDao
+    private lateinit var dao: SalesUnitDao
     private lateinit var postDatabase: ServiceOrderDatabase
 
     @Before
@@ -29,7 +30,7 @@ class CategoryDatabaseTest : DbTest() {
         postDatabase = Room.inMemoryDatabaseBuilder(
             context, ServiceOrderDatabase::class.java
         ).build()
-        dao = postDatabase.dao
+        dao = postDatabase.daoSalesUnit
     }
 
     @After
@@ -39,38 +40,38 @@ class CategoryDatabaseTest : DbTest() {
     }
 
     @Test
-    fun `Should_Record_Category_In_Database_After`() {
+    fun `Should_Record_Sales_Unit_In_Database_After`() {
 
-        lateinit var result: List<CategoryDb>
+        lateinit var result: List<SalesUnitDb>
 
         runBlocking {
-            result = dao.listCategories().first()
+            result = dao.listSalesUnit().first()
         }
         assertTrue(result.isEmpty())
         runBlocking {
-            dao.saveAll(dbCategories)
-            result = dao.listCategories().first()
+            dao.saveAll(dbSalesUnit)
+            result = dao.listSalesUnit().first()
         }
         assertFalse(result.isEmpty())
     }
 
     @Test
-    fun `Should_ReturnCategoriesCorrectly_WhenReadFromDatabase`() {
-        lateinit var result: CategoryDb
+    fun `Should_ReturnSalesUnitCorrectly_WhenReadFromDatabase`() {
+        lateinit var result: SalesUnitDb
         runBlocking {
-            dao.saveAll(dbCategories)
-            result = dao.listCategories().first()[0]
+            dao.saveAll(dbSalesUnit)
+            result = dao.listSalesUnit().first()[0]
         }
         assertTrue(result.name == dbCategories[0].name)
     }
 
     @Test
     fun `ShouldClearDatabase_WhenInvokingClearDb`() {
-        lateinit var result: List<CategoryDb>
+        lateinit var result: List<SalesUnitDb>
         runBlocking {
-            dao.saveAll(dbCategories)
+            dao.saveAll(dbSalesUnit)
             dao.clearDb()
-            result = dao.listCategories().first()
+            result = dao.listSalesUnit().first()
         }
         assertTrue(result.isEmpty())
     }
