@@ -1,6 +1,5 @@
 package com.group.so.data.entities.network
 
-import com.group.so.core.data.NullToEmptyString
 import com.group.so.data.entities.db.CustomerDb
 import com.group.so.data.entities.model.Customer
 import com.squareup.moshi.Json
@@ -9,21 +8,16 @@ data class CustomerDTO(
     @Json(name = "id") @field:Json(name = "id")
     val id: Int,
 
-    @NullToEmptyString
     val name: String,
 
-    @NullToEmptyString
     @Json(name = "document_number") @field:Json(name = "document_number")
     val documentNumber: String,
 
-    @NullToEmptyString
     val phone: String,
 
-    @NullToEmptyString
     @Json(name = "state_inscription") @field:Json(name = "state_inscription")
     val stateInscription: String?,
 
-    @NullToEmptyString
     @Json(name = "customer_type") @field:Json(name = "customer_type")
     val customeType: String
 
@@ -34,7 +28,7 @@ data class CustomerDTO(
         documentNumber = documentNumber,
         phone = phone,
         stateInscription = stateInscription ?: "",
-        customerType = customeType
+        customerType = customeType ?: ""
     )
 
     fun toDb(): CustomerDb = CustomerDb(

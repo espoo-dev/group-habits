@@ -1,0 +1,86 @@
+[
+  {
+    "id": 4,
+    "extra_info": "some items 3",
+    "status": "budge",
+    "creation_date": null,
+    "conclusion_date": null,
+    "discount": 13.0,
+    "customer": {
+      "id": 17,
+      "name": "iury nogueira",
+      "document_number": "04590651564",
+      "phone": "88915484544",
+      "state_inscription": "",
+      "customer_type": "person"
+    },
+    "items": [
+      {
+        "id": 16,
+        "name": "teste serviço roanderson",
+        "extra_info": "ddffffggg",
+        "sale_price": 3000.0,
+        "purchase_price": 0.0,
+        "item_type": "service",
+        "category": null,
+        "sales_unit": null
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "extra_info": "some items 4",
+    "status": "budge",
+    "creation_date": "18/06/1991",
+    "conclusion_date": "19/06/2100",
+    "discount": 13.0,
+    "customer": {
+      "id": 17,
+      "name": "iury nogueira",
+      "document_number": "04590651564",
+      "phone": "88915484544",
+      "state_inscription": "",
+      "customer_type": "person"
+    },
+    "items": [
+      {
+        "id": 16,
+        "name": "teste serviço roanderson",
+        "extra_info": "ddffffggg",
+        "sale_price": 3000.0,
+        "purchase_price": 0.0,
+        "item_type": "service",
+        "category": null,
+        "sales_unit": null
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "extra_info": "2some items 4",
+    "status": "waiting_resources",
+    "creation_date": "28/06/1991",
+    "conclusion_date": "29/06/2100",
+    "discount": 213.0,
+    "customer": {
+      "id": 17,
+      "name": "iury nogueira",
+      "document_number": "04590651564",
+      "phone": "88915484544",
+      "state_inscription": "",
+      "customer_type": "person"
+    },
+    "items": [
+      {
+        "id": 16,
+        "name": "teste serviço roanderson",
+        "extra_info": "ddffffggg",
+        "sale_price": 3000.0,
+        "purchase_price": 0.0,
+        "item_type": "service",
+        "category": null,
+        "sales_unit": null
+      }
+    ]
+  }
+]
