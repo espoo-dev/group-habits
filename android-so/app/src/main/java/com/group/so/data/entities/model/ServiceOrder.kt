@@ -3,8 +3,6 @@
 package com.group.so.data.entities.model
 
 import android.os.Parcelable
-import com.group.so.data.entities.network.CustomerDTO
-import com.group.so.data.entities.network.ItemDTO
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
@@ -13,9 +11,9 @@ class ServiceOrder(
     val id: Int,
     val conclusionDate: String?,
     val creationDate: String?,
-    val customer: @RawValue CustomerDTO,
+    val customer: @RawValue Customer,
     val discount: Double,
     val extraInfo: String,
-    val items: @RawValue List<ItemDTO>,
+    val items: @RawValue List<Item>,
     val status: String
 ) : Parcelable
