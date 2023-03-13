@@ -4,8 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.group.so.data.entities.model.ServiceOrder
-import com.group.so.data.entities.network.CustomerDTO
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 @Entity(tableName = "service_order")
@@ -14,20 +14,20 @@ data class ServiceOrderDb(
     val id: Int,
     val conclusionDate: String?,
     val creationDate: String?,
-    val customer: CustomerDb,
+    val customer: CustomerDb?,
     val discount: Double,
     val extraInfo: String,
-    val items: List<ItemDb>,
+    val items: List<ItemDb>? = emptyList(),
     val status: String,
 ) {
     fun toModel(): ServiceOrder = ServiceOrder(
         id = id,
         conclusionDate = conclusionDate,
         creationDate = creationDate,
-        customer = customer.toModel(),
+        customer = customer?.toModel()!!,
         discount = discount,
         extraInfo = extraInfo,
-        items = items.toModel(),
+        items = emptyList(),
         status = status,
     )
 }
@@ -39,32 +39,32 @@ fun List<ServiceOrderDb>.toModel(): List<ServiceOrder> =
 
 class CustomerTypeConverter {
     @TypeConverter
-    fun fromString(string: String?): CustomerDTO? {
+    fun fromString(string: String?): CustomerDb? {
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        val jsonAdapter = moshi.adapter(CustomerDTO::class.java)
+        val jsonAdapter = moshi.adapter(CustomerDb::class.java)
         return jsonAdapter.fromJson(string)
     }
 
     @TypeConverter
-    fun toString(array: CustomerDTO?): String? {
+    fun toString(array: CustomerDb?): String? {
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        val jsonAdapter = moshi.adapter(CustomerDTO::class.java)
+        val jsonAdapter = moshi.adapter(CustomerDb::class.java)
         return jsonAdapter.toJson(array)
     }
 }
 
 class ItemsDbConverters {
+    private val moshi = Moshi.Builder().build()
+    private val itemsType = Types.newParameterizedType(List::class.java, ItemDb::class.java)
+    private val itemsAdapter = moshi.adapter<List<ItemDb>>(itemsType)
+
     @TypeConverter
-    fun fromString(string: String): Array<ItemDb>? {
-        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        val jsonAdapter = moshi.adapter(Array<ItemDb>::class.java)
-        return jsonAdapter.fromJson(string)
+    fun stringToItems(string: String): List<ItemDb> {
+        return itemsAdapter.fromJson(string).orEmpty()
     }
 
     @TypeConverter
-    fun toString(array: Array<ItemDb>): String? {
-        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        val jsonAdapter = moshi.adapter(Array<ItemDb>::class.java)
-        return jsonAdapter.toJson(array)
+    fun itemsToString(items: List<ItemDb>): String {
+        return itemsAdapter.toJson(items)
     }
 }
