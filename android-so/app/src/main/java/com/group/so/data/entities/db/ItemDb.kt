@@ -6,9 +6,11 @@ import androidx.room.TypeConverter
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.model.SalesUnit
+import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
+@JsonClass(generateAdapter = true)
 @Entity(tableName = "item")
 data class ItemDb(
     @PrimaryKey

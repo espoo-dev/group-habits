@@ -18,6 +18,7 @@ import com.group.so.data.services.CategoryService
 import com.group.so.data.services.CustomerService
 import com.group.so.data.services.ItemService
 import com.group.so.data.services.SalesUnitsService
+import com.group.so.data.services.ServiceOrderService
 import com.group.so.data.services.SessionManager
 import com.group.so.data.services.UserService
 import com.squareup.moshi.Moshi
@@ -47,6 +48,7 @@ object DataModule {
             single { ServiceOrderDatabase.getInstance(androidContext()).daoCustomer }
             single { ServiceOrderDatabase.getInstance(androidContext()).daoItem }
             single { ServiceOrderDatabase.getInstance(androidContext()).daoSalesUnit }
+            single { ServiceOrderDatabase.getInstance(androidContext()).daoServiceOrder }
         }
     }
 
@@ -111,6 +113,9 @@ object DataModule {
 
             single {
                 createService<SalesUnitsService>(get(), get())
+            }
+            single {
+                createService<ServiceOrderService>(get(), get())
             }
         }
     }

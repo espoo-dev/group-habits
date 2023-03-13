@@ -27,7 +27,7 @@ data class ServiceOrderDTOItem(
     val extraInfo: String,
 
     @Json(name = "items") @field:Json(name = "items")
-    val items: List<ItemDTO>,
+    val items: List<ItemDTO> = emptyList<ItemDTO>(),
 
     @Json(name = "status") @field:Json(name = "status")
     val status: String
@@ -36,10 +36,10 @@ data class ServiceOrderDTOItem(
         id = id,
         creationDate = creationDate ?: "",
         conclusionDate = conclusionDate ?: "",
-        customer = customer,
+        customer = customer.toModel(),
         discount = discount,
         extraInfo = extraInfo,
-        items = items,
+        items = items.toModel(),
         status = status
     )
 }
