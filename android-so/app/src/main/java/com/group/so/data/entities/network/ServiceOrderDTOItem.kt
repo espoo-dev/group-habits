@@ -64,4 +64,3 @@ fun List<ServiceOrderDTOItem>.toDb(): List<ServiceOrder> =
     this.map {
         it.toDb()
     }
-
