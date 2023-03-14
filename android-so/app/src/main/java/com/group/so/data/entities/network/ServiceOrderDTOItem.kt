@@ -2,6 +2,7 @@
 
 package com.group.so.data.entities.network
 
+import com.group.so.data.entities.db.ServiceOrderDb
 import com.group.so.data.entities.model.ServiceOrder
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -43,14 +44,14 @@ data class ServiceOrderDTOItem(
         status = status
     )
 
-    fun toDb(): ServiceOrder = ServiceOrder(
+    fun toDb(): ServiceOrderDb = ServiceOrderDb(
         id = id,
         creationDate = creationDate ?: "",
         conclusionDate = conclusionDate ?: "",
-        customer = customer.toModel(),
+        customer = customer.toDb(),
         discount = discount,
         extraInfo = extraInfo,
-        items = items.toModel(),
+        items = items.toDb(),
         status = status
     )
 }
@@ -60,7 +61,7 @@ fun List<ServiceOrderDTOItem>.toModel(): List<ServiceOrder> =
         it.toModel()
     }
 
-fun List<ServiceOrderDTOItem>.toDb(): List<ServiceOrder> =
+fun List<ServiceOrderDTOItem>.toDb(): List<ServiceOrderDb> =
     this.map {
         it.toDb()
     }

@@ -11,6 +11,8 @@ import com.group.so.data.repository.item.ItemRepository
 import com.group.so.data.repository.item.ItemRepositoryImpl
 import com.group.so.data.repository.salesUnit.SalesUnitRepository
 import com.group.so.data.repository.salesUnit.SalesUnitRepositoryImpl
+import com.group.so.data.repository.serviceOrders.ServiceOrderRepository
+import com.group.so.data.repository.serviceOrders.ServiceOrderRepositoryImpl
 import com.group.so.data.services.CategoryService
 import com.group.so.data.services.SalesUnitsService
 import com.group.so.data.services.SessionManager
@@ -71,6 +73,7 @@ fun configureDataModuleForTest(baseUrl: String) = module {
     single<SalesUnitRepository> { SalesUnitRepositoryImpl(get(), get()) }
     single<CustomerRepository> { CustomerRepositoryImpl(get(), get()) }
     single<ItemRepository> { ItemRepositoryImpl(get(), get()) }
+    single<ServiceOrderRepository> { ServiceOrderRepositoryImpl(get(), get()) }
 }
 
 fun configureDomainModuleForTest() = module {
