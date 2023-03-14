@@ -42,4 +42,26 @@ data class ServiceOrderDTOItem(
         items = items.toModel(),
         status = status
     )
+
+    fun toDb(): ServiceOrder = ServiceOrder(
+        id = id,
+        creationDate = creationDate ?: "",
+        conclusionDate = conclusionDate ?: "",
+        customer = customer.toModel(),
+        discount = discount,
+        extraInfo = extraInfo,
+        items = items.toModel(),
+        status = status
+    )
 }
+
+fun List<ServiceOrderDTOItem>.toModel(): List<ServiceOrder> =
+    this.map {
+        it.toModel()
+    }
+
+fun List<ServiceOrderDTOItem>.toDb(): List<ServiceOrder> =
+    this.map {
+        it.toDb()
+    }
+
