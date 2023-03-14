@@ -14,6 +14,8 @@ import com.group.so.data.repository.item.ItemRepository
 import com.group.so.data.repository.item.ItemRepositoryImpl
 import com.group.so.data.repository.salesUnit.SalesUnitRepository
 import com.group.so.data.repository.salesUnit.SalesUnitRepositoryImpl
+import com.group.so.data.repository.serviceOrders.ServiceOrderRepository
+import com.group.so.data.repository.serviceOrders.ServiceOrderRepositoryImpl
 import com.group.so.data.services.CategoryService
 import com.group.so.data.services.CustomerService
 import com.group.so.data.services.ItemService
@@ -77,6 +79,13 @@ object DataModule {
                 SalesUnitRepositoryImpl(
                     salesUnitsService = get(),
                     salesUnitDao = get()
+                )
+            }
+
+            single<ServiceOrderRepository> {
+                ServiceOrderRepositoryImpl(
+                    serviceOrder = get(),
+                    serviceOrderDao = get()
                 )
             }
         }
