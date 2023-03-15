@@ -4,6 +4,8 @@ package com.group.so.core.ui.components
 
 import androidx.compose.runtime.Composable
 import com.group.so.core.State
+import com.group.so.core.ui.components.generic.GenericError
+import com.group.so.core.ui.components.generic.GenericLoading
 
 @Composable
 fun <T : Any> AsyncData(

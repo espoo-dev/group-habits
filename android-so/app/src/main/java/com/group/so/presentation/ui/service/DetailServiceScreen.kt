@@ -29,10 +29,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
-import com.group.so.core.ui.components.ErrorField
-import com.group.so.core.ui.components.GenericLoading
-import com.group.so.core.ui.components.PrimaryButton
-import com.group.so.core.ui.components.TopBarWhite
+import com.group.so.core.ui.components.buttons.PrimaryButton
+import com.group.so.core.ui.components.fields.ErrorField
+import com.group.so.core.ui.components.generic.GenericLoading
+import com.group.so.core.ui.components.toolbars.custom.TopBarWhite
 import com.group.so.core.ui.components.validations.TextState
 import com.group.so.data.entities.model.Item
 import com.group.so.presentation.ui.Routes

@@ -40,9 +40,9 @@ import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
 import com.group.so.core.ui.components.CustomRadioGroup
-import com.group.so.core.ui.components.ErrorField
-import com.group.so.core.ui.components.GenericLoading
-import com.group.so.core.ui.components.PrimaryButton
+import com.group.so.core.ui.components.buttons.PrimaryButton
+import com.group.so.core.ui.components.fields.ErrorField
+import com.group.so.core.ui.components.generic.GenericLoading
 import com.group.so.core.ui.components.validations.TextState
 import com.group.so.data.CustomerCustomType
 import com.group.so.presentation.ui.Routes

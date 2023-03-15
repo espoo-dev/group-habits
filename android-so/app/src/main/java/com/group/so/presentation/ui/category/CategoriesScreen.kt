@@ -13,15 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
-import com.group.so.core.ui.components.CustomTopAppBar
-import com.group.so.core.ui.components.SearchAppBarState
-import com.group.so.core.ui.components.SharedViewModel
+import com.group.so.core.ui.components.toolbars.SearchAppBarState
+import com.group.so.core.ui.components.toolbars.SharedViewModel
+import com.group.so.core.ui.components.toolbars.custom.CustomTopAppBarWhite
 import com.group.so.data.entities.model.Category
 import com.group.so.presentation.ui.category.components.CategoryContent
 import org.koin.androidx.compose.koinViewModel
@@ -30,6 +30,7 @@ import org.koin.androidx.compose.koinViewModel
 @ExperimentalMaterialApi
 @Composable
 fun CategoryListScreen(
+    navController: NavController,
     categoryViewModel: CategoryViewModel,
     categoryListState: State<List<Category>>,
     onNewCategoryClick: () -> Unit,
@@ -47,15 +48,17 @@ fun CategoryListScreen(
     val searchTextState: String by sharedViewModel.searchTextState
 
     Scaffold(scaffoldState = scaffoldState, topBar = {
-        CustomTopAppBar(
+        CustomTopAppBarWhite(
+            navController = navController,
             titleToolbar = stringResource(id = R.string.title_toolbar_categories),
+            placeHolder = R.string.search_categories,
             sharedViewModel = sharedViewModel,
             searchAppBarState = searchAppBarState,
             searchTextState = searchTextState,
             onSubmitSearch = {
                 categoryViewModel.getCategoriesByName(it)
             },
-            moreAction = {}
+
         )
     }, floatingActionButton = {
             ExtendedFloatingActionButton(

@@ -1,6 +1,6 @@
 @file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
-package com.group.so.core.ui.components
+package com.group.so.core.ui.components.generic
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,6 +21,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.group.so.R
+import com.group.so.core.ui.components.ErrorEntity
 import com.group.so.ui.theme.SOTheme
 
 @Composable

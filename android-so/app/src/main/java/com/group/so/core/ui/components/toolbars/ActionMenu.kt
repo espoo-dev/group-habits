@@ -1,6 +1,6 @@
 @file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
-package com.group.so.core.ui.components
+package com.group.so.core.ui.components.toolbars
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton

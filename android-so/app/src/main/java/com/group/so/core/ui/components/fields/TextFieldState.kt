@@ -1,4 +1,4 @@
-package com.group.so.core.ui.components
+package com.group.so.core.ui.components.fields
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

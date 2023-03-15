@@ -1,6 +1,6 @@
 @file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
-package com.group.so.core.ui.components
+package com.group.so.core.ui.components.fields
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
