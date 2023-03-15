@@ -55,6 +55,10 @@
 
     <!--Search bar-->
     <string name="search">Pesquisar</string>
+    <string name="search_categories">Ex: eletrodomésticos</string>
+    <string name="search_customer">Ex: Ex: José</string>
+    <string name="search_product">Ex: Ar condicionado</string>
+    <string name="search_service">Ex: Manutenção de computadorest</string>
     <string name="search_icon">pequisar icon</string>
     <string name="close_icon">fechar icon</string>
     <string name="title_fab_new_category">Nova Categoria</string>

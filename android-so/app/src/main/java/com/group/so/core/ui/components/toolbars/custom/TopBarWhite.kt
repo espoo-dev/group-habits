@@ -1,6 +1,6 @@
 @file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
-package com.group.so.core.ui.components
+package com.group.so.core.ui.components.toolbars.custom
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.group.so.R
+import com.group.so.core.ui.components.toolbars.ActionMenu
 import com.group.so.ui.theme.Cyan
 import com.group.so.ui.theme.PrimaryColor
 
@@ -34,7 +35,8 @@ fun TopBarWhite(title: String, navController: NavController, onActionClicked: ()
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            onClick = { navController.popBackStack() }, modifier = Modifier.background(Cyan, RoundedCornerShape(8.dp))
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.background(Cyan, RoundedCornerShape(8.dp))
         ) {
             Icon(painterResource(id = R.drawable.ic_back), contentDescription = "Menu")
         }

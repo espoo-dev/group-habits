@@ -1,6 +1,6 @@
 @file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
-package com.group.so.core.ui.components
+package com.group.so.core.ui.components.toolbars.standard
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -39,6 +39,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.group.so.R
+import com.group.so.core.ui.components.toolbars.SearchAppBarState
+import com.group.so.core.ui.components.toolbars.SharedViewModel
+import com.group.so.core.ui.components.toolbars.TrailingIconState
 
 @ExperimentalMaterialApi
 @Composable

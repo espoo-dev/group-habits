@@ -136,8 +136,6 @@ dependencies {
     //Animations
     implementation "com.airbnb.android:lottie-compose:$lottie_compose"
 
-
-
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$ext_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"

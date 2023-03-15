@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
@@ -23,16 +22,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
-import com.group.so.core.ui.components.ErrorField
-import com.group.so.core.ui.components.GenericLoading
-import com.group.so.core.ui.components.PrimaryButton
-import com.group.so.core.ui.components.TopBarWhite
+import com.group.so.core.ui.components.buttons.PrimaryButton
+import com.group.so.core.ui.components.fields.ErrorField
+import com.group.so.core.ui.components.fields.MoneyField
+import com.group.so.core.ui.components.generic.GenericLoading
+import com.group.so.core.ui.components.toolbars.custom.TopBarWhite
 import com.group.so.core.ui.components.validations.TextState
 import com.group.so.presentation.ui.Routes
 
@@ -129,20 +128,21 @@ fun AddScreenService(
                 )
                 extraInfoTextState.error?.let { ErrorField(it) }
 
-                OutlinedTextField(
-                    value = salePriceTextState.text,
-                    onValueChange = {
-                        salePriceTextState.text = it
-                        salePriceTextState.validate()
+                MoneyField(
+                    labelText = stringResource(R.string.lbl_field_price_service),
+                    textColor = MaterialTheme.colors.primary,
+                    valueText = salePriceTextState.text,
+                    error = salePriceTextState.error,
+                    iconColor = MaterialTheme.colors.primary,
+                    iconClear = salePriceTextState.text.isNotBlank(),
+                    clearText = {
+                        salePriceTextState.text = ""
                     },
-                    label = { Text(stringResource(R.string.lbl_field_price_service)) },
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    modifier = Modifier
-                        .padding(top = 16.dp)
-                        .fillMaxWidth()
-                )
-                salePriceTextState.error?.let { ErrorField(it) }
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    salePriceTextState.text = it
+                    salePriceTextState.validate()
+                }
 
                 PrimaryButton(
                     text = stringResource(R.string.title_button_register_service),

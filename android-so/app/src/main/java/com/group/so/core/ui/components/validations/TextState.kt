@@ -1,6 +1,6 @@
 package com.group.so.core.ui.components.validations
 
-import com.group.so.core.ui.components.TextFieldState
+import com.group.so.core.ui.components.fields.TextFieldState
 
 const val TEXT_ERROR = "Text is invalid."
 const val MAX_LENGTH_TEXT = 4

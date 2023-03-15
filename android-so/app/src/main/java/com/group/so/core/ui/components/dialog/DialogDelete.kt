@@ -1,6 +1,14 @@
-@file:Suppress("MaxLineLength", "MagicNumber", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "MagicNumber", "LongParameterList")
+@file:Suppress(
+    "MaxLineLength",
+    "MagicNumber",
+    "LongMethod",
+    "FunctionParameterNaming",
+    "FunctionNaming",
+    "MagicNumber",
+    "LongParameterList"
+)
 
-package com.group.so.core.ui.components
+package com.group.so.core.ui.components.dialog
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

@@ -68,6 +68,7 @@ fun ScreenMain() {
             val categoriesListUiState by categoryViewModel.categoryState.collectAsStateWithLifecycle()
 
             CategoryListScreen(
+                navController,
                 categoryViewModel,
                 categoryListState = categoriesListUiState,
                 onNewCategoryClick = {
@@ -86,6 +87,7 @@ fun ScreenMain() {
             val customersListUiState by customerViewModel.customerListState.collectAsStateWithLifecycle()
 
             CustomerScreen(
+                navController = navController,
                 customerViewModel = customerViewModel,
                 customerListState = customersListUiState,
                 onNewCustomerClick = {
@@ -128,6 +130,7 @@ fun ScreenMain() {
             val servicesListUiState by serviceViewModel.itemListState.collectAsStateWithLifecycle()
 
             ServiceScreen(
+                navController = navController,
                 serviceViewModel = serviceViewModel,
                 serviceListState = servicesListUiState,
                 onNewServiceClick = {
@@ -173,6 +176,7 @@ fun ScreenMain() {
             val productListUiState by productViewModel.productListState.collectAsStateWithLifecycle()
 
             ProductScreen(
+                navController = navController,
                 productViewModel = productViewModel,
                 productListState = productListUiState,
                 onNewProductClick = {

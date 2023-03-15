@@ -23,12 +23,8 @@
     <string name="subtitle_menu_profile">View and update your data in a simple way</string>
 
 
-
-
-
     <!--SubMenu Home-->
     <string name="desc_quote_of_the_day">Have a productive day</string>
-
 
 
     <string name="title_submenu_home">How can we help you?</string>
@@ -48,17 +44,16 @@
     <string name="desc_submenu_home_category">Register your categories</string>
 
 
-
-
-
-
-
     <!-- Generic messages -->
     <string name="msg_generic_error">Ops! Something went wrong…</string>
     <string name="msg_loading">Please wait…</string>
 
     <!--Search bar-->
     <string name="search">Search</string>
+    <string name="search_categories">Ex: Home appliances</string>
+    <string name="search_customer">Ex: Ex: Joseph</string>
+    <string name="search_product">Ex: Air conditioning</string>
+    <string name="search_service">Ex: Computer maintenance</string>
     <string name="search_icon">search icon</string>
     <string name="close_icon">close icon</string>
 
@@ -119,7 +114,6 @@
     <string name="tv_customer_type_business">Business</string>
 
 
-
     <!--Service-->
     <string name="title_toolbar_service">Services</string>
     <string name="title_fab_new_service">New Service</string>
@@ -137,7 +131,6 @@
     <string name="lbl_field_extra_info">Extra Info</string>
     <string name="lbl_field_name_service">Name Service</string>
     <string name="lbl_field_price_service">Service price</string>
-
 
 
     <!--Product-->

@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
-import com.group.so.core.ui.components.EmailField
-import com.group.so.core.ui.components.PasswordField
-import com.group.so.core.ui.components.PrimaryButton
-import com.group.so.core.ui.components.SecondaryButton
+import com.group.so.core.ui.components.buttons.PrimaryButton
+import com.group.so.core.ui.components.buttons.SecondaryButton
+import com.group.so.core.ui.components.fields.EmailField
+import com.group.so.core.ui.components.fields.PasswordField
 import com.group.so.data.entities.model.User
 import com.group.so.presentation.ui.Routes
 import com.group.so.presentation.ui.login.LoginViewModel

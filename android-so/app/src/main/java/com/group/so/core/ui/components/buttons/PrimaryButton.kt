@@ -7,7 +7,7 @@
     "EmptyIfBlock"
 )
 
-package com.group.so.core.ui.components
+package com.group.so.core.ui.components.buttons
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.PaddingValues
