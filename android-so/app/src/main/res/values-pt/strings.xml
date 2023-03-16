@@ -14,6 +14,12 @@
 
     <string name="tv_money">R$: %s</string>
 
+    <!-- Calendar-->
+    <string name="label_title_calendar">Selecione a data</string>
+    <string name="label_text_btn_cancel">Cancelar</string>
+    <string name="label_text_btn_ok">Ok</string>
+    <string name="label_text_date">Data</string>
+
     <string name="desc_quote_of_the_day">Tenha um dia produtivo</string>
 
     <!--Menu Home-->
