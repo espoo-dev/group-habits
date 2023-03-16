@@ -2,8 +2,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: postgres
-  password: postgres
+  username: edimo
+  # password: postgres
+  password:
   host: <%= ENV['DEV_DATABASE_HOST'] || 'db' %>
   port: 5432
 
