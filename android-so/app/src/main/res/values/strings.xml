@@ -15,6 +15,13 @@
 
     <string name="tv_money">$: %s</string>
 
+
+    <!-- Calendar-->
+    <string name="label_title_calendar">Select date</string>
+    <string name="label_text_btn_cancel">Cancel</string>
+    <string name="label_text_btn_ok">Ok</string>
+    <string name="label_text_date">Date</string>
+
     <!--Menu Home-->
     <string name="title_menu_service_order">Order Service</string>
     <string name="subtitle_menu_service_order">Create your work orders</string>
