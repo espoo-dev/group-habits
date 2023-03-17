@@ -153,4 +153,19 @@
 
     <string name="lbl_field_search_categories_product">Buscar Categoria</string>
 
+
+    <!--Order Service-->
+    <string name="title_toolbar_order_service">Ordem de Serviços</string>
+    <string name="title_fab_new_order_service">Nova ordem de serviço</string>
+    <string name="msg_empty_order_service_list">Nenhuma ordem de serviço cadastrada no momento</string>
+    <string name="title_toolbar_add_new_order_service">Add new order service</string>
+    <string name="search_order_service">Procure sua ordem de serviço</string>
+    <string name="tabs_order_service_summary">Resumo</string>
+    <string name="tabs_order_service_items">Itens</string>
+    <string name="title_fab_new_item_order_service">Adicionar Item</string>
+    <string name="fab_sub_menu_products">Produtos</string>
+    <string name="fab_sub_menu_services">Serviços</string>
+    <string name="fab_menu_item">Adicionar Item</string>
+
+
 </resources>

@@ -21,7 +21,7 @@ fun BodyHome(horizontalPadding: Dp, navController: NavHostController) {
             .padding(horizontal = horizontalPadding)
     ) {
         InformationUser()
-        MenuHome()
+        MenuHome(navController)
         HeaderSubMenu()
         SubMenuHome(navController)
     }

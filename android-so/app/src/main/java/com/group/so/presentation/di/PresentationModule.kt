@@ -1,6 +1,6 @@
 package com.group.so.presentation.di
 
-import com.group.so.core.ui.components.toolbars.SharedViewModel
+import com.group.so.core.presentation.components.toolbars.SharedViewModel
 import com.group.so.presentation.ui.category.CategoryViewModel
 import com.group.so.presentation.ui.customer.CustomerViewModel
 import com.group.so.presentation.ui.login.LoginViewModel

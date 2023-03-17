@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.group.so.R
+import com.group.so.core.toMoney
 import com.group.so.data.entities.model.Item
 import com.group.so.ui.theme.MoneyColor
 import com.group.so.ui.theme.Poppins
@@ -35,7 +36,7 @@ fun ProductBuildInfo(
         )
 
         Text(
-            text = stringResource(R.string.tv_money, product.salePrice),
+            text = stringResource(R.string.tv_money, product.salePrice.toMoney()),
             style = MaterialTheme.typography.subtitle1,
             fontFamily = Poppins,
             color = MoneyColor,

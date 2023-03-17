@@ -16,8 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.group.so.core.State
-import com.group.so.core.ui.components.AsyncData
-import com.group.so.core.ui.components.generic.GenericError
+import com.group.so.core.presentation.components.AsyncData
+import com.group.so.core.presentation.components.generic.GenericError
 import com.group.so.data.entities.model.Category
 import com.group.so.presentation.ui.category.CategoryViewModel
 

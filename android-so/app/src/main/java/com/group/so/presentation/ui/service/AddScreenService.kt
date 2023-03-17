@@ -27,13 +27,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
-import com.group.so.core.ui.components.buttons.PrimaryButton
-import com.group.so.core.ui.components.fields.ErrorField
-import com.group.so.core.ui.components.fields.MoneyField
-import com.group.so.core.ui.components.generic.GenericLoading
-import com.group.so.core.ui.components.toolbars.custom.TopBarWhite
-import com.group.so.core.ui.components.validations.TextState
-import com.group.so.presentation.ui.Routes
+import com.group.so.core.presentation.Routes
+import com.group.so.core.presentation.components.buttons.PrimaryButton
+import com.group.so.core.presentation.components.fields.ErrorField
+import com.group.so.core.presentation.components.fields.MoneyField
+import com.group.so.core.presentation.components.generic.GenericLoading
+import com.group.so.core.presentation.components.toolbars.custom.TopBarWhite
+import com.group.so.core.presentation.components.validations.TextState
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

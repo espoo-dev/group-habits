@@ -162,4 +162,17 @@
 
     <string name="lbl_field_search_categories_product">Search category</string>
 
+
+    <!--Order Service-->
+    <string name="title_toolbar_order_service">Order Services</string>
+    <string name="title_fab_new_order_service">New Order Service</string>
+    <string name="msg_empty_order_service_list">No Order services registered at the moment</string>
+    <string name="title_toolbar_add_new_order_service">Add new order service</string>
+    <string name="search_order_service">Search Order Service</string>
+    <string name="tabs_order_service_summary">Summary</string>
+    <string name="tabs_order_service_items">Itens</string>
+    <string name="title_fab_new_item_order_service">Add Item</string>
+    <string name="fab_sub_menu_products">Products</string>
+    <string name="fab_sub_menu_services">Services</string>
+    <string name="fab_menu_item">Add item</string>
 </resources>
