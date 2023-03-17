@@ -60,31 +60,31 @@ fun CategoryListScreen(
                 categoryViewModel.getCategoriesByName(it)
             },
 
-            )
-    }, floatingActionButton = {
-        ExtendedFloatingActionButton(
-
-            text = {
-                Text(
-                    text = stringResource(R.string.title_fab_new_category),
-                    color = Color.White
-                )
-            },
-            onClick = {
-                openDialog.value = true
-                onNewCategoryClick
-            },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
-                    contentDescription = stringResource(
-                        id = R.string.cd_new_category
-                    ),
-                    tint = Color.White
-                )
-            }
         )
-    }) {
+    }, floatingActionButton = {
+            ExtendedFloatingActionButton(
+
+                text = {
+                    Text(
+                        text = stringResource(R.string.title_fab_new_category),
+                        color = Color.White
+                    )
+                },
+                onClick = {
+                    openDialog.value = true
+                    onNewCategoryClick
+                },
+                icon = {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
+                        contentDescription = stringResource(
+                            id = R.string.cd_new_category
+                        ),
+                        tint = Color.White
+                    )
+                }
+            )
+        }) {
 
         CategoryNewScreen(
             categoryViewModel,

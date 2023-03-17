@@ -59,7 +59,7 @@ fun ServiceScreen(
         )
     }, floatingActionButton = {
             ExtendedFloatingActionButton(
-                text = { Text(text = stringResource(R.string.title_fab_new_service),color = Color.White) },
+                text = { Text(text = stringResource(R.string.title_fab_new_service), color = Color.White) },
                 onClick = {
                     onNewServiceClick()
                 },

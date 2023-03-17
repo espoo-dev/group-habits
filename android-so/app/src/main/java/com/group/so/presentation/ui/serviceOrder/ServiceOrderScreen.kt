@@ -46,28 +46,28 @@ fun ServiceOrderScreen(
             onSubmitSearch = {
             },
 
-            )
-    }, floatingActionButton = {
-        ExtendedFloatingActionButton(
-            text = {
-                Text(
-                    text = stringResource(R.string.title_fab_new_order_service),
-                    color = Color.White
-                )
-            },
-            onClick = {
-                onNewServiceClick()
-            },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
-                    contentDescription = "",
-                    tint = Color.White
-
-                )
-            }
         )
-    }) {
+    }, floatingActionButton = {
+            ExtendedFloatingActionButton(
+                text = {
+                    Text(
+                        text = stringResource(R.string.title_fab_new_order_service),
+                        color = Color.White
+                    )
+                },
+                onClick = {
+                    onNewServiceClick()
+                },
+                icon = {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
+                        contentDescription = "",
+                        tint = Color.White
+
+                    )
+                }
+            )
+        }) {
         println(it)
     }
 }

@@ -55,27 +55,27 @@ fun ProductScreen(
                 productViewModel.fetchProductsByName(it)
             },
 
-            )
-    }, floatingActionButton = {
-        ExtendedFloatingActionButton(
-            text = {
-                Text(
-                    text = stringResource(R.string.title_fab_new_product),
-                    color = Color.White
-                )
-            },
-            onClick = {
-                onNewProductClick()
-            },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
-                    contentDescription = "",
-                    tint = Color.White
-                )
-            }
         )
-    }) {
+    }, floatingActionButton = {
+            ExtendedFloatingActionButton(
+                text = {
+                    Text(
+                        text = stringResource(R.string.title_fab_new_product),
+                        color = Color.White
+                    )
+                },
+                onClick = {
+                    onNewProductClick()
+                },
+                icon = {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
+                        contentDescription = "",
+                        tint = Color.White
+                    )
+                }
+            )
+        }) {
         ProductContent(it, productListState, reloadProducts, onProductClick, onDeleteProduct)
     }
 }
