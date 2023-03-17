@@ -16,8 +16,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.group.so.R
 import com.group.so.core.State
+import com.group.so.core.presentation.Routes
 import com.group.so.data.entities.model.User
-import com.group.so.presentation.ui.Routes
 import com.group.so.presentation.ui.login.components.LoginContent
 
 @Composable

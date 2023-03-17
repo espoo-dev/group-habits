@@ -29,6 +29,7 @@ android {
 
     buildTypes {
         debug {
+            minifyEnabled false
             testCoverageEnabled true
         }
         release {
@@ -115,7 +116,9 @@ dependencies {
     //Dependency Injection
     implementation "io.insert-koin:koin-androidx-compose:$koin_compose"
 
-
+    implementation("com.google.accompanist:accompanist-pager:0.28.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.27.1")
+    //implementation 'com.github.iamageo:MultiFab:1.0.6'
 
 
     // Room

@@ -17,7 +17,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.group.so.core.ui.components.dialog.DialogDelete
+import com.group.so.core.presentation.components.dialog.DialogDelete
 import com.group.so.data.entities.model.Customer
 import kotlinx.coroutines.launch
 

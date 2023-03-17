@@ -1,4 +1,5 @@
 @file:Suppress("MagicNumber")
+
 package com.group.so.ui.theme
 
 import androidx.compose.ui.graphics.Color
@@ -11,9 +12,13 @@ import androidx.compose.ui.graphics.Color
 val PrimaryColor = Color(0xFF3700B3)
 val BackgroundColor = Color(0xFF6200EE)
 val LightTextColor = Color(0xFF758684)
-val SecondaryColor = Color(0xFFFDA858)
+
+//val SecondaryColor = Color(0xFFFDA858)
+val SecondaryColor = Color(0xFF9747FF)
 val PlaceholderColor = Color(0xFFE5E5E5)
 val LightPrimaryColor = Color(0xFFFFF6EE)
+
+val AccentColor = Color(0xFF59EF68)
 
 val MoneyColor = Color(0xFF388E3C)
 

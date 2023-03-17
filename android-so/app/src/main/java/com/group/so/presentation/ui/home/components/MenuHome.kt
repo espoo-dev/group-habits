@@ -14,11 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.group.so.R
+import com.group.so.core.presentation.Routes
 import com.group.so.ui.theme.PrimaryColor
 
 @Composable
-fun MenuHome() {
+fun MenuHome(navController: NavController) {
     Spacer(modifier = Modifier.height(24.dp))
     Row(
         Modifier
@@ -32,7 +34,9 @@ fun MenuHome() {
             subtitle = stringResource(R.string.subtitle_menu_service_order),
             modifier = Modifier
                 .weight(1f)
-                .clickable { }
+                .clickable {
+                    navController.navigate(Routes.ServiceOrder.route)
+                }
         )
         Spacer(modifier = Modifier.width(8.dp))
         BigButton(

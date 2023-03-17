@@ -18,6 +18,7 @@ import com.group.so.core.Query
 import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.core.ZERO
+import com.group.so.core.toFormat
 import com.group.so.core.toMoney
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Category
@@ -276,17 +277,19 @@ class ProductViewModel(
     }
 
     fun calculateProfitProduct(salePrice: Double, purchasePrice: Double): String {
+
         val totalProfitProduct = salePrice - purchasePrice
         val totalProfitPercentage = ((totalProfitProduct / salePrice) * HUNDRED)
         var totalProfitPercentageLabel =
             if (totalProfitPercentage < ZERO) ZERO else totalProfitPercentage
 
         totalProfit.value = totalProfitProduct
+
         return buildString {
             append("Lucro:  ")
             append(totalProfitProduct.toMoney())
             append("/ ")
-            append(totalProfitPercentageLabel)
+            append(totalProfitPercentageLabel.toDouble().toFormat())
             append("%")
         }
     }

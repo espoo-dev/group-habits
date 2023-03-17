@@ -23,9 +23,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.group.so.R
-import com.group.so.core.ui.components.buttons.PrimaryButton
-import com.group.so.core.ui.components.buttons.SecondaryButton
-import com.group.so.core.ui.components.fields.EmailField
+import com.group.so.core.presentation.components.buttons.PrimaryButton
+import com.group.so.core.presentation.components.buttons.SecondaryButton
+import com.group.so.core.presentation.components.fields.EmailField
 import com.group.so.presentation.ui.login.components.EmailState
 import com.group.so.ui.theme.Poppins
 import com.group.so.ui.theme.PrimaryColor

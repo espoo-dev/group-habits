@@ -26,9 +26,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.group.so.R
-import com.group.so.core.ui.components.autocomplete.AutoCompleteBox
-import com.group.so.core.ui.components.autocomplete.utils.AutoCompleteSearchBarTag
-import com.group.so.core.ui.components.searchbar.TextSearchBar
+import com.group.so.core.presentation.components.autocomplete.AutoCompleteBox
+import com.group.so.core.presentation.components.autocomplete.utils.AutoCompleteSearchBarTag
+import com.group.so.core.presentation.components.searchbar.TextSearchBar
 import com.group.so.data.entities.model.Category
 
 @ExperimentalAnimationApi

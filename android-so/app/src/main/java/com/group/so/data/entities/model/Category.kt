@@ -1,6 +1,6 @@
 package com.group.so.data.entities.model
 
-import com.group.so.core.ui.components.autocomplete.AutoCompleteEntity
+import com.group.so.core.presentation.components.autocomplete.AutoCompleteEntity
 import java.util.Locale
 
 class Category(

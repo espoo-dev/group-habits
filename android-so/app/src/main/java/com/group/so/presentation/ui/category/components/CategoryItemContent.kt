@@ -32,7 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.group.so.core.ui.components.dialog.DialogDelete
+import com.group.so.core.presentation.components.dialog.DialogDelete
 import com.group.so.data.entities.model.Category
 import com.group.so.presentation.ui.category.CategoryEditScreen
 import com.group.so.presentation.ui.category.CategoryViewModel

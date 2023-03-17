@@ -1,3 +1,5 @@
+@file:Suppress("MaxLineLength", "ImplicitDefaultLocale", "TooManyFunctions", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+
 package com.group.so.core
 
 import java.text.NumberFormat
@@ -21,3 +23,11 @@ fun Double?.isPositive() = this.orZero() > ZERO.toDouble()
 fun Double?.toMoney(): String {
     return NumberFormat.getCurrencyInstance(Locale.getDefault()).format(this)
 }
+
+fun Double?.toFormat(): String {
+    return String.format("%.2f", this)
+}
+
+fun Boolean?.orFalse() = this ?: false
+
+fun Boolean?.orTrue() = this ?: true

@@ -13,15 +13,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
-import com.group.so.core.ui.components.toolbars.SearchAppBarState
-import com.group.so.core.ui.components.toolbars.SharedViewModel
-import com.group.so.core.ui.components.toolbars.custom.CustomTopAppBarWhite
+import com.group.so.core.presentation.components.toolbars.SearchAppBarState
+import com.group.so.core.presentation.components.toolbars.SharedViewModel
+import com.group.so.core.presentation.components.toolbars.custom.CustomTopAppBarWhite
 import com.group.so.data.entities.model.Category
 import com.group.so.presentation.ui.category.components.CategoryContent
 import org.koin.androidx.compose.koinViewModel
@@ -59,24 +60,31 @@ fun CategoryListScreen(
                 categoryViewModel.getCategoriesByName(it)
             },
 
-        )
-    }, floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text(text = stringResource(R.string.title_fab_new_category)) },
-                onClick = {
-                    openDialog.value = true
-                    onNewCategoryClick
-                },
-                icon = {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
-                        contentDescription = stringResource(
-                            id = R.string.cd_new_category
-                        )
-                    )
-                }
             )
-        }) {
+    }, floatingActionButton = {
+        ExtendedFloatingActionButton(
+
+            text = {
+                Text(
+                    text = stringResource(R.string.title_fab_new_category),
+                    color = Color.White
+                )
+            },
+            onClick = {
+                openDialog.value = true
+                onNewCategoryClick
+            },
+            icon = {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
+                    contentDescription = stringResource(
+                        id = R.string.cd_new_category
+                    ),
+                    tint = Color.White
+                )
+            }
+        )
+    }) {
 
         CategoryNewScreen(
             categoryViewModel,

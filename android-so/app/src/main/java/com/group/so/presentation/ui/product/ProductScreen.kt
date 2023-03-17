@@ -12,15 +12,16 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.navigation.NavController
 import com.group.so.R
 import com.group.so.core.State
-import com.group.so.core.ui.components.toolbars.SearchAppBarState
-import com.group.so.core.ui.components.toolbars.SharedViewModel
-import com.group.so.core.ui.components.toolbars.custom.CustomTopAppBarWhite
+import com.group.so.core.presentation.components.toolbars.SearchAppBarState
+import com.group.so.core.presentation.components.toolbars.SharedViewModel
+import com.group.so.core.presentation.components.toolbars.custom.CustomTopAppBarWhite
 import com.group.so.data.entities.model.Item
 import com.group.so.presentation.ui.product.components.ProductContent
 import org.koin.androidx.compose.koinViewModel
@@ -54,21 +55,27 @@ fun ProductScreen(
                 productViewModel.fetchProductsByName(it)
             },
 
-        )
-    }, floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text(text = stringResource(R.string.title_fab_new_product)) },
-                onClick = {
-                    onNewProductClick()
-                },
-                icon = {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
-                        contentDescription = ""
-                    )
-                }
             )
-        }) {
+    }, floatingActionButton = {
+        ExtendedFloatingActionButton(
+            text = {
+                Text(
+                    text = stringResource(R.string.title_fab_new_product),
+                    color = Color.White
+                )
+            },
+            onClick = {
+                onNewProductClick()
+            },
+            icon = {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_add),
+                    contentDescription = "",
+                    tint = Color.White
+                )
+            }
+        )
+    }) {
         ProductContent(it, productListState, reloadProducts, onProductClick, onDeleteProduct)
     }
 }
