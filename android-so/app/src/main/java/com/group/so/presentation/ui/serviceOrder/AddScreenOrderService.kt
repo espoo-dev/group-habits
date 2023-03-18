@@ -1,4 +1,4 @@
-@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress("UnusedPrivateMember", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
 package com.group.so.presentation.ui.serviceOrder
 
@@ -7,12 +7,10 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,6 +22,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.LeadingIconTab
 import androidx.compose.material.MaterialTheme
@@ -33,14 +32,18 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -50,30 +53,17 @@ import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import com.group.so.R
 import com.group.so.core.ZERO
+import com.group.so.core.presentation.components.fields.ErrorField
 import com.group.so.core.presentation.components.multifab.FabIcon
 import com.group.so.core.presentation.components.multifab.FabOption
 import com.group.so.core.presentation.components.multifab.MultiFabItem
 import com.group.so.core.presentation.components.multifab.MultiFloatingActionButton
-import com.group.so.core.presentation.components.toolbars.custom.TopBarWhite
+import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.presentation.ui.serviceOrder.model.TabItem
 import com.group.so.ui.theme.AccentColor
 import com.group.so.ui.theme.SecondaryColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import androidx.compose.material3.*
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.res.painterResource
-import com.group.so.core.State
-import com.group.so.core.presentation.Routes
-import com.group.so.core.presentation.components.AsyncData
-import com.group.so.core.presentation.components.buttons.PrimaryButton
-import com.group.so.core.presentation.components.fields.ErrorField
-import com.group.so.core.presentation.components.fields.MoneyField
-import com.group.so.core.presentation.components.generic.GenericError
-import com.group.so.core.presentation.components.validations.TextState
-import com.group.so.presentation.ui.product.components.AutoCompleteCategory
-import com.group.so.ui.theme.Cyan
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(
@@ -92,7 +82,6 @@ fun AddScreenOrderService(
 
     // Coroutine scope for scroll pager
     val coroutineScope = rememberCoroutineScope()
-
 
     val pagerState = rememberPagerState(initialPage = ZERO)
 
@@ -258,7 +247,7 @@ fun Tab1(scrollBehavior: TopAppBarScrollBehavior) {
         Divider(
             color = Color.Gray,
             modifier = Modifier
-                .fillMaxWidth()  //fill the max height
+                .fillMaxWidth() // fill the max height
                 .width(1.dp)
         )
         Spacer(modifier = Modifier.size(30.dp))
@@ -274,11 +263,10 @@ fun Tab1(scrollBehavior: TopAppBarScrollBehavior) {
                 Text("2")
             }
 
-
             Divider(
                 color = Color.Gray,
                 modifier = Modifier
-                    .height(50.dp)  //fill the max height
+                    .height(50.dp) // fill the max height
                     .width(1.dp)
             )
             Text("Produto(s)")
@@ -300,7 +288,7 @@ fun Tab1(scrollBehavior: TopAppBarScrollBehavior) {
             Divider(
                 color = Color.Gray,
                 modifier = Modifier
-                    .height(50.dp)  //fill the max height
+                    .height(50.dp) // fill the max height
                     .width(1.dp)
             )
             Text("Serviços(s)")
@@ -324,12 +312,9 @@ fun Tab1(scrollBehavior: TopAppBarScrollBehavior) {
                 )
             }
 
-
             Text("3 itens")
             Text("R$ 300,00")
         }
-
-
     }
 }
 
@@ -375,10 +360,10 @@ fun Tab2(scrollBehavior: TopAppBarScrollBehavior) {
     )
 }
 
-//@OptIn(ExperimentalFoundationApi::class, ExperimentalPagerApi::class)
-//@ExperimentalMaterialApi
-//@Composable
-//fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
+// @OptIn(ExperimentalFoundationApi::class, ExperimentalPagerApi::class)
+// @ExperimentalMaterialApi
+// @Composable
+// fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
 //
 //    val scope = rememberCoroutineScope()
 //    TabRow(
@@ -405,18 +390,18 @@ fun Tab2(scrollBehavior: TopAppBarScrollBehavior) {
 //            )
 //        }
 //    }
-//}
+// }
 //
-//@ExperimentalPagerApi
-//@Composable
-//fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
+// @ExperimentalPagerApi
+// @Composable
+// fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
 //    HorizontalPager(state = pagerState, count = tabs.size) { page ->
 //        tabs[page].screen()
 //    }
-//}
+// }
 //
-//@Composable
-//fun SummaryScreen() {
+// @Composable
+// fun SummaryScreen() {
 //    Column(
 //        modifier = Modifier.fillMaxSize(),
 //        verticalArrangement = Arrangement.Center,
@@ -429,10 +414,10 @@ fun Tab2(scrollBehavior: TopAppBarScrollBehavior) {
 //            fontSize = 30.sp
 //        )
 //    }
-//}
+// }
 //
-//@Composable
-//fun ItemsScreen() {
+// @Composable
+// fun ItemsScreen() {
 //    Column(
 //        modifier = Modifier.fillMaxSize(),
 //        verticalArrangement = Arrangement.Center,
@@ -445,4 +430,4 @@ fun Tab2(scrollBehavior: TopAppBarScrollBehavior) {
 //            fontSize = 30.sp
 //        )
 //    }
-//}
+// }
