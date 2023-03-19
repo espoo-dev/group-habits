@@ -168,4 +168,9 @@
     <string name="fab_menu_item">Adicionar Item</string>
 
 
+    <!--Forgot password -->
+    <string name="title_forgot_password">ESQUECEU SUA SENHA?</string>
+    <string name="title_forgot_password_desc">Digite seu e-mail cadastrado abaixo para receber instruções de redefinição de senha</string>
+    <string name="title_button_send">Enviar link de redefinição</string>
+    <string name="title_remember_password">Lembra da senha? Conecte-se</string>
 </resources>

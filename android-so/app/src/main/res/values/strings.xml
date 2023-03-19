@@ -175,4 +175,12 @@
     <string name="fab_sub_menu_products">Products</string>
     <string name="fab_sub_menu_services">Services</string>
     <string name="fab_menu_item">Add item</string>
+
+
+    <!--Forgot password -->
+    <string name="title_forgot_password">FORGOT YOUR PASSWORD?</string>
+    <string name="title_forgot_password_desc">Enter your registered email below to receive password reset instruction</string>
+    <string name="title_button_send">Send Reset Link</string>
+    <string name="title_remember_password">Remember password? Login</string>
+
 </resources>

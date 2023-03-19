@@ -40,7 +40,7 @@ fun ForgotPasswordScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "FORGOT YOUR PASSWORD?",
+            text = stringResource(id = R.string.title_forgot_password),
             fontFamily = Poppins,
             color = PrimaryColor,
             textAlign = TextAlign.Center,
@@ -67,7 +67,7 @@ fun ForgotPasswordScreen() {
                 modifier = Modifier.padding(vertical = 20.dp)
             ) {
                 Text(
-                    text = "Enter your registered email below to receive password reset instruction",
+                    text = stringResource(id = R.string.title_forgot_password_desc),
                     fontFamily = Poppins,
                     color = PrimaryColor,
                     textAlign = TextAlign.Center,
@@ -95,7 +95,7 @@ fun ForgotPasswordScreen() {
                 }
 
                 PrimaryButton(
-                    text = "Send Reset Link",
+                    text = stringResource(id = R.string.title_button_send),
                     enabled = true,
                     onClick = {
                     },
@@ -110,7 +110,7 @@ fun ForgotPasswordScreen() {
             }
         }
         SecondaryButton(
-            text = "Remember password? Login",
+            text = stringResource(id = R.string.title_remember_password),
             onClick = {},
         )
     }
