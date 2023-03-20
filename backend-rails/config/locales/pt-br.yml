@@ -1,0 +1,14 @@
+---
+pt-br:
+  activerecord:
+    models:
+      customer:
+        attributes:
+          name: 'Nome'
+          document_number: 'Documento'
+          customer_type: 'Tipo'
+          customer_type_values:
+            person: Pessoa Física
+            business: Pessoa Jurídica
+
+
