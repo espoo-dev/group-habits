@@ -21,6 +21,8 @@ class BaseService
   end
 
   def authorize!(klass, method, entity)
+    return if klass.nil?
+
     raise Pundit::NotAuthorizedError unless klass.new(user, entity).send(method)
 
     entity

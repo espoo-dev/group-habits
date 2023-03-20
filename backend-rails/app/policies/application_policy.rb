@@ -11,7 +11,7 @@ class ApplicationPolicy
   end
 
   def show?
-    false
+    owner_user?
   end
 
   def create?
