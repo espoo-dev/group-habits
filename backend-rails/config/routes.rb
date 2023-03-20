@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :customers, only: %i[index create destroy update]
       resources :sales_units, only: %i[index]
       resources :service_orders, only: %i[index create destroy update]
+      resources :service_order_reports, only: %i[show]
 
       get :status, to: 'api#status'
 
