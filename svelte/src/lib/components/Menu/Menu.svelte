@@ -12,6 +12,7 @@
   let options: Option[] = [
     { name: 'Categorias', link: '/categories' },
     { name: 'Clientes', link: '/customers' },
+    { name: 'Items', link: '/items' },
   ];
 
   const account = getCurrentAccountAdapter();
