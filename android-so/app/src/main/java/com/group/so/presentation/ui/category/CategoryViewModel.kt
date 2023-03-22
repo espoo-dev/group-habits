@@ -29,7 +29,7 @@ class CategoryViewModel(
 ) : ViewModel() {
 
     private var removeCategoryJob: Job? = null
-    private var editCategoryJob: Job? = null
+    // private var editCategoryJob: Job? = null
 
     private val _categoryState = MutableStateFlow<State<List<Category>>>(State.Idle)
     val categoryState = _categoryState.asStateFlow()
@@ -126,8 +126,7 @@ class CategoryViewModel(
     }
 
     private fun editCategory(editCategoryDataRequest: EditCategoryRequest) {
-        editCategoryJob?.cancel()
-        editCategoryJob = viewModelScope.launch {
+        viewModelScope.launch {
             launch(Dispatchers.Main) {
                 editCategoryUseCase(editCategoryDataRequest)
                     .onStart {
