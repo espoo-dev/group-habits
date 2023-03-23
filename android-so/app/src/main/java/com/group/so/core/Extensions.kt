@@ -1,4 +1,12 @@
-@file:Suppress("MaxLineLength", "ImplicitDefaultLocale", "TooManyFunctions", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress(
+    "MaxLineLength",
+    "ImplicitDefaultLocale",
+    "TooManyFunctions",
+    "LongMethod",
+    "FunctionParameterNaming",
+    "FunctionNaming",
+    "LongParameterList"
+)
 
 package com.group.so.core
 
@@ -6,6 +14,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 const val ZERO = 0
+const val ONE = 1
 const val HUNDRED = 100
 
 fun Int?.orZero() = this ?: ZERO

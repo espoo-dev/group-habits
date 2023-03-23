@@ -38,7 +38,9 @@ import com.group.so.presentation.ui.service.DetailsServiceScreen
 import com.group.so.presentation.ui.service.ServiceScreen
 import com.group.so.presentation.ui.service.ServiceViewModel
 import com.group.so.presentation.ui.serviceOrder.AddScreenOrderService
+import com.group.so.presentation.ui.serviceOrder.OrderChooseItemsScreen
 import com.group.so.presentation.ui.serviceOrder.ServiceOrderScreen
+import com.group.so.presentation.ui.serviceOrder.ServiceOrderViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalMaterialApi
@@ -233,8 +235,20 @@ fun ScreenMain() {
         }
 
         composable(Routes.NewServiceOrder.route) {
+            val serviceOrderViewModel = koinViewModel<ServiceOrderViewModel>()
             AddScreenOrderService(
-                navController,
+                navController = navController,
+                serviceOrderViewModel = serviceOrderViewModel
+            )
+        }
+
+        composable(Routes.OrderChooseProducts.route) {
+            val serviceOrderViewModel = koinViewModel<ServiceOrderViewModel>()
+            val productListUiState by serviceOrderViewModel.itemsListState.collectAsStateWithLifecycle()
+            OrderChooseItemsScreen(
+                navController = navController,
+                viewModel = serviceOrderViewModel,
+                productListUiState
             )
         }
 
