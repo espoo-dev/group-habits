@@ -13,9 +13,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.model.Item
@@ -242,12 +244,17 @@ fun ScreenMain() {
             )
         }
 
-        composable(Routes.OrderChooseProducts.route) {
+        composable(
+            Routes.OrderChooseProducts.route + "/{itemType}",
+            arguments = listOf(navArgument(name = "itemType") { type = NavType.StringType })
+        ) {
             val serviceOrderViewModel = koinViewModel<ServiceOrderViewModel>()
             val productListUiState by serviceOrderViewModel.itemsListState.collectAsStateWithLifecycle()
+            val itemType = it.arguments?.getString("itemType")
             OrderChooseItemsScreen(
                 navController = navController,
                 viewModel = serviceOrderViewModel,
+                itemType,
                 productListUiState
             )
         }
@@ -259,7 +266,12 @@ fun ScreenMain() {
 //            val customerViewModel = koinViewModel<CustomerViewModel>()
 //            val customersListUiState by customerViewModel.customerListState.collectAsState()
 //
-//            DetailsCustomerScreen(navController,customersListUiState ,it.arguments?.getInt("id"),customerViewModel)
+//            DetailsCustomerScreen(
+//                navController,
+//                customersListUiState,
+//                it.arguments?.getInt("id"),
+//                customerViewModel
+//            )
 //        }
     }
 }
