@@ -43,18 +43,19 @@ import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
 fun OrderChooseItemsScreen(
     navController: NavController,
     viewModel: ServiceOrderViewModel,
+    itemType: String?,
     productListUiState: State<List<ItemListItem>>
 ) {
 
     LaunchedEffect(key1 = true) {
-        viewModel.setupItemsToShow()
+        viewModel.setupItemsToShow(itemType ?: "")
     }
 
     val scaffoldState = rememberScaffoldState()
     val pullRefreshState =
         rememberPullRefreshState(
             productListUiState is State.Loading,
-            { viewModel.setupItemsToShow() }
+            { viewModel.setupItemsToShow(itemType ?: "") }
         )
 
     Scaffold(

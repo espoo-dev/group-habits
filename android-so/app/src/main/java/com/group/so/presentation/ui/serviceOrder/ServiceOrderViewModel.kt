@@ -11,7 +11,6 @@ import com.group.so.core.ONE
 import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.core.ZERO
-import com.group.so.data.ItemType
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import com.group.so.presentation.ui.serviceOrder.mapper.toItemListItem
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
@@ -32,9 +31,9 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     private val _itemsListState = MutableStateFlow<State<List<ItemListItem>>>(State.Idle)
     val itemsListState = _itemsListState.asStateFlow()
 
-    fun setupItemsToShow() {
+    fun setupItemsToShow(itemType: String) {
         viewModelScope.launch {
-            serviceOrderUseCase.getItemByItemTypeUseCase(ItemType.PRODUCT.value).onStart {
+            serviceOrderUseCase.getItemByItemTypeUseCase(itemType).onStart {
                 _itemsListState.value = State.Loading
             }.catch {
                 with(RemoteException("Could not connect to Service Order API")) {
