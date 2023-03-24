@@ -258,20 +258,5 @@ fun ScreenMain() {
                 productListUiState
             )
         }
-
-//        composable(
-//            Routes.EditCostumer.route + "/{id}",
-//            arguments = listOf(navArgument(name = "id") { type = NavType.IntType })
-//        ) {
-//            val customerViewModel = koinViewModel<CustomerViewModel>()
-//            val customersListUiState by customerViewModel.customerListState.collectAsState()
-//
-//            DetailsCustomerScreen(
-//                navController,
-//                customersListUiState,
-//                it.arguments?.getInt("id"),
-//                customerViewModel
-//            )
-//        }
     }
 }

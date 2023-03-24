@@ -131,7 +131,7 @@ fun ServiceOrderContent(scrollBehavior: TopAppBarScrollBehavior) {
                     .height(50.dp) // fill the max height
                     .width(1.dp)
             )
-            Text("Serviços(s)")
+            Text("Serviço(s)")
             Text("R$ 100,00")
         }
         Spacer(modifier = Modifier.size(30.dp))

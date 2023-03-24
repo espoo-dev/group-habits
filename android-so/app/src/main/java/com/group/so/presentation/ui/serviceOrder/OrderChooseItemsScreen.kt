@@ -16,7 +16,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExtendedFloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -27,13 +30,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.group.so.R
 import com.group.so.core.State
 import com.group.so.core.presentation.components.AsyncData
 import com.group.so.core.presentation.components.generic.GenericError
 import com.group.so.core.presentation.components.toolbars.custom.TopBarWhite
 import com.group.so.presentation.ui.product.components.EmptyListProduct
+import com.group.so.presentation.ui.serviceOrder.components.CheckoutDialog
 import com.group.so.presentation.ui.serviceOrder.components.ItemUiListItem
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
 
@@ -62,13 +70,32 @@ fun OrderChooseItemsScreen(
         scaffoldState = scaffoldState,
         topBar = {
             TopBarWhite(
-                "Selecione seus itens",
+                stringResource(id = R.string.title_toolbar_order_service_choose_items),
                 navController,
                 onActionClicked = {
                 }
             )
         },
         floatingActionButton = {
+            ExtendedFloatingActionButton(
+                text = {
+                    Text(
+                        text = stringResource(R.string.fab_choose_items),
+                        color = Color.White
+                    )
+                },
+                onClick = {
+                    viewModel.onCheckoutClick()
+                },
+                icon = {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_check),
+                        contentDescription = "",
+                        tint = Color.White
+
+                    )
+                }
+            )
         }
     ) {
         Column(
@@ -127,5 +154,15 @@ fun OrderChooseItemsScreen(
                 }
             }
         }
+    }
+    if (viewModel.isCheckoutDialogShown) {
+        CheckoutDialog(
+            onDismiss = {
+                viewModel.onDismissCheckoutDialog()
+            },
+            onConfirm = {
+            },
+            selectedItems = viewModel.selectedItems
+        )
     }
 }

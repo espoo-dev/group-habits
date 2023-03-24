@@ -14,6 +14,7 @@
 
 
     <string name="tv_money">$: %s</string>
+    <string name="tv_money_symbol">$</string>
 
 
     <!-- Calendar-->
@@ -175,6 +176,13 @@
     <string name="fab_sub_menu_products">Products</string>
     <string name="fab_sub_menu_services">Services</string>
     <string name="fab_menu_item">Add item</string>
+    <string name="title_toolbar_order_service_choose_items">Select your items</string>
+    <string name="fab_choose_items">Checkout</string>
+    <string name="lbl_button_cancel_choose_items">Cancel</string>
+    <string name="lbl_button_confirm_choose_items">Confirm</string>
+    <string name="lbl_total_choose_items">Total</string>
+    <string name="lbl_empty_choose_items">Please select items to order</string>
+    <string name="lbl_title_checkout_dialog_choose_items">Checkout</string>
 
 
     <!--Forgot password -->

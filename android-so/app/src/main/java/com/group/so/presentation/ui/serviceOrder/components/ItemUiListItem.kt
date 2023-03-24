@@ -19,9 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.group.so.R
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
 
 @Composable
@@ -53,7 +55,7 @@ fun ItemUiListItem(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    "%.2f".format(itemListItem.pricePerAmount) + " R$",
+                    "%.2f".format(itemListItem.pricePerAmount) + stringResource(id = R.string.tv_money_symbol),
                     color = Color.White,
                     fontSize = 14.sp
                 )
