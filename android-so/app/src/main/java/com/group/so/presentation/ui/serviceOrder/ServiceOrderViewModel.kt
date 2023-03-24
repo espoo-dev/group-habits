@@ -28,6 +28,9 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     var selectedItems by mutableStateOf<List<ItemListItem>>(emptyList())
         private set
 
+    var isCheckoutDialogShown by mutableStateOf(false)
+        private set
+
     private val _itemsListState = MutableStateFlow<State<List<ItemListItem>>>(State.Idle)
     val itemsListState = _itemsListState.asStateFlow()
 
@@ -113,5 +116,13 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
         return itemsToShow.indexOfFirst { productListItem ->
             productListItem.id == itemId
         }
+    }
+
+    fun onCheckoutClick() {
+        isCheckoutDialogShown = true
+    }
+
+    fun onDismissCheckoutDialog() {
+        isCheckoutDialogShown = false
     }
 }

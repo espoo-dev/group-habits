@@ -13,6 +13,7 @@
 
 
     <string name="tv_money">R$: %s</string>
+    <string name="tv_money_symbol">R$</string>
 
     <!-- Calendar-->
     <string name="label_title_calendar">Selecione a data</string>
@@ -166,7 +167,13 @@
     <string name="fab_sub_menu_products">Produtos</string>
     <string name="fab_sub_menu_services">Serviços</string>
     <string name="fab_menu_item">Adicionar Item</string>
-
+    <string name="title_toolbar_order_service_choose_items">Selecione seus itens</string>
+    <string name="fab_choose_items">Finalizar</string>
+    <string name="lbl_button_cancel_choose_items">Cancelar</string>
+    <string name="lbl_button_confirm_choose_items">Confirmar</string>
+    <string name="lbl_total_choose_items">Total</string>
+    <string name="lbl_empty_choose_items">Por favor, selecione os itens</string>
+    <string name="lbl_title_checkout_dialog_choose_items">Checkout</string>
 
     <!--Forgot password -->
     <string name="title_forgot_password">ESQUECEU SUA SENHA?</string>
