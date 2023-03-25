@@ -118,7 +118,6 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
         }
     }
 
-
     fun onCheckoutClick() {
         isCheckoutDialogShown = true
     }

@@ -31,11 +31,11 @@ fun DeleteButtonItem(item: ItemListItem, onDeleteItem: (ItemListItem) -> Unit) {
     DialogDelete(showDialog = openDialogDelete, onDismiss = {
         openDialogDelete = false
     }, onDeleteSuccess = {
-        coroutineScope.launch {
-            onDeleteItem(item)
-            openDialogDelete = false
-        }
-    })
+            coroutineScope.launch {
+                onDeleteItem(item)
+                openDialogDelete = false
+            }
+        })
 
     IconButton(
         onClick = {

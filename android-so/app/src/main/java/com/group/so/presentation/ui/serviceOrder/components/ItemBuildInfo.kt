@@ -12,8 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.group.so.R
-import com.group.so.core.toMoney
-import com.group.so.data.entities.model.Item
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
 import com.group.so.ui.theme.MoneyColor
 import com.group.so.ui.theme.Poppins
@@ -45,6 +43,5 @@ fun ItemBuildInfo(
             modifier = Modifier
                 .padding(bottom = dimensionResource(id = R.dimen.customer_phone_dimen))
         )
-
     }
 }
