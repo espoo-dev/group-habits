@@ -44,6 +44,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
                 }
             }.collect {
                 it.data?.let { items ->
+                    itemsToShow.clear()
                     itemsToShow = items.toItemListItem().toMutableStateList()
                     _itemsListState.value = State.Success(itemsToShow)
                 }
@@ -117,6 +118,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
             productListItem.id == itemId
         }
     }
+
 
     fun onCheckoutClick() {
         isCheckoutDialogShown = true
