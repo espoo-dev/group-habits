@@ -44,7 +44,6 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
                 }
             }.collect {
                 it.data?.let { items ->
-                    itemsToShow.clear()
                     itemsToShow = items.toItemListItem().toMutableStateList()
                     _itemsListState.value = State.Success(itemsToShow)
                 }
