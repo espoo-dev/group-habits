@@ -2,11 +2,19 @@
 
 package com.group.so.presentation.ui.serviceOrder.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
@@ -21,7 +29,10 @@ import com.group.so.presentation.ui.serviceOrder.ServiceOrderViewModel
 import com.group.so.ui.theme.AccentColor
 import com.group.so.ui.theme.SecondaryColor
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
+    ExperimentalMaterialApi::class
+)
 @Composable
 fun ShowItems(
     navController: NavController,
@@ -71,43 +82,20 @@ fun ShowItems(
             showFabTitle = false
         )
     }) {
-        println(it)
+        Box(Modifier.padding(it)) {
+            if (serviceOrderViewModel.selectedItems.isEmpty()) {
+                EmptyListItems()
+            } else {
+                LazyColumn {
+                    items(serviceOrderViewModel.selectedItems, key = { item -> item.id }) { item ->
+                        SelectedItem(
+                            item = item,
+                            onDeleteItem = {},
+                        )
+                        Divider()
+                    }
+                }
+            }
+        }
     }
-
-//    val listItems = listOf(
-//        "test 1 tab 2",
-//        "test 2 tab 2",
-//        "test 3 tab 2",
-//        "test 4 tab 2",
-//        "test 5 tab 2",
-//        "test 6 tab 2",
-//        "test 7 tab 2",
-//        "test 8 tab 2",
-//        "test 9 tab 2",
-//        "test 10 tab 2",
-//        "test 11 tab 2",
-//        "test 12 tab 2",
-//    )
-//
-//    val listState = rememberLazyListState()
-//
-//    LazyColumn(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .nestedScroll(scrollBehavior.nestedScrollConnection),
-//        state = listState,
-//        contentPadding = PaddingValues(8.dp),
-//        verticalArrangement = Arrangement.spacedBy(8.dp),
-//        content = {
-//            items(items = listItems) { item ->
-//                Card(
-//                    modifier = Modifier
-//                        .height(80.dp)
-//                        .fillMaxWidth(),
-//
-//                    content = { Text(text = item) }
-//                )
-//            }
-//        }
-//    )
 }

@@ -56,7 +56,7 @@ fun CheckoutDialog(
             onDismiss()
         },
         properties = DialogProperties(
-            usePlatformDefaultWidth = false
+            usePlatformDefaultWidth = false,
         )
     ) {
         Card(

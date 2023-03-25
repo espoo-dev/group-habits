@@ -183,6 +183,7 @@
     <string name="lbl_total_choose_items">Total</string>
     <string name="lbl_empty_choose_items">Please select items to order</string>
     <string name="lbl_title_checkout_dialog_choose_items">Checkout</string>
+    <string name="msg_empty_items_choose_list">No item selected</string>
 
 
     <!--Forgot password -->
