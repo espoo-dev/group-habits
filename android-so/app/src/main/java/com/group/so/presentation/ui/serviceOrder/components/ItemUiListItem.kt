@@ -12,19 +12,19 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.group.so.R
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
+import com.group.so.ui.theme.SuccessColor
 
 @Composable
 fun ItemUiListItem(
@@ -51,12 +51,12 @@ fun ItemUiListItem(
             ) {
                 Text(
                     itemListItem.name,
-                    color = Color.White,
+                    color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     "%.2f".format(itemListItem.pricePerAmount) + stringResource(id = R.string.tv_money_symbol),
-                    color = Color.White,
+                    color = Color.Black,
                     fontSize = 14.sp
                 )
             }
@@ -68,38 +68,38 @@ fun ItemUiListItem(
                     Icon(
                         imageVector = Icons.Default.Check,
                         contentDescription = "checkmark",
-                        tint = Color.White
+                        tint = Color.Black
                     )
                     Text(
                         "${itemListItem.selectedAmount} x",
-                        color = Color.White
+                        color = Color.Black
                     )
                 }
             }
         }
         AnimatedVisibility(isExpanded) {
-            Divider(color = Color.White)
+            Divider(color = Color.Gray)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(25.dp)
+                horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
                 IconButton(onClick = {
                     onMinusClick()
                 }) {
                     Icon(
-                        imageVector = Icons.Default.Close,
+                        painter = painterResource(R.drawable.ic_remove_circle),
                         contentDescription = "minus",
-                        tint = Color.White
+                        tint = Color.Red
                     )
                 }
                 IconButton(onClick = {
                     onPlusClick()
                 }) {
                     Icon(
-                        imageVector = Icons.Default.Add,
+                        painter = painterResource(R.drawable.ic_add_circle),
                         contentDescription = "plus",
-                        tint = Color.White
+                        tint = SuccessColor
                     )
                 }
             }

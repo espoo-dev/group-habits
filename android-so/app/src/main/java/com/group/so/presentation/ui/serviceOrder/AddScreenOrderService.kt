@@ -139,7 +139,10 @@ fun TabsContent(
                 state = pagerState,
             ) { tabId ->
                 when (tabId) {
-                    ZERO -> ServiceOrderContent(scrollBehavior = scrollBehavior)
+                    ZERO -> ServiceOrderContent(
+                        scrollBehavior = scrollBehavior,
+                        serviceOrderViewModel = serviceOrderViewModel
+                    )
                     ONE -> ShowItems(
                         navController = navController,
                         serviceOrderViewModel = serviceOrderViewModel,

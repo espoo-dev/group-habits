@@ -37,15 +37,15 @@ fun ProductContent(
             GenericError(
                 onDismissAction = reloadProducts
             )
-        }) { customersList ->
-            customersList?.let {
+        }) { productsList ->
+            productsList?.let {
 
                 Box(Modifier.pullRefresh(pullRefreshState)) {
                     if (it.isEmpty()) {
                         EmptyListProduct()
                     } else {
                         LazyColumn {
-                            items(customersList, key = { customer -> customer.id }) { item ->
+                            items(productsList, key = { product -> product.id }) { item ->
                                 ProductItem(
                                     product = item,
                                     onProductClick = onProductClick,

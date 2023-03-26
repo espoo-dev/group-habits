@@ -10,7 +10,6 @@ import com.group.so.presentation.ui.serviceOrder.ServiceOrderViewModel
 import org.koin.core.context.GlobalContext.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import org.koin.experimental.builder.single
 
 object PresentationModule {
 
@@ -26,7 +25,7 @@ object PresentationModule {
             factory { ServiceViewModel(get(), get(), get(), get(), get()) }
             factory { ProductViewModel(get(), get(), get(), get(), get(), get()) }
             factory { SharedViewModel() }
-            single<ServiceOrderViewModel>() { ServiceOrderViewModel(get()) }
+            single { ServiceOrderViewModel(get()) }
         }
     }
 }

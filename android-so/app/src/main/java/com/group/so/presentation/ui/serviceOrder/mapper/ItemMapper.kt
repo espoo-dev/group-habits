@@ -7,10 +7,11 @@ fun List<Item>.toItemListItem(): List<ItemListItem> {
     return this.map {
         ItemListItem(
             id = it.id,
+            type = it.itemType,
             name = it.name,
             pricePerAmount = it.salePrice,
             selectedAmount = 0,
-            isExpanded = false
+            isExpanded = true
         )
     }
 }

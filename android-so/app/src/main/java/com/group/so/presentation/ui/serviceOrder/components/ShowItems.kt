@@ -62,7 +62,7 @@ fun ShowItems(
                     iconTint = Color.Black,
                     background = SecondaryColor,
                     onClicked = {
-                        navController.navigate(Routes.OrderChooseProducts.route + "/${ItemType.PRODUCT.value}")
+                        navController.navigate(Routes.OrderChooseItems.route + "/${ItemType.PRODUCT.value}")
                     }
 
                 ),
@@ -71,7 +71,7 @@ fun ShowItems(
                     label = stringResource(id = R.string.fab_sub_menu_services),
                     labelColor = Color.Black,
                     onClicked = {
-                        navController.navigate(Routes.OrderChooseProducts.route + "/${ItemType.SERVICE.value}")
+                        navController.navigate(Routes.OrderChooseItems.route + "/${ItemType.SERVICE.value}")
                     },
                     iconTint = Color.Black,
                     background = AccentColor
@@ -90,7 +90,7 @@ fun ShowItems(
                     items(serviceOrderViewModel.selectedItems, key = { item -> item.id }) { item ->
                         SelectedItem(
                             item = item,
-                            onDeleteItem = {},
+                            onDeleteItem = { serviceOrderViewModel.removeItem(item.id) },
                         )
                         Divider()
                     }
