@@ -1,4 +1,4 @@
-@file:Suppress("MaxLineLength","LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress("MaxLineLength", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
 package com.group.so.presentation.ui.serviceOrder.components
 
