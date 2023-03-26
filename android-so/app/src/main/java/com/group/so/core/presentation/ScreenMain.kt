@@ -48,7 +48,7 @@ import org.koin.androidx.compose.koinViewModel
 @ExperimentalMaterialApi
 @OptIn(ExperimentalComposeApi::class, ExperimentalFoundationApi::class)
 @Composable
-fun ScreenMain() {
+fun ScreenMain(viewmodel: ServiceOrderViewModel) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Routes.Login.route) {
@@ -227,7 +227,6 @@ fun ScreenMain() {
             )
         }
         composable(Routes.ServiceOrder.route) {
-
             ServiceOrderScreen(
                 navController = navController,
                 onNewServiceClick = {
@@ -236,26 +235,31 @@ fun ScreenMain() {
             )
         }
 
-        composable(Routes.NewServiceOrder.route) {
-            val serviceOrderViewModel = koinViewModel<ServiceOrderViewModel>()
+        composable(
+            Routes.NewServiceOrder.route
+        ) {
+            // val serviceOrderViewModel = koinViewModel<ServiceOrderViewModel>()
+
             AddScreenOrderService(
                 navController = navController,
-                serviceOrderViewModel = serviceOrderViewModel
+                serviceOrderViewModel = viewmodel,
+
             )
         }
 
         composable(
-            Routes.OrderChooseProducts.route + "/{itemType}",
+            Routes.OrderChooseItems.route + "/{itemType}",
             arguments = listOf(navArgument(name = "itemType") { type = NavType.StringType })
         ) {
-            val serviceOrderViewModel = koinViewModel<ServiceOrderViewModel>()
-            val productListUiState by serviceOrderViewModel.itemsListState.collectAsStateWithLifecycle()
+            // val serviceOrderViewModel = koinViewModel<ServiceOrderViewModel>()
+            val itemListUiState by viewmodel.itemsListState.collectAsStateWithLifecycle()
+
             val itemType = it.arguments?.getString("itemType")
             OrderChooseItemsScreen(
                 navController = navController,
-                viewModel = serviceOrderViewModel,
+                viewModel = viewmodel,
                 itemType,
-                productListUiState
+                itemListUiState
             )
         }
     }

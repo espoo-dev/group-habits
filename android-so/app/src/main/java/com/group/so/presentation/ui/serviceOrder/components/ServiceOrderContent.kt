@@ -1,4 +1,4 @@
-@file:Suppress("LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress("MaxLineLength","LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
 
 package com.group.so.presentation.ui.serviceOrder.components
 
@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -26,16 +25,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.group.so.R
 import com.group.so.core.presentation.components.fields.ErrorField
 import com.group.so.core.presentation.components.validations.TextState
+import com.group.so.presentation.ui.serviceOrder.ServiceOrderViewModel
 import com.group.so.ui.theme.AccentColor
 import com.group.so.ui.theme.SecondaryColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ServiceOrderContent(scrollBehavior: TopAppBarScrollBehavior) {
+fun ServiceOrderContent(
+    serviceOrderViewModel: ServiceOrderViewModel,
+    scrollBehavior: TopAppBarScrollBehavior
+) {
     println(scrollBehavior)
     val nameTextState = remember {
         TextState()
@@ -100,17 +104,29 @@ fun ServiceOrderContent(scrollBehavior: TopAppBarScrollBehavior) {
                 onClick = {},
                 modifier = Modifier.background(SecondaryColor, RoundedCornerShape(8.dp))
             ) {
-                Text("2")
+                Text(
+                    "${
+                    serviceOrderViewModel.selectedProductsFiltered().sumOf { it.selectedAmount }
+                    }",
+                    fontWeight = FontWeight.Bold
+                )
             }
 
-            Divider(
-                color = Color.Gray,
-                modifier = Modifier
-                    .height(50.dp) // fill the max height
-                    .width(1.dp)
+//            Divider(
+//                color = Color.Gray, modifier = Modifier
+//                    .height(50.dp) // fill the max height
+//                    .width(1.dp)
+//            )
+            Text("Produto(s)", fontWeight = FontWeight.Bold)
+            Text(
+                "%.2f".format(
+                    serviceOrderViewModel.selectedProductsFiltered()
+                        .sumOf { (it.selectedAmount * it.pricePerAmount).toDouble() }
+                ) + stringResource(
+                    id = R.string.tv_money_symbol
+                ),
+                fontWeight = FontWeight.Bold
             )
-            Text("Produto(s)")
-            Text("R$ 200,00")
         }
         Spacer(modifier = Modifier.size(10.dp))
         Row(
@@ -119,20 +135,31 @@ fun ServiceOrderContent(scrollBehavior: TopAppBarScrollBehavior) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             androidx.compose.material.IconButton(
-                onClick = {},
-                modifier = Modifier.background(AccentColor, RoundedCornerShape(8.dp))
+                onClick = {}, modifier = Modifier.background(AccentColor, RoundedCornerShape(8.dp))
             ) {
-                Text("1")
+                Text(
+                    "${
+                    serviceOrderViewModel.selectedServicesFiltered().sumOf { it.selectedAmount }
+                    }",
+                    fontWeight = FontWeight.Bold
+                )
             }
 
-            Divider(
-                color = Color.Gray,
-                modifier = Modifier
-                    .height(50.dp) // fill the max height
-                    .width(1.dp)
+//            Divider(
+//                color = Color.Gray, modifier = Modifier
+//                    .height(50.dp) // fill the max height
+//                    .width(1.dp)
+//            )
+            Text("Serviço(s)", fontWeight = FontWeight.Bold)
+            Text(
+                "%.2f".format(
+                    serviceOrderViewModel.selectedServicesFiltered()
+                        .sumOf { (it.selectedAmount * it.pricePerAmount).toDouble() }
+                ) + stringResource(
+                    id = R.string.tv_money_symbol
+                ),
+                fontWeight = FontWeight.Bold
             )
-            Text("Serviço(s)")
-            Text("R$ 100,00")
         }
         Spacer(modifier = Modifier.size(30.dp))
         Row(
@@ -152,8 +179,15 @@ fun ServiceOrderContent(scrollBehavior: TopAppBarScrollBehavior) {
                 )
             }
 
-            Text("3 itens")
-            Text("R$ 300,00")
+            Text(
+                "${serviceOrderViewModel.selectedItems.sumOf { it.selectedAmount }}"
+            )
+            androidx.compose.material.Text(
+                "%.2f".format(serviceOrderViewModel.selectedItems.sumOf { (it.selectedAmount * it.pricePerAmount).toDouble() }) + stringResource(
+                    id = R.string.tv_money_symbol
+                ),
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }
