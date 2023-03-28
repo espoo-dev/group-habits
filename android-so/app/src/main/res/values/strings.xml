@@ -184,6 +184,8 @@
     <string name="lbl_empty_choose_items">Please select items to order</string>
     <string name="lbl_title_checkout_dialog_choose_items">Checkout</string>
     <string name="msg_empty_items_choose_list">No item selected</string>
+    <string name="lbl_product_service_order">Product(s)</string>
+    <string name="lbl_service_order">Service(s)</string>
 
 
     <!--Forgot password -->
@@ -191,5 +193,6 @@
     <string name="title_forgot_password_desc">Enter your registered email below to receive password reset instruction</string>
     <string name="title_button_send">Send Reset Link</string>
     <string name="title_remember_password">Remember password? Login</string>
+
 
 </resources>

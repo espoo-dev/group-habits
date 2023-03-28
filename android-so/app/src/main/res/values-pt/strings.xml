@@ -175,10 +175,13 @@
     <string name="lbl_empty_choose_items">Por favor, selecione os itens</string>
     <string name="lbl_title_checkout_dialog_choose_items">Checkout</string>
     <string name="msg_empty_items_choose_list">Nenhum item selecionado</string>
+    <string name="lbl_product_service_order">Produto(s)</string>
+    <string name="lbl_service_order">Serviços(s)</string>
 
     <!--Forgot password -->
     <string name="title_forgot_password">ESQUECEU SUA SENHA?</string>
     <string name="title_forgot_password_desc">Digite seu e-mail cadastrado abaixo para receber instruções de redefinição de senha</string>
     <string name="title_button_send">Enviar link de redefinição</string>
     <string name="title_remember_password">Lembra da senha? Conecte-se</string>
+
 </resources>
