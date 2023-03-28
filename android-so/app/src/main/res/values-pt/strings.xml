@@ -153,6 +153,7 @@
     <string name="lbl_field_purchase_price_product">Preço de compra</string>
 
     <string name="lbl_field_search_categories_product">Buscar Categoria</string>
+    <string name="lbl_field_search_customers_service_order">Buscar Cliente</string>
 
 
     <!--Order Service-->

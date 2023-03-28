@@ -1,3 +1,8 @@
+@file:Suppress(
+    "TooManyFunctions",
+
+)
+
 package com.group.so.presentation.ui.serviceOrder
 
 import androidx.compose.runtime.getValue
@@ -13,6 +18,7 @@ import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.core.ZERO
 import com.group.so.data.ItemType
+import com.group.so.data.entities.model.Customer
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import com.group.so.presentation.ui.serviceOrder.mapper.toItemListItem
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
@@ -43,6 +49,35 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     init {
         setupItemsToShow(itemType = ItemType.SERVICE.value)
+    }
+
+    private val _customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
+    val customerListState = _customerListState.asStateFlow()
+
+    fun fetchLatestCustomers() {
+        fetchCustomers()
+    }
+
+    private fun fetchCustomers() {
+        viewModelScope.launch {
+            serviceOrderUseCase.getCustomersUseCase().onStart {
+                _customerListState.value = State.Loading
+            }.catch {
+                with(RemoteException("Could not connect to Service Order API")) {
+
+                    _customerListState.value = State.Error(this)
+                }
+            }.collect {
+                it.data?.let { customers ->
+                    _customerListState.value = State.Success(customers)
+                }
+                it.error?.let { error ->
+                    with(RemoteException(error.message.toString())) {
+                        _customerListState.value = State.Error(this)
+                    }
+                }
+            }
+        }
     }
 
     fun setupItemsToShow(itemType: String) {
