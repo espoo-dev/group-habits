@@ -1,8 +1,13 @@
-@file:Suppress("MaxLineLength", "LongMethod", "FunctionParameterNaming", "FunctionNaming", "LongParameterList")
+@file:Suppress(
+    "MaxLineLength",
+    "LongMethod",
+    "FunctionParameterNaming",
+    "FunctionNaming",
+    "LongParameterList"
+)
 
 package com.group.so.presentation.ui.serviceOrder.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,7 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -117,7 +121,7 @@ fun ServiceOrderContent(
 //                    .height(50.dp) // fill the max height
 //                    .width(1.dp)
 //            )
-            Text("Produto(s)", fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.lbl_product_service_order), fontWeight = FontWeight.Bold)
             Text(
                 "%.2f".format(
                     serviceOrderViewModel.selectedProductsFiltered()
@@ -150,7 +154,7 @@ fun ServiceOrderContent(
 //                    .height(50.dp) // fill the max height
 //                    .width(1.dp)
 //            )
-            Text("Serviço(s)", fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.lbl_service_order), fontWeight = FontWeight.Bold)
             Text(
                 "%.2f".format(
                     serviceOrderViewModel.selectedServicesFiltered()
@@ -162,32 +166,6 @@ fun ServiceOrderContent(
             )
         }
         Spacer(modifier = Modifier.size(30.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-
-            Row() {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_circle_secondary),
-                    contentDescription = ""
-                )
-                Image(
-                    painter = painterResource(id = R.drawable.ic_circle_accent),
-                    contentDescription = ""
-                )
-            }
-
-            Text(
-                "${serviceOrderViewModel.selectedItems.sumOf { it.selectedAmount }}"
-            )
-            androidx.compose.material.Text(
-                "%.2f".format(serviceOrderViewModel.selectedItems.sumOf { (it.selectedAmount * it.pricePerAmount).toDouble() }) + stringResource(
-                    id = R.string.tv_money_symbol
-                ),
-                fontWeight = FontWeight.Bold
-            )
-        }
+        FooterContent(serviceOrderViewModel)
     }
 }
