@@ -69,7 +69,7 @@ object DomainModule {
             factory { GetSalesUnitUseCase(get()) }
 
             // ServiceOrder
-            factory { ServiceOrderUseCase(get()) }
+            factory { ServiceOrderUseCase(get(), get()) }
         }
     }
 }
