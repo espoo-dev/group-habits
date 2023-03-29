@@ -9,10 +9,8 @@
 package com.group.so.presentation.ui.serviceOrder.components
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
@@ -25,13 +23,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.group.so.R
 import com.group.so.core.State
 import com.group.so.core.presentation.components.AsyncData
 import com.group.so.core.presentation.components.fields.DateField
 import com.group.so.core.presentation.components.fields.DatePicker
-import com.group.so.core.presentation.components.fields.MyTextField
 import com.group.so.core.presentation.components.generic.GenericError
 import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.entities.model.Customer
@@ -68,7 +64,6 @@ fun ServiceOrderFormContent(
                     }
                 }
             }
-
         }
 
         if (showPicker)
@@ -79,7 +74,8 @@ fun ServiceOrderFormContent(
                 },
                 onDismissRequest = {
                     showPicker = false
-                })
+                }
+            )
 
         DateField(
             labelText = stringResource(R.string.lbl_text_date_creation),
@@ -100,7 +96,5 @@ fun ServiceOrderFormContent(
             creationDate.text = it
             creationDate.validate()
         }
-
     }
-
 }
