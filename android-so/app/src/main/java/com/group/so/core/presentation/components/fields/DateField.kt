@@ -63,7 +63,6 @@ fun DateField(
             onValueChange = { value -> onTextChanged(value) },
             isError = error != null,
             modifier = modifier
-                .padding(horizontal = 20.dp)
                 .padding(top = 10.dp),
             singleLine = true,
             readOnly = true,
