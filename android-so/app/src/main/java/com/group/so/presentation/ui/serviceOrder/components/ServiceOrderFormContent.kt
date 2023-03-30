@@ -31,6 +31,7 @@ import com.group.so.core.presentation.components.fields.DatePicker
 import com.group.so.core.presentation.components.generic.GenericError
 import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.entities.model.Customer
+import com.group.so.presentation.ui.serviceOrder.model.Status
 
 @Composable
 @OptIn(ExperimentalAnimationApi::class)
@@ -40,7 +41,8 @@ fun ServiceOrderFormContent(
     var customer by remember { mutableStateOf(0) }
     val creationDate = remember { TextState() }
     var showPicker by remember { mutableStateOf(false) }
-
+    var status by remember { mutableStateOf("") }
+    val statusList = listOf(Status("Aprovação"), Status("Em aguardo"))
     Column(
         modifier = Modifier
             .fillMaxWidth(),
@@ -96,5 +98,12 @@ fun ServiceOrderFormContent(
             creationDate.text = it
             creationDate.validate()
         }
+
+        AutoCompleteStatus(
+            statusList = statusList,
+            itemSelected = { itemSelected ->
+                status = itemSelected.name
+            },
+        )
     }
 }
