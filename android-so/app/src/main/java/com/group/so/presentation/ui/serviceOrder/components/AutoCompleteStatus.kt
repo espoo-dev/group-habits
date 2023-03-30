@@ -29,7 +29,6 @@ import com.group.so.R
 import com.group.so.core.presentation.components.autocomplete.AutoCompleteBox
 import com.group.so.core.presentation.components.autocomplete.utils.AutoCompleteSearchBarTag
 import com.group.so.core.presentation.components.searchbar.TextSearchBar
-import com.group.so.data.entities.model.Customer
 import com.group.so.presentation.ui.serviceOrder.model.Status
 
 @ExperimentalAnimationApi

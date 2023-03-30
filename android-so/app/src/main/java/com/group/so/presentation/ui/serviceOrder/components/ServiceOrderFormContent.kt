@@ -105,6 +105,5 @@ fun ServiceOrderFormContent(
                 status = itemSelected.name
             },
         )
-
     }
 }
