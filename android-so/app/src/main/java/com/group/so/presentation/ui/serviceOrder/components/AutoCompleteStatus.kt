@@ -30,27 +30,28 @@ import com.group.so.core.presentation.components.autocomplete.AutoCompleteBox
 import com.group.so.core.presentation.components.autocomplete.utils.AutoCompleteSearchBarTag
 import com.group.so.core.presentation.components.searchbar.TextSearchBar
 import com.group.so.data.entities.model.Customer
+import com.group.so.presentation.ui.serviceOrder.model.Status
 
 @ExperimentalAnimationApi
 @Composable
-fun AutoCompleteCustomer(
-    customers: List<Customer>,
-    initialValue: (Customer?) = customers.first(),
-    itemSelected: (Customer) -> Unit
+fun AutoCompleteStatus(
+    statusList: List<Status>,
+    initialValue: (Status?) = statusList.first(),
+    itemSelected: (Status) -> Unit
 ) {
     println(initialValue)
     AutoCompleteBox(
-        items = customers,
-        itemContent = { customer ->
-            CustomerAutoCompleteItem(customer)
+        items = statusList,
+        itemContent = { status ->
+            StatusAutoCompleteItem(status)
         }
     ) {
         var value by remember { mutableStateOf(initialValue?.name ?: "") }
         val view = LocalView.current
 
-        onItemSelected { customer ->
-            value = customer.name
-            itemSelected(customer)
+        onItemSelected { status ->
+            value = status.name
+            itemSelected(status)
             filter(value)
             view.clearFocus()
         }
@@ -58,7 +59,7 @@ fun AutoCompleteCustomer(
         TextSearchBar(
             modifier = Modifier.testTag(AutoCompleteSearchBarTag),
             value = value,
-            label = stringResource(id = R.string.lbl_field_search_status_service_order),
+            label = stringResource(id = R.string.lbl_field_search_customers_service_order),
             onDoneActionClick = {
                 view.clearFocus()
             },
@@ -79,14 +80,13 @@ fun AutoCompleteCustomer(
 }
 
 @Composable
-fun CustomerAutoCompleteItem(customer: Customer) {
+fun StatusAutoCompleteItem(status: Status) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text(text = customer.name, style = MaterialTheme.typography.subtitle2)
-        Text(text = customer.customerType, style = MaterialTheme.typography.subtitle2)
+        Text(text = status.name, style = MaterialTheme.typography.subtitle2)
     }
 }
