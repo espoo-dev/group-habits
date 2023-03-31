@@ -3,7 +3,6 @@ package com.group.so.data.services
 import com.group.so.data.MockResponseFileReader
 import com.group.so.data.entities.network.CustomerDTO
 import com.group.so.data.entities.network.ServiceOrderDTOItem
-import com.group.so.data.entities.request.CategoryDataRequest
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.runBlocking
@@ -80,21 +79,21 @@ class ServiceOrderServiceTest {
             mockWebServer.enqueue(
                 response.setBody(
                     "{\n" +
-                            "    \"id\": 4,\n" +
-                            "    \"extra_info\": \"some items 3\",\n" +
-                            "    \"status\": \"budge\",\n" +
-                            "    \"creation_date\": null,\n" +
-                            "    \"conclusion_date\": null,\n" +
-                            "    \"discount\": 13.0,\n" +
-                            "    \"customer\": {\n" +
-                            "      \"id\": 17,\n" +
-                            "      \"name\": \"iury nogueira\",\n" +
-                            "      \"document_number\": \"04590651564\",\n" +
-                            "      \"phone\": \"88915484544\",\n" +
-                            "      \"state_inscription\": \"\",\n" +
-                            "      \"customer_type\": \"person\"\n" +
-                            "    }\n" +
-                            "  }"
+                        "    \"id\": 4,\n" +
+                        "    \"extra_info\": \"some items 3\",\n" +
+                        "    \"status\": \"budge\",\n" +
+                        "    \"creation_date\": null,\n" +
+                        "    \"conclusion_date\": null,\n" +
+                        "    \"discount\": 13.0,\n" +
+                        "    \"customer\": {\n" +
+                        "      \"id\": 17,\n" +
+                        "      \"name\": \"iury nogueira\",\n" +
+                        "      \"document_number\": \"04590651564\",\n" +
+                        "      \"phone\": \"88915484544\",\n" +
+                        "      \"state_inscription\": \"\",\n" +
+                        "      \"customer_type\": \"person\"\n" +
+                        "    }\n" +
+                        "  }"
                 )
             )
             service.register(

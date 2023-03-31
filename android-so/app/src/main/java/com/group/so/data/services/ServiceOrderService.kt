@@ -10,5 +10,5 @@ interface ServiceOrderService {
     suspend fun getAllServiceOrders(): List<ServiceOrderDTOItem>
 
     @POST("service_orders")
-    suspend fun register(@Body serviceOrderDTOItem: ServiceOrderDTOItem):  ServiceOrderDTOItem
+    suspend fun register(@Body serviceOrderDTOItem: ServiceOrderDTOItem): ServiceOrderDTOItem
 }
