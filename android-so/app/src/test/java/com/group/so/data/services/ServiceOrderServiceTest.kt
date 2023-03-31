@@ -1,6 +1,8 @@
 package com.group.so.data.services
 
 import com.group.so.data.MockResponseFileReader
+import com.group.so.data.entities.network.CustomerDTO
+import com.group.so.data.entities.network.ServiceOrderDTOItem
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.runBlocking
@@ -68,6 +70,54 @@ class ServiceOrderServiceTest {
 
         // Assert
         assertEquals(0, actualResponse.size)
+    }
+
+    @Test
+    fun `should return correct endpoint register new service order`() {
+        runBlocking {
+            val response = MockResponse()
+            mockWebServer.enqueue(
+                response.setBody(
+                    "{\n" +
+                        "    \"id\": 4,\n" +
+                        "    \"extra_info\": \"some items 3\",\n" +
+                        "    \"status\": \"budge\",\n" +
+                        "    \"creation_date\": null,\n" +
+                        "    \"conclusion_date\": null,\n" +
+                        "    \"discount\": 13.0,\n" +
+                        "    \"customer\": {\n" +
+                        "      \"id\": 17,\n" +
+                        "      \"name\": \"iury nogueira\",\n" +
+                        "      \"document_number\": \"04590651564\",\n" +
+                        "      \"phone\": \"88915484544\",\n" +
+                        "      \"state_inscription\": \"\",\n" +
+                        "      \"customer_type\": \"person\"\n" +
+                        "    }\n" +
+                        "  }"
+                )
+            )
+            service.register(
+                ServiceOrderDTOItem(
+                    id = 4,
+                    extraInfo = "some items 4",
+                    discount = 13.00,
+                    status = "budge",
+                    customer = CustomerDTO(
+                        id = 17,
+                        name = "iury nogueira",
+                        documentNumber = "04590651564",
+                        phone = "88915484544",
+                        stateInscription = "",
+                        customeType = "person"
+                    ),
+                    creationDate = null,
+                    conclusionDate = null,
+
+                )
+            )
+            val request = mockWebServer.takeRequest()
+            assertEquals(request.path, "/service_orders")
+        }
     }
 
     @After
