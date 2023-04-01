@@ -10,7 +10,9 @@ import com.group.so.data.entities.network.ServiceOrderDTOItem
 import com.group.so.data.entities.network.toDb
 import com.group.so.data.services.ServiceOrderService
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import retrofit2.HttpException
 
 class ServiceOrderRepositoryImpl(
     private val serviceOrder: ServiceOrderService,
@@ -40,4 +42,18 @@ class ServiceOrderRepositoryImpl(
             },
             onError = { RemoteException("Could not connect to Service Order. Displaying cached content.") }
         )
+
+    override suspend fun register(serviceOrderDTOItem: ServiceOrderDTOItem): Flow<Resource<ServiceOrder>> =
+        flow {
+            try {
+                val resultRegisterServiceOrder = serviceOrder.register(
+                    serviceOrderDTOItem
+                )
+                emit(Resource.Success(data = resultRegisterServiceOrder.toModel()))
+            } catch (ex: HttpException) {
+                val error =
+                    RemoteException("An error occurred when trying to register a new category")
+                emit(Resource.Error(data = null, error = error))
+            }
+        }
 }
