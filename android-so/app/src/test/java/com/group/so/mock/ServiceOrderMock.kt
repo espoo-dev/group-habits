@@ -51,6 +51,12 @@ object ServiceOrderMock {
             )
         )
     )
+    fun mockServiceOrderRegisterResourceSucess() = flowOf(
+        Resource.Success(
+            data =
+            serviceOrder,
+        )
+    )
 
     fun mockServiceOrderResourceSuccess(): Resource<List<ServiceOrder>> =
         Resource.Success(data = mockServiceListEntity())
