@@ -5,5 +5,6 @@ import com.group.so.domain.item.GetItemByItemTypeUseCase
 
 data class ServiceOrderUseCase(
     val getItemByItemTypeUseCase: GetItemByItemTypeUseCase,
-    val getCustomersUseCase: GetCustomersUseCase
+    val getCustomersUseCase: GetCustomersUseCase,
+    val registerServiceOrderUseCase: RegisterServiceOrderUseCase
 )
