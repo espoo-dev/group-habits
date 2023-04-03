@@ -35,7 +35,7 @@ class RegisterServiceOrderUseCaseTest {
         creationDate = null,
         conclusionDate = null,
 
-        )
+    )
 
     @Test
     fun `should return a service order after register`() =
