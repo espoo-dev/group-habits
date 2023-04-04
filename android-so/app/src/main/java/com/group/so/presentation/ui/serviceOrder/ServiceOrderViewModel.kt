@@ -19,6 +19,8 @@ import com.group.so.core.State
 import com.group.so.core.ZERO
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
+import com.group.so.data.entities.model.ServiceOrder
+import com.group.so.data.entities.network.ServiceOrderDTOItem
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import com.group.so.presentation.ui.serviceOrder.mapper.toItemListItem
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
@@ -53,6 +55,36 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     private val _customerListState = MutableStateFlow<State<List<Customer>>>(State.Idle)
     val customerListState = _customerListState.asStateFlow()
+
+    private val _registerServiceOrderState = MutableStateFlow<State<ServiceOrder>>(State.Idle)
+    val registerServiceOrderState = _registerServiceOrderState.asStateFlow()
+
+    private fun registerNewServiceOrder(serviceOrderDTOItem: ServiceOrderDTOItem) {
+        viewModelScope.launch {
+            serviceOrderUseCase.registerServiceOrderUseCase(serviceOrderDTOItem)
+                .onStart {
+                    _registerServiceOrderState.value = (State.Loading)
+                }.catch {
+                    with(RemoteException("Could not connect to Service Orders API")) {
+                        _registerServiceOrderState.value = State.Error(this)
+                    }
+                }
+                .collect {
+                    it.data?.let { category ->
+                        _registerServiceOrderState.value = State.Success(category)
+                    }
+                    it.error?.let { throwable ->
+                        with(RemoteException(throwable.message.toString())) {
+                            _registerServiceOrderState.value = State.Error(this)
+                        }
+                    }
+                }
+        }
+    }
+
+    fun register(serviceOrderDTOItem: ServiceOrderDTOItem) {
+        registerNewServiceOrder(serviceOrderDTOItem)
+    }
 
     fun fetchLatestCustomers() {
         fetchCustomers()
