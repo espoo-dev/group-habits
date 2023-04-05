@@ -1,3 +1,8 @@
+@file:Suppress(
+    "TooGenericExceptionCaught",
+
+)
+
 package com.group.so.data.entities.db
 
 import androidx.room.Entity
@@ -54,12 +59,11 @@ class CustomerTypeConverter {
     }
 }
 
-
 object ItemsDbConverters {
     @TypeConverter
     fun stringToItems(string: String?): List<ItemDb>? {
         return try {
-            Gson().fromJson<List<ItemDb>>(string ?: "") //using extension function
+            Gson().fromJson<List<ItemDb>>(string ?: "") // using extension function
         } catch (e: Exception) {
             arrayListOf()
         }

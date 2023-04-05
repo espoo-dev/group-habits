@@ -20,7 +20,6 @@ import com.group.so.core.ZERO
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.model.ServiceOrder
-import com.group.so.data.entities.network.ServiceOrderDTOItem
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import com.group.so.presentation.ui.serviceOrder.mapper.toItemListItem
