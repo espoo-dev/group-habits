@@ -3,7 +3,9 @@ package com.group.so.data.entities.network
 import com.group.so.data.entities.db.CustomerDb
 import com.group.so.data.entities.model.Customer
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class CustomerDTO(
     @Json(name = "id") @field:Json(name = "id")
     val id: Int,

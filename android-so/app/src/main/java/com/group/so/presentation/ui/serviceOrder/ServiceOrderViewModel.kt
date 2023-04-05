@@ -21,6 +21,7 @@ import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.model.ServiceOrder
 import com.group.so.data.entities.network.ServiceOrderDTOItem
+import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import com.group.so.presentation.ui.serviceOrder.mapper.toItemListItem
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
@@ -59,9 +60,9 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     private val _registerServiceOrderState = MutableStateFlow<State<ServiceOrder>>(State.Idle)
     val registerServiceOrderState = _registerServiceOrderState.asStateFlow()
 
-    private fun registerNewServiceOrder(serviceOrderDTOItem: ServiceOrderDTOItem) {
+    private fun registerNewServiceOrder(serviceOrderDataRequest: ServiceOrderDataRequest) {
         viewModelScope.launch {
-            serviceOrderUseCase.registerServiceOrderUseCase(serviceOrderDTOItem)
+            serviceOrderUseCase.registerServiceOrderUseCase(serviceOrderDataRequest)
                 .onStart {
                     _registerServiceOrderState.value = (State.Loading)
                 }.catch {
@@ -82,8 +83,8 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
         }
     }
 
-    fun register(serviceOrderDTOItem: ServiceOrderDTOItem) {
-        registerNewServiceOrder(serviceOrderDTOItem)
+    fun register(serviceOrderDataRequest: ServiceOrderDataRequest) {
+        registerNewServiceOrder(serviceOrderDataRequest)
     }
 
     fun fetchLatestCustomers() {
