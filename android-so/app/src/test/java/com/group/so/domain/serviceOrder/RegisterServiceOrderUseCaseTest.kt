@@ -3,7 +3,7 @@ package com.group.so.domain.serviceOrder
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.data.entities.network.CustomerDTO
-import com.group.so.data.entities.network.ServiceOrderDTOItem
+import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.data.repository.serviceOrders.ServiceOrderRepository
 import com.group.so.mock.ServiceOrderMock
 import io.mockk.coEvery
@@ -19,7 +19,7 @@ import org.junit.runners.JUnit4
 class RegisterServiceOrderUseCaseTest {
     private val serviceOrderRepository = mockk<ServiceOrderRepository>()
     private val registerSericeOrderUseCase = RegisterServiceOrderUseCase(serviceOrderRepository)
-    private val mockRegisterServiceOrderRequest = ServiceOrderDTOItem(
+    private val mockRegisterServiceOrderRequest = ServiceOrderDataRequest(
         id = 4,
         extraInfo = "some items 4",
         discount = 13.00,

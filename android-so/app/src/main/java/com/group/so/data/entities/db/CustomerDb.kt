@@ -3,7 +3,9 @@ package com.group.so.data.entities.db
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.group.so.data.entities.model.Customer
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 @Entity(tableName = "customer")
 data class CustomerDb(
     @PrimaryKey

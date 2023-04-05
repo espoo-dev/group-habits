@@ -22,6 +22,7 @@ import com.group.so.domain.item.GetItemsUseCase
 import com.group.so.domain.item.RegisterProductUseCase
 import com.group.so.domain.item.RegisterServiceUseCase
 import com.group.so.domain.salesUnit.GetSalesUnitUseCase
+import com.group.so.domain.serviceOrder.RegisterServiceOrderUseCase
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -69,6 +70,7 @@ object DomainModule {
             factory { GetSalesUnitUseCase(get()) }
 
             // ServiceOrder
+            factory { RegisterServiceOrderUseCase(get()) }
             factory { ServiceOrderUseCase(get(), get(), get()) }
         }
     }

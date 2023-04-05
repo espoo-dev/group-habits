@@ -2,7 +2,9 @@ package com.group.so.data.entities.network
 
 import com.group.so.data.entities.db.CategoryDb
 import com.group.so.data.entities.model.Category
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class CategoryDTO(
     val id: Int,
     val name: String

@@ -22,7 +22,7 @@ import com.group.so.data.entities.db.ServiceOrderDb
 
 @Database(
     entities = [CategoryDb::class, CustomerDb::class, ItemDb::class, SalesUnitDb::class, ServiceOrderDb::class],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 @TypeConverters(

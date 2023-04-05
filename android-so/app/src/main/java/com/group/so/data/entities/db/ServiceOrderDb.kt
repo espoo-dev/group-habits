@@ -1,11 +1,17 @@
+@file:Suppress(
+    "TooGenericExceptionCaught",
+
+)
+
 package com.group.so.data.entities.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.group.so.data.entities.model.ServiceOrder
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 @Entity(tableName = "service_order")
@@ -17,7 +23,7 @@ data class ServiceOrderDb(
     val customer: CustomerDb?,
     val discount: Double,
     val extraInfo: String,
-    val items: List<ItemDb>? = emptyList(),
+    val items: List<ItemDb> = arrayListOf(),
     val status: String,
 ) {
     fun toModel(): ServiceOrder = ServiceOrder(
@@ -53,18 +59,21 @@ class CustomerTypeConverter {
     }
 }
 
-class ItemsDbConverters {
-    private val moshi = Moshi.Builder().build()
-    private val itemsType = Types.newParameterizedType(List::class.java, ItemDb::class.java)
-    private val itemsAdapter = moshi.adapter<List<ItemDb>>(itemsType)
-
+object ItemsDbConverters {
     @TypeConverter
-    fun stringToItems(string: String): List<ItemDb> {
-        return itemsAdapter.fromJson(string).orEmpty()
+    fun stringToItems(string: String?): List<ItemDb>? {
+        return try {
+            Gson().fromJson<List<ItemDb>>(string ?: "") // using extension function
+        } catch (e: Exception) {
+            arrayListOf()
+        }
     }
 
     @TypeConverter
-    fun itemsToString(items: List<ItemDb>): String {
-        return itemsAdapter.toJson(items)
+    fun itemsToString(items: List<ItemDb>?): String {
+        return Gson().toJson(items!!)
     }
 }
+
+inline fun <reified T> Gson.fromJson(json: String) =
+    fromJson<T>(json, object : TypeToken<T>() {}.type)
