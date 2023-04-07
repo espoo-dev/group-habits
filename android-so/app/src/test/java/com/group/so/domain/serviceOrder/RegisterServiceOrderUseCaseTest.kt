@@ -34,6 +34,7 @@ class RegisterServiceOrderUseCaseTest {
         ),
         creationDate = null,
         conclusionDate = null,
+        items = listOf(0, 1)
 
     )
 

@@ -26,7 +26,7 @@ class ServiceOrderRepositoryTest {
 
     private val serviceOrderRepository = mockk<ServiceOrderRepository>()
 
-    val mockRegisterServiceOrderRequest =
+    private val mockRegisterServiceOrderRequest =
         ServiceOrderDataRequest(
             id = 4,
             extraInfo = "some items 4",
@@ -34,7 +34,7 @@ class ServiceOrderRepositoryTest {
             status = "budge",
             customer = CustomerDTO(
                 id = 17,
-                name = "iury nogueira",
+                name = "test",
                 documentNumber = "04590651564",
                 phone = "88915484544",
                 stateInscription = "",
@@ -42,6 +42,7 @@ class ServiceOrderRepositoryTest {
             ),
             creationDate = null,
             conclusionDate = null,
+            items = listOf(0, 1)
 
         )
 

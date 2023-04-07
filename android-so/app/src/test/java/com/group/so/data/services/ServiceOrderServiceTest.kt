@@ -2,7 +2,7 @@ package com.group.so.data.services
 
 import com.group.so.data.MockResponseFileReader
 import com.group.so.data.entities.network.CustomerDTO
-import com.group.so.data.entities.network.ServiceOrderDTOItem
+import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.runBlocking
@@ -87,7 +87,7 @@ class ServiceOrderServiceTest {
                         "    \"discount\": 13.0,\n" +
                         "    \"customer\": {\n" +
                         "      \"id\": 17,\n" +
-                        "      \"name\": \"iury nogueira\",\n" +
+                        "      \"name\": \"test\",\n" +
                         "      \"document_number\": \"04590651564\",\n" +
                         "      \"phone\": \"88915484544\",\n" +
                         "      \"state_inscription\": \"\",\n" +
@@ -97,14 +97,14 @@ class ServiceOrderServiceTest {
                 )
             )
             service.register(
-                ServiceOrderDTOItem(
+                ServiceOrderDataRequest(
                     id = 4,
                     extraInfo = "some items 4",
                     discount = 13.00,
                     status = "budge",
                     customer = CustomerDTO(
                         id = 17,
-                        name = "iury nogueira",
+                        name = "test",
                         documentNumber = "04590651564",
                         phone = "88915484544",
                         stateInscription = "",
@@ -112,6 +112,7 @@ class ServiceOrderServiceTest {
                     ),
                     creationDate = null,
                     conclusionDate = null,
+                    items = listOf(0, 1)
 
                 )
             )
