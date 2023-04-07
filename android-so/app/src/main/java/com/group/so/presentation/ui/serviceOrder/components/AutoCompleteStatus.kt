@@ -58,7 +58,7 @@ fun AutoCompleteStatus(
         TextSearchBar(
             modifier = Modifier.testTag(AutoCompleteSearchBarTag),
             value = value,
-            label = stringResource(id = R.string.lbl_field_search_customers_service_order),
+            label = stringResource(id = R.string.lbl_field_search_status_service_order),
             onDoneActionClick = {
                 view.clearFocus()
             },

@@ -180,6 +180,10 @@
     <string name="lbl_product_service_order">Produto(s)</string>
     <string name="lbl_service_order">Serviços(s)</string>
     <string name="lbl_text_date_creation">Data de criação</string>
+    <string name="title_button_service_order">Salvar ordem de service</string>
+    <string name="txt_register_success_service_order">Ordem de serviço registrada com sucesso.</string>
+
+
 
     <!--Forgot password -->
     <string name="title_forgot_password">ESQUECEU SUA SENHA?</string>

@@ -1,22 +1,18 @@
 package com.group.so.data.entities.request.serviceOrder
 
-import com.group.so.data.entities.network.CustomerDTO
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ServiceOrderDataRequest(
-    @Json(name = "id") @field:Json(name = "id")
-    val id: Int,
-
     @Json(name = "conclusion_date") @field:Json(name = "conclusion_date")
     val conclusionDate: String?,
 
     @Json(name = "creation_date") @field:Json(name = "creation_date")
     val creationDate: String?,
 
-    @Json(name = "customer") @field:Json(name = "customer")
-    val customer: CustomerDTO,
+    @Json(name = "customer_id") @field:Json(name = "customer_id")
+    val customer: Int,
 
     @Json(name = "discount") @field:Json(name = "discount")
     val discount: Double,

@@ -21,6 +21,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.group.so.core.State
 import com.group.so.data.entities.model.Customer
 import com.group.so.presentation.ui.serviceOrder.ServiceOrderViewModel
@@ -30,7 +31,8 @@ import com.group.so.presentation.ui.serviceOrder.ServiceOrderViewModel
 fun ServiceOrderContent(
     serviceOrderViewModel: ServiceOrderViewModel,
     customerListState: State<List<Customer>>,
-    scrollBehavior: TopAppBarScrollBehavior
+    scrollBehavior: TopAppBarScrollBehavior,
+    navController: NavController
 ) {
     println(scrollBehavior)
     LaunchedEffect(Unit, block = {
@@ -43,7 +45,7 @@ fun ServiceOrderContent(
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        ServiceOrderFormContent(customerListState)
+        ServiceOrderFormContent(customerListState, serviceOrderViewModel, navController)
         Spacer(modifier = Modifier.size(30.dp))
         SummaryServiceOrder(serviceOrderViewModel)
         Spacer(modifier = Modifier.size(30.dp))

@@ -2,7 +2,6 @@ package com.group.so.domain.serviceOrder
 
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
-import com.group.so.data.entities.network.CustomerDTO
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.data.repository.serviceOrders.ServiceOrderRepository
 import com.group.so.mock.ServiceOrderMock
@@ -20,18 +19,10 @@ class RegisterServiceOrderUseCaseTest {
     private val serviceOrderRepository = mockk<ServiceOrderRepository>()
     private val registerSericeOrderUseCase = RegisterServiceOrderUseCase(serviceOrderRepository)
     private val mockRegisterServiceOrderRequest = ServiceOrderDataRequest(
-        id = 4,
         extraInfo = "some items 4",
         discount = 13.00,
         status = "budge",
-        customer = CustomerDTO(
-            id = 17,
-            name = "iury nogueira",
-            documentNumber = "04590651564",
-            phone = "88915484544",
-            stateInscription = "",
-            customeType = "person"
-        ),
+        customer = 1,
         creationDate = null,
         conclusionDate = null,
         items = listOf(0, 1)

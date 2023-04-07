@@ -188,6 +188,8 @@
     <string name="lbl_product_service_order">Product(s)</string>
     <string name="lbl_service_order">Service(s)</string>
     <string name="lbl_text_date_creation">Creation date</string>
+    <string name="title_button_service_order">Save service order</string>
+    <string name="txt_register_success_service_order">Service Order registered successfully</string>
 
 
     <!--Forgot password -->
