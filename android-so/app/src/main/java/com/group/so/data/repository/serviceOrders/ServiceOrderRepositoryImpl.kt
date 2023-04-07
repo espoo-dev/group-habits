@@ -53,7 +53,7 @@ class ServiceOrderRepositoryImpl(
                 emit(Resource.Success(data = resultRegisterServiceOrder.toModel()))
             } catch (ex: HttpException) {
                 val error =
-                    RemoteException("An error occurred when trying to register a new category")
+                    RemoteException("An error occurred when trying to register a new service order")
                 emit(Resource.Error(data = null, error = error))
             }
         }

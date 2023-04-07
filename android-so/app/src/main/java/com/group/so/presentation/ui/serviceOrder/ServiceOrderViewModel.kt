@@ -1,5 +1,6 @@
 @file:Suppress(
     "TooManyFunctions",
+    "LongParameterList"
 
 )
 
@@ -82,8 +83,32 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
         }
     }
 
-    fun register(serviceOrderDataRequest: ServiceOrderDataRequest) {
-        registerNewServiceOrder(serviceOrderDataRequest)
+    fun register(
+        conclusionDate: String,
+        creationDate: String,
+        customerId: Int,
+        discount: Double,
+        extraInfo: String,
+        status: String
+    ) {
+
+        if (selectedItems.isNotEmpty()) {
+            var selectedItemList: ArrayList<Int> = arrayListOf()
+            selectedItems.forEach {
+                selectedItemList.add(it.id)
+            }
+            registerNewServiceOrder(
+                ServiceOrderDataRequest(
+                    creationDate = creationDate,
+                    conclusionDate = conclusionDate,
+                    customer = customerId,
+                    discount = discount,
+                    extraInfo = extraInfo,
+                    status = status,
+                    items = selectedItemList
+                )
+            )
+        }
     }
 
     fun fetchLatestCustomers() {

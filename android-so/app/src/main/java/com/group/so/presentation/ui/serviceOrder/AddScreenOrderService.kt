@@ -146,7 +146,8 @@ fun TabsContent(
                     ZERO -> ServiceOrderContent(
                         scrollBehavior = scrollBehavior,
                         serviceOrderViewModel = serviceOrderViewModel,
-                        customerListState = customerListState
+                        customerListState = customerListState,
+                        navController = navController
                     )
                     ONE -> ShowItems(
                         navController = navController,
