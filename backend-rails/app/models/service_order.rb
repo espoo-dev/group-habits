@@ -29,4 +29,36 @@ class ServiceOrder < ApplicationRecord
   has_many :items, through: :item_service_orders, dependent: :destroy
 
   validates :status, inclusion: STATUSES
+
+
+  def products
+    products = []
+
+    self.item_service_orders.each do |item_service_order|
+      if item_service_order.item.item_type == 'product'
+        products << item_service_order
+      end
+    end
+    products
+  end
+
+  def services
+    services = []
+
+    self.item_service_orders.each do |item_service_order|
+      if item_service_order.item.item_type == 'service'
+        services << item_service_order
+      end
+    end
+    services
+  end
+
+  def total_price_items(items)
+    total = 0
+
+    items.each do |item_service_order|
+      total+=item_service_order.item.sale_price
+    end
+    total
+  end
 end
