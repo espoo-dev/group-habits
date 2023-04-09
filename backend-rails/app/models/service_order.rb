@@ -30,14 +30,11 @@ class ServiceOrder < ApplicationRecord
 
   validates :status, inclusion: STATUSES
 
-
   def products
     products = []
 
-    self.item_service_orders.each do |item_service_order|
-      if item_service_order.item.item_type == 'product'
-        products << item_service_order
-      end
+    item_service_orders.each do |item_service_order|
+      products << item_service_order if item_service_order.item.item_type == 'product'
     end
     products
   end
@@ -45,10 +42,8 @@ class ServiceOrder < ApplicationRecord
   def services
     services = []
 
-    self.item_service_orders.each do |item_service_order|
-      if item_service_order.item.item_type == 'service'
-        services << item_service_order
-      end
+    item_service_orders.each do |item_service_order|
+      services << item_service_order if item_service_order.item.item_type == 'service'
     end
     services
   end
@@ -57,7 +52,7 @@ class ServiceOrder < ApplicationRecord
     total = 0
 
     items.each do |item_service_order|
-      total+=item_service_order.item.sale_price
+      total += item_service_order.item.sale_price
     end
     total
   end

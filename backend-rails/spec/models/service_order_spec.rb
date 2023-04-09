@@ -44,9 +44,11 @@ RSpec.describe ServiceOrder, type: :model do
 
     context 'when service order has a product' do
       let(:item) { create(:item) }
-      let(:item_service) { create(:item, name: 'Setup softwares', extra_info: 'nice softwares', item_type: 'service' ) }
+      let(:item_service) { create(:item, name: 'Setup softwares', extra_info: 'nice softwares', item_type: 'service') }
       let!(:item_service_order) { create(:item_service_order, item_id: item.id, service_order_id: service_order.id) }
-      let!(:item_service_order_2) { create(:item_service_order, item_id: item_service.id, service_order_id: service_order.id) }
+      let!(:item_service_order2) do
+        create(:item_service_order, item_id: item_service.id, service_order_id: service_order.id)
+      end
 
       it 'returns products in service order' do
         expect(service_order.item_service_orders.count).to eq(2)
@@ -69,9 +71,11 @@ RSpec.describe ServiceOrder, type: :model do
 
     context 'when service order has a service' do
       let(:item) { create(:item) }
-      let(:item_service) { create(:item, name: 'Setup softwares', extra_info: 'nice softwares', item_type: 'service' ) }
+      let(:item_service) { create(:item, name: 'Setup softwares', extra_info: 'nice softwares', item_type: 'service') }
       let!(:item_service_order) { create(:item_service_order, item_id: item.id, service_order_id: service_order.id) }
-      let!(:item_service_order_2) { create(:item_service_order, item_id: item_service.id, service_order_id: service_order.id) }
+      let!(:item_service_order2) do
+        create(:item_service_order, item_id: item_service.id, service_order_id: service_order.id)
+      end
 
       it 'returns services in service order' do
         expect(services.count).to eq(1)
@@ -85,8 +89,8 @@ RSpec.describe ServiceOrder, type: :model do
     let(:service_order) { create(:service_order) }
     let(:products) { service_order.products }
     let(:services) { service_order.services }
-    let(:total_price_products) {service_order.total_price_items(products) }
-    let(:total_price_services) {service_order.total_price_items(services) }
+    let(:total_price_products) { service_order.total_price_items(products) }
+    let(:total_price_services) { service_order.total_price_items(services) }
 
     context 'when service order does not have an item' do
       it 'returns sum of each type items' do
@@ -97,9 +101,11 @@ RSpec.describe ServiceOrder, type: :model do
 
     context 'when service order has items' do
       let(:item) { create(:item) }
-      let(:item_service) { create(:item, name: 'Setup softwares', extra_info: 'nice softwares', item_type: 'service' ) }
+      let(:item_service) { create(:item, name: 'Setup softwares', extra_info: 'nice softwares', item_type: 'service') }
       let!(:item_service_order) { create(:item_service_order, item_id: item.id, service_order_id: service_order.id) }
-      let!(:item_service_order_2) { create(:item_service_order, item_id: item_service.id, service_order_id: service_order.id) }
+      let!(:item_service_order2) do
+        create(:item_service_order, item_id: item_service.id, service_order_id: service_order.id)
+      end
 
       it 'returns sum of each type items' do
         expect(total_price_products).to eq(BigDecimal(2000))
