@@ -204,10 +204,12 @@ fun ScreenMain(viewmodel: ServiceOrderViewModel) {
         composable(Routes.NewProduct.route) {
             val productViewModel = koinViewModel<ProductViewModel>()
             val categoriesListState by productViewModel.categoriesListState.collectAsStateWithLifecycle()
+            val salesUnitListState by productViewModel.salesUnitListState.collectAsStateWithLifecycle()
             AddProductScreen(
                 navController,
                 productViewModel,
-                categoriesListState
+                categoriesListState,
+                salesUnitListState
             )
         }
 
