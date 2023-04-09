@@ -155,6 +155,7 @@
     <string name="lbl_field_search_categories_product">Buscar Categoria</string>
     <string name="lbl_field_search_customers_service_order">Buscar Cliente</string>
     <string name="lbl_field_search_status_service_order">Buscar status</string>
+    <string name="lbl_field_search_sales_unit">Buscar Unidade de venda</string>
 
 
     <!--Order Service-->

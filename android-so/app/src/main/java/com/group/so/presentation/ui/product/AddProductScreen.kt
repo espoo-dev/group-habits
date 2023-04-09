@@ -53,7 +53,9 @@ import com.group.so.core.presentation.components.generic.GenericLoading
 import com.group.so.core.presentation.components.toolbars.custom.TopBarWhite
 import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.entities.model.Category
+import com.group.so.data.entities.model.SalesUnit
 import com.group.so.presentation.ui.product.components.AutoCompleteCategory
+import com.group.so.presentation.ui.product.components.AutoCompleteSalesUnit
 
 @OptIn(ExperimentalAnimationApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -62,6 +64,7 @@ fun AddProductScreen(
     navController: NavController,
     productViewModel: ProductViewModel,
     categoriesListState: State<List<Category>>,
+    salesUnitListState: State<List<SalesUnit>>
 
 ) {
     val scaffoldState = rememberScaffoldState()
@@ -77,6 +80,8 @@ fun AddProductScreen(
     val purchasePriceTextState = remember { TextState() }
 
     var category by remember { mutableStateOf(0) }
+
+    var salesUnit by remember { mutableStateOf(0) }
 
     var totalProfitLabel by remember { mutableStateOf("") }
 
@@ -184,6 +189,25 @@ fun AddProductScreen(
                     }
                 }
 
+                Box(Modifier.padding(it)) {
+                    AsyncData(resultState = salesUnitListState, errorContent = {
+                        GenericError(onDismissAction = {})
+                    }) { salesUnitList ->
+                        salesUnitList?.let { salesUnitList ->
+                            salesUnit = salesUnitList.first().id
+                            if (salesUnitList.isEmpty()) {
+                                Text("empty")
+                            } else {
+                                AutoCompleteSalesUnit(
+                                    salesUnitList = salesUnitList,
+                                    itemSelected = { itemSelected ->
+                                        category = itemSelected.id
+                                    },
+                                )
+                            }
+                        }
+                    }
+                }
                 OutlinedTextField(
                     value = extraInfoTextState.text,
                     onValueChange = {
@@ -262,7 +286,7 @@ fun AddProductScreen(
                             salePrice = salePriceTextState.text.toDouble(),
                             purchasePrice = purchasePriceTextState.text.toDouble(),
                             categoryId = category,
-                            salesUnitId = 1
+                            salesUnitId = salesUnit
                         )
                     },
                     enabled = nameTextState.isValid() && salePriceTextState.isValid() && purchasePriceTextState.isValid(),

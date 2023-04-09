@@ -164,6 +164,7 @@
     <string name="lbl_field_search_categories_product">Search category</string>
     <string name="lbl_field_search_customers_service_order">Search customer</string>
     <string name="lbl_field_search_status_service_order">Search status</string>
+    <string name="lbl_field_search_sales_unit">Search Sales Unit</string>
 
     <!--Order Service-->
     <string name="title_toolbar_order_service">Order Services</string>

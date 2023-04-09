@@ -23,6 +23,7 @@ import com.group.so.core.toMoney
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Category
 import com.group.so.data.entities.model.Item
+import com.group.so.data.entities.model.SalesUnit
 import com.group.so.data.entities.request.product.EditProductRequest
 import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.domain.category.GetCategoriesUseCase
@@ -31,6 +32,7 @@ import com.group.so.domain.item.EditProductUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterProductUseCase
+import com.group.so.domain.salesUnit.GetSalesUnitUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -45,11 +47,15 @@ class ProductViewModel(
     private val deleteItemUseCase: DeleteItemUseCase,
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val registerProductUseCase: RegisterProductUseCase,
-    private val editProductUseCase: EditProductUseCase
+    private val editProductUseCase: EditProductUseCase,
+    private val salesUnitUseCase: GetSalesUnitUseCase
 ) : ViewModel() {
 
     private val _categoriesListState = MutableStateFlow<State<List<Category>>>(State.Idle)
     val categoriesListState = _categoriesListState.asStateFlow()
+
+    private val _salesUnitListState = MutableStateFlow<State<List<SalesUnit>>>(State.Idle)
+    val salesUnitListState = _salesUnitListState.asStateFlow()
 
     private val _productListState = MutableStateFlow<State<List<Item>>>(State.Idle)
     val productListState = _productListState.asStateFlow()
@@ -71,6 +77,33 @@ class ProductViewModel(
     init {
         fetchLatestProducts()
         fetchLatestCategories()
+        fetchLatestSalesUnit()
+    }
+
+    fun fetchLatestSalesUnit() {
+        fetchSalesUnit()
+    }
+
+    private fun fetchSalesUnit() {
+        viewModelScope.launch {
+            salesUnitUseCase().onStart {
+                _salesUnitListState.value = State.Loading
+            }.catch {
+                with(RemoteException("Could not connect to Service Order API")) {
+
+                    _salesUnitListState.value = State.Error(this)
+                }
+            }.collect {
+                it.data?.let { salesUnit ->
+                    _salesUnitListState.value = State.Success(salesUnit)
+                }
+                it.error?.let { error ->
+                    with(RemoteException(error.message.toString())) {
+                        _salesUnitListState.value = State.Error(this)
+                    }
+                }
+            }
+        }
     }
 
     fun register(

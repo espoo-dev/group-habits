@@ -13,12 +13,14 @@ import com.group.so.data.entities.request.product.EditProductRequest
 import com.group.so.data.entities.request.product.ProductDataRequest
 import com.group.so.data.repository.category.CategoryRepository
 import com.group.so.data.repository.item.ItemRepository
+import com.group.so.data.repository.salesUnit.SalesUnitRepository
 import com.group.so.domain.category.GetCategoriesUseCase
 import com.group.so.domain.item.DeleteItemUseCase
 import com.group.so.domain.item.EditProductUseCase
 import com.group.so.domain.item.GetItemByItemTypeUseCase
 import com.group.so.domain.item.GetItemByNameAndItemTypeUseCase
 import com.group.so.domain.item.RegisterProductUseCase
+import com.group.so.domain.salesUnit.GetSalesUnitUseCase
 import com.group.so.mock.ItemMock.mockItemList
 import com.group.so.mock.ItemMock.mockProductList
 import com.group.so.presentation.ui.product.ProductViewModel
@@ -43,6 +45,7 @@ class ProductViewModelTest {
 
     private val itemRepository = mockk<ItemRepository>(relaxed = true)
     private val categoryRepository = mockk<CategoryRepository>(relaxed = true)
+    private val salesUnitRepository = mockk<SalesUnitRepository>(relaxed = true)
 
     private val getItemByItemTypeUseCase = GetItemByItemTypeUseCase(itemRepository)
     private val getItemsByNameAndItemTypeUseCase = GetItemByNameAndItemTypeUseCase(itemRepository)
@@ -50,6 +53,7 @@ class ProductViewModelTest {
     private val getCategoriesUseCase = GetCategoriesUseCase(categoryRepository)
     private val registerProductUseCase = RegisterProductUseCase(itemRepository)
     private val editProductUseCase = EditProductUseCase(itemRepository)
+    private val salesUnitUseCase = GetSalesUnitUseCase(salesUnitRepository)
 
     private val mockRegisterProductRequest =
         ProductDataRequest(
@@ -96,7 +100,8 @@ class ProductViewModelTest {
             deleteItemUseCase,
             getCategoriesUseCase,
             registerProductUseCase,
-            editProductUseCase
+            editProductUseCase,
+            salesUnitUseCase
         )
         coEvery { getItemByItemTypeUseCase.execute("services") } returns flow {
             emit(Resource.Success(data = mockItemList()))
