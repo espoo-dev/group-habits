@@ -25,8 +25,8 @@ class ServiceOrderPdf < Prawn::Document
     # stroke_axis
     drawn_title
     drawn_customer_data
-    drawn_customer_products
-    drawn_customer_services
+    drawn_products
+    drawn_services
     drawn_total_service_order
   end
 
@@ -80,7 +80,7 @@ class ServiceOrderPdf < Prawn::Document
     end
   end
 
-  def drawn_customer_products
+  def drawn_products
     pad_top(small_space) do
       text 'Dados do produto', size: customer_title_size
     end
@@ -119,7 +119,7 @@ class ServiceOrderPdf < Prawn::Document
     end
   end
 
-  def drawn_customer_services
+  def drawn_services
     pad_top(small_space) do
       text 'Dados do Serviço', size: customer_title_size
     end
