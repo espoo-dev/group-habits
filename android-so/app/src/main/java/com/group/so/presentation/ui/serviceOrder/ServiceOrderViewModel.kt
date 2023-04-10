@@ -24,6 +24,7 @@ import com.group.so.data.entities.model.ServiceOrder
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import com.group.so.presentation.ui.serviceOrder.mapper.toItemListItem
+import com.group.so.presentation.ui.serviceOrder.model.Status
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,6 +39,17 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     var itemsToShow = mutableStateListOf<ItemListItem>()
         private set
+
+    val statusList =
+        listOf(
+            Status("budge", "budge"),
+            Status("waiting_resource", "waiting_resource"),
+            Status("approved", "approved"),
+            Status("in_progress", "in_progress"),
+            Status("canceled", "canceled"),
+            Status("finished", "finished"),
+            Status("invoiced", "invoiced"),
+        )
 
     var selectedItems by mutableStateOf<List<ItemListItem>>(emptyList())
         private set
