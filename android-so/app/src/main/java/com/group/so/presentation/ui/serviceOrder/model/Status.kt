@@ -4,7 +4,8 @@ import com.group.so.core.presentation.components.autocomplete.AutoCompleteEntity
 import java.util.Locale
 
 class Status(
-    val name: String
+    val name: String,
+    val value: String
 ) : AutoCompleteEntity {
     override fun filter(query: String): Boolean {
         return name.lowercase(Locale.getDefault())

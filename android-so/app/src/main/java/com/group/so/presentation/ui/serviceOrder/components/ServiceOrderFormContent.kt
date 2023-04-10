@@ -42,8 +42,6 @@ import com.group.so.core.presentation.components.generic.GenericError
 import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.entities.model.Customer
 import com.group.so.presentation.ui.serviceOrder.ServiceOrderViewModel
-import com.group.so.presentation.ui.serviceOrder.model.Status
-
 @Composable
 @OptIn(ExperimentalAnimationApi::class)
 fun ServiceOrderFormContent(
@@ -57,7 +55,7 @@ fun ServiceOrderFormContent(
     val creationDate = remember { TextState() }
     var showPicker by remember { mutableStateOf(false) }
     var status by remember { mutableStateOf("") }
-    val statusList = listOf(Status("Aprovação"), Status("Em aguardo"))
+    val statusList = serviceOrderViewModel.statusList
     val context = LocalContext.current
 
     LaunchedEffect(registerUiState) {
@@ -149,9 +147,9 @@ fun ServiceOrderFormContent(
             onClick = {
                 serviceOrderViewModel.register(
                     creationDate = creationDate.text,
-                    conclusionDate = creationDate.text,
+                    conclusionDate = "",
                     customerId = customer,
-                    status = "budge",
+                    status = status,
                     discount = 0.0,
                     extraInfo = "",
                 )
