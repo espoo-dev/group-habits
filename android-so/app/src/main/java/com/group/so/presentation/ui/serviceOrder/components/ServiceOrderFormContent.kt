@@ -20,9 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,9 +36,9 @@ import com.group.so.core.presentation.components.buttons.PrimaryButton
 import com.group.so.core.presentation.components.fields.DateField
 import com.group.so.core.presentation.components.fields.DatePicker
 import com.group.so.core.presentation.components.generic.GenericError
-import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.entities.model.Customer
 import com.group.so.presentation.ui.serviceOrder.ServiceOrderViewModel
+
 @Composable
 @OptIn(ExperimentalAnimationApi::class)
 fun ServiceOrderFormContent(
@@ -50,11 +47,6 @@ fun ServiceOrderFormContent(
     navController: NavController,
 ) {
     val registerUiState by serviceOrderViewModel.registerServiceOrderState.collectAsStateWithLifecycle()
-
-    var customer by remember { mutableStateOf(0) }
-    val creationDate = remember { TextState() }
-    var showPicker by remember { mutableStateOf(false) }
-    var status by remember { mutableStateOf("") }
     val statusList = serviceOrderViewModel.statusList
     val context = LocalContext.current
 
@@ -88,15 +80,14 @@ fun ServiceOrderFormContent(
                 GenericError(onDismissAction = {})
             }) { customerList ->
                 customerList?.let { customers ->
-                    customer = customers.first().id
+                    serviceOrderViewModel.customerId = customers.first().id
                     if (customers.isEmpty()) {
                         Text("")
                     } else {
                         AutoCompleteCustomer(
                             customers = customerList,
                             itemSelected = { itemSelected ->
-                                customer = itemSelected.id
-                                println(itemSelected.id)
+                                serviceOrderViewModel.customerId = itemSelected.id
                             },
                         )
                     }
@@ -104,41 +95,41 @@ fun ServiceOrderFormContent(
             }
         }
 
-        if (showPicker)
+        if (serviceOrderViewModel.showPicker)
             DatePicker(
                 title = R.string.label_title_calendar,
                 onDateSelected = { formattedDate ->
-                    creationDate.text = formattedDate
+                    serviceOrderViewModel.creationDate.text = formattedDate
                 },
                 onDismissRequest = {
-                    showPicker = false
+                    serviceOrderViewModel.showPicker = false
                 }
             )
 
         DateField(
             labelText = stringResource(R.string.lbl_text_date_creation),
             textColor = MaterialTheme.colors.primary,
-            valueText = creationDate.text,
-            error = creationDate.error,
+            valueText = serviceOrderViewModel.creationDate.text,
+            error = serviceOrderViewModel.creationDate.error,
             iconColor = MaterialTheme.colors.primary,
-            iconClear = creationDate.text.isNotBlank(),
+            iconClear = serviceOrderViewModel.creationDate.text.isNotBlank(),
             clearText = {
-                creationDate.text = ""
+                serviceOrderViewModel.creationDate.text = ""
             },
             onClick = {
-                showPicker = true
+                serviceOrderViewModel.showPicker = true
             },
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            creationDate.text = it
-            creationDate.validate()
+            serviceOrderViewModel.creationDate.text = it
+            serviceOrderViewModel.creationDate.validate()
         }
 
         AutoCompleteStatus(
             statusList = statusList,
             itemSelected = { itemSelected ->
-                status = itemSelected.name
+                serviceOrderViewModel.status = itemSelected.name
             },
         )
         PrimaryButton(
@@ -146,10 +137,10 @@ fun ServiceOrderFormContent(
             enabled = true,
             onClick = {
                 serviceOrderViewModel.register(
-                    creationDate = creationDate.text,
-                    conclusionDate = "",
-                    customerId = customer,
-                    status = status,
+                    creationDate = serviceOrderViewModel.creationDate.text,
+                    conclusionDate = serviceOrderViewModel.creationDate.text,
+                    customerId = serviceOrderViewModel.customerId,
+                    status = serviceOrderViewModel.status,
                     discount = 0.0,
                     extraInfo = "",
                 )

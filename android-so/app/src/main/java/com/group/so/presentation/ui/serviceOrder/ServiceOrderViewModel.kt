@@ -6,11 +6,8 @@
 
 package com.group.so.presentation.ui.serviceOrder
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.toMutableStateList
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,6 +15,7 @@ import com.group.so.core.ONE
 import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.core.ZERO
+import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.model.ServiceOrder
@@ -37,7 +35,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     ViewModel(),
     DefaultLifecycleObserver {
 
-    var itemsToShow = mutableStateListOf<ItemListItem>()
+    private var itemsToShow = mutableStateListOf<ItemListItem>()
         private set
 
     val statusList =
@@ -50,6 +48,15 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
             Status("finished", "finished"),
             Status("invoiced", "invoiced"),
         )
+
+    var customerId by mutableStateOf<Int>(0)
+    var creationDate by mutableStateOf<TextState>(TextState())
+
+
+    var showPicker by mutableStateOf(false)
+
+    var status by  mutableStateOf("")
+
 
     var selectedItems by mutableStateOf<List<ItemListItem>>(emptyList())
         private set
@@ -104,7 +111,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
         status: String
     ) {
 
-        if (selectedItems.isNotEmpty()) {
+      //  if (selectedItems.isNotEmpty()) {
             var selectedItemList: ArrayList<Int> = arrayListOf()
             selectedItems.forEach {
                 selectedItemList.add(it.id)
@@ -120,7 +127,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
                     items = selectedItemList
                 )
             )
-        }
+        //}
     }
 
     fun fetchLatestCustomers() {
@@ -128,25 +135,28 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     }
 
     private fun fetchCustomers() {
-        viewModelScope.launch {
-            serviceOrderUseCase.getCustomersUseCase().onStart {
-                _customerListState.value = State.Loading
-            }.catch {
-                with(RemoteException("Could not connect to Service Order API")) {
 
-                    _customerListState.value = State.Error(this)
-                }
-            }.collect {
-                it.data?.let { customers ->
-                    _customerListState.value = State.Success(customers)
-                }
-                it.error?.let { error ->
-                    with(RemoteException(error.message.toString())) {
+            viewModelScope.launch {
+                serviceOrderUseCase.getCustomersUseCase().onStart {
+                    _customerListState.value = State.Loading
+                }.catch {
+                    with(RemoteException("Could not connect to Service Order API")) {
+
                         _customerListState.value = State.Error(this)
+                    }
+                }.collect {
+                    it.data?.let { customers ->
+                        _customerListState.value = State.Success(customers)
+                    }
+                    it.error?.let { error ->
+                        with(RemoteException(error.message.toString())) {
+                            _customerListState.value = State.Error(this)
+                        }
                     }
                 }
             }
-        }
+
+
     }
 
     fun setupItemsToShow(itemType: String) {
@@ -271,4 +281,5 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     fun onDismissCheckoutDialog() {
         isCheckoutDialogShown = false
     }
+
 }
