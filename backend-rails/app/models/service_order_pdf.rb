@@ -25,8 +25,8 @@ class ServiceOrderPdf < Prawn::Document
     # stroke_axis
     drawn_title
     drawn_customer_data
-    drawn_products
-    drawn_services
+    drawn_customer_products
+    drawn_customer_services
     drawn_total_service_order
   end
 
@@ -80,31 +80,23 @@ class ServiceOrderPdf < Prawn::Document
     end
   end
 
-  def drawn_products
+  def drawn_customer_products
     pad_top(small_space) do
       text 'Dados do produto', size: customer_title_size
     end
 
     pad_top(extra_small_space) do
       text "#{I18n.t 'activerecord.models.item.attributes.id'}:", size: small_font_size
-      products_service_order.each do |product_service_order|
-        text "#{product_service_order.item.id}", size: small_font_size
-      end
+      items_information(products_service_order, 'id')
 
       text "#{I18n.t 'activerecord.models.item.attributes.name'}:", size: small_font_size
-      products_service_order.each do |product_service_order|
-        text "#{product_service_order.item.name}", size: small_font_size
-      end
+      items_information(products_service_order, 'name')
 
       text "#{I18n.t 'activerecord.models.item.attributes.extra_info'}:", size: small_font_size
-      products_service_order.each do |product_service_order|
-        text "#{product_service_order.item.extra_info}", size: small_font_size
-      end
+      items_information(products_service_order, 'extra_info')
 
       text "#{I18n.t 'activerecord.models.item.attributes.sale_price'}:", size: small_font_size
-      products_service_order.each do |product_service_order|
-        text "#{product_service_order.item.sale_price}", size: small_font_size
-      end
+      items_information(products_service_order, 'sale_price')
 
       text "#{I18n.t 'activerecord.models.item.attributes.quantity'}:", size: small_font_size
       products_service_order.each do |product_service_order|
@@ -119,31 +111,23 @@ class ServiceOrderPdf < Prawn::Document
     end
   end
 
-  def drawn_services
+  def drawn_customer_services
     pad_top(small_space) do
       text 'Dados do Serviço', size: customer_title_size
     end
 
     pad_top(extra_small_space) do
       text "#{I18n.t 'activerecord.models.item.attributes.id'}:", size: small_font_size
-      services_in_service_order.each do |service_in_service_order|
-        text "#{service_in_service_order.item.id}", size: small_font_size
-      end
+      items_information(services_in_service_order, 'id')
 
       text "#{I18n.t 'activerecord.models.item.attributes.name'}:", size: small_font_size
-      services_in_service_order.each do |service_in_service_order|
-        text "#{service_in_service_order.item.name}", size: small_font_size
-      end
+      items_information(services_in_service_order, 'name')
 
       text "#{I18n.t 'activerecord.models.item.attributes.extra_info'}:", size: small_font_size
-      services_in_service_order.each do |service_in_service_order|
-        text "#{service_in_service_order.item.extra_info}", size: small_font_size
-      end
+      items_information(services_in_service_order, 'extra_info')
 
       text "#{I18n.t 'activerecord.models.item.attributes.sale_price'}:", size: small_font_size
-      services_in_service_order.each do |service_in_service_order|
-        text "#{service_in_service_order.item.sale_price}", size: small_font_size
-      end
+      items_information(services_in_service_order, 'sale_price')
 
       text "#{I18n.t 'activerecord.models.item.attributes.quantity'}:", size: small_font_size
       services_in_service_order.each do |service_in_service_order|
@@ -161,6 +145,12 @@ class ServiceOrderPdf < Prawn::Document
   def drawn_total_service_order
     pad_top(small_space) do
       text "#{I18n.t 'activerecord.models.item.attributes.total'}: #{total_service_order} ", size: small_font_size
+    end
+  end
+
+  def items_information(items, attribute)
+    items.each do |item|
+      text "#{item.item.send(attribute)}", size: small_font_size
     end
   end
 end
