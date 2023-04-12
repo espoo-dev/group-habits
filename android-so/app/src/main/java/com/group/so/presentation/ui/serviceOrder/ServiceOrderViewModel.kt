@@ -6,8 +6,12 @@
 
 package com.group.so.presentation.ui.serviceOrder
 
-import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalContext
+// import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -52,11 +56,9 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     var customerId by mutableStateOf<Int>(0)
     var creationDate by mutableStateOf<TextState>(TextState())
 
-
     var showPicker by mutableStateOf(false)
 
-    var status by  mutableStateOf("")
-
+    var status by mutableStateOf("")
 
     var selectedItems by mutableStateOf<List<ItemListItem>>(emptyList())
         private set
@@ -111,23 +113,23 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
         status: String
     ) {
 
-      //  if (selectedItems.isNotEmpty()) {
-            var selectedItemList: ArrayList<Int> = arrayListOf()
-            selectedItems.forEach {
-                selectedItemList.add(it.id)
-            }
-            registerNewServiceOrder(
-                ServiceOrderDataRequest(
-                    creationDate = creationDate,
-                    conclusionDate = conclusionDate,
-                    customer = customerId,
-                    discount = discount,
-                    extraInfo = extraInfo,
-                    status = status,
-                    items = selectedItemList
-                )
+        //  if (selectedItems.isNotEmpty()) {
+        var selectedItemList: ArrayList<Int> = arrayListOf()
+        selectedItems.forEach {
+            selectedItemList.add(it.id)
+        }
+        registerNewServiceOrder(
+            ServiceOrderDataRequest(
+                creationDate = creationDate,
+                conclusionDate = conclusionDate,
+                customer = customerId,
+                discount = discount,
+                extraInfo = extraInfo,
+                status = status,
+                items = selectedItemList
             )
-        //}
+        )
+        // }
     }
 
     fun fetchLatestCustomers() {
@@ -136,27 +138,25 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     private fun fetchCustomers() {
 
-            viewModelScope.launch {
-                serviceOrderUseCase.getCustomersUseCase().onStart {
-                    _customerListState.value = State.Loading
-                }.catch {
-                    with(RemoteException("Could not connect to Service Order API")) {
+        viewModelScope.launch {
+            serviceOrderUseCase.getCustomersUseCase().onStart {
+                _customerListState.value = State.Loading
+            }.catch {
+                with(RemoteException("Could not connect to Service Order API")) {
 
+                    _customerListState.value = State.Error(this)
+                }
+            }.collect {
+                it.data?.let { customers ->
+                    _customerListState.value = State.Success(customers)
+                }
+                it.error?.let { error ->
+                    with(RemoteException(error.message.toString())) {
                         _customerListState.value = State.Error(this)
-                    }
-                }.collect {
-                    it.data?.let { customers ->
-                        _customerListState.value = State.Success(customers)
-                    }
-                    it.error?.let { error ->
-                        with(RemoteException(error.message.toString())) {
-                            _customerListState.value = State.Error(this)
-                        }
                     }
                 }
             }
-
-
+        }
     }
 
     fun setupItemsToShow(itemType: String) {
@@ -281,5 +281,4 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     fun onDismissCheckoutDialog() {
         isCheckoutDialogShown = false
     }
-
 }
