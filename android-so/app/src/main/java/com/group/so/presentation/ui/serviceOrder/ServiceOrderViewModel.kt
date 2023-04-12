@@ -6,6 +6,7 @@
 
 package com.group.so.presentation.ui.serviceOrder
 
+// import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +19,7 @@ import com.group.so.core.ONE
 import com.group.so.core.RemoteException
 import com.group.so.core.State
 import com.group.so.core.ZERO
+import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.model.ServiceOrder
@@ -37,7 +39,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     ViewModel(),
     DefaultLifecycleObserver {
 
-    var itemsToShow = mutableStateListOf<ItemListItem>()
+    private var itemsToShow = mutableStateListOf<ItemListItem>()
         private set
 
     val statusList =
@@ -50,6 +52,13 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
             Status("finished", "finished"),
             Status("invoiced", "invoiced"),
         )
+
+    var customerId by mutableStateOf<Int>(0)
+    var creationDate by mutableStateOf<TextState>(TextState())
+
+    var showPicker by mutableStateOf(false)
+
+    var status by mutableStateOf("")
 
     var selectedItems by mutableStateOf<List<ItemListItem>>(emptyList())
         private set
@@ -104,23 +113,23 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
         status: String
     ) {
 
-        if (selectedItems.isNotEmpty()) {
-            var selectedItemList: ArrayList<Int> = arrayListOf()
-            selectedItems.forEach {
-                selectedItemList.add(it.id)
-            }
-            registerNewServiceOrder(
-                ServiceOrderDataRequest(
-                    creationDate = creationDate,
-                    conclusionDate = conclusionDate,
-                    customer = customerId,
-                    discount = discount,
-                    extraInfo = extraInfo,
-                    status = status,
-                    items = selectedItemList
-                )
-            )
+        //  if (selectedItems.isNotEmpty()) {
+        var selectedItemList: ArrayList<Int> = arrayListOf()
+        selectedItems.forEach {
+            selectedItemList.add(it.id)
         }
+        registerNewServiceOrder(
+            ServiceOrderDataRequest(
+                creationDate = creationDate,
+                conclusionDate = conclusionDate,
+                customer = customerId,
+                discount = discount,
+                extraInfo = extraInfo,
+                status = status,
+                items = selectedItemList
+            )
+        )
+        // }
     }
 
     fun fetchLatestCustomers() {
@@ -128,6 +137,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     }
 
     private fun fetchCustomers() {
+
         viewModelScope.launch {
             serviceOrderUseCase.getCustomersUseCase().onStart {
                 _customerListState.value = State.Loading
