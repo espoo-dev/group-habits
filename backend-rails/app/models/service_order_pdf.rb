@@ -86,21 +86,11 @@ class ServiceOrderPdf < Prawn::Document
     end
 
     pad_top(extra_small_space) do
-      text "#{I18n.t 'activerecord.models.item.attributes.id'}:", size: small_font_size
-      items_information(products_service_order, 'id')
-
-      text "#{I18n.t 'activerecord.models.item.attributes.name'}:", size: small_font_size
-      items_information(products_service_order, 'name')
-
-      text "#{I18n.t 'activerecord.models.item.attributes.extra_info'}:", size: small_font_size
-      items_information(products_service_order, 'extra_info')
-
-      text "#{I18n.t 'activerecord.models.item.attributes.sale_price'}:", size: small_font_size
-      items_information(products_service_order, 'sale_price')
+      draw_informations(%w[id name extra_info sale_price])
 
       text "#{I18n.t 'activerecord.models.item.attributes.quantity'}:", size: small_font_size
       products_service_order.each do |product_service_order|
-        text "#{ItemServiceOrder.where(id: product_service_order.id).count}", size: small_font_size
+        text ItemServiceOrder.where(id: product_service_order.id).count.to_s, size: small_font_size
       end
 
       text "#{I18n.t 'activerecord.models.item.attributes.total'}: #{total_price_products} ", size: small_font_size
@@ -117,21 +107,11 @@ class ServiceOrderPdf < Prawn::Document
     end
 
     pad_top(extra_small_space) do
-      text "#{I18n.t 'activerecord.models.item.attributes.id'}:", size: small_font_size
-      items_information(services_in_service_order, 'id')
-
-      text "#{I18n.t 'activerecord.models.item.attributes.name'}:", size: small_font_size
-      items_information(services_in_service_order, 'name')
-
-      text "#{I18n.t 'activerecord.models.item.attributes.extra_info'}:", size: small_font_size
-      items_information(services_in_service_order, 'extra_info')
-
-      text "#{I18n.t 'activerecord.models.item.attributes.sale_price'}:", size: small_font_size
-      items_information(services_in_service_order, 'sale_price')
+      draw_informations(%w[id name extra_info sale_price])
 
       text "#{I18n.t 'activerecord.models.item.attributes.quantity'}:", size: small_font_size
       services_in_service_order.each do |service_in_service_order|
-        text "#{ItemServiceOrder.where(id: service_in_service_order.id).count}", size: small_font_size
+        text ItemServiceOrder.where(id: service_in_service_order.id).count.to_s, size: small_font_size
       end
 
       text "#{I18n.t 'activerecord.models.item.attributes.total'}: #{total_price_services} ", size: small_font_size
@@ -150,7 +130,14 @@ class ServiceOrderPdf < Prawn::Document
 
   def items_information(items, attribute)
     items.each do |item|
-      text "#{item.item.send(attribute)}", size: small_font_size
+      text item.item.send(attribute).to_s, size: small_font_size
+    end
+  end
+
+  def draw_informations(attributes)
+    attributes.each do |attribute|
+      text "#{I18n.t "activerecord.models.item.attributes.#{attribute}"}:", size: small_font_size
+      items_information(services_in_service_order, attribute)
     end
   end
 end
