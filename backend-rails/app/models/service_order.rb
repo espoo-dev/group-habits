@@ -27,6 +27,7 @@ class ServiceOrder < ApplicationRecord
   belongs_to :customer
   has_many :item_service_orders, dependent: :destroy
   has_many :items, through: :item_service_orders, dependent: :destroy
+  delegate :item_type, :to => :item, :prefix => true
 
   validates :status, inclusion: STATUSES
 
@@ -34,7 +35,7 @@ class ServiceOrder < ApplicationRecord
     products = []
 
     item_service_orders.each do |item_service_order|
-      products << item_service_order if item_service_order.item.item_type == 'product'
+      products << item_service_order if item_service_order.item_item_type == 'product'
     end
     products
   end
@@ -43,7 +44,7 @@ class ServiceOrder < ApplicationRecord
     services = []
 
     item_service_orders.each do |item_service_order|
-      services << item_service_order if item_service_order.item.item_type == 'service'
+      services << item_service_order if item_service_order.item_item_type == 'service'
     end
     services
   end
