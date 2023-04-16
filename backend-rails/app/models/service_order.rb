@@ -27,7 +27,7 @@ class ServiceOrder < ApplicationRecord
   belongs_to :customer
   has_many :item_service_orders, dependent: :destroy
   has_many :items, through: :item_service_orders, dependent: :destroy
-  delegate :item_type, :to => :item, :prefix => true
+  delegate :item_type, to: :item, prefix: true
 
   validates :status, inclusion: STATUSES
 
