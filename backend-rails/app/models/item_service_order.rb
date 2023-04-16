@@ -16,4 +16,5 @@
 class ItemServiceOrder < ApplicationRecord
   belongs_to :item
   belongs_to :service_order
+  delegate :item_type, to: :item, prefix: true
 end
