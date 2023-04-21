@@ -58,7 +58,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     var showPicker by mutableStateOf(false)
 
-    var status by mutableStateOf("")
+    var status by mutableStateOf("budge")
 
     var selectedItems by mutableStateOf<List<ItemListItem>>(emptyList())
         private set
