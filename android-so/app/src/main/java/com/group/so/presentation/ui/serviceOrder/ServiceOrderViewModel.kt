@@ -6,7 +6,6 @@
 
 package com.group.so.presentation.ui.serviceOrder
 
-// import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +21,7 @@ import com.group.so.core.ZERO
 import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
+import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.model.ServiceOrder
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
@@ -38,6 +38,9 @@ import kotlinx.coroutines.launch
 class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase) :
     ViewModel(),
     DefaultLifecycleObserver {
+
+    private val _serviceOrderListState = MutableStateFlow<State<List<ServiceOrder>>>(State.Idle)
+    val serviceOrderListState = _serviceOrderListState.asStateFlow()
 
     private var itemsToShow = mutableStateListOf<ItemListItem>()
         private set
@@ -81,6 +84,34 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     private val _registerServiceOrderState = MutableStateFlow<State<ServiceOrder>>(State.Idle)
     val registerServiceOrderState = _registerServiceOrderState.asStateFlow()
 
+
+
+    fun fetchLatesServiceOrders() {
+        fetchServiceOrders()
+        fetchLatesServiceOrders()
+    }
+
+    private fun fetchServiceOrders() {
+        viewModelScope.launch {
+            serviceOrderUseCase.getServiceOrdersUseCase().onStart {
+                _serviceOrderListState.value = State.Loading
+            }.catch {
+                with(RemoteException("Could not connect to Service Order API")) {
+                    _serviceOrderListState.value = State.Error(this)
+                }
+            }.collect {
+                it.data?.let { categories ->
+                    _serviceOrderListState.value = State.Success(categories)
+                }
+                it.error?.let { error ->
+                    with(RemoteException(error.message.toString())) {
+                        _serviceOrderListState.value = State.Error(this)
+                    }
+                }
+            }
+        }
+    }
+
     private fun registerNewServiceOrder(serviceOrderDataRequest: ServiceOrderDataRequest) {
         viewModelScope.launch {
             serviceOrderUseCase.registerServiceOrderUseCase(serviceOrderDataRequest)
@@ -94,6 +125,7 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
                 .collect {
                     it.data?.let { category ->
                         _registerServiceOrderState.value = State.Success(category)
+                        fetchLatesServiceOrders()
                     }
                     it.error?.let { throwable ->
                         with(RemoteException(throwable.message.toString())) {

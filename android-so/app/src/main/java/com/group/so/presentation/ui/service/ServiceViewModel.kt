@@ -147,21 +147,25 @@ class ServiceViewModel(
         }
     }
 
-    private fun getItemsByNameAndItemType(query: Query) {
+      fun fetchLatestCategories() {
+        fetchCategories()
+    }
+
+    private fun fetchCategories() {
         viewModelScope.launch {
-            getItemByNameAndItemTypeUseCase(query).onStart {
-                _itemListState.value = State.Loading
+            getCategoriesUseCase().onStart {
+                _categoryState.value = State.Loading
             }.catch {
                 with(RemoteException("Could not connect to Service Order API")) {
-                    _itemListState.value = State.Error(this)
+                    _categoryState.value = State.Error(this)
                 }
             }.collect {
-                it.data?.let { items ->
-                    _itemListState.value = State.Success(items)
+                it.data?.let { categories ->
+                    _categoryState.value = State.Success(categories)
                 }
                 it.error?.let { error ->
                     with(RemoteException(error.message.toString())) {
-                        _itemListState.value = State.Error(this)
+                        _categoryState.value = State.Error(this)
                     }
                 }
             }
