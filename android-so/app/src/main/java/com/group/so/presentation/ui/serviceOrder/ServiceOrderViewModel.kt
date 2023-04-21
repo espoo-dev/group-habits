@@ -21,7 +21,6 @@ import com.group.so.core.ZERO
 import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
-import com.group.so.data.entities.model.Item
 import com.group.so.data.entities.model.ServiceOrder
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
@@ -83,8 +82,6 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     private val _registerServiceOrderState = MutableStateFlow<State<ServiceOrder>>(State.Idle)
     val registerServiceOrderState = _registerServiceOrderState.asStateFlow()
-
-
 
     fun fetchLatesServiceOrders() {
         fetchServiceOrders()
