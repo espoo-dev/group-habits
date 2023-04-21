@@ -44,5 +44,4 @@ class GetServiceOrderUseCaseTest {
             )
             val result = getServiceOrdersUseCase.execute().first()
         }
-
 }

@@ -64,7 +64,7 @@ object ServiceOrderMock {
     fun mockServiceOrderListFlowResourceSuccess() = flowOf(
         Resource.Success(
             data = listOf(
-               serviceOrder
+                serviceOrder
             )
         )
     )
