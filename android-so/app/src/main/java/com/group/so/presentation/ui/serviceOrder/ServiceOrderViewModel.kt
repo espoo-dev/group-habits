@@ -85,7 +85,6 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     fun fetchLatesServiceOrders() {
         fetchServiceOrders()
-        fetchLatesServiceOrders()
     }
 
     private fun fetchServiceOrders() {

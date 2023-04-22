@@ -229,12 +229,22 @@ fun ScreenMain(viewmodel: ServiceOrderViewModel) {
             )
         }
         composable(Routes.ServiceOrder.route) {
+            val serviceOrderListUiState by viewmodel.serviceOrderListState.collectAsStateWithLifecycle()
             ServiceOrderScreen(
                 navController = navController,
-                onNewServiceClick = {
+                serviceOrderViewModel = viewmodel,
+                serviceOrderListUiState = serviceOrderListUiState,
+                onNewServiceOrderClick = {
                     navController.navigate(Routes.NewServiceOrder.route)
                 },
-            )
+                onServiceOrderClick = {
+
+                },
+                onDeleteServiceOrder = {
+                }
+            ){
+                viewmodel.fetchLatesServiceOrders()
+            }
         }
 
         composable(
