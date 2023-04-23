@@ -10,5 +10,11 @@ pt-br:
           customer_type_values:
             person: Pessoa Física
             business: Pessoa Jurídica
-
-
+      item:
+        attributes:
+          id: 'Item'
+          name: 'Nome'
+          extra_info: 'Descrição'
+          sale_price: 'Preço'
+          quantity: 'Quantidade'
+          total: 'Total'
