@@ -27,34 +27,18 @@ class ServiceOrder < ApplicationRecord
   belongs_to :customer
   has_many :item_service_orders, dependent: :destroy
   has_many :items, through: :item_service_orders, dependent: :destroy
-  delegate :item_type, to: :item, prefix: true
 
   validates :status, inclusion: STATUSES
 
-  def products
-    products = []
+  def self.total_price_items(items)
+    items.sum(&:sale_price)
+  end
 
-    item_service_orders.each do |item_service_order|
-      products << item_service_order if item_service_order.item_item_type == 'product'
-    end
-    products
+  def products
+    items.select { |item| item.item_type == 'product' }
   end
 
   def services
-    services = []
-
-    item_service_orders.each do |item_service_order|
-      services << item_service_order if item_service_order.item_item_type == 'service'
-    end
-    services
-  end
-
-  def total_price_items(items)
-    total = 0
-
-    items.each do |item_service_order|
-      total += item_service_order.item.sale_price
-    end
-    total
+    items.select { |item| item.item_type == 'service' }
   end
 end

@@ -45,8 +45,9 @@ RSpec.describe ServiceOrder, type: :model do
     context 'when service order has a product' do
       let(:item) { create(:item) }
       let(:item_service) { create(:item, name: 'Setup softwares', extra_info: 'nice softwares', item_type: 'service') }
-      let!(:item_service_order) { create(:item_service_order, item_id: item.id, service_order_id: service_order.id) }
-      let!(:item_service_order2) do
+
+      before do
+        create(:item_service_order, item_id: item.id, service_order_id: service_order.id)
         create(:item_service_order, item_id: item_service.id, service_order_id: service_order.id)
       end
 
@@ -89,8 +90,8 @@ RSpec.describe ServiceOrder, type: :model do
     let(:service_order) { create(:service_order) }
     let(:products) { service_order.products }
     let(:services) { service_order.services }
-    let(:total_price_products) { service_order.total_price_items(products) }
-    let(:total_price_services) { service_order.total_price_items(services) }
+    let(:total_price_products) { described_class.total_price_items(products) }
+    let(:total_price_services) { described_class.total_price_items(services) }
 
     context 'when service order does not have an item' do
       it 'returns sum of each type items' do

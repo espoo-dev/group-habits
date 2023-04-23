@@ -15,8 +15,8 @@ class ServiceOrderPdf < Prawn::Document
     @customer = service_order.customer
     @products_service_order = service_order.products
     @services_in_service_order = service_order.services
-    @total_price_products = service_order.total_price_items(products_service_order)
-    @total_price_services = service_order.total_price_items(services_in_service_order)
+    @total_price_products = ServiceOrder.total_price_items(products_service_order)
+    @total_price_services = ServiceOrder.total_price_items(services_in_service_order)
     @total_service_order = total_price_products + total_price_services
     @view = view
 
@@ -86,12 +86,7 @@ class ServiceOrderPdf < Prawn::Document
     end
 
     pad_top(extra_small_space) do
-      draw_informations(%w[id name extra_info sale_price])
-
-      text "#{I18n.t 'activerecord.models.item.attributes.quantity'}:", size: small_font_size
-      products_service_order.each do |product_service_order|
-        text ItemServiceOrder.where(id: product_service_order.id).count.to_s, size: small_font_size
-      end
+      draw_informations(%w[id name extra_info sale_price], products_service_order)
 
       text "#{I18n.t 'activerecord.models.item.attributes.total'}: #{total_price_products} ", size: small_font_size
     end
@@ -107,12 +102,7 @@ class ServiceOrderPdf < Prawn::Document
     end
 
     pad_top(extra_small_space) do
-      draw_informations(%w[id name extra_info sale_price])
-
-      text "#{I18n.t 'activerecord.models.item.attributes.quantity'}:", size: small_font_size
-      services_in_service_order.each do |service_in_service_order|
-        text ItemServiceOrder.where(id: service_in_service_order.id).count.to_s, size: small_font_size
-      end
+      draw_informations(%w[id name extra_info sale_price], services_in_service_order)
 
       text "#{I18n.t 'activerecord.models.item.attributes.total'}: #{total_price_services} ", size: small_font_size
     end
@@ -130,14 +120,20 @@ class ServiceOrderPdf < Prawn::Document
 
   def items_information(items, attribute)
     items.each do |item|
-      text item.item.send(attribute).to_s, size: small_font_size
+      text item.send(attribute).to_s, size: small_font_size
     end
   end
 
-  def draw_informations(attributes)
+  def draw_informations(attributes, items)
     attributes.each do |attribute|
       text "#{I18n.t "activerecord.models.item.attributes.#{attribute}"}:", size: small_font_size
-      items_information(services_in_service_order, attribute)
+      items_information(items, attribute)
+    end
+
+    text "#{I18n.t 'activerecord.models.item.attributes.quantity'}:", size: small_font_size
+    items.each do |item|
+      text service_order.item_service_orders.where(item_id: item.id).count.to_s,
+           size: small_font_size
     end
   end
 end
