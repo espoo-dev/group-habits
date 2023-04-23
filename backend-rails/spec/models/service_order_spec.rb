@@ -54,8 +54,8 @@ RSpec.describe ServiceOrder, type: :model do
       it 'returns products in service order' do
         expect(service_order.item_service_orders.count).to eq(2)
         expect(products.count).to eq(1)
-        expect(products.first.item.name).to eq('laptop')
-        expect(products.first.item.item_type).to eq('product')
+        expect(products.first.name).to eq('laptop')
+        expect(products.first.item_type).to eq('product')
       end
     end
   end
@@ -80,8 +80,8 @@ RSpec.describe ServiceOrder, type: :model do
 
       it 'returns services in service order' do
         expect(services.count).to eq(1)
-        expect(services.first.item.name).to eq('Setup softwares')
-        expect(services.first.item.item_type).to eq('service')
+        expect(services.first.name).to eq('Setup softwares')
+        expect(services.first.item_type).to eq('service')
       end
     end
   end
