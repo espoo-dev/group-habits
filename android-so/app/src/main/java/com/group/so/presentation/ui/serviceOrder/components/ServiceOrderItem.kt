@@ -23,8 +23,6 @@ import androidx.compose.ui.unit.dp
 import com.group.so.data.entities.model.ServiceOrder
 import kotlinx.coroutines.launch
 
-
-
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi
 @Composable
