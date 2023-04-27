@@ -42,7 +42,7 @@ fun ServiceOrderContentList(
 
                 Box(Modifier.pullRefresh(pullRefreshState)) {
                     if (it.isEmpty()) {
-                        //EmptyListService()
+                        // EmptyListService()
                     } else {
                         LazyColumn {
                             items(customersList, key = { customer -> customer.id }) { item ->

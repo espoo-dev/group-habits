@@ -24,7 +24,6 @@ import com.group.so.core.presentation.components.toolbars.SearchAppBarState
 import com.group.so.core.presentation.components.toolbars.SharedViewModel
 import com.group.so.core.presentation.components.toolbars.custom.CustomTopAppBarWhite
 import com.group.so.data.entities.model.ServiceOrder
-import com.group.so.presentation.ui.service.components.ServiceContent
 import com.group.so.presentation.ui.serviceOrder.components.ServiceOrderContentList
 import org.koin.androidx.compose.koinViewModel
 
@@ -45,7 +44,7 @@ fun ServiceOrderScreen(
     val searchAppBarState: SearchAppBarState by sharedViewModel.searchAppBarState
     val searchTextState: String by sharedViewModel.searchTextState
 
-    LaunchedEffect(Unit){
+    LaunchedEffect(Unit) {
         serviceOrderViewModel.fetchLatesServiceOrders()
     }
 

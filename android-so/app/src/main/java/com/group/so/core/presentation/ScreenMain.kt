@@ -238,11 +238,10 @@ fun ScreenMain(viewmodel: ServiceOrderViewModel) {
                     navController.navigate(Routes.NewServiceOrder.route)
                 },
                 onServiceOrderClick = {
-
                 },
                 onDeleteServiceOrder = {
                 }
-            ){
+            ) {
                 viewmodel.fetchLatesServiceOrders()
             }
         }
