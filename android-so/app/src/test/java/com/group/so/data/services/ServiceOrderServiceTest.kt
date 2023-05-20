@@ -128,7 +128,6 @@ class ServiceOrderServiceTest {
         }
     }
 
-
     @After
     fun stopService() {
         mockWebServer.shutdown()
