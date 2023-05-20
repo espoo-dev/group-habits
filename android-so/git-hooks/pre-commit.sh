@@ -1,7 +1,6 @@
 #!/bin/sh
 
 ######## KTLINT-GRADLE HOOK START ########
-
 CHANGED_FILES="$(git --no-pager diff --name-status --no-color --cached | awk '$1 != "D" && $2 ~ /\.kts|\.kt/ { print $2}')"
 
 if [ -z "$CHANGED_FILES" ]; then
