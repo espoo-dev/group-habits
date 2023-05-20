@@ -126,11 +126,11 @@ class ItemRepositoryImpl(
     override suspend fun deleteItem(id: Int): Flow<Resource<Int>> = flow {
 
         try {
-            val resultDeleteCustomer = itemService.deleteItem(
+            val resultDeleteItem = itemService.deleteItem(
                 id = id
             )
-            if (resultDeleteCustomer.code() == HttpURLConnection.HTTP_NO_CONTENT) {
-                emit(Resource.Success(data = resultDeleteCustomer.code()))
+            if (resultDeleteItem.code() == HttpURLConnection.HTTP_NO_CONTENT) {
+                emit(Resource.Success(data = resultDeleteItem.code()))
             } else {
                 val error =
                     RemoteException("An error occurred when trying to delete a  customer")

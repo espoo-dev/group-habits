@@ -6,6 +6,7 @@ import com.group.so.core.RemoteException
 import com.group.so.core.Resource
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.data.repository.serviceOrders.ServiceOrderRepository
+import com.group.so.mock.ServiceOrderMock.mockServiceOrderDeleteResourceSucess
 import com.group.so.mock.ServiceOrderMock.mockServiceOrderEntityListRepository
 import com.group.so.mock.ServiceOrderMock.mockServiceOrderRegisterResourceSucess
 import com.group.so.mock.ServiceOrderMock.mockServiceOrderResourceSuccess
@@ -83,5 +84,26 @@ class ServiceOrderRepositoryTest {
                 mockServiceOrderRegisterResourceSucess().first().data?.id
             )
             Assert.assertTrue(result is Resource.Success)
+        }
+
+    @Test
+    fun `should return a 204 after delete`() =
+        runBlocking {
+
+            // GIVEN
+            coEvery {
+                serviceOrderRepository.deleteServiceOrder(
+                    1
+                )
+            } returns mockServiceOrderDeleteResourceSucess()
+
+            val result = serviceOrderRepository.deleteServiceOrder(1).first()
+
+            // THEN
+            assertEquals(
+                result.data,
+                204
+            )
+            assertTrue(result is Resource.Success)
         }
 }

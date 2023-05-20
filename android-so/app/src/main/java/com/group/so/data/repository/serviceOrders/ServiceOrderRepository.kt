@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface ServiceOrderRepository {
     suspend fun listServiceOrder(): Flow<Resource<List<ServiceOrder>>>
     suspend fun register(serviceOrderDataRequest: ServiceOrderDataRequest): Flow<Resource<ServiceOrder>>
+    suspend fun deleteServiceOrder(id: Int): Flow<Resource<Int>>
 }
