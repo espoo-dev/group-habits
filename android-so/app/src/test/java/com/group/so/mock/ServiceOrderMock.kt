@@ -58,6 +58,12 @@ object ServiceOrderMock {
         )
     )
 
+    fun mockServiceOrderDeleteResourceSucess() = flowOf(
+        Resource.Success(
+            data = 204
+        )
+    )
+
     fun mockServiceOrderResourceSuccess(): Resource<List<ServiceOrder>> =
         Resource.Success(data = mockServiceListEntity())
 
