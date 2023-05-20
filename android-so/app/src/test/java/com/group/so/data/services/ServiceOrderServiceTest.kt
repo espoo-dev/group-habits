@@ -111,6 +111,22 @@ class ServiceOrderServiceTest {
             assertEquals(request.path, "/service_orders")
         }
     }
+    @Test
+    fun `should return correct endpoint delete service order`() {
+        runBlocking {
+            val response = MockResponse()
+            mockWebServer.enqueue(
+                response.setBody(
+                    "[]"
+                )
+            )
+            service.deleteServiceOrder(
+                1
+            )
+            val request = mockWebServer.takeRequest()
+            assertEquals(request.path, "/service_order/1")
+        }
+    }
 
     @After
     fun stopService() {
