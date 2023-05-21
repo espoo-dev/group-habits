@@ -7,5 +7,6 @@ data class ServiceOrderUseCase(
     val getItemByItemTypeUseCase: GetItemByItemTypeUseCase,
     val getCustomersUseCase: GetCustomersUseCase,
     val registerServiceOrderUseCase: RegisterServiceOrderUseCase,
-    val getServiceOrdersUseCase: GetServiceOrdersUseCase
+    val getServiceOrdersUseCase: GetServiceOrdersUseCase,
+    val deleteServiceOrderUseCase: DeleteServiceOrderUseCase
 )
