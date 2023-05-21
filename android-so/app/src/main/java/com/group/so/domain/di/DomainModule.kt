@@ -75,7 +75,7 @@ object DomainModule {
             factory { RegisterServiceOrderUseCase(get()) }
             factory { GetServiceOrdersUseCase(get()) }
             factory { DeleteServiceOrderUseCase(get()) }
-            factory { ServiceOrderUseCase(get(), get(), get(), get(),get()) }
+            factory { ServiceOrderUseCase(get(), get(), get(), get(), get()) }
         }
     }
 }
