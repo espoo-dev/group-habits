@@ -18,7 +18,6 @@ class DeleteServiceOrderUseCaseTest {
     private val serviceOrderRepository = mockk<ServiceOrderRepository>()
     private val deleteServiceOrderUseCase = DeleteServiceOrderUseCase(serviceOrderRepository)
 
-
     @Test
     fun `should return 204 after delete`() =
         runBlocking {
