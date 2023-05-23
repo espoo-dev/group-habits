@@ -27,6 +27,7 @@ import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import com.group.so.presentation.ui.serviceOrder.mapper.toItemListItem
 import com.group.so.presentation.ui.serviceOrder.model.Status
 import com.group.so.presentation.ui.serviceOrder.state.ItemListItem
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,6 +41,8 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     private val _serviceOrderListState = MutableStateFlow<State<List<ServiceOrder>>>(State.Idle)
     val serviceOrderListState = _serviceOrderListState.asStateFlow()
+
+    private var removeServiceOrderJob: Job? = null
 
     private var itemsToShow = mutableStateListOf<ItemListItem>()
         private set
@@ -82,6 +85,9 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     private val _registerServiceOrderState = MutableStateFlow<State<ServiceOrder>>(State.Idle)
     val registerServiceOrderState = _registerServiceOrderState.asStateFlow()
+
+    private val _itemDeleteState = MutableStateFlow<State<Int>>(State.Idle)
+    val itemDeleteState = _itemDeleteState.asStateFlow()
 
     fun fetchLatesServiceOrders() {
         fetchServiceOrders()
@@ -308,5 +314,34 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     fun onDismissCheckoutDialog() {
         isCheckoutDialogShown = false
+    }
+
+    private fun deleteServiceOrderById(id: Int) {
+        removeServiceOrderJob?.cancel()
+        removeServiceOrderJob = viewModelScope.launch {
+            launch(Dispatchers.Main) {
+                serviceOrderUseCase.deleteServiceOrderUseCase(id).onStart {
+                    _itemDeleteState.value = State.Loading
+                }.catch {
+                    with(RemoteException("Could not connect to Service Order API")) {
+                        _itemDeleteState.value = State.Error(this)
+                    }
+                }.collect {
+                    it.data?.let { id ->
+                        _itemDeleteState.value = State.Success(id)
+                        fetchLatesServiceOrders()
+                    }
+                    it.error?.let { error ->
+                        with(RemoteException(error.message.toString())) {
+                            _itemDeleteState.value = State.Error(this)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun deleteServiceOrder(id: Int) {
+        deleteServiceOrderById(id)
     }
 }
