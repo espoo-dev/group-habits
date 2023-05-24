@@ -240,6 +240,7 @@ fun ScreenMain(viewmodel: ServiceOrderViewModel) {
                 onServiceOrderClick = {
                 },
                 onDeleteServiceOrder = {
+                    viewmodel.deleteServiceOrder(it.id)
                 }
             ) {
                 viewmodel.fetchLatesServiceOrders()
