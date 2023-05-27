@@ -23,6 +23,7 @@ import com.group.so.domain.item.RegisterProductUseCase
 import com.group.so.domain.item.RegisterServiceUseCase
 import com.group.so.domain.salesUnit.GetSalesUnitUseCase
 import com.group.so.domain.serviceOrder.DeleteServiceOrderUseCase
+import com.group.so.domain.serviceOrder.EditServiceOrderUseCase
 import com.group.so.domain.serviceOrder.GetServiceOrdersUseCase
 import com.group.so.domain.serviceOrder.RegisterServiceOrderUseCase
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
@@ -75,7 +76,8 @@ object DomainModule {
             factory { RegisterServiceOrderUseCase(get()) }
             factory { GetServiceOrdersUseCase(get()) }
             factory { DeleteServiceOrderUseCase(get()) }
-            factory { ServiceOrderUseCase(get(), get(), get(), get(), get()) }
+            factory { EditServiceOrderUseCase(get()) }
+            factory { ServiceOrderUseCase(get(), get(), get(), get(), get(), get()) }
         }
     }
 }
