@@ -4,10 +4,12 @@ package com.group.so.data.repository
 
 import com.group.so.core.RemoteException
 import com.group.so.core.Resource
+import com.group.so.data.entities.request.serviceOrder.EditServiceOrderRequest
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.data.repository.serviceOrders.ServiceOrderRepository
 import com.group.so.mock.ServiceOrderMock.mockServiceOrderDeleteResourceSucess
 import com.group.so.mock.ServiceOrderMock.mockServiceOrderEntityListRepository
+import com.group.so.mock.ServiceOrderMock.mockServiceOrderFlowResourceSuccess
 import com.group.so.mock.ServiceOrderMock.mockServiceOrderRegisterResourceSucess
 import com.group.so.mock.ServiceOrderMock.mockServiceOrderResourceSuccess
 import io.mockk.coEvery
@@ -26,6 +28,19 @@ class ServiceOrderRepositoryTest {
 
     private val serviceOrderRepository = mockk<ServiceOrderRepository>()
 
+    private val mockEditServiceOrderRequest =
+        EditServiceOrderRequest(
+            id = 1,
+            ServiceOrderDataRequest(
+                extraInfo = "some items 4",
+                discount = 13.00,
+                status = "budge",
+                customer = 1,
+                creationDate = null,
+                conclusionDate = null,
+                items = listOf(0, 1)
+            )
+        )
     private val mockRegisterServiceOrderRequest =
         ServiceOrderDataRequest(
             extraInfo = "some items 4",
@@ -105,5 +120,24 @@ class ServiceOrderRepositoryTest {
                 204
             )
             assertTrue(result is Resource.Success)
+        }
+    @Test
+    fun `should return a service order after editing`() =
+        runBlocking {
+            // GIVEN
+            coEvery {
+                serviceOrderRepository.editServiceOrder(
+                    mockEditServiceOrderRequest
+                )
+            } returns mockServiceOrderFlowResourceSuccess()
+
+            val result = serviceOrderRepository.editServiceOrder(mockEditServiceOrderRequest).first()
+
+            // THEN
+            Assert.assertEquals(
+                result.data?.id,
+                mockServiceOrderFlowResourceSuccess().first().data?.id
+            )
+            Assert.assertTrue(result is Resource.Success)
         }
 }

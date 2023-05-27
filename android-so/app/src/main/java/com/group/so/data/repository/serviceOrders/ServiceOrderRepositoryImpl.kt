@@ -8,6 +8,7 @@ import com.group.so.data.entities.db.toModel
 import com.group.so.data.entities.model.ServiceOrder
 import com.group.so.data.entities.network.ServiceOrderDTOItem
 import com.group.so.data.entities.network.toDb
+import com.group.so.data.entities.request.serviceOrder.EditServiceOrderRequest
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.data.services.ServiceOrderService
 import kotlinx.coroutines.flow.Flow
@@ -76,4 +77,19 @@ class ServiceOrderRepositoryImpl(
             emit(Resource.Error(data = null, error = error))
         }
     }
+
+    override suspend fun editServiceOrder(editServiceOrderRequest: EditServiceOrderRequest): Flow<Resource<ServiceOrder>> =
+        flow {
+            try {
+                val resultEditService = serviceOrder.editServiceOrder(
+                    editServiceOrderRequest.id,
+                    editServiceOrderRequest.dataRequest
+                )
+                emit(Resource.Success(data = resultEditService.toModel()))
+            } catch (ex: HttpException) {
+                val error =
+                    RemoteException("An error occurred when trying to edit a customer")
+                emit(Resource.Error(data = null, error = error))
+            }
+        }
 }

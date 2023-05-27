@@ -74,4 +74,38 @@ object ServiceOrderMock {
             )
         )
     )
+    fun mockServiceOrderFlowResourceSuccess() = flowOf(
+        Resource.Success(
+            data =
+            ServiceOrder(
+                id = 1,
+                creationDate = "",
+                conclusionDate = "",
+                customer = Customer(
+                    1,
+                    name = "customer",
+                    phone = "",
+                    documentNumber = "123456",
+                    stateInscription = "",
+                    customerType = "person"
+                ),
+                discount = 0.0,
+                extraInfo = "",
+                items = listOf(
+                    Item(
+                        id = 1,
+                        name = "product",
+                        extraInfo = "",
+                        salePrice = 0.0,
+                        purchasePrice = 0.0,
+                        itemType = "product",
+                        category = Category(id = 1, name = "Category 1"),
+                        saleUnit = SalesUnit(id = 1, name = "Sales Unit test")
+                    )
+                ),
+                status = "Aguardando"
+            )
+
+        )
+    )
 }
