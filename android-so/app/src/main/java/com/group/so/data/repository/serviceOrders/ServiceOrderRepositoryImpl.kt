@@ -1,3 +1,5 @@
+@file:Suppress("MaxLineLength")
+
 package com.group.so.data.repository.serviceOrders
 
 import com.group.so.core.RemoteException
@@ -68,8 +70,7 @@ class ServiceOrderRepositoryImpl(
             if (resultDeleteServiceOrder.code() == HttpURLConnection.HTTP_NO_CONTENT) {
                 emit(Resource.Success(data = resultDeleteServiceOrder.code()))
             } else {
-                val error =
-                    RemoteException("An error occurred when trying to delete a  customer")
+                val error = RemoteException("An error occurred when trying to delete a  customer")
                 emit(Resource.Error(data = null, error = error))
             }
         } catch (ex: HttpException) {
@@ -82,13 +83,11 @@ class ServiceOrderRepositoryImpl(
         flow {
             try {
                 val resultEditService = serviceOrder.editServiceOrder(
-                    editServiceOrderRequest.id,
-                    editServiceOrderRequest.dataRequest
+                    editServiceOrderRequest.id, editServiceOrderRequest.dataRequest
                 )
                 emit(Resource.Success(data = resultEditService.toModel()))
             } catch (ex: HttpException) {
-                val error =
-                    RemoteException("An error occurred when trying to edit a customer")
+                val error = RemoteException("An error occurred when trying to edit a customer")
                 emit(Resource.Error(data = null, error = error))
             }
         }
