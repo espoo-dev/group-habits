@@ -1,8 +1,6 @@
 package com.group.so.data.services
 
-import com.group.so.data.entities.network.ItemDTO
 import com.group.so.data.entities.network.ServiceOrderDTOItem
-import com.group.so.data.entities.request.service.ServiceDataRequest
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -22,7 +20,8 @@ interface ServiceOrderService {
 
     @PUT("service_orders/{id}")
     suspend fun editServiceOrder(
-        @Path("id") id: Int, @Body serviceOrderDataRequest: ServiceOrderDataRequest
+        @Path("id") id: Int,
+        @Body serviceOrderDataRequest: ServiceOrderDataRequest
     ): ServiceOrderDTOItem
 
     @DELETE("service_order/{id}")
