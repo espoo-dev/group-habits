@@ -72,6 +72,48 @@ class ServiceOrderServiceTest {
     }
 
     @Test
+    fun `should return correct endpoint edit service order`() {
+        runBlocking {
+            val response = MockResponse()
+            mockWebServer.enqueue(
+                response.setBody(
+                    "{\n" +
+                        "    \"id\": 4,\n" +
+                        "    \"extra_info\": \"some items 3\",\n" +
+                        "    \"status\": \"budge\",\n" +
+                        "    \"creation_date\": null,\n" +
+                        "    \"conclusion_date\": null,\n" +
+                        "    \"discount\": 13.0,\n" +
+                        "    \"customer\": {\n" +
+                        "      \"id\": 17,\n" +
+                        "      \"name\": \"test\",\n" +
+                        "      \"document_number\": \"04590651564\",\n" +
+                        "      \"phone\": \"88915484544\",\n" +
+                        "      \"state_inscription\": \"\",\n" +
+                        "      \"customer_type\": \"person\"\n" +
+                        "    }\n" +
+                        "  }"
+                )
+            )
+            service.editServiceOrder(
+                4,
+                ServiceOrderDataRequest(
+                    extraInfo = "some items 4",
+                    discount = 13.00,
+                    status = "budge",
+                    customer = 17,
+                    creationDate = null,
+                    conclusionDate = null,
+                    items = listOf(0, 1)
+
+                )
+            )
+            val request = mockWebServer.takeRequest()
+            assertEquals(request.path, "/service_orders/4")
+        }
+    }
+
+    @Test
     fun `should return correct endpoint register new service order`() {
         runBlocking {
             val response = MockResponse()

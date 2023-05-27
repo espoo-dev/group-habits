@@ -8,6 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ServiceOrderService {
@@ -16,6 +17,13 @@ interface ServiceOrderService {
 
     @POST("service_orders")
     suspend fun register(@Body serviceOrderDataRequest: ServiceOrderDataRequest): ServiceOrderDTOItem
+
+    @PUT("service_orders/{id}")
+    suspend fun editServiceOrder(
+        @Path("id") id: Int,
+        @Body serviceOrderDataRequest: ServiceOrderDataRequest
+    ): ServiceOrderDTOItem
+
     @DELETE("service_order/{id}")
     suspend fun deleteServiceOrder(@Path("id") id: Int): Response<ResponseBody>
 }
