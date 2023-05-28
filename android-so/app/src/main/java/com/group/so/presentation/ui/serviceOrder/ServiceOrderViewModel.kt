@@ -22,6 +22,7 @@ import com.group.so.core.presentation.components.validations.TextState
 import com.group.so.data.ItemType
 import com.group.so.data.entities.model.Customer
 import com.group.so.data.entities.model.ServiceOrder
+import com.group.so.data.entities.request.serviceOrder.EditServiceOrderRequest
 import com.group.so.data.entities.request.serviceOrder.ServiceOrderDataRequest
 import com.group.so.domain.serviceOrder.ServiceOrderUseCase
 import com.group.so.presentation.ui.serviceOrder.mapper.toItemListItem
@@ -43,6 +44,9 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
     val serviceOrderListState = _serviceOrderListState.asStateFlow()
 
     private var removeServiceOrderJob: Job? = null
+
+    private val _editServiceOrderState = MutableStateFlow<State<ServiceOrder>>(State.Idle)
+    val editServiceOrderState = _editServiceOrderState.asStateFlow()
 
     private var itemsToShow = mutableStateListOf<ItemListItem>()
         private set
@@ -125,8 +129,8 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
                     }
                 }
                 .collect {
-                    it.data?.let { category ->
-                        _registerServiceOrderState.value = State.Success(category)
+                    it.data?.let { serviceOrder ->
+                        _registerServiceOrderState.value = State.Success(serviceOrder)
                         fetchLatesServiceOrders()
                     }
                     it.error?.let { throwable ->
@@ -343,5 +347,61 @@ class ServiceOrderViewModel(private val serviceOrderUseCase: ServiceOrderUseCase
 
     fun deleteServiceOrder(id: Int) {
         deleteServiceOrderById(id)
+    }
+
+    private fun editServiceOrder(editServiceOrderRequest: EditServiceOrderRequest) {
+        viewModelScope.launch {
+            serviceOrderUseCase.editServiceOrderUseCase(editServiceOrderRequest)
+                .onStart {
+                    _editServiceOrderState.value = (State.Loading)
+                }.catch {
+                    with(RemoteException("Could not connect to Service Orders API")) {
+                        _editServiceOrderState.value = State.Error(this)
+                    }
+                }
+                .collect {
+                    it.data?.let { serviceOrder ->
+                        _editServiceOrderState.value = State.Success(serviceOrder)
+                        fetchLatesServiceOrders()
+                    }
+                    it.error?.let { throwable ->
+                        with(RemoteException(throwable.message.toString())) {
+                            _editServiceOrderState.value = State.Error(this)
+                        }
+                    }
+                }
+        }
+    }
+
+    fun edit(
+        id: Int,
+        conclusionDate: String,
+        creationDate: String,
+        customerId: Int,
+        discount: Double,
+        extraInfo: String,
+        status: String
+    ) {
+
+        //  if (selectedItems.isNotEmpty()) {
+        var selectedItemList: ArrayList<Int> = arrayListOf()
+        selectedItems.forEach {
+            selectedItemList.add(it.id)
+        }
+        editServiceOrder(
+            EditServiceOrderRequest(
+                id = id,
+                ServiceOrderDataRequest(
+                    creationDate = creationDate,
+                    conclusionDate = conclusionDate,
+                    customer = customerId,
+                    discount = discount,
+                    extraInfo = extraInfo,
+                    status = status,
+                    items = selectedItemList
+                )
+            )
+        )
+        // }
     }
 }
