@@ -34,15 +34,6 @@ module App
 
     config.add_autoload_paths_to_load_path = false
 
-    ActionMailer::Base.smtp_settings = {
-      address: 'smtp.sendgrid.net',
-      authentication: :plain,
-      domain: ENV.fetch('SERVER_HOST', nil),
-      enable_starttls_auto: true,
-      password: ENV.fetch('SENDGRID_API_KEY', nil),
-      port: 587,
-      user_name: 'apikey'
-    }
     config.action_mailer.default_url_options = { host: ENV.fetch('SERVER_HOST', nil),
                                                  port: ENV.fetch('PORT', 3000) }
     config.action_mailer.default_options = {
