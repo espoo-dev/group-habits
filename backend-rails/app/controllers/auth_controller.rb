@@ -1,6 +1,5 @@
 class AuthController < ApplicationController
-  def reset_password
-  end
+  def reset_password; end
 
   private
 
