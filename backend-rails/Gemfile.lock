@@ -468,6 +468,7 @@ DEPENDENCIES
   faker (~> 2.13)
   i18n-tasks (~> 0.9.30)
   jbuilder (~> 2.10)
+  jquery-rails
   letter_opener (~> 1.7)
   listen (~> 3.2)
   matrix (~> 0.4.2)
