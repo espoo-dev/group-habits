@@ -1,0 +1,852 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src > screens > SignIn renders correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <RNSScreenStack
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <RNSScreen
+      collapsable={false}
+      forwardedRef={[Function]}
+      gestureResponseDistance={
+        {
+          "bottom": -1,
+          "end": -1,
+          "start": -1,
+          "top": -1,
+        }
+      }
+      nativeBackButtonDismissalEnabled={false}
+      onAppear={[Function]}
+      onDisappear={[Function]}
+      onDismissed={[Function]}
+      onHeaderBackButtonClicked={[Function]}
+      onNativeDismissCancelled={[Function]}
+      onTransitionProgress={[Function]}
+      onWillDisappear={[Function]}
+      replaceAnimation="push"
+      stackPresentation="push"
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      swipeDirection="horizontal"
+    >
+      <RNSScreenStackHeaderConfig
+        backButtonInCustomView={false}
+        backgroundColor="rgb(255, 255, 255)"
+        color="rgb(0, 122, 255)"
+        direction="ltr"
+        disableBackButtonMenu={false}
+        hidden={false}
+        hideBackButton={false}
+        largeTitleHideShadow={false}
+        title="SignIn"
+        titleColor="rgb(28, 28, 30)"
+        topInsetEnabled={false}
+        translucent={false}
+      />
+      <View
+        accessibilityElementsHidden={false}
+        importantForAccessibility="auto"
+        style={
+          {
+            "flex": 1,
+            "flexDirection": "column-reverse",
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "flex": 1,
+              },
+              {
+                "backgroundColor": "rgb(242, 242, 242)",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              [
+                [
+                  {
+                    "backgroundColor": "#FBFBFC",
+                  },
+                ],
+                {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "position": "relative",
+                  },
+                  {
+                    "height": "100%",
+                  },
+                  {
+                    "width": "100%",
+                  },
+                  {
+                    "alignItems": "center",
+                  },
+                  {
+                    "justifyContent": "space-between",
+                  },
+                  {
+                    "paddingBottom": 32,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  [
+                    {
+                      "display": "flex",
+                    },
+                    {
+                      "justifyContent": "space-between",
+                    },
+                    {
+                      "height": "100%",
+                    },
+                    {
+                      "width": "100%",
+                    },
+                    {
+                      "paddingLeft": 24,
+                      "paddingRight": 24,
+                    },
+                    {
+                      "paddingBottom": 96,
+                      "paddingTop": 96,
+                    },
+                    {
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "paddingRight": 0,
+                      "paddingTop": 0,
+                    },
+                    {
+                      "position": "absolute",
+                    },
+                    {
+                      "zIndex": 10,
+                    },
+                    {
+                      "display": "flex",
+                    },
+                    {
+                      "alignItems": "flex-start",
+                    },
+                    {
+                      "justifyContent": "flex-start",
+                    },
+                    {
+                      "height": "20%",
+                    },
+                    {
+                      "backgroundColor": "#1A54F8",
+                    },
+                    {
+                      "paddingTop": 8,
+                    },
+                    {
+                      "paddingLeft": 24,
+                      "paddingRight": 24,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#FBFBFC",
+                      },
+                      {
+                        "fontWeight": "700",
+                      },
+                      {
+                        "fontSize": 30,
+                        "lineHeight": 36,
+                      },
+                      {
+                        "marginTop": 8,
+                      },
+                    ]
+                  }
+                >
+                  Bem vindo
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#FBFBFC",
+                      },
+                      {
+                        "fontWeight": "700",
+                      },
+                      {
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                      },
+                      {
+                        "backgroundColor": "#374151",
+                      },
+                      {
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 8,
+                      },
+                    ]
+                  }
+                >
+                  de volta!
+                </Text>
+              </View>
+              <View
+                style={
+                  [
+                    {
+                      "display": "flex",
+                    },
+                    {
+                      "justifyContent": "space-between",
+                    },
+                    {
+                      "height": "100%",
+                    },
+                    {
+                      "width": "100%",
+                    },
+                    {
+                      "paddingLeft": 24,
+                      "paddingRight": 24,
+                    },
+                    {
+                      "paddingBottom": 96,
+                      "paddingTop": 96,
+                    },
+                    {
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "paddingRight": 0,
+                      "paddingTop": 0,
+                    },
+                    {
+                      "width": "100%",
+                    },
+                    {
+                      "height": "100%",
+                    },
+                    {
+                      "display": "flex",
+                    },
+                    {
+                      "alignItems": "center",
+                    },
+                    {
+                      "backgroundColor": "#FBFBFC",
+                    },
+                    {
+                      "paddingLeft": 24,
+                      "paddingRight": 24,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    [
+                      {
+                        "display": "flex",
+                      },
+                      {
+                        "alignItems": "center",
+                      },
+                      {
+                        "justifyContent": "flex-end",
+                      },
+                      {
+                        "width": "100%",
+                      },
+                      {
+                        "height": "100%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "width": "100%",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        [
+                          {
+                            "fontSize": 14,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "fontWeight": "500",
+                          },
+                          {
+                            "color": "#374151",
+                          },
+                        ]
+                      }
+                    >
+                      Email
+                    </Text>
+                    <View
+                      style={
+                        [
+                          {
+                            "width": "100%",
+                          },
+                          {
+                            "marginTop": 4,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        autoCapitalize="none"
+                        keyboardType="email-address"
+                        onBlur={[Function]}
+                        onChangeText={[Function]}
+                        onFocus={[Function]}
+                        placeholder="minha-empresa@example.com"
+                        placeholderTextColor="gray"
+                        style={
+                          [
+                            {
+                              "width": "100%",
+                            },
+                            {
+                              "paddingLeft": 16,
+                            },
+                            {
+                              "height": 40,
+                            },
+                            {
+                              "borderBottomLeftRadius": 6,
+                              "borderBottomRightRadius": 6,
+                              "borderTopLeftRadius": 6,
+                              "borderTopRightRadius": 6,
+                            },
+                            {
+                              "borderBottomWidth": 1,
+                              "borderLeftWidth": 1,
+                              "borderRightWidth": 1,
+                              "borderTopWidth": 1,
+                            },
+                            {
+                              "borderBottomColor": "#d1d5db",
+                              "borderLeftColor": "#d1d5db",
+                              "borderRightColor": "#d1d5db",
+                              "borderTopColor": "#d1d5db",
+                            },
+                            {
+                              "shadowColor": "rgba(0, 0, 0, 0.1)",
+                              "shadowOffset": {
+                                "height": 1,
+                                "width": 0,
+                              },
+                              "shadowOpacity": 1,
+                              "shadowRadius": 2,
+                            },
+                            {
+                              "fontSize": 14,
+                              "lineHeight": 20,
+                            },
+                          ]
+                        }
+                        testID="email-input"
+                        value=""
+                      />
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      [
+                        {
+                          "width": "100%",
+                        },
+                        {
+                          "marginTop": 8,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        [
+                          {
+                            "fontSize": 14,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "fontWeight": "500",
+                          },
+                          {
+                            "color": "#374151",
+                          },
+                        ]
+                      }
+                    >
+                      Senha
+                    </Text>
+                    <View
+                      style={
+                        [
+                          {
+                            "width": "100%",
+                          },
+                          {
+                            "marginTop": 4,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        autoCapitalize="none"
+                        keyboardType="default"
+                        onBlur={[Function]}
+                        onChangeText={[Function]}
+                        onFocus={[Function]}
+                        placeholder="****************"
+                        placeholderTextColor="gray"
+                        secureTextEntry={true}
+                        style={
+                          [
+                            {
+                              "width": "100%",
+                            },
+                            {
+                              "paddingLeft": 16,
+                            },
+                            {
+                              "height": 40,
+                            },
+                            {
+                              "borderBottomLeftRadius": 6,
+                              "borderBottomRightRadius": 6,
+                              "borderTopLeftRadius": 6,
+                              "borderTopRightRadius": 6,
+                            },
+                            {
+                              "borderBottomWidth": 1,
+                              "borderLeftWidth": 1,
+                              "borderRightWidth": 1,
+                              "borderTopWidth": 1,
+                            },
+                            {
+                              "borderBottomColor": "#d1d5db",
+                              "borderLeftColor": "#d1d5db",
+                              "borderRightColor": "#d1d5db",
+                              "borderTopColor": "#d1d5db",
+                            },
+                            {
+                              "shadowColor": "rgba(0, 0, 0, 0.1)",
+                              "shadowOffset": {
+                                "height": 1,
+                                "width": 0,
+                              },
+                              "shadowOpacity": 1,
+                              "shadowRadius": 2,
+                            },
+                            {
+                              "fontSize": 14,
+                              "lineHeight": 20,
+                            },
+                          ]
+                        }
+                        testID="password-input"
+                        value=""
+                      />
+                    </View>
+                  </View>
+                  <View
+                    accessibilityState={
+                      {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                        },
+                        {
+                          "justifyContent": "center",
+                        },
+                        {
+                          "borderBottomWidth": 1,
+                          "borderLeftWidth": 1,
+                          "borderRightWidth": 1,
+                          "borderTopWidth": 1,
+                        },
+                        {
+                          "shadowColor": "rgba(0, 0, 0, 0.1)",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 0,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 2,
+                        },
+                        {
+                          "borderBottomLeftRadius": 6,
+                          "borderBottomRightRadius": 6,
+                          "borderTopLeftRadius": 6,
+                          "borderTopRightRadius": 6,
+                        },
+                        {
+                          "paddingLeft": 24,
+                          "paddingRight": 24,
+                        },
+                        {
+                          "paddingBottom": 12,
+                          "paddingTop": 12,
+                        },
+                        {
+                          "borderBottomColor": "transparent",
+                          "borderLeftColor": "transparent",
+                          "borderRightColor": "transparent",
+                          "borderTopColor": "transparent",
+                        },
+                        {
+                          "backgroundColor": "#4f46e5",
+                        },
+                        {
+                          "width": "100%",
+                        },
+                        {
+                          "marginTop": 12,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        [
+                          {
+                            "display": "flex",
+                          },
+                          {
+                            "alignItems": "center",
+                          },
+                          {
+                            "justifyContent": "center",
+                          },
+                          {
+                            "textAlign": "center",
+                          },
+                          {
+                            "width": "100%",
+                          },
+                          {
+                            "fontWeight": "700",
+                          },
+                          {
+                            "color": "#fff",
+                          },
+                        ]
+                      }
+                    >
+                      Sign in
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      [
+                        {
+                          "position": "relative",
+                        },
+                        {
+                          "display": "flex",
+                        },
+                        {
+                          "alignItems": "center",
+                        },
+                        {
+                          "justifyContent": "center",
+                        },
+                        {
+                          "width": "100%",
+                        },
+                        {
+                          "marginTop": 8,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      aria-hidden={true}
+                      style={
+                        [
+                          {
+                            "position": "absolute",
+                          },
+                          {
+                            "top": 0,
+                          },
+                          {
+                            "right": 0,
+                          },
+                          {
+                            "bottom": 0,
+                          },
+                          {
+                            "left": 0,
+                          },
+                          {
+                            "display": "flex",
+                          },
+                          {
+                            "alignItems": "center",
+                          },
+                          {
+                            "justifyContent": "center",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          [
+                            {
+                              "width": "100%",
+                            },
+                            {
+                              "borderTopWidth": 1,
+                            },
+                            {
+                              "borderBottomColor": "#d1d5db",
+                              "borderLeftColor": "#d1d5db",
+                              "borderRightColor": "#d1d5db",
+                              "borderTopColor": "#d1d5db",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                    <View
+                      style={
+                        [
+                          {
+                            "position": "relative",
+                          },
+                          {
+                            "display": "flex",
+                          },
+                          {
+                            "alignItems": "center",
+                          },
+                          {
+                            "justifyContent": "center",
+                          },
+                        ]
+                      }
+                    >
+                      <Text
+                        style={
+                          [
+                            {
+                              "backgroundColor": "#fff",
+                            },
+                            {
+                              "paddingLeft": 8,
+                              "paddingRight": 8,
+                            },
+                            {
+                              "fontSize": 14,
+                              "lineHeight": 20,
+                            },
+                            {
+                              "color": "#6b7280",
+                            },
+                          ]
+                        }
+                      >
+                        Ou
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      [
+                        {
+                          "width": "100%",
+                        },
+                        {
+                          "marginTop": 8,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                          },
+                          {
+                            "justifyContent": "center",
+                          },
+                          {
+                            "borderBottomWidth": 1,
+                            "borderLeftWidth": 1,
+                            "borderRightWidth": 1,
+                            "borderTopWidth": 1,
+                          },
+                          {
+                            "shadowColor": "rgba(0, 0, 0, 0.1)",
+                            "shadowOffset": {
+                              "height": 1,
+                              "width": 0,
+                            },
+                            "shadowOpacity": 1,
+                            "shadowRadius": 2,
+                          },
+                          {
+                            "borderBottomLeftRadius": 6,
+                            "borderBottomRightRadius": 6,
+                            "borderTopLeftRadius": 6,
+                            "borderTopRightRadius": 6,
+                          },
+                          {
+                            "paddingLeft": 24,
+                            "paddingRight": 24,
+                          },
+                          {
+                            "paddingBottom": 12,
+                            "paddingTop": 12,
+                          },
+                          {
+                            "borderBottomColor": "transparent",
+                            "borderLeftColor": "transparent",
+                            "borderRightColor": "transparent",
+                            "borderTopColor": "transparent",
+                          },
+                          {
+                            "backgroundColor": "#e0e7ff",
+                          },
+                          {
+                            "width": "100%",
+                          },
+                        ]
+                      }
+                    >
+                      <Text
+                        style={
+                          [
+                            {
+                              "display": "flex",
+                            },
+                            {
+                              "alignItems": "center",
+                            },
+                            {
+                              "justifyContent": "center",
+                            },
+                            {
+                              "textAlign": "center",
+                            },
+                            {
+                              "width": "100%",
+                            },
+                            {
+                              "fontWeight": "700",
+                            },
+                            {
+                              "color": "#4338ca",
+                            },
+                          ]
+                        }
+                      >
+                        Sign up
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RNSScreen>
+  </RNSScreenStack>
+</RNCSafeAreaProvider>
+`;

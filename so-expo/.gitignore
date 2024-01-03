@@ -15,3 +15,9 @@ web-build/
 
 # testing
 /coverage
+
+#vscode
+.vscode
+
+#environments
+.env
